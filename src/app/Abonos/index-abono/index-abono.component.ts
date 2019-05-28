@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DataTbDocumentoService } from '../data-tb-documento.service';
-import { DataDetalleDocService } from '../data-detalle-doc.service';
-import { Documento } from '../Models/Documento';
-import { DataAbonosService } from '../data-abonos.service';
-import { Abonos } from '../Models/Abono';
+import { DataDetalleDocService } from 'src/Services/DetallesDocumento/data-detalle-doc.service';
+import { DataAbonosService } from 'src/Services/Abonos/data-abonos.service';
+import { TbAbonos } from 'src/Models/Abonos';
+import { FacturaService } from 'src/Services/Factura/factura.service';
+import { TbDocumento } from 'src/Models/Documento';
+
+
 
 @Component({
   selector: 'app-index-abono',
@@ -12,7 +14,7 @@ import { Abonos } from '../Models/Abono';
 })
 export class IndexAbonoComponent implements OnInit {
 
-  constructor(private docService:DataTbDocumentoService, 
+  constructor(private docService:FacturaService, 
     private DetalleService : DataDetalleDocService,private abonoservice:DataAbonosService) { }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class IndexAbonoComponent implements OnInit {
 
   detalle:boolean=false;
   listaDoc= new Array();
-  AbonoData=new Abonos();
+  AbonoData=new TbAbonos();
   listaDocumentosFechas=new Array(); //lista para almacenar los documentos de la base de datos ordenados por fecha de la mas antigua a la mas reciente.
   idclient:string;
   listaAbonos=new Array();
@@ -37,19 +39,19 @@ export class IndexAbonoComponent implements OnInit {
   resul:number=0;
   consultarTodos(){
     this.idclient="603480811"
-    this.docService.ConsultarTodos(this.idclient).subscribe(data=>{
+    this.docService.ConsultarTodosAbono(this.idclient).subscribe(data=>{
       this.listaDoc=data;
       console.log(this.listaDoc);
     })
    
   }
-  consultarDetalles(DocumentoDetails:Documento){
+  consultarDetalles(DocumentoDetails:TbDocumento){
   
   console.log(DocumentoDetails);
    this.DetalleService.recibirDetalles(DocumentoDetails);
    
   }
-  abono(Documen:Documento){
+  abono(Documen:TbDocumento){
     console.log(Documen);
     this.abonoservice.recibeDocumento(Documen);
     

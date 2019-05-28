@@ -25,6 +25,19 @@ export class FacturaService {
     const headers = new HttpHeaders().set('Content-type','application/Json');
     return this.http.post<TbDocumento> (this.serviceGeneric.getURL()+'/documento',body,{headers});
    }
+   putData(body:TbDocumento){
+   
+    const headers=new HttpHeaders().set('Content-type','application/Json');
+    return this.http.put(this.serviceGeneric.getURL()+'/documento',body,{headers})
+  }
+   ConsultarTodosAbono(id){
+    
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/consultar/"+id);
+  }  
+  ConsultarPorFechas(id){
+    
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"documento/consultar/ordenfecha/"+id);
+  } 
    
 }
 

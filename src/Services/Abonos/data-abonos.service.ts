@@ -1,36 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Abonos } from './Models/Abono';
-import { Documento } from './Models/Documento';
+import { TbAbonos } from 'src/Models/Abonos';
+import { TbDocumento } from 'src/Models/Documento';
+import { ServiceGeneric } from '../ServiceGeneric';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataAbonosService {
-  Documen=new Documento();
-  constructor(private http : HttpClient) { }
+  Documen=new TbDocumento();
+  constructor(private http : HttpClient,private serviceGeneric: ServiceGeneric) { }
 
   getData(id:number){
     
-    return this.http.get<Abonos[]>("http://localhost:63630/api/abonos/"+id)
+    return this.http.get<TbAbonos[]>(this.serviceGeneric.getURL()+"/abonos/"+id)
 
   }
   consultaTodos(){
     
-    return this.http.get<Abonos[]>("http://localhost:63630/api/abonos")
+    return this.http.get<TbAbonos[]>(this.serviceGeneric.getURL()+"/abonos/")
   }
   
-  postData(body:Abonos){
+  postData(body:TbAbonos){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<Abonos>('http://localhost:63630/api/abonos',body,{headers})
+    return this.http.post<TbAbonos>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
   }
 
-  putData(body:Abonos){
+  putData(body:TbAbonos){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<string>('http://localhost:63630/api/abonos',body,{headers})
+    return this.http.put<string>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
   }
 
-  recibeDocumento(Docu:Documento){
+  recibeDocumento(Docu:TbDocumento){
     this.Documen=Docu;
   }
 }

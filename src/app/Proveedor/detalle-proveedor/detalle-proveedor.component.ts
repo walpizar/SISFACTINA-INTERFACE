@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DataProvinciaService } from '../data-provincia.service';
-import { DataCantonService } from '../data-canton.service';
-import { DataDistritoService } from '../data-distrito.service';
-import { DataBarriosService } from '../data-barrios.service';
-import { DataTipoIdService } from '../data-tipo-id.service';
 import { DataProveedorService } from 'src/Services/Proveedor/data-proveedor.service';
-import { Provincia } from '../Models/Provincia';
-import { Canton } from '../Models/Canton';
-import { Distrito } from '../Models/Distrito';
-import { Barrio } from '../Models/Barrios';
 import { TbPersona } from 'src/Models/Personas';
 import { TbProveedores } from 'src/Models/Proveedores';
+import { DataProvinciaService } from 'src/Services/Provincia/data-provincia.service';
+import { DataCantonService } from 'src/Services/Canton/data-canton.service';
+import { DataDistritoService } from 'src/Services/Distrito/data-distrito.service';
+import { DataBarriosService } from 'src/Services/Barrios/data-barrios.service';
+import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
+import { TbProvincia } from 'src/Models/Provincia';
+import { TbCanton } from 'src/Models/Canton';
+import { TbDistrito } from 'src/Models/Distrito';
+import { TbBarrios } from 'src/Models/Barrios';
 @Component({
   selector: 'app-detalle-proveedor',
   templateUrl: './detalle-proveedor.component.html',
@@ -27,10 +27,10 @@ export class DetalleProveedorComponent implements OnInit {
   listaCanton=new Array();
   listaDistrito=new Array();
   listaBarrio=new Array();
-  Provincia= new Provincia();
-  Canton= new Canton();
-  Distrito= new Distrito();
-  Barrio=new Barrio();
+  Provincia= new TbProvincia();
+  Canton= new TbCanton();
+  Distrito= new TbDistrito();
+  Barrio=new TbBarrios();
   ngOnInit() {
     this.Proveedor.TbPersona=new TbPersona()
     this.Proveedor=this.proveedorService.DetalleProveedor
@@ -44,7 +44,7 @@ export class DetalleProveedorComponent implements OnInit {
   }
  
   ConsultarTiposId() {
-    this.tipoidService.ConsultarTodos().subscribe(data=>{
+    this.tipoidService.getTipoId().subscribe(data=>{
       this.listaTipoId=data
     })
   }

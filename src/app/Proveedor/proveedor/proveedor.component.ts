@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataProvinciaService } from '../data-provincia.service';
-import { DataCantonService } from '../data-canton.service';
-import { DataDistritoService } from '../data-distrito.service';
-import { DataBarriosService } from '../data-barrios.service';
-import { DataTipoIdService } from '../data-tipo-id.service';
-
 import { TbPersona } from 'src/Models/Personas';
 import { TbProveedores } from 'src/Models/Proveedores';
 import { DataProveedorService } from 'src/Services/Proveedor/data-proveedor.service';
+import { DataProvinciaService } from 'src/Services/Provincia/data-provincia.service';
+import { DataCantonService } from 'src/Services/Canton/data-canton.service';
+import { DataDistritoService } from 'src/Services/Distrito/data-distrito.service';
+import { DataBarriosService } from 'src/Services/Barrios/data-barrios.service';
+import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 
 @Component({
   selector: 'app-proveedor',
@@ -67,7 +66,7 @@ export class ProveedorComponent implements OnInit {
     }
   }
   ConsultarTipoId() {
-    this.tipoidService.ConsultarTodos().subscribe(data=>{
+    this.tipoidService.getTipoId().subscribe(data=>{
       this.listaTipoId=data;
     })
   }

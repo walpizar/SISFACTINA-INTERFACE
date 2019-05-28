@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DataAbonosService } from '../data-abonos.service';
-import { DataTbDocumentoService } from '../data-tb-documento.service';
-import { Documento } from '../Models/Documento';
-import { Abonos } from '../Models/Abono';
-import { Persona } from '../Models/Persona';
-import { DataPersonaService } from '../data-persona.service';
+import { DataAbonosService } from 'src/Services/Abonos/data-abonos.service';
+import { DataPersonaService } from 'src/Services/Persona/data-persona.service';
+import { TbDocumento } from 'src/Models/Documento';
+import { TbAbonos } from 'src/Models/Abonos';
+import { TbPersona } from 'src/Models/Personas';
+import { FacturaService } from 'src/Services/Factura/factura.service';
+import { NgModule } from '@angular/core';
+
 
 
 
@@ -14,12 +16,12 @@ import { DataPersonaService } from '../data-persona.service';
   styleUrls: ['./abonos.component.css']
 })
 export class AbonosComponent implements OnInit {
-  Documento=new Documento();
-  AbonoData=new Abonos();
+  Documento=new TbDocumento();
+  AbonoData=new TbAbonos();
   lista = new Array();
   abono:boolean=false;
   MontoTotalLinea: number=0;
-  Persona= new Persona();
+  Persona= new TbPersona();
   idcli:number;
   tipoid:number;
   MontoAbono:number=0;
@@ -29,7 +31,7 @@ export class AbonosComponent implements OnInit {
   totalFactura:number=0;
   mont_abonoss:number=0;
   abonototal:number=0;
-  constructor(private abonosService: DataAbonosService , private docService: DataTbDocumentoService, private personaService:DataPersonaService) { }
+  constructor(private abonosService: DataAbonosService , private docService: FacturaService, private personaService:DataPersonaService) { }
 
   ngOnInit() {
     this.recibedatos();

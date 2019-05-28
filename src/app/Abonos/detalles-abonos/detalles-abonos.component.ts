@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DataAbonosService } from '../data-abonos.service';
-import { DataDetalleDocService } from '../data-detalle-doc.service';
-import { Documento } from '../Models/Documento';
-import { DataProductoService } from '../data-producto.service';
-import { DataPersonaService } from '../data-persona.service';
-import { Persona } from '../Models/Persona';
+import { DataAbonosService } from 'src/Services/Abonos/data-abonos.service';
+import { TbPersona } from 'src/Models/Personas';
+import { DataPersonaService } from 'src/Services/Persona/data-persona.service';
+import { ProducserviceService } from 'src/Services/Producto/producservice.service';
+import { TbDocumento } from 'src/Models/Documento';
+import { DataDetalleDocService } from 'src/Services/DetallesDocumento/data-detalle-doc.service';
+
 
 @Component({
   selector: 'app-detalles-abonos',
@@ -14,9 +15,9 @@ import { Persona } from '../Models/Persona';
 export class DetallesAbonosComponent implements OnInit {
 
   constructor(private dataDetallesAbono: DataAbonosService, private Datadocumento: DataDetalleDocService,
-    private dataproducto:DataProductoService,private personaservice:DataPersonaService) { }
+    private dataproducto:ProducserviceService,private personaservice:DataPersonaService) { }
 
-  DocumentoDetalles=new Documento();
+  DocumentoDetalles=new TbDocumento();
   listaProductos= new Array();
   listaAbono = new Array();
   idclien:number;
@@ -24,7 +25,7 @@ export class DetallesAbonosComponent implements OnInit {
   totalpendiente:number=0;
   totalfactura:number=0;
   montototalabono:number=0;
-  Persona=new Persona();
+  Persona=new TbPersona();
   ngOnInit() {
     this.crearDetalleDoc();
     this.consultarAbonos();
@@ -52,7 +53,7 @@ export class DetallesAbonosComponent implements OnInit {
   }
  
   consultarProductos() {
-    this.dataproducto.getData().subscribe(data=>{this.listaProductos=data
+    this.dataproducto.get().subscribe(data=>{this.listaProductos=data
       this.AgregarProducto();
     })
   }
