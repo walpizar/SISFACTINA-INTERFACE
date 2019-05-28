@@ -49,21 +49,21 @@ export class UsuarioService {
         FullName: this.formModel.value.FullName,
         Password: this.formModel.value.Passwords.Password
       };
-      return this.http.post('http://localhost:52130/api/Registro', body);
+      return this.http.post('http://localhost:63630/api/Registro', body);
     }
 
     cargarRoles(){
-      this.http.get('http://localhost:52130/api/Registro').toPromise()
+      this.http.get('http://localhost:63630/api/Registro').toPromise()
       .then(res => this.list = res as Rol[]);
     }
 
     login(formData){
-      return this.http.post('http://localhost:52130/api/Login', formData);
+      return this.http.post('http://localhost:63630/api/Login', formData);
     }
 
      getUserProfile(){
      var tokenHeader = new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')});
-     return this.http.get('http://localhost:52130/api/Perfil',{headers:tokenHeader});
+     return this.http.get('http://localhost:63630/api/Perfil',{headers:tokenHeader});
     
     }
 }
