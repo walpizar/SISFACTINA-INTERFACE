@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators , FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+<<<<<<< HEAD
 import { TbRoles } from '../../Models/Roles';
+=======
+import { TbRoles } from 'src/Models/Roles';
 
 
 @Injectable({
@@ -15,7 +18,7 @@ export class UsuarioService {
   formModel= this.fb.group({
     //Agregue la variable inicializada
     RolId : ['', Validators.required],
-    UserName:['', Validators.required],
+    NombreUsuario:['', Validators.required],
     Email:['',Validators.email],
     FullName:[''],
     Passwords:this.fb.group({
@@ -44,10 +47,8 @@ export class UsuarioService {
       var body = {
         //declare el valor de la vista a la varible. 
         RolId: this.formModel.value.RolId,
-        UserName: this.formModel.value.UserName,
-        Email: this.formModel.value.Email,
-        FullName: this.formModel.value.FullName,
-        Password: this.formModel.value.Passwords.Password
+        NombreUsuario: this.formModel.value.NombreUsuario,
+        Contraseña: this.formModel.value.Passwords.Contraseña
       };
       return this.http.post('http://localhost:63630/api/Registro', body);
     }
