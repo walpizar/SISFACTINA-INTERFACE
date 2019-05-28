@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators , FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-<<<<<<< HEAD
+
 import { TbRoles } from '../../Models/Roles';
-=======
-import { TbRoles } from 'src/Models/Roles';
 
 
 @Injectable({
