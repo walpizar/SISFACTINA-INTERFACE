@@ -1,0 +1,90 @@
+<div class="container-fluid ">
+  <div class="fondo-color">
+    <h1>Inventario</h1>
+  </div>
+  <br>
+  <div class=" col-md-12 shadow-sm">
+    <div class="row">
+      <div *ngIf="show==false" class=" col-md-12"><h3>Lista de productos</h3></div>
+      <div *ngIf="show" class=" col-md-12"><h3>Modificar inventario</h3></div>
+    </div>
+    <div class="row " >
+      <div class="form-group col-md-1">
+        Id del producto
+      </div>
+      <div class="form-group col-md-3">
+        Nombre
+      </div>
+      <div class="form-group col-md-3">
+        Categoria
+      </div>
+      <div class="form-group col-md-1">
+        Cantidad
+      </div>
+      <div class="form-group col-md-1">
+        Cantidad minima
+      </div>
+      <div class="form-group col-md-1">
+        Cantidad maxima
+      </div>
+      
+      
+    </div>
+    <div *ngIf="show==false">
+    <div class="row" *ngFor="let invent of listaInventario" >
+      <div class="form-group col-md-1" >
+        <input type="text" class="form-control" [(ngModel)]="invent.IdProducto" placeholder="" readonly>
+      </div>
+      <div class="form-group col-md-3" >
+      {{invent.TbProducto.Nombre}}
+      </div>
+      <div class="form-group col-md-3" >
+        {{invent.TbProducto.IdCategoriaNavigation.Nombre}}
+      </div>
+      <div class="form-group col-md-1">
+        <input type="text" class="form-control" [(ngModel)]="invent.Cantidad" placeholder="" readonly>
+      </div>
+      <div class="form-group col-md-1">
+        <input type="text" class="form-control" [(ngModel)]="invent.CantMin" placeholder="" readonly>
+      </div>
+      <div class="form-group col-md-1">
+        <input type="text" class="form-control" [(ngModel)]="invent.CantMax" placeholder="" readonly>
+      </div>
+      
+      <div class="form-group col-md-1">
+        <button (click)='activarModificacion(invent)' class="btn btn-primary">Modificar</button>
+      </div>
+      <div class="form-group col-md-1">
+        <button (click)='eliminar(invent.IdProducto)' class="btn btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+    <div class="row" *ngIf="show" >
+        <div class="form-group col-md-1" >
+          <input type="text" class="form-control" [(ngModel)]="proInventario.IdProducto" placeholder="" readonly >
+        </div>
+        <div class="form-group col-md-3" >
+          {{proInventario.TbProducto.Nombre}}
+          </div>
+          <div class="form-group col-md-3" >
+            {{proInventario.TbProducto.IdCategoriaNavigation.Nombre}}
+          </div>
+        <div class="form-group col-md-1">
+          <input type="text" class="form-control" [(ngModel)]="proInventario.Cantidad" placeholder="" >
+        </div>
+        <div class="form-group col-md-1">
+          <input type="text" class="form-control" [(ngModel)]="proInventario.CantMin" placeholder="" >
+        </div>
+        <div class="form-group col-md-1">
+          <input type="text" class="form-control" [(ngModel)]="proInventario.CantMax" placeholder="" >
+        </div>
+        
+        <div class="form-group col-md-1">
+          <button (click)='cancelarModificacion(proInventario)' class="btn btn-danger">Cancelar</button>
+        </div>
+        <div class="form-group col-md-1">
+          <button (click)='modificar(proInventario)' class="btn btn-success">Modificar</button>
+        </div>
+      </div>
+  </div>
+</div>

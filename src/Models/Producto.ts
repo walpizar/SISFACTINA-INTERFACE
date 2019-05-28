@@ -1,6 +1,6 @@
 import { TbProveedores } from './Proveedores';
 import { TbInventario } from './Inventario';
-import { TbCategoriaProducto } from './TbCategoriaProducto';
+import { TbCategoriaProducto } from './CategoriaProducto';
 import { TbImpuestos } from './Impuesto';
 import { TbTipoMedidas } from './TipoMedidas';
 import { TbDetalleDocumento } from './DetalleDocumento';
@@ -24,7 +24,7 @@ Utilidad3Porc:number;
 Utilidad2Porc:number;
 PrecioReal:number;
 EsExento:boolean;
-IdTipoImpuesto:2;
+IdTipoImpuesto:number;
 AplicaDescuento: boolean;
 Foto:string;
 DescuentoMax:number;

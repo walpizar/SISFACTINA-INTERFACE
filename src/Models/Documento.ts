@@ -1,7 +1,7 @@
-import { TbTipoMoneda } from './TipoMoneda';
-import { TbTipoDocumento } from './TipoDocumento';
 import { TbClientes } from './Cliente';
 import { TbEmpresa } from './Empresa';
+import { TbTipoDocumento } from './TipoDocumento';
+import { TbTipoMoneda } from './TipoMoneda';
 import { TbTipoPago } from './TipoPago';
 import { TbTipoVenta } from './TipoVenta';
 import { TbDetalleDocumento } from './DetalleDocumento';
