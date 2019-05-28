@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators , FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Rol } from '../Models/Rol';
+import { TbRoles } from 'src/Models/Roles';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  list : Rol[];
+  list : TbRoles[];
   perfil; 
   constructor(private fb:FormBuilder, private http: HttpClient) { }
 
   formModel= this.fb.group({
     //Agregue la variable inicializada
     RolId : ['', Validators.required],
-    UserName:['', Validators.required],
+    NombreUsuario:['', Validators.required],
     Email:['',Validators.email],
     FullName:[''],
     Passwords:this.fb.group({
@@ -44,17 +44,15 @@ export class UsuarioService {
       var body = {
         //declare el valor de la vista a la varible. 
         RolId: this.formModel.value.RolId,
-        UserName: this.formModel.value.UserName,
-        Email: this.formModel.value.Email,
-        FullName: this.formModel.value.FullName,
-        Password: this.formModel.value.Passwords.Password
+        NombreUsuario: this.formModel.value.NombreUsuario,
+        Contraseña: this.formModel.value.Passwords.Contraseña
       };
       return this.http.post('http://localhost:63630/api/Registro', body);
     }
 
     cargarRoles(){
       this.http.get('http://localhost:63630/api/Registro').toPromise()
-      .then(res => this.list = res as Rol[]);
+      .then(res => this.list = res as TbRoles[]);
     }
 
     login(formData){
