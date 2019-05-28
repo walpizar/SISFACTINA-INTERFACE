@@ -24,7 +24,7 @@ Utilidad3Porc:number;
 Utilidad2Porc:number;
 PrecioReal:number;
 EsExento:boolean;
-IdTipoImpuesto:2;
+IdTipoImpuesto:number;
 AplicaDescuento: boolean;
 Foto:string;
 DescuentoMax:number;
