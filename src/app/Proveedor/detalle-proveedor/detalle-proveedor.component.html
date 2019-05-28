@@ -1,0 +1,189 @@
+
+<br>
+<div class="container">
+    <h3 style="text-align:center"> Detalles delProveedor</h3>
+    <br>
+  <div class="card">
+    <div class="card-heading bg-success text-white" style="text-align: center"><h4>Datos Personales</h4></div>
+    <div class="card-body">
+      <form class="form-inline">
+        <div  class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Identificacion:</span>                    
+              </div>
+             
+              <input  type="text" class="form-control" name="TbPersona.Identificacion"  [(ngModel)]="Proveedor.TbPersona.Identificacion" readonly>                  
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">TipoId:</span>                    
+        </div>
+        <input  type="text" class="form-control" name="TbPersona.Tipo.Nombre" [(ngModel)]="Proveedor.TbPersona.Tipo.Nombre" readonly >                              
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">CorreoElectronico:</span>                    
+        </div>
+       
+        <input  type="text" class="form-control" name="TbPersona.CorreoElectronico" [(ngModel)]="Proveedor.TbPersona.CorreoElectronico" readonly >                  
+    </div>
+       
+      </form>
+      <br>
+      <form class="form-inline">
+        <div class="input-group mb-3 ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Nombre Completo:</span>                    
+          </div>
+          <input  type="text" class="form-control" placeholder="Nombre" name="TbPersona.Nombre" [(ngModel)]="Proveedor.TbPersona.Nombre" readonly>
+          <input  type="text" class="form-control" placeholder="Primer Apellido" name="TbPersona.Apellido1" [(ngModel)]="Proveedor.TbPersona.Apellido1" readonly>
+          <input  type="text" class="form-control" placeholder="Segundo Apellido" name="TbPersona.Apellido2" [(ngModel)]="Proveedor.TbPersona.Apellido2" readonly>                  
+        </div>
+      </form>
+      <br>
+      <form class="form-inline">
+        <div  class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">FechaNac:</span>                    
+              </div>
+             
+              <input  type="text" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="Proveedor.TbPersona.FechaNac" readonly >                  
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Sexo:</span>                    
+        </div>
+        <select  class="form-control"  name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo" readonly>            
+            <option  value="1" >
+              Hombre
+            </option>
+            <option  value="2" >
+                Mujer
+              </option>
+          </select>                     
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">CodigoPaisTel:</span>                    
+        </div>
+        <input  type="text" class="form-control"  name="TbPersona.CodigoPaisTel" [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel" readonly>                  
+      </div>
+      </form>
+      <br>
+      <form class="form-inline">
+        <div  class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Telefono:</span>                    
+              </div>
+             
+              <input  type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" readonly>                  
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">CodigoPaisFax:</span>                    
+        </div>
+        <input  type="text" class="form-control" name="TbPersona.CodigoPaisFax" [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax" readonly>                  
+      </div>
+      <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Fax:</span>                    
+        </div>
+        <input  type="text" class="form-control" name="TbPersona.Fax" [(ngModel)]="Proveedor.TbPersona.Fax" readonly>                  
+      </div>
+      </form>
+      <br>
+      <form class="form-inline">
+        <div  class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Provincia:</span>                    
+              </div>
+             
+              <input  type="text" class="form-control" name="Provincia.Nombre" [(ngModel)]="Provincia.Nombre" readonly>              
+      </div>
+      <div style="margin-left:1cm"  class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Canton:</span>                    
+        </div>
+        <input  type="text" class="form-control" name="Canton.Nombre" [(ngModel)]="Canton.Nombre" readonly>          
+      </div>
+      
+      </form>
+      <br>
+      <form class="form-inline">
+          <div  class="input-group mb-3 ">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Distrito:</span>                    
+              </div>
+              <input  type="text" class="form-control" name="Distrito.Nombre" [(ngModel)]="Distrito.Nombre" readonly>                       
+            </div>
+            <div style="margin-left:1cm" class="input-group mb-3 ">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Barrio:</span>                    
+              </div>
+              <input  type="text" class="form-control" name="Barrio.Nombre" [(ngModel)]="Barrio.Nombre" readonly>                     
+            </div>
+      </form>
+    </div>
+  </div>
+<br>
+<div class="card">
+<div class="card-heading bg-info text-white" style="text-align: center"><h4>Datos de Proveedor</h4></div>
+<div class="card-body">
+    <form class="form-inline">
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text">ContactoProveedor:</span>                    
+            </div>
+            <input  type="text" class="form-control" name="ContactoProveedor" [(ngModel)]="Proveedor.ContactoProveedor" readonly>                  
+          </div>
+              <div style="margin-left:1cm" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Descripcion:</span>                    
+                    </div>
+                    <input  type="text" class="form-control" name="Descripcion" [(ngModel)]="Proveedor.Descripcion" readonly>                  
+            </div>  
+            <div style="margin-left:1cm" class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Fax:</span>                    
+                </div>
+               
+                <input  type="text" class="form-control" name="Fax" [(ngModel)]="Proveedor.Fax" readonly>                  
+        </div>
+  </form>
+  <br>
+  <form class="form-inline">
+      <div class="input-group mb-3 ">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Encargado Contabilidad:</span>                    
+          </div>
+          <input  type="text" class="form-control" name="EncargadoConta" [(ngModel)]="Proveedor.EncargadoConta" readonly>                  
+        </div>
+    
+    <div style="margin-left:1cm" class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">NombreTributario:</span>                    
+          </div>
+          <input  type="text" class="form-control" name="NombreTributario" [(ngModel)]="Proveedor.NombreTributario" readonly>                  
+  </div> 
+
+  </form>
+  <br>
+  <form class="form-inline">
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">CorreoElectronico Contabilidad:</span>                    
+          </div>
+         
+          <input  type="text" class="form-control" name="CorreoElectConta" [(ngModel)]="Proveedor.CorreoElectConta" readonly>                  
+    </div> 
+    <div style="margin-left:1cm" class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">CuentaBancaria:</span>                    
+          </div>
+          <input  type="text" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria" readonly>                  
+  </div>  
+  </form>
+</div>
+</div>  
+<button class="btn btn-success" [routerLink]="['/Indexproveedor']" >Atras</button> 
+</div>

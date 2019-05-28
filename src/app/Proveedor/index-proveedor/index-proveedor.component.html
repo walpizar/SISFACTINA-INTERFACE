@@ -1,0 +1,25 @@
+
+<button class="btn btn-success" [routerLink]="['/proveedor']"> Crear Proveedor</button>
+<table class="table table-dark table-striped table-responsive">
+  <tr>
+    <th>Id</th>
+    <th>Tipo Id</th>
+    <th>ContactoProveedor</th>    
+    <th>NombreTributario</th>
+    <th> EncargadoConta</th>
+    <th>CorreoElectConta</th>
+   
+  </tr>
+    <tr *ngFor="let Proveedor of listaProveedor">
+      <td>{{Proveedor.Id}}</td>  
+      <td>{{Proveedor.TbPersona.Tipo.Nombre}}</td>    
+      <td>{{Proveedor.ContactoProveedor}}</td>     
+      <td>{{Proveedor.NombreTributario}}</td>
+      <td>{{Proveedor.EncargadoConta}}</td>
+      <td>{{Proveedor.CorreoElectConta}}</td>
+      <td><button class="btn btn-primary" (click)="ConsultarDetalles(Proveedor)" [routerLink]="['/detalleproveedor']"  >Detalle</button></td>
+      <td><button class="btn btn-warning text-white" (click)="Modificar(Proveedor)" [routerLink]="['/proveedor']" >Modificar</button></td>
+      <td><button class="btn btn-danger" (click)="Eliminar(Proveedor)" >Eliminar</button></td>   
+         
+    </tr>
+    </table> 
