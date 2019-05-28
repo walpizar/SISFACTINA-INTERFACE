@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators , FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Rol } from '../Models/Rol';
+import { TbRoles } from '../../Models/Roles';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  list : Rol[];
+  list : TbRoles[];
   perfil; 
   constructor(private fb:FormBuilder, private http: HttpClient) { }
 
@@ -54,7 +54,7 @@ export class UsuarioService {
 
     cargarRoles(){
       this.http.get('http://localhost:63630/api/Registro').toPromise()
-      .then(res => this.list = res as Rol[]);
+      .then(res => this.list = res as TbRoles[]);
     }
 
     login(formData){

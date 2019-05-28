@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataTipoIdService } from './data-tipo-id.service';
+import { DataTipoIdService } from './tipo-id.service';
 
 describe('DataTipoIdService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

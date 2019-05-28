@@ -1,21 +1,23 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { DataTipoIdService } from '../data-tipo-id.service';
-import { TbClientes } from '../Models/Cliente';
-import { TbTipoId } from '../Models/TipoId';
-import { DataClienteService } from '../data-cliente.service';
-import { TbProducto } from '../Models/Producto';
-import { ProducserviceService } from '../producservice.service';
-import { TbDetalleDocumento } from '../Models/DetalleDocumento';
 
-import { TipoPagoService } from '../tipo-pago.service';
-import { TbTipoPago } from '../Models/TipoPago';
-import { TipoCompraService } from '../tipo-compra.service';
-import { TbTipoVenta } from '../Models/TipoVenta';
-import { InventarioService } from '../inventario.service';
-import { TbInventario } from '../Models/Inventario';
-import { FacturaService } from '../factura.service';
-import { TbDocumento } from '../Models/Documento';
-import { TbUsuarios } from '../Models/Usuarios';
+
+import { DataTipoIdService } from '../../Services/TipoId/tipo-id.service';
+import { DataClienteService } from '../../Services/Cliente/data-cliente.service';
+import { TipoPagoService } from '../../Services/TipoPago/tipo-pago.service';
+import { ProducserviceService } from '../../Services/Producto/producservice.service';
+import { TipoCompraService } from '../../Services/TipoCompra/tipo-compra.service';
+import { InventarioService } from '../../Services/Inventario/inventario.service';
+import { FacturaService } from '../../Services/Factura/factura.service';
+
+import { TbClientes } from '../../Models/Cliente';
+import { TbTipoId } from '../../Models/TipoId';
+import { TbProducto } from '../../Models/Producto';
+import { TbDetalleDocumento } from '../../Models/DetalleDocumento';
+import { TbTipoPago } from '../../Models/TipoPago';
+import { TbTipoVenta } from '../../Models/TipoVenta';
+import { TbInventario } from '../../Models/Inventario';
+import { TbDocumento } from '../../Models/Documento';
+import { TbUsuarios } from '../../Models/Usuarios';
 
 @Component({
   selector: 'app-factura',

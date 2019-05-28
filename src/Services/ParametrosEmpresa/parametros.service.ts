@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TbParametrosEmpresa } from './Models/ParametrosEmpresa';
+
+import { ServiceGeneric } from '../ServiceGeneric';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParametrosService {
 
-  constructor(private http:HttpClient) { }
+  /* constructor(private http:HttpClient, private serviceGeneric: ServiceGeneric) { }
 
   getById(id){
-    return this.http.get<TbParametrosEmpresa>("http://localhost:63630/api/empresa/"+id);
+    return this.http.get<TbParametrosEmpresa>(this.serviceGeneric.getURL+"/empresa/"+id);
    }
 
-
+ */
 
 }

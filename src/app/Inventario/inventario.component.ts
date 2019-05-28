@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TbInventario } from '../Models/Inventario';
-import { InventarioService } from '../inventario.service';
-import { Alert } from 'selenium-webdriver';
+import { TbInventario } from '../../Models/Inventario';
+import { InventarioService } from '../../Services/Inventario/inventario.service';
+
 
 @Component({
   selector: 'app-inventario',

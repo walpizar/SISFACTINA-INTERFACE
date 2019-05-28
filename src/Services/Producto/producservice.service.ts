@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { TbProducto } from './Models/Producto';
+import { TbProducto } from '../../Models/Producto';
+import { ServiceGeneric } from '../ServiceGeneric';
 
 
 @Injectable({
@@ -8,16 +9,16 @@ import { TbProducto } from './Models/Producto';
 })
 export class ProducserviceService {
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private serviceGeneric: ServiceGeneric) {
     
    }
 
 
    get(){
-    return this.http.get<TbProducto[]>("http://localhost:63630/api/producto");
+    return this.http.get<TbProducto[]>(this.serviceGeneric.getURL()+"/producto");
    }
    getProductoById(id:number){
-    return this.http.get<TbProducto>("http://localhost:63630/api/producto/"+id);
+    return this.http.get<TbProducto>(this.serviceGeneric.getURL()+"/producto/"+id);
    }
 
 }

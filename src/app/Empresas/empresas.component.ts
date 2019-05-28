@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {EmpresasService} from '../../Services/Empresas/empresas.service';
+import {EmpresaService} from '../../Services/Empresas/empresa.service';
 
 @Component({
   selector: 'app-empresas',
@@ -8,8 +8,8 @@ import {EmpresasService} from '../../Services/Empresas/empresas.service';
 })
 export class EmpresasComponent implements OnInit {
 
-  texto:string;
-  constructor(private empresasService: EmpresasService ) {
+  
+  constructor(private empresasService: EmpresaService ) {
 
 
 
@@ -19,7 +19,7 @@ export class EmpresasComponent implements OnInit {
 
   ngOnInit() {
 
-    this.texto=this.empresasService.get();
+
     
   }
 

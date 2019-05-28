@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TbEmpresa } from '../Models/Empresa';
-import { EmpresaService } from '../empresa.service';
-import { TbPersona } from '../Models/Personas';
-import { TbParametrosEmpresa } from '../Models/ParametrosEmpresa';
+import { TbEmpresa } from '../../Models/Empresa';
+import { EmpresaService } from '../../Services/Empresas/empresa.service';
+import { TbPersona } from '../../Models/Personas';
+import { TbParametrosEmpresa } from '../../Models/ParametrosEmpresa';
 
 @Component({
   selector: 'app-lista-empresa',

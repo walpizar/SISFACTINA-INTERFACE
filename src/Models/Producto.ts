@@ -1,6 +1,6 @@
 import { TbProveedores } from './Proveedores';
 import { TbInventario } from './Inventario';
-import { TbCategoriaProducto } from './TbCategoriaProducto';
+import { TbCategoriaProducto } from './CategoriaProducto';
 import { TbImpuestos } from './Impuesto';
 import { TbTipoMedidas } from './TipoMedidas';
 import { TbDetalleDocumento } from './DetalleDocumento';
