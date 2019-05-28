@@ -10,7 +10,7 @@ export class EmpresasService {
 
 get(){
 
-  return 'hola mindoooododododododododo...';
+  return 'hola mindoooododododododododo.. vvcvcvv .';
 }
 
 }
