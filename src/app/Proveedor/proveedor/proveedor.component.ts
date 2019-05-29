@@ -41,7 +41,7 @@ export class ProveedorComponent implements OnInit {
   BotonModificar:boolean=false;
   EsconderDatosPersonales:boolean=true;
   readonly:boolean=false;
-  
+  TextoPrincipal:boolean=true;
 
 
   ngOnInit() {
@@ -55,6 +55,7 @@ export class ProveedorComponent implements OnInit {
     this.ConsultarTipoId();
     if (this.Modificar) {
       this.readonly=true;
+      this.TextoPrincipal=false;
       this.Proveedor=this.proveedorService.Proveedor;
       this.BotonCrear=false;
       this.BotonModificar=true;
@@ -160,6 +161,7 @@ export class ProveedorComponent implements OnInit {
     this.Proveedor=new TbProveedores();
     this.Proveedor.TbPersona=new TbPersona();
     alert("Se agrego correctamente");
+    this.TextoPrincipal=true;
     } catch (error) {
       alert("Ocurrio un error en el Servicio");
     }
@@ -175,6 +177,7 @@ export class ProveedorComponent implements OnInit {
         this.Proveedor.TbPersona= new TbPersona();
         this.proveedorService.Modify=false;
         alert("Se modifico correctamente");
+        this.TextoPrincipal=true;
     } catch (error) {
       
     }
@@ -189,6 +192,7 @@ export class ProveedorComponent implements OnInit {
       this.Proveedor=new TbProveedores();
       this.Proveedor.TbPersona= new TbPersona();
       this.proveedorService.Modify=false;
+      this.TextoPrincipal=true;
     } catch (error) {
       
     }

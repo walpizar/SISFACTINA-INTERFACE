@@ -1,7 +1,8 @@
 
 <br>
 <div class="container">
-    <h3 style="text-align:center"> Crear Proveedor</h3>
+    <h3 style="text-align:center" *ngIf="TextoPrincipal==true"> Crear Proveedor</h3>
+    <h3 style="text-align:center" *ngIf="TextoPrincipal==false"> Modificar Proveedor</h3>
     <br>
   <div class="card" >
     <div class="card-heading bg-success text-white" style="text-align: center"><h4>Datos Personales</h4></div>
@@ -51,7 +52,7 @@
                 <span class="input-group-text">Fecha Nacimiento:</span>                    
               </div>
              
-              <input  type="datetime-local" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="Proveedor.TbPersona.FechaNac" >                  
+              <input  type="date" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="Proveedor.TbPersona.FechaNac" >                  
       </div>
       <div style="margin-left:1cm" class="input-group mb-3 ">
         <div class="input-group-prepend">

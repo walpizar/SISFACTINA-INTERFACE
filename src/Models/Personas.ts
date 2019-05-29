@@ -28,7 +28,7 @@ OtrasSenas: string ;
 TbBarrios: TbBarrios ;
 Tipo: TbTipoId;
 TbUsuarios: TbUsuarios ;
-  TbClientes:TbClientes []  ;
+  TbClientes:TbClientes [];
   TbEmpleado:TbEmpleado[];
   TbEmpresa:TbEmpresa[];
   TbProveedores:TbProveedores[];

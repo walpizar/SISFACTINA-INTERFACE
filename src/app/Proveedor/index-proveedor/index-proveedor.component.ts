@@ -47,6 +47,7 @@ export class IndexProveedorComponent implements OnInit {
   Eliminar(Proved:TbProveedores){
     this.ProveedorService.Eliminar(Proved).subscribe(data=>{});
     this.ConsultarProveedores();
+    alert("Se elimino correctamente");
   }
 
 }
