@@ -17,7 +17,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InventarioComponent } from './Inventario/inventario.component';
 import { FacturadorComponent } from './Facturador/facturador.component';
+<<<<<<< HEAD
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
+=======
+import { DocumentsComponent } from './documents/documents.component';
+>>>>>>> 5b40c74563470b62b570cfc073b33e0b6e68ad77
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
     DetalleProveedorComponent,
     InventarioComponent,
     FacturadorComponent,
+<<<<<<< HEAD
     ListaEmpresaComponent
+=======
+    DocumentsComponent
+>>>>>>> 5b40c74563470b62b570cfc073b33e0b6e68ad77
   ],
   imports: [
     BrowserModule,
