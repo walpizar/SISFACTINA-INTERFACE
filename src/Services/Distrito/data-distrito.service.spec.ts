@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataDistritoService } from './data-distrito.service';
+import { DataDistritoService } from './distrito.service';
 
 describe('DataDistritoService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

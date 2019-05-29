@@ -4,7 +4,7 @@ import { TbProveedores } from 'src/Models/Proveedores';
 
 import { DataProvinciaService } from 'src/Services/Provincia/provincia.service';
 import { DataCantonService } from 'src/Services/Canton/canton.service';
-import { DataDistritoService } from 'src/Services/Distrito/data-distrito.service';
+import { DataDistritoService } from 'src/Services/Distrito/distrito.service';
 
 import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 import { DataBarriosService } from 'src/Services/Barrios/barrios.service';
