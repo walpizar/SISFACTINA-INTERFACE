@@ -13,7 +13,7 @@ export class EmpresaService {
   constructor(private http:HttpClient, private serviceGeneric: ServiceGeneric) { }
 
   get(){
-    return this.http.get<TbEmpresa[]>(this.serviceGeneric.getURL()+"empresa");
+    return this.http.get<TbEmpresa[]>(this.serviceGeneric.getURL()+"/empresa");
    }
 
    getById(id){
@@ -21,7 +21,7 @@ export class EmpresaService {
    }
 
    delete(empre:TbEmpresa){
-    return this.http.delete(this.serviceGeneric.getURL()+"empresa/"+empre.Id);
+    return this.http.delete(this.serviceGeneric.getURL()+"/empresa/"+empre.Id);
    }
 
    put(empre : TbEmpresa,){

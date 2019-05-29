@@ -19,6 +19,9 @@ import { InventarioComponent } from './Inventario/inventario.component';
 import { FacturadorComponent } from './Facturador/facturador.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
+import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { DocumentsDetailsComponent } from './Documents/documents-details/documen
     InventarioComponent,
     FacturadorComponent,
     DocumentsComponent,
-    DocumentsDetailsComponent
+    DocumentsDetailsComponent,
+    ListaEmpresaComponent
   ],
   imports: [
     BrowserModule,
