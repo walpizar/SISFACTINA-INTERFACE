@@ -3,6 +3,7 @@ import { FormBuilder, Validators , FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { TbRoles } from '../../Models/Roles';
+import { ServiceGeneric } from '../ServiceGeneric';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { TbRoles } from '../../Models/Roles';
 export class UsuarioService {
   list : TbRoles[];
   perfil; 
-  constructor(private fb:FormBuilder, private http: HttpClient) { }
+  constructor(private fb:FormBuilder, private http: HttpClient, private serviceGeneric: ServiceGeneric ) { }
 
   formModel= this.fb.group({
     //Agregue la variable inicializada
@@ -48,21 +49,21 @@ export class UsuarioService {
         NombreUsuario: this.formModel.value.NombreUsuario,
         Contraseña: this.formModel.value.Passwords.Contraseña
       };
-      return this.http.post('http://localhost:63630/api/Registro', body);
+      return this.http.post(this.serviceGeneric.getURL()+'/Registro', body);
     }
 
     cargarRoles(){
-      this.http.get('http://localhost:63630/api/Registro').toPromise()
+      this.http.get(this.serviceGeneric.getURL()+'/Registro').toPromise()
       .then(res => this.list = res as TbRoles[]);
     }
 
     login(formData){
-      return this.http.post('http://localhost:63630/api/Login', formData);
+      return this.http.post(this.serviceGeneric.getURL()+'/Login', formData);
     }
 
      getUserProfile(){
      var tokenHeader = new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')});
-     return this.http.get('http://localhost:63630/api/Perfil',{headers:tokenHeader});
+     return this.http.get(this.serviceGeneric.getURL()+'/Perfil',{headers:tokenHeader});
     
     }
 }
