@@ -16,6 +16,7 @@ import { DetalleProveedorComponent } from './Proveedor/detalle-proveedor/detalle
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InventarioComponent } from './Inventario/inventario.component';
+import { FacturadorComponent } from './Facturador/facturador.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { InventarioComponent } from './Inventario/inventario.component';
     ProveedorComponent,
     IndexProveedorComponent,
     DetalleProveedorComponent,
-    InventarioComponent
+    InventarioComponent,
+    FacturadorComponent
   ],
   imports: [
     BrowserModule,
