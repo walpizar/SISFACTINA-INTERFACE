@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { DataProveedorService } from './proveedor.service';
 
-import { DataBarriosService } from './data-barrios.service';
 
-describe('DataBarriosService', () => {
+
+describe('DataProveedorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataBarriosService = TestBed.get(DataBarriosService);
+    const service: DataProveedorService = TestBed.get(DataProveedorService);
     expect(service).toBeTruthy();
   });
 });

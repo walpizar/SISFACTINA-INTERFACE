@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataProvinciaService } from './data-provincia.service';
+import { DataProvinciaService } from './provincia.service';
 
 describe('DataProvinciaService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

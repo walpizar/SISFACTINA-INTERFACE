@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { TbPersona } from 'src/Models/Personas';
 import { TbProveedores } from 'src/Models/Proveedores';
-import { DataProveedorService } from 'src/Services/Proveedor/data-proveedor.service';
-import { DataProvinciaService } from 'src/Services/Provincia/data-provincia.service';
-import { DataCantonService } from 'src/Services/Canton/data-canton.service';
+
+import { DataProvinciaService } from 'src/Services/Provincia/provincia.service';
+import { DataCantonService } from 'src/Services/Canton/canton.service';
 import { DataDistritoService } from 'src/Services/Distrito/data-distrito.service';
-import { DataBarriosService } from 'src/Services/Barrios/data-barrios.service';
+
 import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
+import { DataBarriosService } from 'src/Services/Barrios/barrios.service';
+import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
 
 @Component({
   selector: 'app-proveedor',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataProveedorService } from 'src/Services/Proveedor/data-proveedor.service';
+
 import { TbProveedores } from 'src/Models/Proveedores';
+import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
 
 
 @Component({

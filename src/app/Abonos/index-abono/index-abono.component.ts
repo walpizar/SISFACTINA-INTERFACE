@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataDetalleDocService } from 'src/Services/DetallesDocumento/data-detalle-doc.service';
-import { DataAbonosService } from 'src/Services/Abonos/data-abonos.service';
+
 import { TbAbonos } from 'src/Models/Abonos';
 import { FacturaService } from 'src/Services/Factura/factura.service';
 import { TbDocumento } from 'src/Models/Documento';
+import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
 
 
 
