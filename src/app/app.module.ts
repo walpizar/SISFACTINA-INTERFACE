@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { ToastrModule } from 'ngx-toastr';
@@ -20,7 +20,7 @@ import { FacturadorComponent } from './Facturador/facturador.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
-
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 @NgModule({
@@ -45,9 +45,11 @@ import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot() 
-
+    ToastrModule.forRoot() ,
+    BrowserModule,
+    MDBBootstrapModule.forRoot()
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
   bootstrap: [AppComponent]
 })
