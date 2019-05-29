@@ -8,32 +8,42 @@ import { ServiceGeneric } from '../ServiceGeneric';
   providedIn: 'root'
 })
 export class FacturaService {
+  
+  public Doc: TbDocumento;
+  list: TbDocumento[];
 
   constructor(private http:HttpClient, private serviceGeneric: ServiceGeneric) {
 
    }
 
-   getInventarioById(id){
+  getInventarioById(id){
     return this.http.get<TbDocumento>(this.serviceGeneric.getURL()+"/documento"+id);
    }
 
-   get(){
+  get(){
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento");
-   }
+  }
 
-   post(body : TbDocumento,){
+  getDocuments(){ 
+    this.http.get(this.serviceGeneric.getURL()+"/documento").toPromise().then(res=>this.list=res as TbDocumento[]);
+  }
+
+  post(body : TbDocumento){
     const headers = new HttpHeaders().set('Content-type','application/Json');
     return this.http.post<TbDocumento> (this.serviceGeneric.getURL()+'/documento',body,{headers});
-   }
-   putData(body:TbDocumento){
+  }
+
+  putData(body:TbDocumento){
    
     const headers=new HttpHeaders().set('Content-type','application/Json');
     return this.http.put(this.serviceGeneric.getURL()+'/documento',body,{headers})
   }
-   ConsultarTodosAbono(id){
+  
+  ConsultarTodosAbono(id){
     
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/consultar/"+id);
   }  
+  
   ConsultarPorFechas(id){
     
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"documento/consultar/ordenfecha/"+id);
