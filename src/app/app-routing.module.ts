@@ -6,6 +6,8 @@ import { AbonosComponent } from './Abonos/abonos/abonos.component';
 import { ProveedorComponent } from './Proveedor/proveedor/proveedor.component';
 import { IndexProveedorComponent } from './Proveedor/index-proveedor/index-proveedor.component';
 import { DetalleProveedorComponent } from './Proveedor/detalle-proveedor/detalle-proveedor.component';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
 
 const routes: Routes = [
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -13,7 +15,8 @@ const routes: Routes = [
   {path:'abo',component: AbonosComponent},
   {path:'proveedor',component:ProveedorComponent},
   {path:'Indexproveedor',component:IndexProveedorComponent},
-  {path:'detalleproveedor',component:DetalleProveedorComponent}
+  {path:'detalleproveedor',component:DetalleProveedorComponent},
+  {path:'empresa',component:ListaEmpresaComponent},
 
 ];
 

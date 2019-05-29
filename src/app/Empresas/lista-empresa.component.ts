@@ -90,9 +90,6 @@ export class ListaEmpresaComponent implements OnInit {
 
     }
 
-    this.cancelar();
-    this.consultarTodos();
-
   }
 
   modificar(Id){
@@ -111,7 +108,6 @@ export class ListaEmpresaComponent implements OnInit {
       }
     })
     
-
   }
 
   consultarTodos(){
@@ -132,12 +128,11 @@ export class ListaEmpresaComponent implements OnInit {
           else{
             alert("No se pudo eliminar");
           }
-    
+          
         })
-        
+        this.ListEmpre.splice(i,1);
       }
     }
-    this.consultarTodos();
   }
 
 
