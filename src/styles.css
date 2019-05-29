@@ -4,6 +4,12 @@
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
+.fondo-color{
+    background-color: #0A2592;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
 #toast-container>div{
     opacity: 1;
 }

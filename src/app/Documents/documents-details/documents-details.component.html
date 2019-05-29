@@ -1,0 +1,140 @@
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12 pt-4 pb-4 fondo-color">
+          <h2 class="text-center">DETALLES</h2>
+      </div>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <!--primera linea-->
+  <form #form="ngForm" (submit)="guardar(form)">
+      <div class="border p-3">
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Id</label>
+                  <input type="text" class="form-control" name="id" [(ngModel)] ="MostrarDoc.Id" readonly>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Consecutivo</label>
+                  <input type="text" class="form-control" name="consecutivo" [(ngModel)] ="MostrarDoc.Consecutivo" readonly>
+              </div>
+              <div class="form-group col-md-12">
+                  <label>Clave</label>
+                  <input type="text" class="form-control" name="clave" [(ngModel)] ="MostrarDoc.Clave" readonly>
+              </div>
+          </div>
+      </div>
+      <br>
+      <div class="border p-3">   
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Id Cliente</label>
+                  <input type="text" class="form-control" name="idCliente"  [(ngModel)] ="MostrarDoc.IdCliente" readonly>
+              </div>
+          </div>
+          <div class="form-row">
+                  <div class="form-group col-md-2">
+                      <label>Notificar Correo</label>
+                      <div class="form-check">
+                              <input class="form-check-input" type="radio" name="correo" [(ngModel)] ="MostrarDoc.NotificarCorreo">
+                              <label class="form-check-label">Si</label>
+                              <input class="form-check-input ml-4" type="radio" name="correo" [(ngModel)] ="MostrarDoc.NotificarCorreo">
+                              <label class="form-check-label ml-5">No</label>
+                      </div>
+                  </div>
+                  <div class="form-group col-md-5">
+                      <label>Correo 1</label>
+                      <input type="email" class="form-control" name="correo1"  [(ngModel)] ="MostrarDoc.Correo1" readonly>
+                  </div>
+                  <div class="form-group col-md-5">
+                      <label>Correo 2</label>
+                      <input type="email" class="form-control" name="correo2" [(ngModel)] ="MostrarDoc.Correo2" readonly>
+                  </div>
+              </div>
+      </div><br>
+      <div class="border p-3">        
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                  <label>Fecha</label>
+                  <input type="datetime" class="form-control" name="fecha" [(ngModel)] ="MostrarDoc.Fecha" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                  <label>Tipo Pago</label>
+                  <input type="text" name="tipoPago" [(ngModel)] ="MostrarDoc.TipoPago" class="form-control" readonly> 
+              </div>
+          </div>
+          <div class="form-row">
+                  <div class="form-group col-md-6">
+                      <label>Plazo</label>
+                      <input type="text" class="form-control" name="plazo" [(ngModel)] ="MostrarDoc.Plazo" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                      <label>Tipo Venta</label>
+                      <input type="text" class="form-control" name="tipoVenta" [(ngModel)] ="MostrarDoc.TipoVenta" readonly>
+                  </div>
+              </div>
+         </div> 
+ 
+      <br>
+      <hr>
+      <br>
+
+      <!--Tabla Detalles-->
+      <div class="table-responsive-md col-md-12  shadow-sm">
+          <table class="table">
+              <thead class="titulo-tabla">
+                  <tr class="encabezado">
+                      <th scope="col">Num. Linea</th>
+                      <th scope="col">Id Producto</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Monto Total</th>
+                      <th scope="col">Descuento</th>
+                      <th scope="col">Total con Desc.</th>
+                      <th scope="col">Total Imp.</th>
+                      <th scope="col">Total Exonerado</th>
+                      <th scope="col">Total Linea</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let det of detalleActual">
+                      <td>{{det.NumLinea}}</td>                        
+                      <td>{{det.IdProducto}}</td>
+                      <td>{{det.Cantidad}}</td>
+                      <td>{{det.Precio}}</td>
+                      <td>{{det.MontoTotal}}</td>
+                      <td>{{det.Descuento}}</td>
+                      <td>{{det.MontoTotalDesc}}</td>
+                      <td>{{det.MontoTotalImp}}</td>
+                      <td>{{det.MontoTotalExo}}</td>
+                      <td>{{det.TotalLinea}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+      <!--Botones-->
+      <button type="button" class="btn btn-outline-info mr-4 mt-3 mb-3" (click)="mostrar=true" *ngIf="mostrarbtn">Nota Credito</button>
+      <button [routerLink]="['/factura']" type="button" class="btn btn-outline-info mt-3 mb-3" type="button" name="button">Volver
+      </button>
+  
+  <!--Ngif mostrar nota factura-->
+  
+      <div class="border p-3 mt-3 mb-5" id="notaCred" *ngIf="mostrar">
+          <div class="form-row">
+              <div class="form-group col-md-12">
+                  <label>Razón</label>
+                  <textarea name="razon" maxlength="180" minlength="5" cols="30" rows="5" class="form-control" [(ngModel)] ="MostrarDoc.Razon" required></textarea>
+              </div>
+          </div>
+          <button [disabled]="form.invalid" type="submit" class="btn btn-outline-success mt-3 mb-3">Crear</button>
+      </div>
+  </form>
+  
+
+</div>

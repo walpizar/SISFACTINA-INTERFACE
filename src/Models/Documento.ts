@@ -56,9 +56,6 @@ export class TbDocumento{
     TipoVentaNavigation  : TbTipoVenta;
     TbDetalleDocumento : TbDetalleDocumento[];
 
-
-
-
     constructor(){
 
     }

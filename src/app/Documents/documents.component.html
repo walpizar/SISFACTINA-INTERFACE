@@ -1,3 +1,99 @@
-<p>
-  documents works!
-</p>
+<!--AQUI VA LA TABLA-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 pt-4 pb-4 fondo-color">
+      <h2 class="text-center">FACTURAS</h2>
+    </div>
+  </div>
+    <div class="container-fluid border p-2 m-2 pb-4 rounded">
+      <div class="row">
+        <div class="col-md-12"> 
+          <h2 class="titulo">Busqueda</h2>
+          <hr>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+        <!-- buscadores -->
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">ID</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="docBusca.Id" placeholder="ID">
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Clave</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="docBusca.Clave" placeholder="Clave">
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Consecutivo</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="docBusca.Consecutivo" placeholder="Consecutivo">
+          </div>
+        </div>
+
+        <!-- hacer un salto de linea -->
+        <div class="col-md-6">
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">ID Cliente</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="docBusca.IdCliente" placeholder="ID Cliente">
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Tipo Doc</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="docBusca.TipoDocumento" placeholder="Tipo Documento">
+          </div>
+
+          <span>
+            <button type="submit" class="btn btn-outline-success mr-2" (click)="FiltrarLista(docBusca)">Buscar</button>
+          </span>
+          <span>
+            <button type="submit" class="btn btn-outline-warning" (click)="reCargar()">Refrescar</button>
+          </span>
+        </div>
+      </div>
+    </div>
+</div>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="titulo-tabla">
+          <tr class="text-center">
+            <th scope="col">Id</th>
+            <th scope="col">Clave</th>
+            <th scope="col">Consecutivo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Id Cliente</th>
+            <th scope="col">Tipo de Doc</th>
+            <th scope="col">Plazo</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let doc of service.list ">
+            <td>{{doc.Id}}</td>
+            <td>{{doc.Clave}}</td>
+            <td>{{doc.Consecutivo}}</td>
+            <td>{{doc.Fecha}}</td>
+            <td>{{doc.IdCliente}}</td>
+            <td>{{doc.TipoDocumento}}</td>
+            <td>{{doc.Plazo}}</td>
+            <td><button class="btn btn-outline-info" (click)="DocActual(doc)"
+                [routerLink]="['/detalles',doc.Id]">Modificar</button></td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
