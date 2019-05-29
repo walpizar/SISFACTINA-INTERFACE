@@ -34,7 +34,6 @@ import { InventarioComponent } from './Inventario/inventario.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-
     BrowserAnimationsModule, 
     ToastrModule.forRoot() 
 
