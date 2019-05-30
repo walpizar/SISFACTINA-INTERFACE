@@ -10,7 +10,7 @@ import { TbDocumento } from 'src/Models/Documento';
 })
 export class DocumentsComponent implements OnInit {
   
-  docBusca:Busqueda;
+  docBusca=new Busqueda();
   listaBusq = new Array;
 
   constructor(private service:FacturaService) {
@@ -33,15 +33,15 @@ export class DocumentsComponent implements OnInit {
       resultado = this.service.list.filter(x => x.Id == doc.Id);
       this.service.list = resultado;
     }
-    if ( doc.Clave != 'ejemp') {
+    if ( doc.Clave != null) {
       resultado = this.service.list.filter(x => x.Clave == doc.Clave);
       this.service.list = resultado;
     }
-    if ( doc.Consecutivo != 'ejemp') {
+    if ( doc.Consecutivo != null) {
       resultado = this.service.list.filter(x => x.Consecutivo == doc.Consecutivo);
       this.service.list = resultado;
     }
-    if (doc.IdCliente != 'ejemp') {
+    if (doc.IdCliente != null) {
       this.listaBusq = new Array;
       for (let doc2 of this.service.list) {
         // verifico si es el mismo dato
