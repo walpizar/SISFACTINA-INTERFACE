@@ -10,6 +10,7 @@ import { TbDocumento } from 'src/Models/Documento';
 })
 export class DocumentsComponent implements OnInit {
   
+
   docBusca = new Busqueda();
   listaBusq = new Array;
 

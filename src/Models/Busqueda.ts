@@ -7,7 +7,5 @@ export class Busqueda{
 
     // constructor por defecto
 
-   constructor(){
-       
-   }
+   constructor(){}
 }

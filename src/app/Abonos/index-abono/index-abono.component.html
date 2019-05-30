@@ -1,54 +1,52 @@
-
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 pt-3 pb-3 fondo-color">
-          <h3 class="text-center text-white">Abonos</h3>
-        </div>
-      </div>
+  <div class="row">
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center text-white">Abonos</h3>
+    </div>
+  </div>
 </div>
 <div class="container-fluid">
-<br>
- <form class="form-inline">
+  <br>
+  <form class="form-inline">
     <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Abono General:</span>
-        </div>
-        <input type="number" placeholder="Digite el monto" class="form-control" name="MontoAbono" [(ngModel)]="MontoAbono">        
-    </div>    
-</form>
-<button  class="btn btn-outline-success" (click)="AbonoGeneral(MontoAbono)" >Abonar</button>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Abono General:</span>
+      </div>
+      <input type="number" placeholder="Digite el monto" class="form-control" name="MontoAbono"
+        [(ngModel)]="MontoAbono">
+    </div>
+  </form>
+  <button class="btn btn-outline-success" (click)="AbonoGeneral(MontoAbono)">Abonar</button>
 
-<div class="row">
+  <div class="row">
     <div class="col-md-12 mx-auto">
-        <div class="table-responsive">
-<table  class="table table-hover" mdbTable>
-    <thead class="titulo-tabla" class="unique-color-dark white-text">
-  <tr class="text-center" mdbTableCol>
-    <th scope="col">ID</th>
-    <th scope="col">Fecha</th>
-    <th scope="col">ID cliente</th>    
-    <th scope="col">IdEmpresa</th>
-    <th scope="col"> Plazo</th>
-    <th scope="col">Tipo Pago</th>
-    <th>Opciones</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody  class="text-center" >
-    <tr *ngFor="let Documento of listaDoc" mdbTableCol>
-      <td>{{Documento.Id}}</td>
-      <td>{{Documento.Fecha| date:'medium'}}</td>
-      <td>{{Documento.IdCliente}}</td>     
-      <td>{{Documento.IdEmpresa}}</td>
-      <td>{{Documento.Plazo}}</td>
-      <td>{{Documento.TipoPagoNavigation.Nombre}}</td>
-      <td><button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)" [routerLink]="['/detalle']" >Detalle</button></td>
-      <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)" [routerLink]="['/abo']">Abonar</button></td>
-      
-         
-    </tr>
-    </tbody>
-    </table> 
-  </div>  
-   
-   
+      <div class="table-responsive">
+        <table class="table table-hover" mdbTable>
+          <thead class="titulo-tabla" class="blue-grey darken-2 white-text">
+            <tr class="text-center" mdbTableCol>
+              <th scope="col">ID</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">ID cliente</th>
+              <th scope="col">IdEmpresa</th>
+              <th scope="col"> Plazo</th>
+              <th scope="col">Tipo Pago</th>
+              <th>Opciones</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let Documento of listaDoc" mdbTableCol>
+              <td>{{Documento.Id}}</td>
+              <td>{{Documento.Fecha| date:'medium'}}</td>
+              <td>{{Documento.IdCliente}}</td>
+              <td>{{Documento.IdEmpresa}}</td>
+              <td>{{Documento.Plazo}}</td>
+              <td>{{Documento.TipoPagoNavigation.Nombre}}</td>
+              <td><button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)"
+                  [routerLink]="['/detalle']">Detalle</button></td>
+              <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)"
+                  [routerLink]="['/abo']">Abonar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
