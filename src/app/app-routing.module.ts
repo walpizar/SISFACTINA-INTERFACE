@@ -10,6 +10,9 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
+import { IndexCategoriaProductoComponent } from './CategoriaProducto/index-categoria-producto/index-categoria-producto.component';
+import { DetalleCategoriaProductoComponent } from './CategoriaProducto/detalle-categoria-producto/detalle-categoria-producto.component';
+import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categoria-producto/crear-categoria-producto.component';
 
 const routes: Routes = [
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -20,7 +23,10 @@ const routes: Routes = [
   {path:'detalleproveedor',component:DetalleProveedorComponent},
   {path:"factura", component : DocumentsComponent},
   {path:'detalleFactura/:id', component : DocumentsDetailsComponent},
-  {path:'empresa',component:ListaEmpresaComponent}
+  {path:'empresa',component:ListaEmpresaComponent},
+  {path:'Indexcategoriaproduct',component:IndexCategoriaProductoComponent},
+  {path:'detailscateproduct',component:DetalleCategoriaProductoComponent},
+  {path:'createcateproduct',component:CrearCategoriaProductoComponent}
 ];
 
 @NgModule({
