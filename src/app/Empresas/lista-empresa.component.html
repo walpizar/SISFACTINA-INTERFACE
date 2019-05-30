@@ -1,15 +1,9 @@
-<p>
-    lista-empresa works!
-  </p>
+
   <br>
   <button *ngIf="!bandera" (click)="formulario()" class="btn btn-primary">Nuevo</button>
-  <button *ngIf="bandera" (click)="agregar()" class="btn btn-primary">Confirmar</button>
   <br>
   <br>
-  <button *ngIf="show"  (click)="cancelar()" class="btn btn-warning">Cancelar</button>
-  <br>
-  <br>
-  <div *ngIf="show" class="container">
+  <div *ngIf="show" class="container" style="text-align: center">
           <div class="table-responsive-md col-md-12  border p-3" > 
                   <table class="table" >
                       <h1>Nueva Empresa</h1>
@@ -53,18 +47,23 @@
                           </td>
                       </tr>   
                   </table>
+                <button *ngIf="bandera" (click)="agregar()" class="btn btn-primary">Confirmar</button>
+                <button *ngIf="show"  (click)="cancelar()" class="btn btn-warning">Cancelar</button>
           </div>
   </div>
-  <h1>Lista De Empresas</h1>
-  <table class="table" class="table table-bordered">
-          <tr> 
-              <td>ID</td>
-              <td>Nombre Comercial</td>
-          </tr>
-          <tr *ngFor = 'let TbEmpresa of ListEmpre'>
-              <td>{{TbEmpresa.Id}}</td>
-              <td>{{TbEmpresa.NombreComercial}}</td>
-              <button *ngIf ="!bandera" class="btn btn-danger btn-xs" (click)="eliminar(TbEmpresa.Id) " style="margin: 10px;">Eliminar</button>
-              <button *ngIf ="!bandera"  class="btn btn-primary btn-xs" (click)="modificar(TbEmpresa.Id) " style="margin: 10px;">Modificar</button>
-          </tr>
-        </table>
+  <h1 style="text-align: center">Lista De Empresas</h1>
+  <div class="container" style="text-align: center">
+    <table class="table" class="table table-bordered">
+        <tr> 
+            <td>ID</td>
+            <td>Nombre Comercial</td>
+        </tr>
+        <tr *ngFor = 'let TbEmpresa of ListEmpre'>
+            <td>{{TbEmpresa.Id}}</td>
+            <td>{{TbEmpresa.NombreComercial}}</td>
+            <button *ngIf ="!bandera" class="btn btn-danger btn-xs" (click)="eliminar(TbEmpresa.Id) " style="margin: 10px;">Eliminar</button>
+            <button *ngIf ="!bandera"  class="btn btn-primary btn-xs" (click)="modificar(TbEmpresa.Id) " style="margin: 10px;">Modificar</button>
+        </tr>
+      </table>
+  </div>
+ 

@@ -26,7 +26,7 @@ export class EmpresaService {
 
    put(empre : TbEmpresa,){
     const headers = new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<TbEmpresa> (this.serviceGeneric.getURL()+'empresa/'+empre.Id,empre,{headers});
+    return this.http.put<TbEmpresa> (this.serviceGeneric.getURL()+'/empresa/'+empre.Id,empre,{headers});
    }
   post(body : TbEmpresa,){
     const headers = new HttpHeaders().set('Content-type','application/Json');

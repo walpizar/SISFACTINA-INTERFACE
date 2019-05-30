@@ -54,7 +54,16 @@ export class ListaEmpresaComponent implements OnInit {
   }
 
   agregar(){
+    if(this.modifica){
+      for(let i=0; this.ListEmpre.length>i; i++){
+        if(this.ListEmpre[i].Id==this.Empresa.Id){
+          this.ListEmpre.splice(i,1)
+         }
+        }
+    }
+    else{
 
+    }
     this.Empresa.TipoId = 1
     this.Persona.Identificacion = this.Empresa.Id;
     this.Persona.TipoId = 1;
@@ -68,11 +77,16 @@ export class ListaEmpresaComponent implements OnInit {
     this.ListaParametrosEmpre.push(this.ParametrosEmpresa);
     this.Empresa.TbPersona = this.Persona;
     this.Empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
+    this.ListaParametrosEmpre = new Array();
+    this.ListEmpre.push(this.Empresa);
+    
 
     if(this.modifica){
       this.empresaService.put(this.Empresa).subscribe(data =>{
         if(data){
           alert("Se modificó con exito");
+          this.show = false;
+          this.bandera = false;
         }
         else{
           alert("No se pudo modificar");
@@ -85,6 +99,8 @@ export class ListaEmpresaComponent implements OnInit {
       this.empresaService.post(this.Empresa).subscribe(data=>{
         if(data){
           alert("Se agregó la empresa");
+          this.show = false;
+          this.bandera = false;
         }
         else{
           alert("No se pudo agregar la empresa");
@@ -93,7 +109,7 @@ export class ListaEmpresaComponent implements OnInit {
       })
 
     }
-
+    this.Empresa = new TbEmpresa();
   }
 
   modificar(Id){
