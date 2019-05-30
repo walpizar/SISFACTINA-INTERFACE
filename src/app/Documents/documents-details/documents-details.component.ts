@@ -51,7 +51,6 @@ export class DocumentsDetailsComponent implements OnInit {
       },
       err=>{this.msjAlerta.error('Error de registro',' Nota Credito')}
       );
-     
-      
   }
+  
 }

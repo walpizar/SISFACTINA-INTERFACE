@@ -21,9 +21,15 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+<<<<<<< HEAD
 import { IndexCategoriaProductoComponent } from './CategoriaProducto/index-categoria-producto/index-categoria-producto.component';
 import { DetalleCategoriaProductoComponent } from './CategoriaProducto/detalle-categoria-producto/detalle-categoria-producto.component';
 import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categoria-producto/crear-categoria-producto.component';
+=======
+import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
+import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
+import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
+>>>>>>> 73056f1d8866440d84d1dc72206dd63db8291cd4
 
 
 @NgModule({
@@ -41,9 +47,15 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
     DocumentsComponent,
     DocumentsDetailsComponent,
     ListaEmpresaComponent,
+<<<<<<< HEAD
     IndexCategoriaProductoComponent,
     DetalleCategoriaProductoComponent,
     CrearCategoriaProductoComponent
+=======
+    ListaCliComponent,
+    RegistroCliComponent,
+    DetalleCliComponent
+>>>>>>> 73056f1d8866440d84d1dc72206dd63db8291cd4
   ],
   imports: [
     BrowserModule,

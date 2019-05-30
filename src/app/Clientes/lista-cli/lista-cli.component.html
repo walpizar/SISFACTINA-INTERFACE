@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12 pt-4 pb-4 fondo-color">
+          <h2 class="text-center">Clientes</h2>
+      </div>
+  </div>
+</div>
+<div class="contenidoPrin mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <div class="md-form">
+          <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
+          <label for="search">Buscar</label>
+        </div>
+      </div>
+    </div>
+    <table mdbTable class="z-depth-1 ">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let per of listaClientes">
+          <th scope="row">{{per.Id}}</th>
+          <td>{{per.TbPersona.Nombre}}</td>
+          <td>{{per.TipoId}}</td>
+          <td>{{per.TipoCliente}}</td>
+
+          <td>
+            <button type="button" mdbBtn color="info" size="sm" (click)="CliActual(per)"
+              [routerLink]="['/DetallesCliente',per.Id]">
+              Detalles
+            </button>
+          </td>
+          <td><button type="button" mdbBtn color="success" size="sm">Modificar</button></td>
+          <td><button type="button" mdbBtn color="warning" size="sm">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

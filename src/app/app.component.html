@@ -12,6 +12,17 @@
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/factura">Facturas<span class="sr-only">(current)</span></a>
       </li>
+      <!-- lista de opciones para clientes -->
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Clientes<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['ListaClientes']">Lista Clientes</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['RegistroCliente']">Registro Clientes</a>
+        </div>
+      </li>
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/Indexabono">Abonos</a>
       </li>
@@ -21,12 +32,17 @@
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/empresa">Empresas</a>
       </li>
+<<<<<<< HEAD
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect routerLink="/Indexcategoriaproduct">Categoria Producto</a>
       </li>
       <li class="nav-item">
           <a class="nav-link waves-light" mdbWavesEffect routerLink="/">Clientes</a>
         </li>
+=======
+      
+
+>>>>>>> 73056f1d8866440d84d1dc72206dd63db8291cd4
     </ul>
     <!-- Links -->
   </links>

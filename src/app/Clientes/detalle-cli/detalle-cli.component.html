@@ -1,0 +1,106 @@
+<div class="container mt-5 mb-5">
+  <!--primera linea-->
+  <form>
+
+    <div class="p-3">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Id</label>
+          <input type="text" class="form-control text-center" name="id" [(ngModel)]="CliActual.Id" readonly>
+        </div>
+      </div>
+      <div class="form-row">
+
+        <!-- informacion de cliente -->
+
+        <div class="form-group col-md-6">
+          <label>Tipo ID</label>
+          <input type="text" class="form-control" name="TipoId" [(ngModel)]="CliActual.TipoId" readonly>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label>Clave</label>
+          <input type="text" class="form-control" name="TipoCliente" [(ngModel)]="CliActual.TipoCliente" readonly>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Nombre</label>
+          <input type="text" class="form-control" name="TbPersona.Nombre" [(ngModel)]="CliActual.TbPersona.Nombre"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Apellido 1°</label>
+          <input type="text" class="form-control" name="TbPersona.Apellido1" [(ngModel)]="CliActual.TbPersona.Apellido1"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>Apellido 2°</label>
+          <input type="text" class="form-control" name="TbPersona.Apellido2" [(ngModel)]="CliActual.TbPersona.Apellido2"
+            readonly>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Nueva linea -->
+    <div class="p-3">
+
+      <div class="form-row">
+
+        <div class="form-group col-md-3">
+          <label>Cod Area Telefo</label>
+          <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
+            [(ngModel)]="CliActual.TbPersona.CodigoPaisTel" readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Telefono</label>
+          <input type="text" class="form-control" name="TbPersona.Telefono" [(ngModel)]="CliActual.TbPersona.Telefono"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Cod Area Fax</label>
+          <input type="text" class="form-control" name="TbPersona.CodigoPaisFax"
+            [(ngModel)]="CliActual.TbPersona.CodigoPaisFax" readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Fax</label>
+          <input type="text" class="form-control" name="TbPersona.Fax" [(ngModel)]="CliActual.TbPersona.Fax" readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Provincia</label>
+          <input type="text" class="form-control" name="TbPersona.Provincia" [(ngModel)]="CliActual.TbPersona.Provincia"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Canton</label>
+          <input type="text" class="form-control" name="TbPersona.Canton" [(ngModel)]="CliActual.TbPersona.Canton"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Distrito</label>
+          <input type="text" class="form-control" name="TbPersona.Distrito" [(ngModel)]="CliActual.TbPersona.Distrito"
+            readonly>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label>Barrio</label>
+          <input type="text" class="form-control" name="TbPersona.Barrio" [(ngModel)]="CliActual.TbPersona.Barrio"
+            readonly>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+    <!-- nueva linae -->
+
+  </form>
+</div>
