@@ -1,30 +1,41 @@
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 pt-3 pb-3 fondo-color">
-          <h3 class="text-center">Abonos</h3>
+          <h3 class="text-center text-white">Abonos</h3>
         </div>
       </div>
 </div>
+<div class="container-fluid">
 <br>
  <form class="form-inline">
-  <div class="form-group">
-      <label>Abono General:</label>
-      <input style="margin-left:0.3cm"  type="number" placeholder="Digite el monto" class="form-control" name="MontoAbono" [(ngModel)]="MontoAbono">
-      <button style="margin-left:0.5cm"  class="btn btn-success" (click)="AbonoGeneral(MontoAbono)" >Abonar</button>
-  </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Abono General:</span>
+        </div>
+        <input type="number" placeholder="Digite el monto" class="form-control" name="MontoAbono" [(ngModel)]="MontoAbono">        
+    </div>    
 </form>
+<button  class="btn btn-outline-success" (click)="AbonoGeneral(MontoAbono)" >Abonar</button>
 
-<table class="table table-dark table-striped table-responsive">
-  <tr>
-    <th>ID</th>
-    <th>Fecha</th>
-    <th>ID cliente</th>    
-    <th>IdEmpresa</th>
-    <th> Plazo</th>
-    <th>Tipo Pago</th>
-   
+<div class="row">
+    <div class="col-md-12 mx-auto">
+        <div class="table-responsive">
+<table  class="table table-hover" mdbTable>
+    <thead class="titulo-tabla" class="unique-color-dark white-text">
+  <tr class="text-center" mdbTableCol>
+    <th scope="col">ID</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">ID cliente</th>    
+    <th scope="col">IdEmpresa</th>
+    <th scope="col"> Plazo</th>
+    <th scope="col">Tipo Pago</th>
+    <th>Opciones</th>
+    <th></th>
   </tr>
-    <tr *ngFor="let Documento of listaDoc">
+</thead>
+<tbody  class="text-center" >
+    <tr *ngFor="let Documento of listaDoc" mdbTableCol>
       <td>{{Documento.Id}}</td>
       <td>{{Documento.Fecha| date:'medium'}}</td>
       <td>{{Documento.IdCliente}}</td>     
@@ -32,10 +43,12 @@
       <td>{{Documento.Plazo}}</td>
       <td>{{Documento.TipoPagoNavigation.Nombre}}</td>
       <td><button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)" [routerLink]="['/detalle']" >Detalle</button></td>
-      <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)" [routerLink]="['/abo']"  >Abonar</button></td>   
+      <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)" [routerLink]="['/abo']">Abonar</button></td>
+      
          
     </tr>
+    </tbody>
     </table> 
-    
+  </div>  
    
    
