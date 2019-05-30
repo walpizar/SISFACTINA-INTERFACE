@@ -17,7 +17,7 @@ export class EmpresaService {
    }
 
    getById(id){
-    return this.http.get<TbParametrosEmpresa>(this.serviceGeneric.getURL()+"empresa/"+id);
+    return this.http.get<TbEmpresa>(this.serviceGeneric.getURL()+"/empresa/"+id);
    }
 
    delete(empre:TbEmpresa){
@@ -28,9 +28,9 @@ export class EmpresaService {
     const headers = new HttpHeaders().set('Content-type','application/Json');
     return this.http.put<TbEmpresa> (this.serviceGeneric.getURL()+'empresa/'+empre.Id,empre,{headers});
    }
-  post(body : TbParametrosEmpresa,){
+  post(body : TbEmpresa,){
     const headers = new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<TbParametrosEmpresa> (this.serviceGeneric.getURL()+'empresa',body,{headers});
+    return this.http.post<TbEmpresa> (this.serviceGeneric.getURL()+'/empresa',body,{headers});
    }
 
 

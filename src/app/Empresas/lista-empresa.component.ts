@@ -3,6 +3,7 @@ import { TbEmpresa } from '../../Models/Empresa';
 import { EmpresaService } from '../../Services/Empresas/empresa.service';
 import { TbPersona } from '../../Models/Personas';
 import { TbParametrosEmpresa } from '../../Models/ParametrosEmpresa';
+import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.service';
 
 @Component({
   selector: 'app-lista-empresa',
@@ -18,6 +19,7 @@ export class ListaEmpresaComponent implements OnInit {
   Empresa: TbEmpresa = new TbEmpresa();
   Persona: TbPersona  = new TbPersona();
   ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
+  ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
   ListEmpre: Array<TbEmpresa> = new Array();
 
 
@@ -52,18 +54,20 @@ export class ListaEmpresaComponent implements OnInit {
   }
 
   agregar(){
+
     this.Empresa.TipoId = 1
     this.Persona.Identificacion = this.Empresa.Id;
     this.Persona.TipoId = 1;
     this.Persona.Nombre = this.Empresa.NombreComercial;
     this.Persona.Telefono = 0;
-    this.Persona.CodigoPaisTel = "506"
+    this.Persona.CodigoPaisTel = "506";
     this.ParametrosEmpresa.IdEmpresa = this.Empresa.Id;
     this.ParametrosEmpresa.IdTipoEmpresa = this.Empresa.TipoId;
     this.ParametrosEmpresa.ManejaInventario = this.inventario;
     this.ParametrosEmpresa.FacturacionElectronica = this.factura;
+    this.ListaParametrosEmpre.push(this.ParametrosEmpresa);
     this.Empresa.TbPersona = this.Persona;
-    this.ParametrosEmpresa.IdNavigation = this.Empresa;
+    this.Empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
 
     if(this.modifica){
       this.empresaService.put(this.Empresa).subscribe(data =>{
@@ -78,7 +82,7 @@ export class ListaEmpresaComponent implements OnInit {
     }
     else{
 
-      this.empresaService.post(this.ParametrosEmpresa).subscribe(data=>{
+      this.empresaService.post(this.Empresa).subscribe(data=>{
         if(data){
           alert("Se agregó la empresa");
         }
@@ -102,8 +106,6 @@ export class ListaEmpresaComponent implements OnInit {
           this.Empresa.Id = this.ListEmpre[i].Id;
           this.Empresa.NombreComercial = this.ListEmpre[i].NombreComercial;
           this.Empresa.CorreoElectronicoEmpresa = this.ListEmpre[i].CorreoElectronicoEmpresa;
-          //this.inventario = data.ManejaInventario;
-          //this.factura = data.FacturacionElectronica;
         }
       }
     })
