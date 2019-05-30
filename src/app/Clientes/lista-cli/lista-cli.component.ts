@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-cli',
