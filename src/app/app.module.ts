@@ -21,6 +21,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FacturadorComponent,
     DocumentsComponent,
     DocumentsDetailsComponent,
-    ListaEmpresaComponent
+    ListaEmpresaComponent,
+    ListaCliComponent
   ],
   imports: [
     BrowserModule,

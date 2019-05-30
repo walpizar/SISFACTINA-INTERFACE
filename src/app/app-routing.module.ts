@@ -10,6 +10,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsDetailsComponent } from './Documents/documents-details/documents-details.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
+import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 
 const routes: Routes = [
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'detalleproveedor',component:DetalleProveedorComponent},
   {path:"factura", component : DocumentsComponent},
   {path:'detalleFactura/:id', component : DocumentsDetailsComponent},
-  {path:'empresa',component:ListaEmpresaComponent}
+  {path:'empresa',component:ListaEmpresaComponent},
+  {path: 'ListaClientes', component: ListaCliComponent},
 ];
 
 @NgModule({
