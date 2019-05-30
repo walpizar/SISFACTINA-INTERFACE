@@ -4,6 +4,8 @@ import { EmpresaService } from '../../Services/Empresas/empresa.service';
 import { TbPersona } from '../../Models/Personas';
 import { TbParametrosEmpresa } from '../../Models/ParametrosEmpresa';
 import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.service';
+import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
+import { TbTipoId } from 'src/Models/TipoId';
 
 @Component({
   selector: 'app-lista-empresa',
@@ -11,6 +13,7 @@ import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.ser
   styleUrls: ['./lista-empresa.component.css']
 })
 export class ListaEmpresaComponent implements OnInit {
+  
   modifica:boolean = false;
   bandera: boolean = false;
   show: boolean = false;
@@ -21,17 +24,26 @@ export class ListaEmpresaComponent implements OnInit {
   ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
   ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
   ListEmpre: Array<TbEmpresa> = new Array();
+  listaTipoId:Array<TbTipoId>; 
+  tipoId:number = 2;
 
 
-  constructor(private empresaService: EmpresaService) { 
 
+  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService) { 
     this.consultarTodos();
+    this.obtenerListaTipoId();
 
   }
 
   ngOnInit() {
   }
 
+  obtenerListaTipoId() {
+    this.tipoIdService.getTipoId().subscribe(data=>{
+
+      this.listaTipoId=data;
+    })
+  }
 
 
 
@@ -64,9 +76,9 @@ export class ListaEmpresaComponent implements OnInit {
     else{
 
     }
-    this.Empresa.TipoId = 1
+    this.Empresa.TipoId = this.tipoId;
     this.Persona.Identificacion = this.Empresa.Id;
-    this.Persona.TipoId = 1;
+    this.Persona.TipoId = this.tipoId;
     this.Persona.Nombre = this.Empresa.NombreComercial;
     this.Persona.Telefono = 0;
     this.Persona.CodigoPaisTel = "506";
