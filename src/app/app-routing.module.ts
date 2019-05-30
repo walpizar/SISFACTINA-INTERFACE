@@ -12,19 +12,21 @@ import { EmpresasComponent } from './empresas/empresas.component';
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
+import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
 
 const routes: Routes = [
-  {path:'Indexabono',component:IndexAbonoComponent},
-  {path:'detalle', component:DetallesAbonosComponent },
-  {path:'abo',component: AbonosComponent},
-  {path:'proveedor',component:ProveedorComponent},
-  {path:'Indexproveedor',component:IndexProveedorComponent},
-  {path:'detalleproveedor',component:DetalleProveedorComponent},
-  {path:"factura", component : DocumentsComponent},
-  {path:'detalleFactura/:id', component : DocumentsDetailsComponent},
-  {path:'empresa',component:ListaEmpresaComponent},
-  {path: 'ListaClientes', component: ListaCliComponent},
-  {path: 'RegistroCliente', component: RegistroCliComponent}
+  { path: 'Indexabono', component: IndexAbonoComponent },
+  { path: 'detalle', component: DetallesAbonosComponent },
+  { path: 'abo', component: AbonosComponent },
+  { path: 'proveedor', component: ProveedorComponent },
+  { path: 'Indexproveedor', component: IndexProveedorComponent },
+  { path: 'detalleproveedor', component: DetalleProveedorComponent },
+  { path: 'factura', component: DocumentsComponent },
+  { path: 'detalleFactura/:id', component: DocumentsDetailsComponent },
+  { path: 'empresa', component: ListaEmpresaComponent },
+  { path: 'ListaClientes', component: ListaCliComponent },
+  { path: 'RegistroCliente', component: RegistroCliComponent },
+  { path: 'DetallesCliente/:id', component: DetalleCliComponent }
 ];
 
 @NgModule({
