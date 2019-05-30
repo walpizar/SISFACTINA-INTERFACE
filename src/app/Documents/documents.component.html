@@ -1,11 +1,11 @@
 <!--AQUI VA LA TABLA-->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 pt-4 pb-4 fondo-color">
-      <h2 class="text-center">FACTURAS</h2>
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center">Facturas</h3>
     </div>
   </div>
-    <div class="container-fluid border p-2 m-2 pb-4 rounded">
+    <div class="container-fluid border p-2 mt-4 pb-4 rounded">
       <div class="row">
         <div class="col-md-12"> 
           <h2 class="titulo">Busqueda</h2>
@@ -15,45 +15,32 @@
       <div class="row">
         <div class="col-md-6">
         <!-- buscadores -->
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">ID</span>
-              </div>
-              <input type="text" class="form-control" [(ngModel)]="docBusca.Id" placeholder="ID">
+          <div class="md-form form-group mb-3">
+            <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Id">
+            <label for="form1" class="">ID</label>
           </div>
 
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Clave</span>
-              </div>
-              <input type="text" class="form-control" [(ngModel)]="docBusca.Clave" placeholder="Clave">
+          <div class="md-form form-group mb-3">
+              <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Clave">
+              <label for="form1" class="">Clave</label>
           </div>
-
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Consecutivo</span>
-              </div>
-              <input type="text" class="form-control" [(ngModel)]="docBusca.Consecutivo" placeholder="Consecutivo">
+          
+          <div class="md-form form-group mb-3">
+              <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Consecutivo">
+              <label for="form1" class="">Consecutivo</label>
           </div>
         </div>
 
         <!-- hacer un salto de linea -->
         <div class="col-md-6">
-
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">ID Cliente</span>
-              </div>
-              <input type="text" class="form-control" [(ngModel)]="docBusca.IdCliente" placeholder="ID Cliente">
-          </div>
-
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Tipo Doc</span>
-              </div>
-              <input type="text" class="form-control" [(ngModel)]="docBusca.TipoDocumento" placeholder="Tipo Documento">
-          </div>
-
+            <div class="md-form form-group mb-3">
+                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.IdCliente">
+                <label for="form1" class="">ID Cliente</label>
+            </div>
+            <div class="md-form form-group mb-3">
+                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.TipoDocumento">
+                <label for="form1" class="">Tipo Doc</label>
+            </div>
           <span>
             <button type="submit" class="btn btn-outline-success mr-2" (click)="FiltrarLista(docBusca)">Buscar</button>
           </span>

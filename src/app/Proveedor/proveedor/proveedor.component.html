@@ -1,9 +1,11 @@
-
+<div class="row">
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center" *ngIf="TextoPrincipal==true">Crear Proveedor</h3>
+      <h3 class="text-center" *ngIf="TextoPrincipal==false"> Modificar Proveedor</h3>
+    </div>
+  </div>
 <br>
 <div class="container">
-    <h3 style="text-align:center" *ngIf="TextoPrincipal==true"> Crear Proveedor</h3>
-    <h3 style="text-align:center" *ngIf="TextoPrincipal==false"> Modificar Proveedor</h3>
-    <br>
   <div class="card" >
     <div class="card-heading bg-success text-white" style="text-align: center"><h4>Datos Personales</h4></div>
     <div class="card-body">
