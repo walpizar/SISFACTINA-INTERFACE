@@ -7,6 +7,7 @@ import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.ser
 import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 import { TbTipoId } from 'src/Models/TipoId';
 
+
 @Component({
   selector: 'app-lista-empresa',
   templateUrl: './lista-empresa.component.html',
