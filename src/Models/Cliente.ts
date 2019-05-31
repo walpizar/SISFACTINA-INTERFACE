@@ -7,15 +7,15 @@ export class TbClientes{
 Id: string;
 TipoId: number;
 TipoCliente: number;
-Descripcion: string;;
+Descripcion: string;
 Estado: boolean;
 PrecioAplicar: number;
 DescuentoMax: number;
 CreditoMax: number;
 PlazoCreditoMax: number;
 NombreTributario: string;
-EncargadoConta:string;
-CorreoElectConta:string;
+EncargadoConta: string;
+CorreoElectConta: string;
 IdExonercion: number;
 FechaCrea: Date;
 FechaUltMod: Date;

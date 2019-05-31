@@ -13,7 +13,7 @@ export class ListaCliComponent implements OnInit {
   searchText: string = '';
   previous: string;
 
-  headElements = ['ID', 'Nombre', ' Tipo ID', 'Tipo Cliente'];
+  headElements = ['ID', 'Nombre','Tipo Cliente'];
 
   constructor(private service: DataClienteService) { }
 
