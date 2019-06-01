@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { ToastrService } from 'ngx-toastr';
+import { TbClientes } from 'src/Models/Cliente';
 
 @Component({
   selector: 'app-lista-cli',
@@ -12,10 +13,11 @@ export class ListaCliComponent implements OnInit {
   listaClientes = new Array();
   searchText: string = '';
   previous: string;
+  CliSelect: TbClientes;
 
   headElements = ['ID', 'Nombre','Tipo Cliente'];
 
-  constructor(private service: DataClienteService) { }
+  constructor(private service: DataClienteService, private alerta: ToastrService) { }
 
   ngOnInit() {
     this.getListaCli();
@@ -37,6 +39,15 @@ export class ListaCliComponent implements OnInit {
 
   CliActual(per) {
     this.service.detalleCli = per;
+    this.CliSelect = per;
+  }
+
+  EliminarCli(){
+    // console.log(this.CliSelect);
+    this.service.deleteCliente(this.CliSelect).subscribe(
+      res=> {this.alerta.success('El cliente se ha eliminado')},
+      err=> {this.alerta.error('Error al elminar el cliente')}
+    );
   }
 
 }

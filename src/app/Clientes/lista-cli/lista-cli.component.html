@@ -36,9 +36,39 @@
           </td>
           <td><button type="button" mdbBtn color="success" size="sm">Modificar</button></td>
           <td><button type="button" mdbBtn color="warning" size="sm">Eliminar</button></td>
+          <td><button type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+            (click)="CliActual(per)"
+            mdbWavesEffect>Eliminar</button></td>
         </tr>
       </tbody>
     </table>
   </div>
 
+</div>
+
+
+
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Eliminar Cliente</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <p>Desea eliminar el cliente?</p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a (click)="EliminarCli()" (click)="frame.hide()"  mdbBtn color="primary" class="waves-light" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
 </div>
