@@ -31,10 +31,13 @@ export class IndexCategoriaProductoComponent implements OnInit {
   Eliminar(CategoriaProducto:TbCategoriaProducto){
     try {
       if (confirm("Desea eliminar la categoria?")) {
+        this.msjAlert.info("Realizando la eliminacion,aguarda unos instantes");
         this.CategoriaProductService.Delete(CategoriaProducto).subscribe(
-          respuesta => { this.msjAlert.success('Eliminado Correctamente') },
+          respuesta => { this.msjAlert.success('Eliminado Correctamente') 
+          this.ConsultarCategorias();
+        },
         error => { this.msjAlert.error('Error: No se logro eliminar la categoria') 
-        this.ConsultarCategorias();
+        
        });
       }
      

@@ -45,6 +45,7 @@ export class IndexProveedorComponent implements OnInit {
   }
   Eliminar(Proved: TbProveedores) {
     if (confirm('Desea eliminar el proveedor?')) {
+      this.msj.info("Realizando la eliminacion,aguarda un momento");
       this.ProveedorService.Eliminar(Proved).subscribe(
         data => { this.msj.success("Eliminado Correctamente") 
         this.ConsultarProveedores();
