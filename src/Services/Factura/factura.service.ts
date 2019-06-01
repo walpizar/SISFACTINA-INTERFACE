@@ -46,7 +46,7 @@ export class FacturaService {
   
   ConsultarPorFechas(id){
     
-    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"documento/consultar/ordenfecha/"+id);
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/consultar/ordenfecha/"+id);
   } 
    
 }

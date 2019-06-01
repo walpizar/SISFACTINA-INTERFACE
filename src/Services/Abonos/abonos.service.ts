@@ -24,12 +24,12 @@ export class DataAbonosService {
   
   postData(body:TbAbonos){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<TbAbonos>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
+    return this.http.post<boolean>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
   }
 
   putData(body:TbAbonos){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<string>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
+    return this.http.put<boolean>(this.serviceGeneric.getURL()+"/abonos/",body,{headers})
   }
 
   recibeDocumento(Docu:TbDocumento){

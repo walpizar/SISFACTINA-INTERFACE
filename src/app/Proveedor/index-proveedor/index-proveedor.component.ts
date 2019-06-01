@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { TbProveedores } from 'src/Models/Proveedores';
 import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
+import { ToastrService } from 'ngx-toastr';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 @Component({
@@ -11,43 +13,49 @@ import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
 })
 export class IndexProveedorComponent implements OnInit {
 
-  constructor(private ProveedorService:DataProveedorService) { }
-// declaracion de variables
- listaProveedor= new Array();
- listaTipoId= new Array();
+  constructor(private ProveedorService: DataProveedorService, private msj: ToastrService) { }
+  // declaracion de variables
+  listaProveedor = new Array();
+  listaTipoId = new Array();
   ngOnInit() {
-    
-    this.ConsultarProveedores();   
-    
+
+    this.ConsultarProveedores();
+
   }
   AsignarTipoId() {
-    console.log("llego");
-    console.log(this.listaTipoId);
-    console.log(this.listaProveedor);
+
     for (const iterator of this.listaProveedor) {
       for (const tiposid of this.listaTipoId) {
-        if (tiposid.Id==iterator.TipoId) {
-          console.log(tiposid);
-          iterator.TbPersona.Tipo=tiposid;
-          
+        if (tiposid.Id == iterator.TipoId) {
+          iterator.TbPersona.Tipo = tiposid;
         }
       }
     }
   }
-  
+
   ConsultarProveedores() {
-    this.ProveedorService.ConsultaTodos().subscribe(data=>{this.listaProveedor=data});
+    this.ProveedorService.ConsultaTodos().subscribe(data => { this.listaProveedor = data },
+      error => { this.msj.error("No se encontraron datos") });
   }
-  ConsultarDetalles(Proveedor:TbProveedores){
+  ConsultarDetalles(Proveedor: TbProveedores) {
     this.ProveedorService.RecibeDatoDetalle(Proveedor);
   }
-  Modificar(Proveedor:TbProveedores){
+  Modificar(Proveedor: TbProveedores) {
     this.ProveedorService.RecibeDatos(Proveedor);
   }
-  Eliminar(Proved:TbProveedores){
-    this.ProveedorService.Eliminar(Proved).subscribe(data=>{});
-    this.ConsultarProveedores();
-    alert("Se elimino correctamente");
+  Eliminar(Proved: TbProveedores) {
+    if (confirm('Desea eliminar el proveedor?')) {
+      this.ProveedorService.Eliminar(Proved).subscribe(
+        data => { this.msj.success("Eliminado Correctamente") 
+        this.ConsultarProveedores();
+      },
+        error => { this.msj.error("Error al eliminar el proveedor") }
+
+      );
+      
+    }
+
+
   }
 
 }

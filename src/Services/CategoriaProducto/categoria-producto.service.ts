@@ -25,7 +25,7 @@ export class CategoriaProductoService {
   
   Post(body:TbCategoriaProducto){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<TbCategoriaProducto>(this.serviceGeneric.getURL()+'/categoriaproducto/',body,{headers})
+    return this.http.post<boolean>(this.serviceGeneric.getURL()+'/categoriaproducto/',body,{headers})
   }
 
   Put(body:TbCategoriaProducto){
@@ -33,8 +33,8 @@ export class CategoriaProductoService {
     return this.http.put<boolean>(this.serviceGeneric.getURL()+'/categoriaproducto/',body,{headers})
   }
   Delete(body:TbCategoriaProducto){
-    const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<boolean>(this.serviceGeneric.getURL()+'/categoriaproducto/',body,{headers})
+    console.log(body);    
+    return this.http.delete<boolean>(this.serviceGeneric.getURL()+'/categoriaproducto/'+body.Id)
   }
  RecibeDatosComponeteModificar(catproductModify:TbCategoriaProducto){
    this.CategoriaModify=catproductModify;
