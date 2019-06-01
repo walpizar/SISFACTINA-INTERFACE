@@ -42,12 +42,17 @@ export class ListaCliComponent implements OnInit {
     this.CliSelect = per;
   }
 
-  EliminarCli(){
+  EliminarCli() {
     // console.log(this.CliSelect);
     this.service.deleteCliente(this.CliSelect).subscribe(
-      res=> {this.alerta.success('El cliente se ha eliminado')},
-      err=> {this.alerta.error('Error al elminar el cliente')}
+      res => { this.alerta.success('El cliente se ha eliminado') },
+      err => { this.alerta.error('Error al elminar el cliente') }
     );
+    setTimeout(this.reFresh,2400,'refresh');
+  }
+
+  reFresh() {
+    location.reload()
   }
 
 }

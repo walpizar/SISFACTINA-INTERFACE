@@ -49,7 +49,7 @@
 
 <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-info" role="document">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
     <!--Content-->
     <div class="modal-content text-center">
       <!--Header-->
@@ -64,8 +64,8 @@
 
       <!--Footer-->
       <div class="modal-footer justify-content-center">
-        <a (click)="EliminarCli()" (click)="frame.hide()"  mdbBtn color="primary" class="waves-light" mdbWavesEffect>Si</a>
-        <a type="button" mdbBtn color="primary" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+        <a (click)="EliminarCli()" (click)="frame.hide()"  mdbBtn color="danger" class="waves-light" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
       </div>
     </div>
     <!--/.Content-->
