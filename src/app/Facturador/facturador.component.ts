@@ -345,7 +345,7 @@ export class FacturadorComponent implements OnInit {
   }
   obtenerTodosClientes(){
 
-    this.clienteService.consultarLosCliente().subscribe(data=>{
+    this.clienteService.getClientes().subscribe(data=>{
 
       
       this.listaClientes=data
