@@ -34,12 +34,35 @@
       <td>{{CategoriaProducto.Descripcion}}</td> 
       <td>{{CategoriaProducto.FechaCrea| date:'medium'}}</td>
       <td>{{CategoriaProducto.FechaUltMod| date:'medium'}}</td>
-      <td><button class="btn btn-outline-primary" (click)="consultarDetalles(CategoriaProducto)"  >Detalle</button></td>
+      <td><button class="btn btn-outline-primary" (click)="consultarDetalles(CategoriaProducto)" [routerLink]="['/detailscateproduct']" >Detalle</button></td>
       <td><button class="btn btn-outline-warning text-white" (click)="Modificar(CategoriaProducto)" [routerLink]="['/createcateproduct']">Modificar</button></td>
-      <td><button class="btn btn-outline-danger text-white" (click)="Eliminar(CategoriaProducto)" >Eliminar</button></td>         
+      <td><button class="btn btn-outline-danger text-white" (click)="EnviaDatoEliminar(CategoriaProducto)" (click)="frame.show()" >Eliminar</button></td>         
     </tr>
     </tbody>
     </table> 
   </div>  
-   
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Eliminar Categoria</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <p>Desea eliminar la categoria {{texto}}?</p>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a (click)="EliminarCategoria()" (click)="frame.hide()"  mdbBtn color="danger" class="waves-light" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
    

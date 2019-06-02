@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriaProductoService } from 'src/Services/CategoriaProducto/categoria-producto.service';
+import { TbCategoriaProducto } from 'src/Models/CategoriaProducto';
 
 @Component({
   selector: 'app-detalle-categoria-producto',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleCategoriaProductoComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private catproductservice:CategoriaProductoService) { }
+  CategoriaProducto= new TbCategoriaProducto();
   ngOnInit() {
+    this.CategoriaProducto=this.catproductservice.CategoriaDetalle;
   }
 
 }

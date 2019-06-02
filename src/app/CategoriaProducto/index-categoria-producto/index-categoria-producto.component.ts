@@ -10,43 +10,47 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IndexCategoriaProductoComponent implements OnInit {
 
-  constructor(private CategoriaProductService:CategoriaProductoService,private msjAlert: ToastrService) { }
+  constructor(private CategoriaProductService: CategoriaProductoService, private msjAlert: ToastrService) { }
   //Variables
-  listaCatProduct= new Array();
+  listaCatProduct = new Array();
+  elimina: TbCategoriaProducto;
+  texto:string="?";
   ngOnInit() {
     this.ConsultarCategorias();
   }
   ConsultarCategorias() {
-   this.CategoriaProductService.Get().subscribe(data=>{
-     this.listaCatProduct=data
-   },error=>{this.msjAlert.error("No hay registros")})
+    this.CategoriaProductService.Get().subscribe(data => {
+      this.listaCatProduct = data
+    }, error => { this.msjAlert.error("No hay registros") })
   }
-  Modificar(CatProduct:TbCategoriaProducto){
+  Modificar(CatProduct: TbCategoriaProducto) {
     this.CategoriaProductService.RecibeDatosComponeteModificar(CatProduct);
-    
+
   }
-  consultarDetalles(categoriaproducto:TbCategoriaProducto){
+  consultarDetalles(categoriaproducto: TbCategoriaProducto) {
     this.CategoriaProductService.RecibeDatosComponeteDetalle(categoriaproducto);
   }
-  Eliminar(CategoriaProducto:TbCategoriaProducto){
+  EnviaDatoEliminar(CategoriaProducto: TbCategoriaProducto) {
+    this.elimina = CategoriaProducto;
+    this.texto=CategoriaProducto.Nombre;
+  }
+  EliminarCategoria() {
     try {
-      if (confirm("Desea eliminar la categoria?")) {
-        this.msjAlert.info("Realizando la eliminacion,aguarda unos instantes");
-        this.CategoriaProductService.Delete(CategoriaProducto).subscribe(
-          respuesta => { this.msjAlert.success('Eliminado Correctamente') 
+
+      this.msjAlert.info("Realizando la eliminacion,aguarda unos instantes");
+      this.CategoriaProductService.Delete(this.elimina).subscribe(
+        respuesta => {
+          this.msjAlert.success('Eliminado Correctamente')
           this.ConsultarCategorias();
         },
-        error => { this.msjAlert.error('Error: No se logro eliminar la categoria') 
-        
-       });
-      }
-     
+        error => {
+          this.msjAlert.error('Error: No se logro eliminar la categoria')
+
+        });
+
+
     } catch (error) {
       this.msjAlert.error("Error operacion");
     }
-   
-   
- 
   }
-
 }
