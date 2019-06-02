@@ -13,7 +13,7 @@
         <td>Ingrese el Id del cliente</td>
         <td>
           <div class="form-group">
-            <input type="text" class="form-control" [(ngModel)]="clienteId" placeholder="Enter ID">
+            <input type="text" class="form-control" (keyup.enter)="btenerCliente(clienteId,tipoId)" [(ngModel)]="clienteId" placeholder="Enter ID">
           </div>
         <td>Ingrese el tipo de Id</td>
 
@@ -27,18 +27,17 @@
         </td>
 
         <td>
-          <button (click)="obtenerCliente(clienteId,tipoId)" class="btn btn-primary">Buscar</button>
           <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal"
-            data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Launch Modal</button>
+            data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Buscar</button>
 
-          <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+          <div mdbModal #frame="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
             aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-dialog  modal-dialog-scrollable modal-lg modal-notify modal-info" role="document">
               <div class="modal-content ">
 
                 <!--Header-->
                 <div class="modal-header">
-                  <h4 class="modal-title" id="myModalLabel">Lista de clientes</h4>
+                  <h4 class="modal-title" id="myModalLabel" style="color: aliceblue">Lista de clientes</h4>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
                     <span aria-hidden="true">×</span>
                   </button>
@@ -48,8 +47,8 @@
                   
                   <table class="table table-hover">
                     <tr>
-                      <td><input oninput="this.value = this.value.toUpperCase()" type="text" style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar" placeholder="Ingrese el nombre del cliente que desea buscar" ></td>
-                      
+                      <td>Nombre del cliente</td>
+                      <td colspan="2"><input oninput="this.value = this.value.toUpperCase()" type="text" style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar" placeholder="Ingrese el nombre del cliente que desea buscar" ></td>
                     </tr>
                     
                       <tr>
@@ -65,7 +64,7 @@
                               {{clienteF.TbPersona.Nombre}}
                           </td>
                           <td *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">
-                            <button type="button" size="sm" mdbBtn color="primary" size="sm" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)"(click)="frame.hide()">Seleccionar</button>
+                            <button type="button" size="sm" mdbBtn color="primary" size="sm" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)" (click)="frame.hide()">Seleccionar</button>
                           </td>
                       </tr>
                       
@@ -74,14 +73,12 @@
                 </div>
                 <!--Footer-->
                 <div class="modal-footer">
-                  <button type="button" size="sm" mdbBtn color="primary" outline="true" class="waves-light"
-                    mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Close</button>
-                  <button mdbBtn color="primary" class="waves-light" mdbWavesEffect>Checkout</button>
+                  <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light"
+                    mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Cerrar</button>
                 </div>
               </div>
             </div>
           </div>
-          Modal Push
         </td>
 
       </tr>
@@ -185,13 +182,13 @@
             </td>
             <td>
               <div class="input-group mb-3 col-md-12 ">
-                <input type="text" class="form-control" [(ngModel)]="productoId" placeholder="Id del Producto"
+                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)" [(ngModel)]="productoId" placeholder="Id del Producto"
                   aria-label="Id del Producto" aria-describedby="basic-addon2">
                 <input type="text" class="form-control" [(ngModel)]="Cantidad"
                   placeholder="Ingrese la cantidad de productos" aria-label="Id del Producto"
                   aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                  <button (click)="obtenerProductos(productoId);" class="btn btn-outline-success"
+                  <button (click)="obtenerProductos(productoId)" class="btn btn-outline-success"
                     type="button">Agregar</button>
                 </div>
               </div>
@@ -219,7 +216,7 @@
 
         <table class="table">
 
-          <tdead class="titulo-tabla">
+          <thead class="titulo-tabla">
             <tr class="encabezado">
               <td scope="col">Id Producto</td>
               <td scope="col">Num. Linea</td>
@@ -229,7 +226,7 @@
 
               <td scope="col">Total Linea</td>
             </tr>
-          </tdead>
+          </thead>
           <tbody>
             <tr *ngFor="let lDetalles of listaDetalles">
 
@@ -276,7 +273,7 @@
               </td>
               <td>
                 <div class="form-group">
-                  <button (click)='Eliminar(lDetalles.IdProducto)' class="btn btn-danger">Eliminar</button>
+                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto)" (click)="frame.show()" class="btn btn-danger">Eliminar</button>
                 </div>
               </td>
             </tr>
@@ -308,27 +305,42 @@
         <table class="table ">
           <tr>
             <td>
-              <p> Subtotal: {{subTotal}}</p>
+              <p> Subtotal:</p>
+            </td>
+            <td>
+              <p>{{subTotal}}</p>
             </td>
           </tr>
           <tr>
             <td>
-              Descuento: {{descuento}}
+              <p>Descuento:</p>
+            </td>
+            <td>
+              <p>{{descuento}}</p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>IVA: {{iva}}</p>
+              <p>IVA:</p>
+            </td>
+            <td>
+              <p>{{iva}}</p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>Exonerado: {{exonerado}}</p>
+              <p>Exonerado:</p>
+            </td>
+            <td>
+              <p>{{exonerado}}</p>
             </td>
           </tr>
           <tr>
             <td>
-              <p>TotalFactura: {{TotalFactura}}</p>
+              <p>TotalFactura:</p>
+            </td>
+            <td>
+              <p>{{TotalFactura}}</p>
             </td>
           </tr>
         </table>
@@ -370,5 +382,5 @@
       </div>
     </div>
   </div>
-
+  
 </div>

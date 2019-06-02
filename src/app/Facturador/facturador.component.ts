@@ -75,6 +75,7 @@ export class FacturadorComponent implements OnInit {
   listaTipoVenta: Array<TbTipoVenta> = new Array();
   tipoPago:number = 1;
   tipoVenta:number = 1;
+  eliminaIdProducto:string;
   listaClientes:Array<TbClientes>= new Array();
   buscar: string;
 
@@ -177,8 +178,10 @@ export class FacturadorComponent implements OnInit {
   }
 
   obtenerProductos(id: string){
+    this.productoId="";
     var bandera = false;
     var error = false;
+    
     this.producservice.getProductoById(parseInt(id)).subscribe(data=>{
       
       this.productoConsultado=data;
@@ -285,8 +288,9 @@ export class FacturadorComponent implements OnInit {
 
   Eliminar(id){
     for(let i=0; this.listaDetalles.length>i; i++){
+      alert(id);
       if(this.listaDetalles[i].IdProducto==id){
-
+        
         this.subTotal -= this.listaDetalles[i].MontoTotal;
         this.descuento -= this.listaDetalles[i].MontoTotalDesc;
         this.iva -= this.listaDetalles[i].MontoTotalImp;
@@ -296,6 +300,12 @@ export class FacturadorComponent implements OnInit {
         this.listaDetalles.splice(i,1)
        }
       }
+  }
+  EnviaDatoEliminar(id: string) {
+    alert("resivido"+id)
+    this.eliminaIdProducto = id;
+
+    
   }
 
   MontosFactura(){
@@ -427,6 +437,7 @@ export class FacturadorComponent implements OnInit {
       this.facturaService.post(factura).subscribe(data=>{
         if(data){
           alert("Se facturó correctamente, recargue la pagina");
+          location.reload();
         }
         else{
           alert("No se pudo facturar, verifique los datos");
