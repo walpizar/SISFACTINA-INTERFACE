@@ -34,7 +34,7 @@ export class FacturadorComponent implements OnInit {
     this.obtenerListaTipoVenta();
     this.obtenerTodoInventario();
     this.obtenerTodosLosProductos();
-
+    this.obtenerTodosClientes();
   }
 
   ngOnInit() {
@@ -68,20 +68,51 @@ export class FacturadorComponent implements OnInit {
   detalle:TbDetalleDocumento = new TbDetalleDocumento;
   listaDetalles:Array<TbDetalleDocumento> = new Array();
   productoConsultado : TbProducto;
-  total = 0;
+  total:number = 0;
   listaProductos:Array<TbProducto>= new Array();
   listaInventario:Array<TbInventario>= new Array();
   listaTipoPago: Array<TbTipoPago> = new Array();
   listaTipoVenta: Array<TbTipoVenta> = new Array();
   tipoPago:number = 1;
   tipoVenta:number = 1;
+  listaClientes:Array<TbClientes>= new Array();
+  buscar: string;
 
+  contiene(busca){
+
+
+  }
+
+  seleccionarCliente(cliente){
+    this.cliente=cliente
+    this.Show = true;
+    this.clienteId=cliente.Id
+    this.cliente.TipoId
+
+      if(this.cliente.TbPersona.Apellido1!=null && this.cliente.TbPersona.Apellido2){
+        this.apellidos=this.cliente.TbPersona.Apellido1.trim() + " " + this.cliente.TbPersona.Apellido2.trim();
+      }
+      if(this.cliente.TbPersona.Apellido1==null&&this.cliente.TbPersona.Apellido2!=null){
+        this.apellidos= this.cliente.TbPersona.Apellido2.trim();
+      }
+      if(this.cliente.TbPersona.Apellido1!=null&&this.cliente.TbPersona.Apellido2==null){
+        this.apellidos= this.cliente.TbPersona.Apellido1.trim();
+      }
+      
+
+
+        
+        
+        this.direccion=this.cliente.TbPersona.TbBarrios.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.ProvinciaNavigation.Nombre.trim();
+        
+  }
 
   restaCantidad(cantidadPro,NumeroLiProduc,proId){
       for (let i = 0; i < this.listaInventario.length; i++) {
         if(this.listaInventario[i].IdProducto==proId && 1 < cantidadPro){
           this.listaDetalles[NumeroLiProduc-1].Cantidad =this.listaDetalles[NumeroLiProduc-1].Cantidad-1;
           this.listaDetalles[NumeroLiProduc-1].MontoTotal = this.listaDetalles[NumeroLiProduc-1].Cantidad * this.listaDetalles[NumeroLiProduc-1].Precio;
+
           this.listaDetalles[NumeroLiProduc-1].MontoTotalDesc = this.listaDetalles[NumeroLiProduc-1].MontoTotal * (this.listaDetalles[NumeroLiProduc-1].Descuento/100);
           this.listaDetalles[NumeroLiProduc-1].MontoTotalImp = this.listaDetalles[NumeroLiProduc-1].MontoTotal * 0.13;
           this.listaDetalles[NumeroLiProduc-1].TotalLinea = this.listaDetalles[NumeroLiProduc-1].MontoTotal - this.listaDetalles[NumeroLiProduc-1].MontoTotalDesc + this.listaDetalles[NumeroLiProduc-1].MontoTotalImp;
@@ -310,6 +341,14 @@ export class FacturadorComponent implements OnInit {
 
       
       this.listaInventario=data
+    })
+  }
+  obtenerTodosClientes(){
+
+    this.clienteService.consultarLosCliente().subscribe(data=>{
+
+      
+      this.listaClientes=data
     })
   }
 
