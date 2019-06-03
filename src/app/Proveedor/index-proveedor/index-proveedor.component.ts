@@ -17,6 +17,8 @@ export class IndexProveedorComponent implements OnInit {
   // declaracion de variables
   listaProveedor = new Array();
   listaTipoId = new Array();
+  Entidadeliminar:TbProveedores;
+  texto:string="?";
   ngOnInit() {
 
     this.ConsultarProveedores();
@@ -43,19 +45,20 @@ export class IndexProveedorComponent implements OnInit {
   Modificar(Proveedor: TbProveedores) {
     this.ProveedorService.RecibeDatos(Proveedor);
   }
-  Eliminar(Proved: TbProveedores) {
-    if (confirm('Desea eliminar el proveedor?')) {
-      this.ProveedorService.Eliminar(Proved).subscribe(
+  EnviaDatoEliminar(Proved: TbProveedores) {
+    this.Entidadeliminar=Proved;
+    this.texto=Proved.Id;
+  }
+
+  EliminarProveedor(){
+    this.msj.info("Realizando la eliminacion,aguarda un momento");
+      this.ProveedorService.Eliminar(this.Entidadeliminar).subscribe(
         data => { this.msj.success("Eliminado Correctamente") 
         this.ConsultarProveedores();
       },
         error => { this.msj.error("Error al eliminar el proveedor") }
 
       );
-      
-    }
-
-
   }
 
 }

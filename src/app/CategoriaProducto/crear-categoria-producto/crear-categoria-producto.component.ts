@@ -32,7 +32,8 @@ export class CrearCategoriaProductoComponent implements OnInit {
     try {
       if (CategoriaProduct.Nombre == null) {
         alert("No se puede agregar,debe ingresar un nombre")
-      } else {        
+      } else {
+        this.msjAlert.info("Estamos agregando los datos,aguarda unos instantes");        
         this.CateProductService.Post(CategoriaProduct).subscribe(
           respuesta => { this.msjAlert.success('Agregado Correctamente') },
           error => { this.msjAlert.error('Error: No se logro agregar la categoria') });
@@ -49,7 +50,7 @@ export class CrearCategoriaProductoComponent implements OnInit {
       if (CategoriaProductModify.Nombre == null) {
         alert("No se puede modificar,debe ingresar un nombre")
       } else {
-        this.msjAlert.warning("Realizando la modificacion,espera un momento");
+        this.msjAlert.info("Realizando la modificacion,aguarda un momento");
         this.CateProductService.Put(CategoriaProductModify).subscribe(
           respuesta => { this.msjAlert.success('Modificado Correctamente') },
           error => { this.msjAlert.error('Error: No se logro modificar la categoria') });

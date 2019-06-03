@@ -156,7 +156,7 @@ export class ProveedorComponent implements OnInit {
   CrearProveedor(prove:TbProveedores){
     console.log(prove);
     try {
-    
+      this.msj.info("Estamos agregando los datos,aguarda unos instantes");
       this.proveedorService.Agregar(prove).subscribe(
         data=>{this.msj.success("Proveedor agregado correctamente")
         this.Proveedor=new TbProveedores();
