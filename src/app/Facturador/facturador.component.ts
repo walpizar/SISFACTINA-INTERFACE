@@ -77,7 +77,7 @@ export class FacturadorComponent implements OnInit {
   tipoVenta:number = 1;
   eliminaIdProducto:string;
   listaClientes:Array<TbClientes>= new Array();
-  buscar: string;
+  buscar: string=null;
 
   contiene(busca){
 
@@ -85,11 +85,15 @@ export class FacturadorComponent implements OnInit {
   }
 
   seleccionarCliente(cliente){
+    console.log(cliente)
     this.cliente=cliente
     this.Show = true;
     this.clienteId=cliente.Id
     this.cliente.TipoId
-
+    this.direccion="";
+    
+    this.clienteService.consultarCliente(cliente.Id,parseInt(cliente.TipoId)).subscribe(data=>{
+      this.cliente=data;
       if(this.cliente.TbPersona.Apellido1!=null && this.cliente.TbPersona.Apellido2){
         this.apellidos=this.cliente.TbPersona.Apellido1.trim() + " " + this.cliente.TbPersona.Apellido2.trim();
       }
@@ -100,12 +104,11 @@ export class FacturadorComponent implements OnInit {
         this.apellidos= this.cliente.TbPersona.Apellido1.trim();
       }
       
-
-
-        
-        
+      if(this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.ProvinciaNavigation.Nombre.trim()!=null && this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.Nombre.trim()!=null && this.cliente.TbPersona.TbBarrios.TbDistrito.Nombre.trim()!=null&&this.cliente.TbPersona.TbBarrios.Nombre.trim()!=null){
         this.direccion=this.cliente.TbPersona.TbBarrios.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.Nombre.trim()+", "+this.cliente.TbPersona.TbBarrios.TbDistrito.TbCanton.ProvinciaNavigation.Nombre.trim();
-        
+      }
+    })
+     
   }
 
   restaCantidad(cantidadPro,NumeroLiProduc,proId){
