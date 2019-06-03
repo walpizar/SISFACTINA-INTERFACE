@@ -59,10 +59,9 @@ export class DataClienteService {
     return this.http.delete(this.servicioGeneric.getURL() + "/cliente/" + Cli.Id + "/" + Cli.TipoId);
   }
 
-  putCliente(Cli: TbClientes) {
-    Cli.Id.trim();
+  putCliente(Cliente) {
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<boolean>('http://localhost:63630/api/cliente',Cli,{headers});
+    return this.http.put<boolean>('http://localhost:63630/api/cliente',Cliente,{headers});
   }
 
 }

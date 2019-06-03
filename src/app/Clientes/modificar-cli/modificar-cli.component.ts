@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { TbClientes } from 'src/Models/Cliente';
 import { TbPersona } from 'src/Models/Personas';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modificar-cli',
@@ -30,7 +31,7 @@ export class ModificarCliComponent implements OnInit {
   Cliente = new TbClientes();
   Persona = new TbPersona();
 
-  constructor(private service: DataClienteService) { }
+  constructor(private service: DataClienteService, private Alert : ToastrService) { }
 
   ngOnInit() {
     this.getListProvincias();
@@ -127,9 +128,12 @@ export class ModificarCliComponent implements OnInit {
     }
   }
 
-  ModificarCli(Cliente: TbClientes,Persona: TbPersona){
+  ModificarCli(Cliente: TbClientes, Persona: TbPersona) {
     Cliente.TbPersona = Persona;
-    this.service.putCliente(Cliente);
+    this.service.putCliente(Cliente).subscribe(
+      res => { this.Alert.success('Modificacion Realizada', 'Cliente') },
+      err => { this.Alert.error('Error de registro', 'Cliente') }
+    );
   }
 
 }
