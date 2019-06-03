@@ -1,92 +1,100 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12 pt-3 pb-3 fondo-color">
-        <h3 class="text-center" >Abono de la Factura</h3>
-        
-      </div>
+  <div class="row">
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center">Abono de la Factura</h3>
+
     </div>
   </div>
+</div>
 <div class="container">
 
   <br>
   <div class="card ">
-      <div class="card-heading bg-warning text-white " style="text-align:center"><h5>Encabezado de Factura</h5> </div>
-      <div class="card-body">
-          <form class="form-inline">
-                <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Codigo:</span>                    
-                        </div>
-                        <input  type="text" class="form-control" name="Documento.Id" [(ngModel)]="Documento.Id" readonly>                  
-                      </div>
-                      <div style="margin-left:1cm" class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">IdEmpresa:</span>                    
-                            </div>
-                            <input  type="text" class="form-control" name="Documento.IdEmpresa" [(ngModel)]="Documento.IdEmpresa" readonly>                  
-                    </div>
-                      <div style="margin-left:1cm" class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">Fecha Factura:</span>                    
-                            </div>
-                            <input  type="text" class="form-control" name="Documento.Fecha" [(ngModel)]="Documento.Fecha" readonly>                  
-                    </div>
-                    
-              
-          </form>
-          <br />
-          <form class="form-inline">
-                <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Cliente</span>
-                        </div>
-                        <input type="text" class="form-control" name="Documento.IdCliente" [(ngModel)]="Documento.IdCliente" readonly>
-                        <input type="text" class="form-control" name="Persona.Nombre" [(ngModel)]="Persona.Nombre"  readonly>
-                        <input type="text" class="form-control" name="Persona.Apellido1" [(ngModel)]="Persona.Apellido1"  readonly>
-                        <input type="text" class="form-control" name="Persona.Apellido2" [(ngModel)]="Persona.Apellido2"  readonly>
-                      </div>
-              
-          </form>
-          <br />  
-          <form class="form-inline">
-                <div class="form-group">
-                        <label for="Tipo Pago">Tipo Pago:</label>                  
-                      <input style="margin-left:0.3cm" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="Documento.TipoPagoNavigation.Nombre" readonly>
-                        
-                    </div>
-          </form>
-          <br>
-          <form class="form-inline">
-                <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text bg-success text-white">Total Factura</span>                    
-                        </div>
-                        <input  type="text" class="form-control" name="totalFactura" [(ngModel)]="totalFactura"  readonly>                  
-                      </div>
-                      <div class="input-group mb-3">
-                          <div style="margin-left:0.3cm" class="input-group-prepend">
-                              <span class="input-group-text text-white bg-danger">Saldo Pendiente</span>                      
-                          </div>
-                          <input  type="text" class="form-control" name="totalpendientefac" [(ngModel)]="totalpendientefac"  readonly>
-                      </div>
-              
-          </form>
-          
+    <div class="card-heading bg-warning text-white " style="text-align:center">
+      <h5>Encabezado de Factura</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Codigo:</span>
+          </div>
+          <input type="text" class="form-control" name="Documento.Id" [(ngModel)]="Documento.Id" readonly>
+        </div>
+        <div  class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">IdEmpresa:</span>
+          </div>
+          <input type="text" class="form-control" name="Documento.IdEmpresa" [(ngModel)]="Documento.IdEmpresa" readonly>
+        </div>
+        <div  class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Fecha Factura:</span>
+          </div>
+          <input type="text" class="form-control" name="Documento.Fecha" [(ngModel)]="Documento.Fecha" readonly>
+        </div>
+
+
       </div>
+      <br />
+      <div class="row">
+        <div class="input-group mb- col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Cliente</span>
+          </div>
+          <input type="text" class="form-control" name="Documento.IdCliente" [(ngModel)]="Documento.IdCliente" readonly>
+          <input type="text" class="form-control" name="Persona.Nombre" [(ngModel)]="Persona.Nombre" readonly>
+          <input type="text" class="form-control" name="Persona.Apellido1" [(ngModel)]="Persona.Apellido1" readonly>
+          <input type="text" class="form-control" name="Persona.Apellido2" [(ngModel)]="Persona.Apellido2" readonly>
+        </div>
+
+      </div>
+      <br />
+      <div class="row">
+        <div class="input-group mb- col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Tipo Pago</span>
+          </div>
+          <input type="text" class="form-control"
+            [ngModelOptions]="{standalone: true}" [(ngModel)]="Documento.TipoPagoNavigation.Nombre" readonly>
+
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="input-group mb-3 col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-success text-white">Total Factura</span>
+          </div>
+          <input type="text" class="form-control" name="totalFactura" [(ngModel)]="totalFactura" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-white bg-danger">Saldo Pendiente</span>
+          </div>
+          <input type="text" class="form-control" name="totalpendientefac" [(ngModel)]="totalpendientefac" readonly>
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
   <br>
   <form class="form-inline">
-        <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text ">Monto Abonar</span>                    
-                </div>
-                <input type="number" class="form-control" placeholder="Digite el monto" name="MontoAbono" [(ngModel)]="MontoAbono">
-   
-        </div>
-    
-</form>
-<button class="btn btn-outline-success" (click)="abonar(MontoAbono)" [routerLink]="['/Indexabono']">Abonar</button> 
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text ">Monto Abonar</span>
+      </div>
+      <input type="number" class="form-control" placeholder="Digite el monto" name="MontoAbono"
+        [(ngModel)]="MontoAbono">
+
+    </div>
+
+  </form>
+  <button class="btn btn-outline-success" (click)="abonar(MontoAbono)" >Abonar</button>
+  <button class="btn btn-success" [routerLink]="['/Indexabono']">Atras</button>
+
 </div>
-<br/>
-<br/>
+<br />
+<br />
