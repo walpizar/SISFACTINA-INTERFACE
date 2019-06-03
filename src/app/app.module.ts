@@ -29,6 +29,7 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
+import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 
 
 
@@ -54,7 +55,8 @@ import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.componen
 
     ListaCliComponent,
     RegistroCliComponent,
-    DetalleCliComponent
+    DetalleCliComponent,
+    ModificarCliComponent
 
   ],
   imports: [

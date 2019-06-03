@@ -34,10 +34,15 @@
               Detalles
             </button>
           </td>
-          <td><button type="button" mdbBtn color="success" size="sm">Modificar</button></td>
-          <td><button type="button" mdbBtn color="warning" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-            (click)="CliActual(per)"
-            mdbWavesEffect>Eliminar</button></td>
+          <td><button type="button" mdbBtn color="success" size="sm" (click)="CliActual(per)"
+              [routerLink]="['/ModificarCliente',per.Id]">
+              Modificar
+            </button></td>
+          <td><button type="button" mdbBtn color="warning" size="sm" class="waves-light" data-toggle="modal"
+              data-target="#basicExample" (click)="frame.show()" (click)="CliActual(per)"
+              mdbWavesEffect>Eliminar</button>
+          </td>
+
         </tr>
       </tbody>
     </table>

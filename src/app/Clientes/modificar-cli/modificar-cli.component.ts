@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { TbClientes } from 'src/Models/Cliente';
 import { TbPersona } from 'src/Models/Personas';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-registro-cli',
-  templateUrl: './registro-cli.component.html',
-  styleUrls: ['./registro-cli.component.css']
+  selector: 'app-modificar-cli',
+  templateUrl: './modificar-cli.component.html',
+  styleUrls: ['./modificar-cli.component.css']
 })
-export class RegistroCliComponent implements OnInit {
+export class ModificarCliComponent implements OnInit {
 
   // variables
   listaProvincia = new Array();
@@ -23,15 +22,15 @@ export class RegistroCliComponent implements OnInit {
   comboDistritos = new Array();
   comboCantones = new Array();
   comboBarrios = new Array();
-  
+
   Provincia: string;
   Distrito: string;
   Canton: string;
-  
+
   Cliente = new TbClientes();
   Persona = new TbPersona();
 
-  constructor(private service: DataClienteService, private msjAlert: ToastrService) { }
+  constructor(private service: DataClienteService) { }
 
   ngOnInit() {
     this.getListProvincias();
@@ -39,6 +38,12 @@ export class RegistroCliComponent implements OnInit {
     this.getListCantones();
     this.getListBarrios();
     this.getListTipoId();
+    this.getClienteModif();
+  }
+
+  getClienteModif() {
+    this.Cliente = this.service.detalleCli;
+    this.Persona = this.service.detalleCli.TbPersona;
   }
 
   // metodos
@@ -122,25 +127,9 @@ export class RegistroCliComponent implements OnInit {
     }
   }
 
-  Registrar(Cli: TbClientes, Pers: TbPersona) {
-
-
-    try {
-      Cli.TbPersona = Pers;
-      Cli.Id = Pers.Identificacion;
-      Cli.TipoCliente = 1;
-      Cli.IdExonercionNavigation = null;
-      Cli.Estado = true;
-      Cli.TipoId = Pers.TipoId;
-      this.service.postCliente(Cli).subscribe(
-        res => { this.msjAlert.success('Registro Realizado', 'Cliente') },
-        err => { this.msjAlert.error('Error de registro', 'Cliente') }
-      );
-
-    } catch (error) {
-      this.msjAlert.error('Error operacion', 'Cliente')
-    }
-
+  ModificarCli(Cliente: TbClientes,Persona: TbPersona){
+    Cliente.TbPersona = Persona;
+    this.service.putCliente(Cliente);
   }
 
 }

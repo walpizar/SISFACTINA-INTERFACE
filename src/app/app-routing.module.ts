@@ -16,6 +16,7 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
+import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 const routes: Routes = [
   {path:'Indexabono',component:IndexAbonoComponent},
   {path:'detalle', component:DetallesAbonosComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path:'createcateproduct',component:CrearCategoriaProductoComponent},
   {path: 'ListaClientes', component: ListaCliComponent },
   {path: 'RegistroCliente', component: RegistroCliComponent },
-  {path: 'DetallesCliente/:id', component: DetalleCliComponent }
+  {path: 'DetallesCliente/:id', component: DetalleCliComponent },
+  {path: 'ModificarCliente/:id', component: ModificarCliComponent }
 
 ]
 
