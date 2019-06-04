@@ -13,7 +13,7 @@ import { DetallesAbonosComponent } from './Abonos/detalles-abonos/detalles-abono
 import { ProveedorComponent } from './Proveedor/proveedor/proveedor.component';
 import { IndexProveedorComponent } from './Proveedor/index-proveedor/index-proveedor.component';
 import { DetalleProveedorComponent } from './Proveedor/detalle-proveedor/detalle-proveedor.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InventarioComponent } from './Inventario/inventario.component';
 import { FacturadorComponent } from './Facturador/facturador.component';
@@ -30,6 +30,10 @@ import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
+
+import { LoginComponent } from './usuario/login/login.component';
+import { RegistroComponent } from './usuario/registro/registro.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 
 
@@ -56,8 +60,11 @@ import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.co
     ListaCliComponent,
     RegistroCliComponent,
     DetalleCliComponent,
-    ModificarCliComponent
+    ModificarCliComponent,
 
+    LoginComponent,
+    RegistroComponent,
+    UsuarioComponent 
   ],
   imports: [
     BrowserModule,
@@ -67,7 +74,8 @@ import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.co
     BrowserAnimationsModule, 
     ToastrModule.forRoot() ,
     BrowserModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    ReactiveFormsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
