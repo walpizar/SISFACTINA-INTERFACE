@@ -18,7 +18,13 @@ import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.compo
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
 import { ImpuestosComponent } from './impuestos/impuestos.component';
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { RegistroComponent } from './usuario/registro/registro.component';
+import { LoginComponent } from './usuario/login/login.component';
+import { AuthGuard } from './usuario/auth/auth.guard';
+import { AppComponent } from './app.component';
 const routes: Routes = [
+  
   {path:'Indexabono',component:IndexAbonoComponent},
   {path:'detalle', component:DetallesAbonosComponent },
   {path:'abo',component: AbonosComponent},
@@ -34,10 +40,19 @@ const routes: Routes = [
   {path: 'ListaClientes', component: ListaCliComponent },
   {path: 'RegistroCliente', component: RegistroCliComponent },
   {path: 'DetallesCliente/:id', component: DetalleCliComponent },
+  {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
-  {path: 'ModificarCliente/:id', component: ModificarCliComponent }
+  {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {
+    path : 'usuario', component : UsuarioComponent, 
+    children:[
+      {path : 'registro', component : RegistroComponent},
+      {path : 'login', component : LoginComponent}
+    ]  },
+  {path:'inicio', component:AppComponent,canActivate:[AuthGuard]}
 
-]
+];
 
 
 @NgModule({
