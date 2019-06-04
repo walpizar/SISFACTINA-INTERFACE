@@ -29,13 +29,10 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
-<<<<<<< HEAD
 import { ImpuestosComponent } from './impuestos/impuestos.component';
 
-=======
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 import {MomentModule} from 'ngx-moment';
->>>>>>> b5a57c8b1374c88e0a9cf5b6010d3f35dacb80ab
 
 
 @NgModule({
@@ -61,11 +58,8 @@ import {MomentModule} from 'ngx-moment';
     ListaCliComponent,
     RegistroCliComponent,
     DetalleCliComponent,
-<<<<<<< HEAD
-    ImpuestosComponent
-=======
+    ImpuestosComponent,
     ModificarCliComponent
->>>>>>> b5a57c8b1374c88e0a9cf5b6010d3f35dacb80ab
 
   ],
   imports: [
