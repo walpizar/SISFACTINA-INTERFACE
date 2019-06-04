@@ -31,15 +31,12 @@ import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.compo
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
 import { ImpuestosComponent } from './impuestos/impuestos.component';
 
-<<<<<<< HEAD
 import { LoginComponent } from './usuario/login/login.component';
 import { RegistroComponent } from './usuario/registro/registro.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 
-=======
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 import {MomentModule} from 'ngx-moment';
->>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
 
 
 @NgModule({
@@ -65,13 +62,8 @@ import {MomentModule} from 'ngx-moment';
     ListaCliComponent,
     RegistroCliComponent,
     DetalleCliComponent,
-<<<<<<< HEAD
     ModificarCliComponent,
-=======
-    ImpuestosComponent,
-    ModificarCliComponent
->>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
-
+    ImpuestosComponent, 
     LoginComponent,
     RegistroComponent,
     UsuarioComponent 
@@ -86,12 +78,9 @@ import {MomentModule} from 'ngx-moment';
     ToastrModule.forRoot() ,
     BrowserModule,
     MDBBootstrapModule.forRoot(),
-<<<<<<< HEAD
     ReactiveFormsModule
-=======
     
     
->>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

@@ -40,21 +40,16 @@ const routes: Routes = [
   {path: 'ListaClientes', component: ListaCliComponent },
   {path: 'RegistroCliente', component: RegistroCliComponent },
   {path: 'DetallesCliente/:id', component: DetalleCliComponent },
-<<<<<<< HEAD
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
-   {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
-=======
+  {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
-  {path: 'ModificarCliente/:id', component: ModificarCliComponent }
->>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
-
+  {path: 'ModificarCliente/:id', component: ModificarCliComponent },
   {
     path : 'usuario', component : UsuarioComponent, 
     children:[
       {path : 'registro', component : RegistroComponent},
       {path : 'login', component : LoginComponent}
-    ]
-  },
+    ]  },
   {path:'inicio', component:AppComponent,canActivate:[AuthGuard]}
 
 ];
