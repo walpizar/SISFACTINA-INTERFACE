@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { ToastrService } from 'ngx-toastr';
 import { TbClientes } from 'src/Models/Cliente';
+import { stringify } from '@angular/core/src/util';
 
 @Component({
   selector: 'app-lista-cli',
@@ -15,7 +16,7 @@ export class ListaCliComponent implements OnInit {
   previous: string;
   CliSelect: TbClientes;
 
-  headElements = ['ID', 'Nombre','Tipo Cliente'];
+  headElements = ['Nombre', 'ID','Tipo Cliente'];
 
   constructor(private service: DataClienteService, private alerta: ToastrService) { }
 
@@ -23,18 +24,14 @@ export class ListaCliComponent implements OnInit {
     this.getListaCli();
   }
 
+
   // obtener clientes
   getListaCli() {
     this.service.getClientes().subscribe(data => {
       this.listaClientes = data;
     });
-  }
-
-  searchItems() {
-    // const prev = this.service.getClientes();
-    // aun falta agregar buscador general
-    // convertir todas las variables a string para 
-    // buscar por cualquier dato
+    // btn renovar tambien llama a esta funcion por lo tanto reinicia el string de searchText
+    this.searchText = '';
   }
 
   CliActual(per) {
@@ -54,5 +51,35 @@ export class ListaCliComponent implements OnInit {
   reFresh() {
     location.reload()
   }
+
+  //  metodo para buscar todos los elementos por string
+  searchItems() {
+
+    // this.searchText accedo a la palabra buscar
+    if (this.searchText == null) {
+      this.getListaCli();
+    }
+
+    if (this.searchText != null) {
+
+      let cli = new TbClientes();
+      for (let index = 0; index < this.listaClientes.length; index++) {
+        cli = this.listaClientes[index]
+
+        if (cli.Id.trim().toString() == this.searchText.toString()) {
+          this.listaClientes = new Array();
+          this.listaClientes.push(cli);
+        }
+
+        if (cli.TbPersona.Nombre.trim().toUpperCase() == this.searchText.trim().toUpperCase()) {
+          this.listaClientes = new Array();
+          this.listaClientes.push(cli);
+        }
+
+      }
+
+    }
+  }
+
 
 }

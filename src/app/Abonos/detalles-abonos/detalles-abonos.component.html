@@ -1,152 +1,150 @@
 <br>
 
 <div class="container">
-  <button class="btn btn-success" [routerLink]="['/Indexabono']" >Atras</button>
+  <button class="btn btn-success" [routerLink]="['/Indexabono']">Atras</button>
   <br>
   <div class="card ">
-      <div class=" card-header bg-warning text-white " style="text-align:center"><h5>Encabezado del Documento</h5> </div>
-      <div class="card-body">
-          <form class="form-inline">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Id del Documento</span>                    
-                  </div>
-                  <input  type="text" class="form-control" name="DocumentoDetalles.Id" [(ngModel)]="DocumentoDetalles.Id" readonly>                  
-                </div>
-                <div style="margin-left:0.7cm" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Id Empresa</span>                    
-                    </div>
-                    <input  type="text" class="form-control" name="DocumentoDetalles.IdEmpresa" [(ngModel)]="DocumentoDetalles.IdEmpresa" readonly>                  
-                  </div>
-                  <div style="margin-left:0.7cm" class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Fecha</span>                    
-                      </div>
-                      <input  type="text" class="form-control" name="DocumentoDetalles.FechaCrea" [(ngModel)]="DocumentoDetalles.FechaCrea" readonly>                  
-                    </div>
-          </form>
-          <br />
-          <form class="form-inline">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Usuario Crea</span>                    
-                  </div>
-                  <input  type="text" class="form-control" name="DocumentoDetalles.UsuarioCrea" [(ngModel)]="DocumentoDetalles.UsuarioCrea" readonly>                  
-                </div>
-                <div style="margin-left:0.3cm" class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Usuario Modifico</span>                    
-                    </div>
-                    <input  type="text" class="form-control" name="DocumentoDetalles.UsuarioUltMod" [(ngModel)]="DocumentoDetalles.UsuarioUltMod" readonly>                  
-                  </div>
-                  <div style="margin-left:0.3cm" class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">Fecha Modifico</span>                    
-                      </div>
-                      <input  type="text" class="form-control" name="DocumentoDetalles.FechaUltMod" [(ngModel)]="DocumentoDetalles.FechaUltMod" readonly>                  
-                    </div>              
-          </form>
-          <br />
-          <form class="form-inline">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Cliente</span>
-              </div>
-              <input type="text" class="form-control" name="DocumentoDetalles.IdCliente" [(ngModel)]="DocumentoDetalles.IdCliente" readonly>
-              <input type="text" class="form-control" name="Persona.Nombre" [(ngModel)]="Persona.Nombre"  readonly>
-              <input type="text" class="form-control" name="Persona.Apellido1" [(ngModel)]="Persona.Apellido1"  readonly>
-              <input type="text" class="form-control" name="Persona.Apellido2" [(ngModel)]="Persona.Apellido2"  readonly>
-            </div>
-          </form>
-          <br>
-          <form class="form-inline">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text bg-success text-white">Total Factura</span>                    
-                  </div>
-                  <input  type="text" class="form-control" name="totalfactura" [(ngModel)]="totalfactura"  readonly>                  
-                </div>
-                <div class="input-group mb-3">
-                    <div style="margin-left:0.3cm" class="input-group-prepend">
-                        <span class="input-group-text text-white bg-danger">Saldo Pendiente</span>                      
-                    </div>
-                    <input  type="text" class="form-control" name="totalpendiente" [(ngModel)]="totalpendiente"  readonly>
-                </div>
-                
-        </form>
+    <div class=" card-header bg-warning text-white " style="text-align:center">
+      <h5>Encabezado del Documento</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Id del Documento</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.Id" [(ngModel)]="DocumentoDetalles.Id"
+            readonly>
+        </div>
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Id Empresa</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.IdEmpresa"
+            [(ngModel)]="DocumentoDetalles.IdEmpresa" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Fecha</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.FechaCrea"
+            [(ngModel)]="DocumentoDetalles.FechaCrea" readonly>
+        </div>
       </div>
+      <br />
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Usuario Crea</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.UsuarioCrea"
+            [(ngModel)]="DocumentoDetalles.UsuarioCrea" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Usuario Modifico</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.UsuarioUltMod"
+            [(ngModel)]="DocumentoDetalles.UsuarioUltMod" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Fecha Modifico</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.FechaUltMod"
+            [(ngModel)]="DocumentoDetalles.FechaUltMod" readonly>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="input-group mb-3 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Cliente</span>
+          </div>
+          <input type="text" class="form-control" name="DocumentoDetalles.IdCliente"
+            [(ngModel)]="DocumentoDetalles.IdCliente" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Nombre" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Nombre" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Apellido1" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Apellido1" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Apellido2" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Apellido2" readonly>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="input-group mb-3 col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-success text-white">Total Factura</span>
+          </div>
+          <input type="text" class="form-control" name="totalfactura" [(ngModel)]="totalfactura" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-6">
+          <div class="input-group-prepend">
+            <span class="input-group-text text-white bg-danger">Saldo Pendiente</span>
+          </div>
+          <input type="text" class="form-control" name="totalpendiente" [(ngModel)]="totalpendiente" readonly>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>
 <br>
 <div class="container">
   <div class="card ">
-    <div class="card-header bg-info text-white " style="text-align:center"><h5>Detalles del Documento</h5> </div>
-    <div class="card-body">
-      <table class="table table-striped">
-        <tr >
-         <th>NumLinea</th> 
-         <th>Producto</th>
-          <th>Cantidad</th> 
+    <div class="card-header bg-info text-white " style="text-align:center">
+      <h5>Detalles del Documento</h5>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-striped ">
+        <tr>
+          <th>NumLinea</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
           <th>Precio</th>
           <th>MontoTotal</th>
           <th>Descuento</th>
           <th>TotalLinea</th>
         </tr>
-          <tr *ngFor="let TbDetalleDocumento of DocumentoDetalles.TbDetalleDocumento">
-            <td>{{TbDetalleDocumento.NumLinea}}</td>
-            <td>{{TbDetalleDocumento.IdProductoNavigation.Nombre}}</td>
-            <td>{{TbDetalleDocumento.Cantidad}}</td>
-            <td>{{TbDetalleDocumento.Precio}}</td>
-            <td>{{TbDetalleDocumento.MontoTotal}}</td>
-            <td>{{TbDetalleDocumento.Descuento}}</td>
-            <td>{{TbDetalleDocumento.TotalLinea}}</td>            
-          </tr>    
-  </table>
-  
+        <tr *ngFor="let TbDetalleDocumento of DocumentoDetalles.TbDetalleDocumento">
+          <td>{{TbDetalleDocumento.NumLinea}}</td>
+          <td>{{TbDetalleDocumento.IdProductoNavigation.Nombre}}</td>
+          <td>{{TbDetalleDocumento.Cantidad}}</td>
+          <td>{{TbDetalleDocumento.Precio}}</td>
+          <td>{{TbDetalleDocumento.MontoTotal}}</td>
+          <td>{{TbDetalleDocumento.Descuento}}</td>
+          <td>{{TbDetalleDocumento.TotalLinea}}</td>
+        </tr>
+      </table>
+
     </div>
-  </div> 
+  </div>
 </div>
-     
+
 <br>
 <div class="container">
   <div class="card ">
-    <div class="card-header bg-success text-white " style="text-align:center"><h5>Abonos del Documento</h5> </div>
-    <div class="card-body">
-      <table class="table table-striped">
-        <tr>
-          <th>IdAbono</th> 
-          <th>FechaCrea</th>
-          <th>FechaUltMod</th>
-          <th>UsuarioCrea</th>
-          <th>UsuarioUltMod</th>                       
-          <th>Monto</th>                        
-                
-         </tr>
-        <tr *ngFor="let Abonos of listaAbono">
-            <td>{{Abonos.IdAbono}}</td>
-            <td>{{Abonos.FechaCrea | date:'medium'}}</td>
-            <td>{{Abonos.FechaUltMod | date:'medium'}}</td>
-            <td>{{Abonos.UsuarioCrea}}</td> 
-            <td>{{Abonos.UsuarioUltMod}}</td> 
-            <td>{{Abonos.Monto}}</td>   
-                   
-                       
-       </tr>    
-</table>   
-  
+    <div class="card-header bg-success text-white " style="text-align:center">
+      <h5>Abonos del Documento</h5>
     </div>
-  </div> 
-   
+    <div class="card-body table-responsive">
+      <table class="table table-striped ">
+        <tr>
+          <th>IdAbono</th>
+          <th>Fecha</th>         
+          <th>Usuario</th>          
+          <th>Monto</th>
+
+        </tr>
+        <tr *ngFor="let Abonos of listaAbono">
+          <td>{{Abonos.IdAbono}}</td>
+          <td>{{Abonos.FechaCrea | date:'medium'}}</td>        
+          <td>{{Abonos.UsuarioCrea}}</td>         
+          <td>{{Abonos.Monto}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
 </div>
 
 <br>
-
-
-
-
-
-
-
-
-

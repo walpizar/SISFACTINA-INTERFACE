@@ -40,8 +40,7 @@ export class DetalleProveedorComponent implements OnInit {
     this.ConsultarCanton();
     this.ConsultarDistrito();
     this.ConsultarBarrio();
-    this.ConsultarTiposId();
-    
+    this.ConsultarTiposId();    
     
   }
  

@@ -1,5 +1,5 @@
 <div class="container-fluid ">
-  <div class="fondo-color">
+  <div class="">
     <h1>Inventario</h1>
   </div>
   <br>
@@ -52,10 +52,10 @@
       </div>
       
       <div class="form-group col-md-1">
-        <button (click)='activarModificacion(invent)' class="btn btn-primary">Modificar</button>
+        <button (click)='activarModificacion(invent)' class="btn btn-primary btn-sm">Modificar</button>
       </div>
       <div class="form-group col-md-1">
-        <button (click)='eliminar(invent.IdProducto)' class="btn btn-danger">Eliminar</button>
+        <button (click)='eliminar(invent.IdProducto)' class="btn btn-danger btn-sm">Eliminar</button>
       </div>
     </div>
   </div>
@@ -79,12 +79,11 @@
           <input type="text" class="form-control" [(ngModel)]="proInventario.CantMax" placeholder="" >
         </div>
         
-        <div class="form-group col-md-1">
-          <button (click)='cancelarModificacion(proInventario)' class="btn btn-danger">Cancelar</button>
+        <div class="form-group col-md-2">
+          <button (click)='cancelarModificacion(proInventario)' class="btn btn-danger btn-sm">Cancelar</button>
+          <button (click)='modificar(proInventario)' class="btn btn-success  btn-sm">Modificar</button>
         </div>
-        <div class="form-group col-md-1">
-          <button (click)='modificar(proInventario)' class="btn btn-success">Modificar</button>
-        </div>
+        
       </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ import { TbCanton } from 'src/Models/Canton';
 import { TbDistrito } from 'src/Models/Distrito';
 import { TbBarrios } from 'src/Models/Barrios';
 import { TbTipoId } from 'src/Models/TipoId';
-import { observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -57,6 +57,11 @@ export class DataClienteService {
 
   deleteCliente(Cli: TbClientes) {
     return this.http.delete(this.servicioGeneric.getURL() + "/cliente/" + Cli.Id + "/" + Cli.TipoId);
+  }
+
+  putCliente(Cliente) {
+    const headers=new HttpHeaders().set('Content-type','application/Json');
+    return this.http.put<boolean>('http://localhost:63630/api/cliente',Cliente,{headers});
   }
 
 }

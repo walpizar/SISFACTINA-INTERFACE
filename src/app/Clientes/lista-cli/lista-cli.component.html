@@ -12,35 +12,47 @@
         <div class="md-form">
           <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
           <label for="search">Buscar</label>
+          <button style="margin-left: 0%" type="button" mdbBtn color="light-blue" outline="true" size="sm" (click)="searchItems()">Buscar</button>
+          <button type="button" mdbBtn color="light-blue" outline="true" size="sm" (click)="getListaCli()">Renovar</button>
         </div>
       </div>
     </div>
-    <table mdbTable class="z-depth-1 ">
-      <thead>
-        <tr>
-          <th *ngFor="let head of headElements" scope="col">{{head}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let per of listaClientes">
-          <th scope="row">{{per.Id}}</th>
-          <td>{{per.TbPersona.Nombre}}</td>
-          <td>{{per.TipoCliente}}</td>
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <table mdbTable  class="z-depth-1 table-responsive-md " hover="true">
+          <thead>
+            <tr>
+              <th *ngFor="let head of headElements" scope="col">{{head}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
 
-          <td>
-            <button type="button" mdbBtn color="info" size="sm" (click)="CliActual(per)"
-              [routerLink]="['/DetallesCliente',per.Id]">
-              Detalles
-            </button>
-          </td>
-          <td><button type="button" mdbBtn color="success" size="sm">Modificar</button></td>
-          <td><button type="button" mdbBtn color="warning" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-            (click)="CliActual(per)"
-            mdbWavesEffect>Eliminar</button></td>
-        </tr>
-      </tbody>
-    </table>
+            <tr *ngFor="let per of listaClientes">
+              <td>{{per.TbPersona.Nombre}}</td>
+              <th scope="row">{{per.Id}}</th>
+              <td>{{per.TipoCliente}}</td>
+
+              <td>
+                <button type="button" mdbBtn color="info" size="sm" (click)="CliActual(per)"
+                  [routerLink]="['/DetallesCliente',per.Id]">
+                  Detalles
+                </button>
+              </td>
+              <td><button type="button" mdbBtn color="success" size="sm" (click)="CliActual(per)"
+                  [routerLink]="['/ModificarCliente',per.Id]">
+                  Modificar
+                </button></td>
+              <td><button type="button" mdbBtn color="warning" size="sm" class="waves-light" data-toggle="modal"
+                  data-target="#basicExample" (click)="frame.show()" (click)="CliActual(per)"
+                  mdbWavesEffect>Eliminar</button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
 </div>

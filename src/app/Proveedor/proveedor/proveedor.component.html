@@ -13,16 +13,16 @@
       <h4>Datos Personales</h4>
     </div>
     <div class="card-body">
-      <form class="form-inline">
-        <div class="input-group mb-3">
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Identificacion:</span>
           </div>
 
           <input type="text" class="form-control" name="TbPersona.Identificacion"
-            [(ngModel)]="Proveedor.TbPersona.Identificacion" [readonly]="readonly">
+            [(ngModel)]="Proveedor.TbPersona.Identificacion"  [readonly]="readonly">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group mb-3 col-md-4 ">
           <div class="input-group-prepend">
             <span class="input-group-text">TipoId:</span>
           </div>
@@ -32,7 +32,7 @@
             </option>
           </select>
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">CorreoElectronico:</span>
           </div>
@@ -40,11 +40,9 @@
           <input type="text" class="form-control" name="TbPersona.CorreoElectronico"
             [(ngModel)]="Proveedor.TbPersona.CorreoElectronico">
         </div>
-
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3 ">
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-12">
           <div class="input-group-prepend">
             <span class="input-group-text">Nombre Completo:</span>
           </div>
@@ -55,65 +53,59 @@
           <input type="text" class="form-control" placeholder="Segundo Apellido" name="TbPersona.Apellido2"
             [(ngModel)]="Proveedor.TbPersona.Apellido2">
         </div>
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3">
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Fecha Nacimiento:</span>
           </div>
-
           <input type="date" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="Proveedor.TbPersona.FechaNac">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Telefono:</span>
-            </div>
-  
-            <input type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono">
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Telefono:</span>
           </div>
-        
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+
+          <input type="number" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" required>
+        </div>
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">CodigoPaisTel:</span>
           </div>
-          <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
+          <input type="number" class="form-control" name="TbPersona.CodigoPaisTel"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel">
         </div>
-      </form>
-      <br>
-      <form class="form-inline">
-       
-        <div class="input-group mb-3 ">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Sexo:</span>
-            </div>
-            <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo">
-              <option value="1">
-                Masculino
-              </option>
-              <option value="2">
-                Femenino
-              </option>
-            </select>
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Sexo:</span>
           </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+          <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo">
+            <option value="1">
+              Masculino
+            </option>
+            <option value="2">
+              Femenino
+            </option>
+          </select>
+        </div>
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">CodigoPaisFax:</span>
           </div>
-          <input type="text" class="form-control" name="TbPersona.CodigoPaisFax"
+          <input type="number" class="form-control" name="TbPersona.CodigoPaisFax"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Fax:</span>
           </div>
-          <input type="text" class="form-control" name="TbPersona.Fax" [(ngModel)]="Proveedor.TbPersona.Fax">
+          <input type="number" class="form-control" name="TbPersona.Fax" [(ngModel)]="Proveedor.TbPersona.Fax">
         </div>
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3">
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Provincia:</span>
           </div>
@@ -125,7 +117,7 @@
             </option>
           </select>
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group mb-3 col-md-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Canton:</span>
           </div>
@@ -136,11 +128,7 @@
             </option>
           </select>
         </div>
-
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3 ">
+        <div class="input-group mb-3 col-md-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Distrito:</span>
           </div>
@@ -151,7 +139,7 @@
             </option>
           </select>
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
+        <div class="input-group mb-3 col-md-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Barrio:</span>
           </div>
@@ -161,7 +149,8 @@
             </option>
           </select>
         </div>
-      </form>
+      </div>
+
     </div>
   </div>
   <br>
@@ -170,64 +159,61 @@
       <h4>Datos de Proveedor</h4>
     </div>
     <div class="card-body">
-      <form class="form-inline">
-        <div class="input-group mb-3 ">
+      <div class="row">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">ContactoProveedor:</span>
           </div>
           <input type="text" class="form-control" name="ContactoProveedor" [(ngModel)]="Proveedor.ContactoProveedor">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Descripcion:</span>
           </div>
           <input type="text" class="form-control" name="Descripcion" [(ngModel)]="Proveedor.Descripcion">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Fax:</span>
           </div>
 
-          <input type="text" class="form-control" name="Fax" [(ngModel)]="Proveedor.Fax">
+          <input type="number" class="form-control" name="Fax" [(ngModel)]="Proveedor.Fax">
         </div>
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3 ">
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">EncargadoContabilidad:</span>
           </div>
           <input type="text" class="form-control" name="EncargadoConta" [(ngModel)]="Proveedor.EncargadoConta">
         </div>
 
-        <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">NombreTributario:</span>
           </div>
           <input type="text" class="form-control" name="NombreTributario" [(ngModel)]="Proveedor.NombreTributario">
         </div>
-
-      </form>
-      <br>
-      <form class="form-inline">
-        <div class="input-group mb-3">
+      </div>
+      <div class="row">
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">CorreoElectContabilidad:</span>
           </div>
 
           <input type="text" class="form-control" name="CorreoElectConta" [(ngModel)]="Proveedor.CorreoElectConta">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3">
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">CuentaBancaria:</span>
           </div>
-          <input type="text" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria">
+          <input type="number" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria">
         </div>
-      </form>
+      </div>
     </div>
   </div>
   <br>
-  <button class="btn btn-outline-success" (click)="CrearProveedor(Proveedor)" *ngIf="BotonCrear">Crear</button>
+  <button type="submit" class="btn btn-outline-success" (click)="CrearProveedor(Proveedor)" *ngIf="BotonCrear">Crear</button>
   <button class="btn btn-outline-success" (click)="ModificarProveedor(Proveedor)" *ngIf="BotonModificar"
     [routerLink]="['/Indexproveedor']">Modificar</button>
   <button class="btn btn-outline-danger" (click)="Cancelar()" [routerLink]="['/Indexproveedor']">Cancelar</button>
