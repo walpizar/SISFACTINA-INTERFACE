@@ -17,7 +17,6 @@
     </div>
   </form>
   <button class="btn btn-outline-success" (click)="AbonoGeneral(Monto_Abono)">Abonar</button>
-
   <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="table-responsive">
@@ -27,9 +26,10 @@
               <th scope="col">ID</th>
               <th scope="col">Fecha</th>
               <th scope="col">ID cliente</th>
-              <th scope="col">IdEmpresa</th>
+              <th scope="col">Nombre</th>
               <th scope="col"> Plazo</th>
-              <th scope="col">Tipo Pago</th>
+              <th scope="col">Estado Factura</th>
+              <th></th>
               <th>Opciones</th>
               <th></th>
             </tr>
@@ -39,9 +39,14 @@
               <td>{{Documento.Id}}</td>
               <td>{{Documento.Fecha| date:'medium'}}</td>
               <td>{{Documento.IdCliente}}</td>
-              <td>{{Documento.IdEmpresa}}</td>
+              <td>{{Documento.TbClientes.TbPersona.Nombre}}{{Documento.TbClientes.TbPersona.Apellido1}}{{Documento.TbClientes.TbPersona.Apellido2}}</td>
               <td>{{Documento.Plazo}}</td>
-              <td>{{Documento.TipoPagoNavigation.Nombre}}</td>
+              <!--IMPORTANTE, NO MODIFICAR-->
+              <td>
+                  <font *ngIf="Documento.mensaje=='Vencida'" font-weight="bold" size="4px" color="red" > {{Documento.mensaje}} </font>
+                  <font *ngIf="Documento.mensaje=='Al Día'" size="4px" color="green"> {{Documento.mensaje}} </font>
+              </td>
+              <!--IMPORTANTE, NO MODIFICAR-->              
               <td><button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)"
                   [routerLink]="['/detalle']">Detalle</button></td>
               <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)"
@@ -50,3 +55,6 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+</div>

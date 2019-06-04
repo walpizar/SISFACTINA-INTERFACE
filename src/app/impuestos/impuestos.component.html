@@ -1,0 +1,59 @@
+<button class="btn btn-outline-success" (click)="formulario()">Agregar</button> 
+<div *ngIf="bandera" class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 pt-3 pb-3 fondo-color">
+        <h3 class="text-center" >Agregar Impuesto</h3>
+        
+      </div>
+    </div>
+  </div>
+<div *ngIf="bandera" class="container">
+  <br>
+  <div class="card ">
+      <div class="card-heading bg-info text-white " style="text-align:center"><h5>Agregar Impuestos</h5> </div>
+      <div class="card-body">
+          <form class="form-inline">
+                <div class="input-group mb-3 ">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Valor:</span>                    
+                        </div>
+                        <input  type="text" class="form-control" name="1" [(ngModel)]="impuestos.Valor">                  
+                      </div>
+                      <div style="margin-left:1cm" class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Descripción:</span>                    
+                            </div>
+                            <input  type="text" class="form-control" name="2" [(ngModel)]="impuestos.Descripcion">                  
+                    </div>         
+          </form>
+          <br />       
+      </div>
+  </div>
+<button class="btn btn-outline-success" (click)="Confirmar(impuestos)">Confirmar</button> 
+<button class="btn btn-outline-warning" (click)="Cancelar()">Cancelar</button> 
+</div>
+<br/>
+<div *ngIf="!bandera">
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 pt-3 pb-3 fondo-color">
+            <h3 class="text-center" >Lista De Impuestos</h3>
+          </div>
+        </div>
+      </div>
+        <table class="table" class="table table-bordered">
+            <tr> 
+                <td>ID</td>
+                <td>Valor</td>
+                <td>Descripción</td>
+            </tr>
+            <tr *ngFor = 'let Tbimpuestos of ListImpuestos'>
+                <td>{{Tbimpuestos.Id}}</td>
+                <td>{{Tbimpuestos.Valor}}</td>
+                <td>{{Tbimpuestos.Descripcion}}</td>
+                <button *ngIf ="!bandera" class="btn btn-outline-danger " (click)="eliminar(Tbimpuestos.Id) " style="margin: 10px;">Eliminar</button>
+                <button *ngIf ="!bandera"  class="btn btn-outline-primary " (click)="modificar(Tbimpuestos.Id) " style="margin: 10px;">Modificar</button>
+            </tr>
+          </table>
+</div>
+

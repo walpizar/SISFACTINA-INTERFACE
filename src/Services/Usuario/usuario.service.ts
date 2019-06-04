@@ -4,24 +4,37 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { TbRoles } from '../../Models/Roles';
 import { ServiceGeneric } from '../ServiceGeneric';
-
+import { TbProvincia } from 'src/Models/Provincia';
+import { TbCanton } from 'src/Models/Canton';
+import { TbDistrito } from 'src/Models/Distrito';
+import { TbBarrios } from 'src/Models/Barrios';
+import { TbTipoId } from 'src/Models/TipoId';
+import { TbUsuarios } from 'src/Models/Usuarios';
+import { TbPersona } from 'src/Models/Personas';
+import { TbEmpresa } from 'src/Models/Empresa';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
+
   list : TbRoles[];
+  usuario: TbUsuarios;
+  persona : TbPersona;
+  empresa :TbEmpresa;
+  rol : TbRoles;
+
   perfil; 
   constructor(private fb:FormBuilder, private http: HttpClient, private serviceGeneric: ServiceGeneric ) { }
 
   formModel= this.fb.group({
     //Agregue la variable inicializada
-    RolId : ['', Validators.required],
+    IdRol : ['', Validators.required],
     NombreUsuario:['', Validators.required],
-    Email:['',Validators.email],
-    FullName:[''],
-    Passwords:this.fb.group({
-      Password:['' , [Validators.required,Validators.minLength(6)] ],
+    TipoId:[''],
+    Id:['',Validators.required],
+    Contraseñas:this.fb.group({
+      Contraseña:['' , [Validators.required,Validators.minLength(4)] ],
       ConfirmPassword:['', Validators.required]
     },{validator: this.comparePasswords})
    
@@ -43,13 +56,18 @@ export class UsuarioService {
     }
 
     registro() {
-      var body = {
+      
         //declare el valor de la vista a la varible. 
-        RolId: this.formModel.value.RolId,
-        NombreUsuario: this.formModel.value.NombreUsuario,
-        Contraseña: this.formModel.value.Passwords.Contraseña
-      };
-      return this.http.post(this.serviceGeneric.getURL()+'/Registro', body);
+        this.usuario.Id= this.formModel.value.Id,
+        this.usuario.TipoId= this.formModel.value.TipoId,
+        this.usuario.IdRol= this.formModel.value.RolId,
+        this.usuario.NombreUsuario= this.formModel.value.NombreUsuario,
+        this.usuario.Contraseña= this.formModel.value.Passwords.Contraseña,
+        this.usuario.IdNavigation = this.empresa,
+        this.usuario.IdRolNavigation = this.rol,
+        this.usuario.TbPersona = this.persona
+
+      return this.http.post(this.serviceGeneric.getURL()+'/Registro', this.usuario);
     }
 
     cargarRoles(){
@@ -65,5 +83,20 @@ export class UsuarioService {
      var tokenHeader = new HttpHeaders({'Authorization':'Bearer' + localStorage.getItem('token')});
      return this.http.get(this.serviceGeneric.getURL()+'/Perfil',{headers:tokenHeader});
     
-    }
+     }
+      getProvincias(id?: number) {
+        return this.http.get<TbProvincia[]>('http://localhost:63630/api/provincia');
+      }
+      getCantones() {
+        return this.http.get<TbCanton[]>('http://localhost:63630/api/canton');
+      }
+      getDistritos(id?: number) {
+        return this.http.get<TbDistrito[]>('http://localhost:63630/api/distrito');
+      }
+      getBarrios() {
+        return this.http.get<TbBarrios[]>('http://localhost:63630/api/barrio');
+      }
+      getTiposId() {
+        return this.http.get<TbTipoId[]>('http://localhost:63630/api/tipoid');
+      }
 }

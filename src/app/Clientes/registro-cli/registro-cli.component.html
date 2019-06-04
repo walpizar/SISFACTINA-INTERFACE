@@ -10,9 +10,8 @@
   <form class="text-center border border-light p-5">
     <!-- primer grupo -->
     <div class="input-group">
-
       <!-- tipo id -->
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
+      <div class="input-group col-md-4 p-0">
         <div class="input-group-prepend mb-3">
           <span class="input-group-text">Tipo ID</span>
         </div>
@@ -20,24 +19,28 @@
           <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">{{TipoId.Nombre}}</option>
         </select>
       </div>
-
-
       <!-- Identificacion -->
-      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Identificacion"
-        name="Persona.Identificacion" [(ngModel)]="Persona.Identificacion">
+      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Identificacion" name="Persona.Identificacion"
+        [(ngModel)]="Persona.Identificacion">
+      <div class="input-group-append mb-3">
+        <button mdbBtn type="button" mdbWavesEffect color="light-blue" outline="" size="sm"
+          (click)="Buscar(Persona.Identificacion)" class="m-0 px-3 py-2"><i
+            class="fa fa-search fa-lg rounded-right"></i></button>
+      </div>
+    </div>
 
+    <div class="input-group">
       <!-- Nombre -->
       <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Nombre" name="Persona.Nombre"
         [(ngModel)]="Persona.Nombre">
-
+    
       <!-- Apellido1 -->
       <input type="text" id="" mdbInput class="form-control mb-3" placeholder="1° Apellido" name="Persona.Apellido1"
         [(ngModel)]="Persona.Apellido1">
-
+    
       <!-- Apellido2 -->
       <input type="text" id="" mdbInput class="form-control mb-3" placeholder="2° Apellido" name="Persona.Apellido2"
         [(ngModel)]="Persona.Apellido2">
-
     </div>
 
     <!-- segundo grupo -->
