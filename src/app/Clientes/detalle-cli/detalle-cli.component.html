@@ -55,7 +55,15 @@
 
         <div class="form-group col-md-4">
           <label>Sexo</label>
-          <input type="text" class="form-control" name="TbPersona.Sexo" [(ngModel)]="CliActual.TbPersona.Sexo" readonly>
+          <!-- <input type="text" class="form-control" name="TbPersona.Sexo" [(ngModel)]="CliActual.TbPersona.Sexo" readonly> -->
+          <select class="form-control" name="Persona.Sexo" [(ngModel)]="Persona.Sexo" disabled>
+            <option value="1">
+              Masculino
+            </option>
+            <option value="2">
+              Femenino
+            </option>
+          </select>
         </div>
 
         <div class="form-group col-md-4">
