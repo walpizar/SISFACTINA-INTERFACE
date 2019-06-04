@@ -25,15 +25,15 @@ export class DataProveedorService {
   
   Agregar(body:TbProveedores){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<TbProveedores>(this.serviceGeneric.getURL()+'/proveedor/',body,{headers})
+    return this.http.post<boolean>(this.serviceGeneric.getURL()+'/proveedor/',body,{headers})
   }
 
   Modificar(body:TbProveedores){
     const headers=new HttpHeaders().set('Content-type','application/Json');
-    return this.http.put<string>(this.serviceGeneric.getURL()+'/proveedor/',body,{headers})
+    return this.http.put<boolean>(this.serviceGeneric.getURL()+'/proveedor/',body,{headers})
   }
   Eliminar(pro:TbProveedores){
-    return this.http.delete(this.serviceGeneric.getURL()+"/proveedor/"+pro.Id+"/"+pro.TipoId)
+    return this.http.delete<boolean>(this.serviceGeneric.getURL()+"/proveedor/"+pro.Id+"/"+pro.TipoId)
   }
   RecibeDatos(prove:TbProveedores){
     this.Proveedor=prove;

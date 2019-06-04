@@ -22,6 +22,16 @@ import { DocumentsDetailsComponent } from './Documents/documents-details/documen
 import { ListaEmpresaComponent } from './Empresas/lista-empresa.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+import { IndexCategoriaProductoComponent } from './CategoriaProducto/index-categoria-producto/index-categoria-producto.component';
+import { DetalleCategoriaProductoComponent } from './CategoriaProducto/detalle-categoria-producto/detalle-categoria-producto.component';
+import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categoria-producto/crear-categoria-producto.component';
+
+import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
+import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
+import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
+import { ImpuestosComponent } from './impuestos/impuestos.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +47,17 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     FacturadorComponent,
     DocumentsComponent,
     DocumentsDetailsComponent,
-    ListaEmpresaComponent
+    ListaEmpresaComponent,
+
+    IndexCategoriaProductoComponent,
+    DetalleCategoriaProductoComponent,
+    CrearCategoriaProductoComponent,
+
+    ListaCliComponent,
+    RegistroCliComponent,
+    DetalleCliComponent,
+    ImpuestosComponent
+
   ],
   imports: [
     BrowserModule,

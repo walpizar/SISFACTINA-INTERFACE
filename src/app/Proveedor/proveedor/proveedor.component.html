@@ -65,19 +65,14 @@
 
           <input type="date" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="Proveedor.TbPersona.FechaNac">
         </div>
-        <div style="margin-left:1cm" class="input-group mb-3 ">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Sexo:</span>
+        <div style="margin-left:1cm" class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Telefono:</span>
+            </div>
+  
+            <input type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono">
           </div>
-          <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo">
-            <option value="1">
-              Hombre
-            </option>
-            <option value="2">
-              Mujer
-            </option>
-          </select>
-        </div>
+        
         <div style="margin-left:1cm" class="input-group mb-3 ">
           <div class="input-group-prepend">
             <span class="input-group-text">CodigoPaisTel:</span>
@@ -88,13 +83,20 @@
       </form>
       <br>
       <form class="form-inline">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Telefono:</span>
+       
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Sexo:</span>
+            </div>
+            <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo">
+              <option value="1">
+                Masculino
+              </option>
+              <option value="2">
+                Femenino
+              </option>
+            </select>
           </div>
-
-          <input type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono">
-        </div>
         <div style="margin-left:1cm" class="input-group mb-3 ">
           <div class="input-group-prepend">
             <span class="input-group-text">CodigoPaisFax:</span>

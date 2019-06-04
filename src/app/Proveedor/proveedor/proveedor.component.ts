@@ -9,6 +9,7 @@ import { DataDistritoService } from 'src/Services/Distrito/distrito.service';
 import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 import { DataBarriosService } from 'src/Services/Barrios/barrios.service';
 import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-proveedor',
@@ -19,7 +20,8 @@ export class ProveedorComponent implements OnInit {
 
   constructor(private provinciaService:DataProvinciaService,private cantonService:DataCantonService,
    private distritoService:DataDistritoService,private barrioService:DataBarriosService,
-   private tipoidService:DataTipoIdService,private proveedorService:DataProveedorService ) { }
+   private tipoidService:DataTipoIdService,private proveedorService:DataProveedorService,
+   private msj:ToastrService ) { }
 
    //Listas
   listaTipoId= new Array();
@@ -60,9 +62,7 @@ export class ProveedorComponent implements OnInit {
       this.BotonCrear=false;
       this.BotonModificar=true;
       this.Proveedor.TbPersona.Canton.trim();
-      console.log(this.Proveedor);
-     
-     
+  
      this.listaDistritoCombo=this.listaDistritoCombo;
      this.listaBarrioCombo=this.listaBarrio;
     
@@ -156,12 +156,16 @@ export class ProveedorComponent implements OnInit {
   CrearProveedor(prove:TbProveedores){
     console.log(prove);
     try {
+      this.msj.info("Estamos agregando los datos,aguarda unos instantes");
+      this.proveedorService.Agregar(prove).subscribe(
+        data=>{this.msj.success("Proveedor agregado correctamente")
+        this.Proveedor=new TbProveedores();
+        this.Proveedor.TbPersona=new TbPersona();
+      },
+        error=>{this.msj.error("ERROR:NO SE LOGRO REGISTAR EL PROVEEDOR")}        
+        );
+        
     
-      this.proveedorService.Agregar(prove).subscribe(data=>{})
-    this.Proveedor=new TbProveedores();
-    this.Proveedor.TbPersona=new TbPersona();
-    alert("Se agrego correctamente");
-    this.TextoPrincipal=true;
     } catch (error) {
       alert("Ocurrio un error en el Servicio");
     }
@@ -169,15 +173,19 @@ export class ProveedorComponent implements OnInit {
   }
   ModificarProveedor(pro:TbProveedores){
     try {
-      this.proveedorService.Modificar(pro).subscribe(data=>{})
-      this.BotonCrear=true;
+      this.msj.warning("Realizando la modificacion,espera un momento");
+      this.proveedorService.Modificar(pro).subscribe(
+        data=>{this.msj.success("Proveedor modificado correctamente")
+        this.BotonCrear=true;
         this.BotonModificar=false;
         this.readonly=false;
         this.Proveedor=new TbProveedores();
         this.Proveedor.TbPersona= new TbPersona();
-        this.proveedorService.Modify=false;
-        alert("Se modifico correctamente");
+        this.proveedorService.Modify=false;        
         this.TextoPrincipal=true;
+      },
+        erro=>{this.msj.error("ERROR:NO SE LOGRO MODIFICAR EL PROVEEDOR")})
+        
     } catch (error) {
       
     }

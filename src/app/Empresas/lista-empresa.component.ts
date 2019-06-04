@@ -14,23 +14,21 @@ import { TbTipoId } from 'src/Models/TipoId';
   styleUrls: ['./lista-empresa.component.css']
 })
 export class ListaEmpresaComponent implements OnInit {
-  
   modifica:boolean = false;
   bandera: boolean = false;
-  show: boolean = false;
-  inventario: boolean = false;
-  factura: boolean = false;
   Empresa: TbEmpresa = new TbEmpresa();
   Persona: TbPersona  = new TbPersona();
   ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
   ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
   ListEmpre: Array<TbEmpresa> = new Array();
-  listaTipoId:Array<TbTipoId>; 
-  tipoId:number = 2;
+  listaTipoId:Array<TbTipoId>;
+  tipoId: number = 1;
+  PrecioBase: number = 1;
 
 
 
-  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService) { 
+
+  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService,private parametrosEmpreService: ParametrosService) { 
     this.consultarTodos();
     this.obtenerListaTipoId();
 
@@ -39,132 +37,108 @@ export class ListaEmpresaComponent implements OnInit {
   ngOnInit() {
   }
 
+
   obtenerListaTipoId() {
     this.tipoIdService.getTipoId().subscribe(data=>{
-
       this.listaTipoId=data;
-    })
+    });
   }
 
 
 
   formulario(){
 
-    this.show = true;
-    this.bandera = true ;
+    this.bandera = true;
 
   }
 
   cancelar(){
-    this.show = false;
-    this.Empresa.Id = null;
-    this.Empresa.NombreComercial = null;
-    this.Empresa.CorreoElectronicoEmpresa = null
-    this.inventario = false;
-    this.factura =false;
-    this.bandera = false;
 
+    if(this.modifica){
+      this.ListEmpre.push(this.Empresa);
+    }
+    this.bandera = false;
+    this.modifica = false;
+    this.Empresa = new TbEmpresa();
+    this.ParametrosEmpresa = new TbParametrosEmpresa();
+    this.Persona = new TbPersona();
   }
 
-  agregar(){
-    if(this.modifica){
-      for(let i=0; this.ListEmpre.length>i; i++){
-        if(this.ListEmpre[i].Id==this.Empresa.Id){
-          this.ListEmpre.splice(i,1)
-         }
-        }
-    }
-    else{
-
-    }
-    this.Empresa.TipoId = this.tipoId;
-    this.Persona.Identificacion = this.Empresa.Id;
+  confirmar(empresa){
+    this.Persona.Nombre = empresa.nombreComercial;
+    this.Persona.Identificacion = empresa.Id;
     this.Persona.TipoId = this.tipoId;
-    this.Persona.Nombre = this.Empresa.NombreComercial;
-    this.Persona.Telefono = 0;
-    this.Persona.CodigoPaisTel = "506";
-    this.ParametrosEmpresa.IdEmpresa = this.Empresa.Id;
-    this.ParametrosEmpresa.IdTipoEmpresa = this.Empresa.TipoId;
-    this.ParametrosEmpresa.ManejaInventario = this.inventario;
-    this.ParametrosEmpresa.FacturacionElectronica = this.factura;
-    this.ListaParametrosEmpre.push(this.ParametrosEmpresa);
-    this.Empresa.TbPersona = this.Persona;
-    this.Empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
-    this.ListaParametrosEmpre = new Array();
-    this.ListEmpre.push(this.Empresa);
-    
-
-    if(this.modifica){
-      this.empresaService.put(this.Empresa).subscribe(data =>{
-        if(data){
+    empresa.TipoId = 1;
+    empresa.TbPersona = this.Persona;
+    this.ListaParametrosEmpre[0] = this.ParametrosEmpresa;
+    empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
+    if (this.modifica) {
+      this.empresaService.put(empresa).subscribe(data =>{
+        if (data) {
           alert("Se modificó con exito");
-          this.show = false;
-          this.bandera = false;
+          this.ListEmpre.push(empresa);
         }
         else{
           alert("No se pudo modificar");
         }
-      })
+      });
       this.modifica = false;
     }
     else{
-
-      this.empresaService.post(this.Empresa).subscribe(data=>{
-        if(data){
-          alert("Se agregó la empresa");
-          this.show = false;
-          this.bandera = false;
+      this.Persona.Telefono = 0;
+      this.Persona.CodigoPaisTel = "506";
+      this.empresaService.post(empresa).subscribe(data =>{
+        if (data) {
+          alert("Se agregó correctamente");
+          this.ListEmpre.push(empresa);
         }
         else{
-          alert("No se pudo agregar la empresa");
+          alert("No se pudo agregar");
         }
-  
-      })
-
+      });
     }
+    this.bandera = false;
     this.Empresa = new TbEmpresa();
+    this.ParametrosEmpresa = new TbParametrosEmpresa();
+    this.Persona = new TbPersona();
   }
 
   modificar(Id){
-    this.bandera = true;
-    this.show = true;
-    this.modifica = true;
-    this.empresaService.getById(Id).subscribe(data =>{
-      for (let i = 0; i < this.ListEmpre.length; i++) {
-        if(this.ListEmpre[i].Id == Id){
-          this.Empresa.Id = this.ListEmpre[i].Id;
-          this.Empresa.NombreComercial = this.ListEmpre[i].NombreComercial;
-          this.Empresa.CorreoElectronicoEmpresa = this.ListEmpre[i].CorreoElectronicoEmpresa;
+      this.parametrosEmpreService.getById(Id).subscribe(data =>{
+        this.ParametrosEmpresa = data;
+        for (let i = 0; i < this.ListEmpre.length; i++) {
+          if (this.ListEmpre[i].Id == Id) {
+            this.Empresa = this.ListEmpre[i];
+            this.Persona=this.Empresa.TbPersona;
+            this.Empresa.TbParametrosEmpresa[0] = this.ParametrosEmpresa;
+            this.modifica = true;
+            this.bandera = true;
+            console.log(this.Empresa);
+            this.ListEmpre.splice(i,1);
+          }
         }
-      }
-    })
-    
+      });
   }
 
   consultarTodos(){
-    this.ListEmpre = null;
     this.empresaService.get().subscribe(data=>{
-      this.ListEmpre=data;
+    this.ListEmpre=data;
     })
   }
 
   eliminar(Id){
-
     for (let i = 0; i < this.ListEmpre.length; i++) {
-      if(this.ListEmpre[i].Id == Id){
-        this.empresaService.delete(this.ListEmpre[i]).subscribe(data=>{
-          if(data){
+      if (this.ListEmpre[i].Id == Id) {
+        this.empresaService.delete(this.ListEmpre[i]).subscribe(data =>{
+          if (data) {
             alert("Se eliminó con exito");
+            this.ListEmpre.splice(i,1);
           }
           else{
-            alert("No se pudo eliminar");
+            alert("No se ha podido eliminar");
           }
-          
-        })
-        this.ListEmpre.splice(i,1);
+        });
       }
     }
   }
-
-
 }

@@ -30,7 +30,7 @@ export class EmpresaService {
    }
   post(body : TbEmpresa,){
     const headers = new HttpHeaders().set('Content-type','application/Json');
-    return this.http.post<TbEmpresa> (this.serviceGeneric.getURL()+'/empresa',body,{headers});
+    return this.http.post<TbEmpresa> (this.serviceGeneric.getURL()+'/empresa/',body,{headers});
    }
 
 

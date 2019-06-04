@@ -10,7 +10,8 @@ import { TbDocumento } from 'src/Models/Documento';
 })
 export class DocumentsComponent implements OnInit {
   
-  docBusca:Busqueda;
+
+  docBusca = new Busqueda();
   listaBusq = new Array;
 
   constructor(private service:FacturaService) {
@@ -32,16 +33,19 @@ export class DocumentsComponent implements OnInit {
     if (doc.Id != 0) {
       resultado = this.service.list.filter(x => x.Id == doc.Id);
       this.service.list = resultado;
+      return;
     }
-    if ( doc.Clave != 'ejemp') {
+    if ( doc.Clave != null) {
       resultado = this.service.list.filter(x => x.Clave == doc.Clave);
       this.service.list = resultado;
+      return;
     }
-    if ( doc.Consecutivo != 'ejemp') {
+    if ( doc.Consecutivo != null) {
       resultado = this.service.list.filter(x => x.Consecutivo == doc.Consecutivo);
       this.service.list = resultado;
+      return;
     }
-    if (doc.IdCliente != 'ejemp') {
+    if (doc.IdCliente != null) {
       this.listaBusq = new Array;
       for (let doc2 of this.service.list) {
         // verifico si es el mismo dato
@@ -50,8 +54,10 @@ export class DocumentsComponent implements OnInit {
             this.listaBusq.push(doc2);
           }
         }
+        
       }
       this.service.list = this.listaBusq;
+      return;
     }
     if (doc.TipoDocumento != 0) {
       // aqui puede devolver mas de uno
@@ -63,6 +69,7 @@ export class DocumentsComponent implements OnInit {
         }
       }
       this.service.list = this.listaBusq;
+      return;
     }
   }
 

@@ -1,0 +1,34 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 pt-3 pb-3 fondo-color">
+        <h3 *ngIf="botonCrear" class="text-center" >Crear Categoria Producto</h3>   
+        <h3 *ngIf="botonModificar" class="text-center" >Modificar Categoria Producto</h3>    
+      </div>
+    </div>
+  </div>
+  <br>
+<div class="container" style="text-align: center">
+    <div class="table-responsive-md col-md-12  border p-3" > 
+            <table class="table" >
+               
+                <tr>
+                    <td>
+                        Nombre
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="CategoriaProducto.Nombre" [(ngModel)]="CategoriaProducto.Nombre" placeholder="Enter Nombre" >
+                        </div>
+                    </td>
+                    <td>
+                        Descripcion
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="CategoriaProducto.Descripcion" [(ngModel)]="CategoriaProducto.Descripcion" placeholder="Enter Descipcion" >
+                        </div>
+                    </td>
+                </tr>
+                
+            </table>
+          <button *ngIf="botonCrear" class="btn btn-outline-success" (click)="agregar(CategoriaProducto)" >Crear</button>
+          <button *ngIf="botonModificar" class="btn btn-outline-success" (click)="Modificar(CategoriaProducto)">Modificar</button>
+          <button class="btn btn-outline-danger" (click)="Cancelar()" routerLink="/Indexcategoriaproduct" >Cancelar</button>
+    </div>
+</div>

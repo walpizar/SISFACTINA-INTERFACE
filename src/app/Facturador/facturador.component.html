@@ -3,120 +3,172 @@
   <h1>Facturador...</h1>
 
   <br>
-  <div class="table-responsive-md col-md-12  border p-3" > 
+  <div class="table-responsive-md col-md-12  border p-3">
 
-  
-    <table class="table" >
-        <h1>Factura</h1> 
-        <tr>
-            
-          <td>Ingrese el Id del cliente</td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" [(ngModel)]="clienteId" placeholder="Enter ID" >
-            </div>
-          <td>Ingrese el tipo de Id</td>
 
-          <td>
-              <div class="col-sm-10">  
-                  <select class="form-control" name="select"  required [(ngModel)]='tipoId'   #gender="ngModel">  
-                    <option  *ngFor="let tipoCedula of listaTipoId"  [value]="tipoCedula.Id">{{tipoCedula.Nombre}}
-                    </option>  
-                </select>  
-                </div> 
-          </td>
+    <table class="table">
+      <h1>Factura</h1>
+      <tr>
 
-            <td>
-                <button (click)="obtenerCliente(clienteId,tipoId)" class="btn btn-primary">Buscar</button>
-            </td>
+        <td>Ingrese el Id del cliente</td>
+        <td>
+          <div class="form-group">
+            <input type="text" class="form-control" (keyup.enter)="btenerCliente(clienteId,tipoId)" [(ngModel)]="clienteId" placeholder="Enter ID">
+          </div>
+        <td>Ingrese el tipo de Id</td>
 
-        </tr>
+        <td>
+          <div class="col-sm-10">
+            <select class="form-control" name="select" required [(ngModel)]='tipoId' #gender="ngModel">
+              <option *ngFor="let tipoCedula of listaTipoId" [value]="tipoCedula.Id">{{tipoCedula.Nombre}}
+              </option>
+            </select>
+          </div>
+        </td>
 
-        <tr *ngIf="Show">
-    
-          <td>Nombre</td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" [(ngModel)]="cliente.TbPersona.Nombre"  readonly>
-            </div>
-          </td>
-          <td>Apellidos</td>
-          <td>
-            <div class="form-group">
-              <input type="text" class="form-control" [(ngModel)]="apellidos"  readonly>
-            </div>
-            <td>
-              
-            </td>
-        </tr>
+        <td>
+          <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal"
+            data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Buscar</button>
 
-        <tr *ngIf="Show">
-            <td>Dirección</td>
-          <td colspan="3"> 
-              <div class="form-group">
-                  <input type="text" class="form-control" [(ngModel)]="direccion"  readonly>
+          <div mdbModal #frame="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-scrollable modal-lg modal-notify modal-info" role="document">
+              <div class="modal-content ">
+
+                <!--Header-->
+                <div class="modal-header">
+                  <h4 class="modal-title" id="myModalLabel" style="color: aliceblue">Lista de clientes</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                  
+                  <table class="table table-hover">
+                    <tr>
+                      <td>Nombre del cliente</td>
+                      <td colspan="2"><input oninput="this.value = this.value.toUpperCase()" type="text" style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar" placeholder="Ingrese el nombre del cliente que desea buscar" ></td>
+                    </tr>
+                    
+                      <tr>
+                        <td>Id</td>
+
+                        <td>Nombre</td>
+                        <td></td>
+                      </tr>
+                    
+                      <tr *ngFor="let clienteF of listaClientes" >
+                        <td style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">{{clienteF.Id}}</td>
+                          <td  style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">
+                              {{clienteF.TbPersona.Nombre}}
+                          </td>
+                          <td *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">
+                            <button type="button" size="sm" mdbBtn color="primary" size="sm" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)" (click)="frame.hide()">Seleccionar</button>
+                          </td>
+                      </tr>
+                      
+                  </table>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                  <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light"
+                    mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Cerrar</button>
+                </div>
               </div>
-          </td>
-          <td>
-            </td>
+            </div>
+          </div>
+        </td>
 
-          </tr>
-          <tr *ngIf="Show">
-    
-              <td>
-                <div>
-                    Correos
-                </div>
-                </td>
-              <td>
-                <div class="form-group" *ngIf="ckCorreo">
-                  <input type="text" class="form-control" [(ngModel)]="cliente.TbPersona.CorreoElectronico" >
-                </div>
-              <td>
-                  <div class="form-group" *ngIf="ckCorreo">
-                      <input type="text" class="form-control" [(ngModel)]="CorreoElectronico2">
-                  </div>
-                </td>
-              <td>
-                  <div class="custom-control custom-checkbox">
-                      Notificar
-                      <input type="checkbox" class="" [(ngModel)]="ckCorreo">
-                  </div>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-              <td>Ingrese el tipo de pago</td>
-              <td>
-                <div class="col-sm-10">  
-                  <select class="form-control" name="select"  required [(ngModel)]='tipoPago'   #gender="ngModel">  
-                    <option  *ngFor="let tipoPago of listaTipoPago"  [value]="tipoPago.Id">{{tipoPago.Nombre}}
-                    </option>  
-                </select>  
-                </div> 
-              </td>
-              <td>Ingrese el tipo de Venta</td>
-              <td>
-                <div class="col-sm-10" *ngIf="mostraTipoVenta != false">  
-                  <select class="form-control" name="select"  required [(ngModel)]='tipoVenta'   #gender="ngModel">  
-                    <option  *ngFor="let tipoVenta of listaTipoVenta"  [value]="tipoVenta.Id">{{tipoVenta.Nombre}}
-                    </option>  
-                </select>  
-                </div> 
-              </td>
-              <td>
-                <div class="input-group mb-3 col-md-12" *ngIf="tipoVenta == 2">
-                  <input type="text" class="form-control"[(ngModel)]="plazo" placeholder="Ingrese plazo de pago" aria-label="Plazo venta" aria-describedby="basic-addon2">
-                </div>
-              </td>
-            </tr>
+      </tr>
+
+      <tr *ngIf="Show">
+
+        <td>Nombre</td>
+        <td>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="cliente.TbPersona.Nombre" readonly>
+          </div>
+        </td>
+        <td>Apellidos</td>
+        <td>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="apellidos" readonly>
+          </div>
+        <td>
+
+        </td>
+      </tr>
+
+      <tr *ngIf="Show">
+        <td>Dirección</td>
+        <td colspan="3">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="direccion" readonly>
+          </div>
+        </td>
+        <td>
+        </td>
+
+      </tr>
+      <tr *ngIf="Show">
+
+        <td>
+          <div>
+            Correos
+          </div>
+        </td>
+        <td>
+          <div class="form-group" *ngIf="ckCorreo">
+            <input type="text" class="form-control" [(ngModel)]="cliente.TbPersona.CorreoElectronico">
+          </div>
+        <td>
+          <div class="form-group" *ngIf="ckCorreo">
+            <input type="text" class="form-control" [(ngModel)]="CorreoElectronico2">
+          </div>
+        </td>
+        <td>
+          <div class="custom-control custom-checkbox">
+            Notificar
+            <input type="checkbox" class="" [(ngModel)]="ckCorreo">
+          </div>
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>Ingrese el tipo de pago</td>
+        <td>
+          <div class="col-sm-10">
+            <select class="form-control" name="select" required [(ngModel)]='tipoPago' #gender="ngModel">
+              <option *ngFor="let tipoPago of listaTipoPago" [value]="tipoPago.Id">{{tipoPago.Nombre}}
+              </option>
+            </select>
+          </div>
+        </td>
+        <td>Ingrese el tipo de Venta</td>
+        <td>
+          <div class="col-sm-10" *ngIf="mostraTipoVenta != false">
+            <select class="form-control" name="select" required [(ngModel)]='tipoVenta' #gender="ngModel">
+              <option *ngFor="let tipoVenta of listaTipoVenta" [value]="tipoVenta.Id">{{tipoVenta.Nombre}}
+              </option>
+            </select>
+          </div>
+        </td>
+        <td>
+          <div class="input-group mb-3 col-md-12" *ngIf="tipoVenta == 2">
+            <input type="text" class="form-control" [(ngModel)]="plazo" placeholder="Ingrese plazo de pago"
+              aria-label="Plazo venta" aria-describedby="basic-addon2">
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
-<div class="container-fluid">
-  <div class="row">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-md-12 pt-4 pb-4 fondo-color">
-          <h2 >DETALLES</h2>
+        <h2>DETALLES</h2>
       </div>
 
       <div class="table-responsive-md col-md-12  shadow-sm">
@@ -129,180 +181,205 @@
               Ingrese el codigo del Producto
             </td>
             <td>
-                <div class="input-group mb-3 col-md-12 ">
-                    <input type="text" class="form-control"[(ngModel)]="productoId" placeholder="Id del Producto" aria-label="Id del Producto" aria-describedby="basic-addon2">
-                    <input type="text" class="form-control"[(ngModel)]="Cantidad" placeholder="Ingrese la cantidad de productos" aria-label="Id del Producto" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button (click)="obtenerProductos(productoId);" class="btn btn-outline-success" type="button">Agregar</button>
-                    </div>
-                 </div>
+              <div class="input-group mb-3 col-md-12 ">
+                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)" [(ngModel)]="productoId" placeholder="Id del Producto"
+                  aria-label="Id del Producto" aria-describedby="basic-addon2">
+                <input type="text" class="form-control" [(ngModel)]="Cantidad"
+                  placeholder="Ingrese la cantidad de productos" aria-label="Id del Producto"
+                  aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button (click)="obtenerProductos(productoId)" class="btn btn-outline-success"
+                    type="button">Agregar</button>
+                </div>
+              </div>
             </td>
             <td>
-              <div class="col-sm-10">  
-                  <div class="form-group">
-                    Descuento
-                    
-                  </div>
-              </div> 
-            </td>
-            <td>
+              <div class="col-sm-10">
                 <div class="form-group">
+                  Descuento
 
-                    <input type="text" class="form-control" [(ngModel)]="productoDescuento" placeholder="digite la cantidad de descuento a aplicar" >
-                  </div>
+                </div>
+              </div>
             </td>
             <td>
-              
+              <div class="form-group">
+
+                <input type="text" class="form-control" [(ngModel)]="productoDescuento"
+                  placeholder="digite la cantidad de descuento a aplicar">
+              </div>
+            </td>
+            <td>
+
             </td>
           </tr>
         </table>
-          
-          <table class="table">
-            
-              <thead class="titulo-tabla">
-                  <tr class="encabezado">
-                      <th scope="col">Id Producto</th>
-                      <th scope="col">Num. Linea</th>
-                      <th scope="col">Cantidad</th>
-                      <th scope="col">Precio</th>
-                      <th scope="col">Monto Total</th>
-                      
-                      <th scope="col">Total Linea</th>
-                  </tr>
-              </thead>
-              <tbody  >
-                  <tr *ngFor="let lDetalles of listaDetalles">
-                      
-                      <td>
-                          <div class="form-group">
-                            <input type="text" class="form-control"  [(ngModel)]="lDetalles.IdProducto" placeholder=""  readonly>
-                          </div>
-                      </td>
-                      <td>
-                          <div  class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="lDetalles.NumLinea" placeholder="" readonly >
-                          </div>
-                      </td>
-                      <td>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-danger" (click)="restaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);" type="button">-</button>
-                                  </div>
-                              <input type="text" class="form-control" [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly>
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-success " (click)="sumaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);" type="button">+</button>
-                              </div>
-                            </div>
-                            
-                      </td>
-                      <td>
-                          <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="lDetalles.Precio" placeholder="" readonly>
-                          </div>
-                      </td>
-                      <td>
-                          <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="lDetalles.MontoTotal" placeholder=""readonly >
-                          </div>
-                      </td>
-                      <td>
-                          <div class="form-group">
-                            <input type="text" class="form-control" [(ngModel)]="lDetalles.TotalLinea" placeholder="" readonly>
-                          </div>
-                      </td>
-                      <td>
-                          <div class="form-group">
-                              <button (click)='Eliminar(lDetalles.IdProducto)' class="btn btn-danger">Eliminar</button>
-                          </div>
-                      </td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
-</div>
-<br>
-<div class="container" >
-    <div class="row">
-        <div class="col-md-9">
-            <div class="form-group">
-              <h3>Observaciones</h3>
-              <br>
-                <textarea class="form-control input-lg" type="text" [(ngModel)]="Observaciones" placeholder="Observaciones"></textarea>
-              </div>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <div class="col-md-10">
-                  <button (click)='CrearFactura(IdFactura)' class="btn btn-outline-success">Facturar</button>
-              </div>
-        </div>
-          <div class="form-group col-md-3 shadow-sm">
-            <table class="table ">
-              <tr>
-                <td>
-                    <p> Subtotal: {{subTotal}}</p>
-                </td>
-              </tr>
-              <tr>
-                  <td>
-                      Descuento: {{descuento}}
-                  </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>IVA: {{iva}}</p>
-                    </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <p>Exonerado: {{exonerado}}</p>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>TotalFactura: {{TotalFactura}}</p>
-                        </td>
-                      </tr>
-            </table>
-              
-              
-          </div>
-      </div>
-    
-      <div class="row">
-        <div class="col-md-10"></div>
-          <div class="panel panel-default col-md-2">
-              <div class="panel-body">
-                  
+
+        <table class="table">
+
+          <thead class="titulo-tabla">
+            <tr class="encabezado">
+              <td scope="col">Id Producto</td>
+              <td scope="col">Num. Linea</td>
+              <td scope="col">Cantidad</td>
+              <td scope="col">Precio</td>
+              <td scope="col">Monto Total</td>
+
+              <td scope="col">Total Linea</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lDetalles of listaDetalles">
+
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.IdProducto" placeholder="" readonly>
                 </div>
-               
-              
-          </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.NumLinea" placeholder="" readonly>
+                </div>
+              </td>
+              <td>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <button class="btn btn-outline-danger"
+                      (click)="restaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
+                      type="button">-</button>
+                  </div>
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-success "
+                      (click)="sumaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
+                      type="button">+</button>
+                  </div>
+                </div>
+
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.Precio" placeholder="" readonly>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.MontoTotal" placeholder="" readonly>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.TotalLinea" placeholder="" readonly>
+                </div>
+              </td>
+              <td>
+                <div class="form-group">
+                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto)" (click)="frame.show()" class="btn btn-danger">Eliminar</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    
-      <div class="row">
-        <div class="col-md-10"></div>
-          <div class="form-group col-md-2">
-              
-              
-          </div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="form-group">
+          <h3>Observaciones</h3>
+          <br>
+          <textarea class="form-control input-lg" type="text" [(ngModel)]="Observaciones"
+            placeholder="Observaciones"></textarea>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="col-md-10">
+          <button (click)='CrearFactura(IdFactura)' class="btn btn-outline-success">Facturar</button>
+        </div>
       </div>
-  <div class="row "> 
+      <div class="form-group col-md-3 shadow-sm">
+        <table class="table ">
+          <tr>
+            <td>
+              <p> Subtotal:</p>
+            </td>
+            <td>
+              <p>{{subTotal}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Descuento:</p>
+            </td>
+            <td>
+              <p>{{descuento}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>IVA:</p>
+            </td>
+            <td>
+              <p>{{iva}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>Exonerado:</p>
+            </td>
+            <td>
+              <p>{{exonerado}}</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p>TotalFactura:</p>
+            </td>
+            <td>
+              <p>{{TotalFactura}}</p>
+            </td>
+          </tr>
+        </table>
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10"></div>
+      <div class="panel panel-default col-md-2">
+        <div class="panel-body">
+
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-md-10"></div>
       <div class="form-group col-md-2">
-         
-      </div>
-  </div>
 
-  <div class="row">
-  
-        <div class="form-group col-md-2">
-            
-          
-        </div>
+
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-10"></div>
+      <div class="form-group col-md-2">
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="form-group col-md-2">
+
+
+      </div>
     </div>
   </div>
   

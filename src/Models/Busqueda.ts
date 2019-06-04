@@ -7,11 +7,5 @@ export class Busqueda{
 
     // constructor por defecto
 
-   constructor(){
-       this.Id = 0,
-       this.TipoDocumento = 0,
-       this.Consecutivo = 'ejemp',
-       this.Clave = 'ejemp',
-       this.IdCliente = 'ejemp';
-   }
+   constructor(){}
 }
