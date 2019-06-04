@@ -13,7 +13,7 @@
         <td>Ingrese el Id del cliente</td>
         <td>
           <div class="form-group">
-            <input type="text" class="form-control" (keyup.enter)="btenerCliente(clienteId,tipoId)" [(ngModel)]="clienteId" placeholder="Enter ID">
+            <input type="text" class="form-control" (keyup.enter)="obtenerCliente(clienteId,tipoId)" [(ngModel)]="clienteId" placeholder="Enter ID">
           </div>
         <td>Ingrese el tipo de Id</td>
 
@@ -27,7 +27,7 @@
         </td>
 
         <td>
-          <button type="button" mdbBtn color="primary" class="waves-light" data-toggle="modal"
+          <button type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal"
             data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Buscar</button>
 
           <div mdbModal #frame="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
@@ -43,9 +43,9 @@
                   </button>
                 </div>
                 <!--Body-->
-                <div class="modal-body">
+                <div class="modal-body" *ngIf="listaClientes.length!=0">
                   
-                  <table class="table table-hover">
+                  <table class="table table-hover" >
                     <tr>
                       <td>Nombre del cliente</td>
                       <td colspan="2"><input oninput="this.value = this.value.toUpperCase()" type="text" style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar" placeholder="Ingrese el nombre del cliente que desea buscar" ></td>
@@ -59,18 +59,28 @@
                       </tr>
                     
                       <tr *ngFor="let clienteF of listaClientes" >
-                        <td style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">{{clienteF.Id}}</td>
-                          <td  style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">
-                              {{clienteF.TbPersona.Nombre}}
+                        <td style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">{{clienteF.Id}}</td>
+                          <td  style="text-transform: uppercase" *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
+                              {{clienteF.TbPersona.Nombre}} {{clienteF.TbPersona.Apellido1}} {{clienteF.TbPersona.Apellido2}}
                           </td>
-                          <td *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)|| buscar==null">
-                            <button type="button" size="sm" mdbBtn color="primary" size="sm" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)" (click)="frame.hide()">Seleccionar</button>
+                          <td *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
+                            <button type="button" size="sm" mdbBtn color="primary"  outline="true" class="waves-light btn-sm" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)" (click)="frame.hide()">Seleccionar</button>
                           </td>
                       </tr>
                       
                   </table>
 
                 </div>
+                <div class="modal-body" *ngIf="listaClientes.length==0">
+                  
+                    <h3>Error</h3>
+                    <p>Posibles problemas</p>
+                    <ul>
+                      <li>No se encontraron clientes</li>
+                      <li>Posible error del servidor</li>
+                    </ul>
+  
+                  </div>
                 <!--Footer-->
                 <div class="modal-footer">
                   <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light"
@@ -182,14 +192,14 @@
             </td>
             <td>
               <div class="input-group mb-3 col-md-12 ">
-                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)" [(ngModel)]="productoId" placeholder="Id del Producto"
+                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)" (keyup.enter)="MontosFactura()" [(ngModel)]="productoId" placeholder="Id del Producto"
                   aria-label="Id del Producto" aria-describedby="basic-addon2">
                 <input type="text" class="form-control" [(ngModel)]="Cantidad"
                   placeholder="Ingrese la cantidad de productos" aria-label="Id del Producto"
                   aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                  <button (click)="obtenerProductos(productoId)" class="btn btn-outline-success"
-                    type="button">Agregar</button>
+                  <button (click)="obtenerProductos(productoId)" (click)="MontosFactura()" class="btn btn-outline-success btn-sm"
+                    type="button" size="sm">Agregar</button>
                 </div>
               </div>
             </td>
@@ -243,15 +253,15 @@
               <td>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <button class="btn btn-outline-danger"
+                    <button class="btn btn-outline-danger btn-sm"
                       (click)="restaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
                       type="button">-</button>
                   </div>
-                  <input type="text" class="form-control" [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly>
+                  <input type="text" class="form-control " [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly size="sm">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-success "
+                    <button class="btn btn-outline-success btn-sm"
                       (click)="sumaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
-                      type="button">+</button>
+                      type="button" size="sm">+</button>
                   </div>
                 </div>
 
@@ -273,7 +283,7 @@
               </td>
               <td>
                 <div class="form-group">
-                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto)" (click)="frame.show()" class="btn btn-danger">Eliminar</button>
+                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto) " (click)="frame.show()" class="btn btn-danger btn-sm">Eliminar</button>
                 </div>
               </td>
             </tr>
@@ -308,7 +318,7 @@
               <p> Subtotal:</p>
             </td>
             <td>
-              <p>{{subTotal}}</p>
+              <input type="text" class="form-control" [(ngModel)]="subTotal" placeholder="" readonly>
             </td>
           </tr>
           <tr>
@@ -316,7 +326,8 @@
               <p>Descuento:</p>
             </td>
             <td>
-              <p>{{descuento}}</p>
+                <input type="text" class="form-control" [(ngModel)]="descuento" placeholder="" readonly>
+              
             </td>
           </tr>
           <tr>
@@ -324,7 +335,8 @@
               <p>IVA:</p>
             </td>
             <td>
-              <p>{{iva}}</p>
+                <input type="text" class="form-control" [(ngModel)]="iva" placeholder="" readonly>
+             
             </td>
           </tr>
           <tr>
@@ -332,7 +344,8 @@
               <p>Exonerado:</p>
             </td>
             <td>
-              <p>{{exonerado}}</p>
+                <input type="text" class="form-control" [(ngModel)]="exonerado" placeholder="" readonly>
+              
             </td>
           </tr>
           <tr>
@@ -340,7 +353,8 @@
               <p>TotalFactura:</p>
             </td>
             <td>
-              <p>{{TotalFactura}}</p>
+                <input type="text" class="form-control" [(ngModel)]="TotalFactura" placeholder="" readonly>
+             
             </td>
           </tr>
         </table>
@@ -382,5 +396,30 @@
       </div>
     </div>
   </div>
-  
+  <!---
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+    
+    <div class="modal-content text-center">
+      
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Eliminar Categoria</p>
+      </div>
+
+      
+      <div class="modal-body">
+        <p>Desea eliminar la categoria {{texto}}?</p>
+      </div>
+
+      
+      <div class="modal-footer justify-content-center">
+        <a (click)="Eliminar(eliminaIdProducto)" (click)="frame.hide()"  mdbBtn color="danger" class="waves-light" mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+-->
 </div>
