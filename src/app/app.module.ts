@@ -30,7 +30,7 @@ import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
-
+import {MomentModule} from 'ngx-moment';
 
 
 @NgModule({
@@ -61,13 +61,16 @@ import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.co
   ],
   imports: [
     BrowserModule,
+    MomentModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
     ToastrModule.forRoot() ,
     BrowserModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    
+    
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

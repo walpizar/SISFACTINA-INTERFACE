@@ -63,9 +63,9 @@
           </div>
           <input type="text" class="form-control" name="DocumentoDetalles.IdCliente"
             [(ngModel)]="DocumentoDetalles.IdCliente" readonly>
-          <input type="text" class="form-control" name="Persona.Nombre" [(ngModel)]="Persona.Nombre" readonly>
-          <input type="text" class="form-control" name="Persona.Apellido1" [(ngModel)]="Persona.Apellido1" readonly>
-          <input type="text" class="form-control" name="Persona.Apellido2" [(ngModel)]="Persona.Apellido2" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Nombre" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Nombre" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Apellido1" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Apellido1" readonly>
+          <input type="text" class="form-control" name="DocumentoDetalles.TbClientes.TbPersona.Apellido2" [(ngModel)]="DocumentoDetalles.TbClientes.TbPersona.Apellido2" readonly>
         </div>
       </div>
       <br>
@@ -129,22 +129,16 @@
       <table class="table table-striped ">
         <tr>
           <th>IdAbono</th>
-          <th>FechaCrea</th>
-          <th>FechaUltMod</th>
-          <th>UsuarioCrea</th>
-          <th>UsuarioUltMod</th>
+          <th>Fecha</th>         
+          <th>Usuario</th>          
           <th>Monto</th>
 
         </tr>
         <tr *ngFor="let Abonos of listaAbono">
           <td>{{Abonos.IdAbono}}</td>
-          <td>{{Abonos.FechaCrea | date:'medium'}}</td>
-          <td>{{Abonos.FechaUltMod | date:'medium'}}</td>
-          <td>{{Abonos.UsuarioCrea}}</td>
-          <td>{{Abonos.UsuarioUltMod}}</td>
+          <td>{{Abonos.FechaCrea | date:'medium'}}</td>        
+          <td>{{Abonos.UsuarioCrea}}</td>         
           <td>{{Abonos.Monto}}</td>
-
-
         </tr>
       </table>
 

@@ -5,6 +5,7 @@ import { TbTipoMoneda } from './TipoMoneda';
 import { TbTipoPago } from './TipoPago';
 import { TbTipoVenta } from './TipoVenta';
 import { TbDetalleDocumento } from './DetalleDocumento';
+import { DatePipe } from '@angular/common';
 
 export class TbDocumento{
 
@@ -56,7 +57,31 @@ export class TbDocumento{
     TipoVentaNavigation  : TbTipoVenta;
     TbDetalleDocumento : TbDetalleDocumento[];
 
+
+
+    mensaje:string;
+
     constructor(){
 
+    }
+    ValidarVencimientoCredito(fecha:Date,plazo:number):string{
+        if (this.Fecha==null) {
+            return null;
+        } else {
+            let milisegundos_por_dia=(1000*60*60*24);
+            let fechaActual:Date;
+            fechaActual= new Date("3/6/2019");
+            let fechaDocumento=Date.UTC(fecha.getFullYear(),fecha.getMonth(),fecha.getDate());
+            let UTC=Date.UTC(fechaActual.getFullYear(),fechaActual.getMonth(),fechaActual.getDate());
+            let result=Math.floor(UTC-fechaDocumento/milisegundos_por_dia);
+            let texto:string;
+            if (result>plazo) {
+                texto="Al dia";
+            } else {
+                texto="Vencida";
+            }
+            return texto
+        }
+       
     }
 }
