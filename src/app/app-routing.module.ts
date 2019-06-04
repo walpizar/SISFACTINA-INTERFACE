@@ -16,6 +16,7 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
+import { ImpuestosComponent } from './impuestos/impuestos.component';
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 const routes: Routes = [
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'ListaClientes', component: ListaCliComponent },
   {path: 'RegistroCliente', component: RegistroCliComponent },
   {path: 'DetallesCliente/:id', component: DetalleCliComponent },
+  {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent }
 
 ]
