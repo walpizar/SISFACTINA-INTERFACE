@@ -29,12 +29,17 @@ import { CrearCategoriaProductoComponent } from './CategoriaProducto/crear-categ
 import { ListaCliComponent } from './Clientes/lista-cli/lista-cli.component';
 import { RegistroCliComponent } from './Clientes/registro-cli/registro-cli.component';
 import { DetalleCliComponent } from './Clientes/detalle-cli/detalle-cli.component';
-import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
+import { ImpuestosComponent } from './impuestos/impuestos.component';
 
+<<<<<<< HEAD
 import { LoginComponent } from './usuario/login/login.component';
 import { RegistroComponent } from './usuario/registro/registro.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 
+=======
+import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
+import {MomentModule} from 'ngx-moment';
+>>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
 
 
 @NgModule({
@@ -60,7 +65,12 @@ import { UsuarioComponent } from './usuario/usuario.component';
     ListaCliComponent,
     RegistroCliComponent,
     DetalleCliComponent,
+<<<<<<< HEAD
     ModificarCliComponent,
+=======
+    ImpuestosComponent,
+    ModificarCliComponent
+>>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
 
     LoginComponent,
     RegistroComponent,
@@ -68,6 +78,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
   ],
   imports: [
     BrowserModule,
+    MomentModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -75,7 +86,12 @@ import { UsuarioComponent } from './usuario/usuario.component';
     ToastrModule.forRoot() ,
     BrowserModule,
     MDBBootstrapModule.forRoot(),
+<<<<<<< HEAD
     ReactiveFormsModule
+=======
+    
+    
+>>>>>>> e9cc77df8bd0c6772748c904bc3d4d2343a0565c
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],

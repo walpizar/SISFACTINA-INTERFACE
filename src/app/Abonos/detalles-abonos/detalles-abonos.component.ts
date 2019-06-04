@@ -30,15 +30,10 @@ export class DetallesAbonosComponent implements OnInit {
   ngOnInit() {
     this.crearDetalleDoc();
     this.consultarAbonos();
-    this.consultarProductos();
-    this.AgregarPersona();
+    this.consultarProductos();   
     
   }
-  AgregarPersona() {
-    this.idclien=parseInt(this.DocumentoDetalles.IdCliente);  
-    this.personaservice.getDataID(this.idclien,this.tipoid).subscribe(data=>{this.Persona=data    
-    })
-  }
+ 
   AgregarProducto() {
     for (const detalle of this.DocumentoDetalles.TbDetalleDocumento) {
       console.log(this.listaProductos);

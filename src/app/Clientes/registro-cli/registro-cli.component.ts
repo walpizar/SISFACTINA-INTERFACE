@@ -3,6 +3,8 @@ import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { TbClientes } from 'src/Models/Cliente';
 import { TbPersona } from 'src/Models/Personas';
 import { ToastrService } from 'ngx-toastr';
+import { TbPersonasTribunalS } from 'src/Models/PersonaTribunal';
+import { PersonaTribunalService } from 'src/Services/PersonaTribunal/persona-tribunal.service';
 
 @Component({
   selector: 'app-registro-cli',
@@ -30,8 +32,9 @@ export class RegistroCliComponent implements OnInit {
   
   Cliente = new TbClientes();
   Persona = new TbPersona();
+  PersonaTri = new TbPersonasTribunalS();
 
-  constructor(private service: DataClienteService, private msjAlert: ToastrService) { }
+  constructor(private service: DataClienteService, private msjAlert: ToastrService,private servicePer:PersonaTribunalService) { }
 
   ngOnInit() {
     this.getListProvincias();
@@ -140,6 +143,22 @@ export class RegistroCliComponent implements OnInit {
     } catch (error) {
       this.msjAlert.error('Error operacion', 'Cliente')
     }
+
+  }
+
+  Buscar(Id:string){
+    this.servicePer.ConsultarById(Id).subscribe(data=>{
+      this.PersonaTri=data;
+    });
+
+    this.Persona.Nombre=this.PersonaTri.Nombre;
+    this.Persona.Apellido1=this.PersonaTri.Apellido1;
+    this.Persona.Apellido2=this.PersonaTri.Apellido2;
+    if(this.PersonaTri.Sexo=="Femenino"){
+      this.Persona.Sexo=1;
+    }else{
+      this.Persona.Sexo=2;
+    }  
 
   }
 

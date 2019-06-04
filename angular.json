@@ -33,7 +33,9 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/popper.min.js",
               "./node_modules/chart.js/dist/Chart.js",
-              "./node_modules/hammerjs/hammer.min.js"
+              "./node_modules/hammerjs/hammer.min.js",
+              "./node_modules/ngx-moment/bundles/ngx-moment.umd.min.js",
+              "./node_modules/dateformat/lib/dateformat.js"
             ],
             "es5BrowserSupport": true
           },

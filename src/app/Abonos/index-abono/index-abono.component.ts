@@ -6,6 +6,15 @@ import { FacturaService } from 'src/Services/Factura/factura.service';
 import { TbDocumento } from 'src/Models/Documento';
 import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
 import { ToastrService } from 'ngx-toastr';
+import { DataPersonaService } from 'src/Services/Persona/data-persona.service';
+import { TbClientes } from 'src/Models/Cliente';
+import { TbPersona } from 'src/Models/Personas';
+import * as moment from 'moment';
+import * as dateformat from 'dateformat';
+import { ProducserviceService } from 'src/Services/Producto/producservice.service';
+
+
+
 
 
 
@@ -17,11 +26,21 @@ import { ToastrService } from 'ngx-toastr';
 export class IndexAbonoComponent implements OnInit {
 
   constructor(private docService: FacturaService,
-    private DetalleService: DataDetalleDocService, private abonoservice: DataAbonosService, private msj: ToastrService) { }
+    private DetalleService: DataDetalleDocService, private abonoservice: DataAbonosService, private msj: ToastrService,private personaService:DataPersonaService,
+    private dataproducto:ProducserviceService) { }
 
   ngOnInit() {
+    this.consultarProductos();
     this.consultarTodos();
     this.ConsultarAbonos();
+    
+    
+  }
+ 
+  AgregarPersona() {
+    for (const iterator of this.listaDoc) {
+      this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{iterator.TbClientes.TbPersona=data})
+    }
   }
   ConsultarAbonos() {
     this.abonoservice.consultaTodos().subscribe(data => {
@@ -31,10 +50,12 @@ export class IndexAbonoComponent implements OnInit {
 
   detalle: boolean = false;
   listaDoc = new Array();
+  listaDoc2 = new Array();
   AbonoData = new TbAbonos();
   listaDocumentosFechas = new Array(); //lista para almacenar los documentos de la base de datos ordenados por fecha de la mas antigua a la mas reciente.
   idclient: string;
   listaAbonos = new Array();
+  listaProductos = new Array();
   MontoTotalAbono: number = 0;
   MontoTotalLinea: number = 0;
   Monto_Abono: number = 0;
@@ -43,11 +64,38 @@ export class IndexAbonoComponent implements OnInit {
     this.idclient = "603480811"
     this.docService.ConsultarTodosAbono(this.idclient).subscribe(data => {
       this.listaDoc = data;
+      for (const iterator of this.listaDoc) {
+              
+        iterator.TbClientes=new TbClientes();
+        iterator.TbClientes.TbPersona=new TbPersona();
+        this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{iterator.TbClientes.TbPersona=data})
+        iterator.mensaje=this.ValidarVencimientoCredito(iterator.Fecha,iterator.Plazo);
+      }
+      this.AgregarProducto();      
+      
     }, error => { this.msj.error("No se encontraron registros") })
 
   }
-  consultarDetalles(DocumentoDetails: TbDocumento) {
+  consultarProductos() {
+    this.dataproducto.get().subscribe(data=>{this.listaProductos=data     
+    })
+  }
 
+  AgregarProducto() {
+    console.log(this.listaDoc);
+    console.log(this.listaProductos);
+    for (const iterator of this.listaDoc) {      
+      for (const itera of this.listaProductos) {
+        if (iterator.TbDetalleDocumento.IdProducto==itera.IdProducto) {          
+          iterator.TbDetalleDocumento.IdProductoNavigation=itera;          
+        }
+      }
+    }
+   
+    console.log(this.listaDoc);
+    
+  }
+  consultarDetalles(DocumentoDetails: TbDocumento) {
 
     this.DetalleService.recibirDetalles(DocumentoDetails);
 
@@ -56,6 +104,25 @@ export class IndexAbonoComponent implements OnInit {
 
     this.abonoservice.recibeDocumento(Documen);
 
+  }
+  ValidarVencimientoCredito(fechaparametro:Date,plazo:number):string{
+    if (fechaparametro==null ) {
+      return null;
+  } else {
+    var fechaFactura = moment(fechaparametro);
+    //var dateformat=require('dateformat');
+    var ahora= new Date();
+    var date=dateformat(ahora,"isoDateTime");               
+    var fechaActual = moment(date);
+    var result=fechaActual.diff(fechaFactura, 'days');
+    console.log(result);
+    if (result>plazo) {
+      return "Vencida";
+    } else {
+      return "Al Día";
+    }
+  }
+  
   }
 
   AbonoGeneral(mont_abono: number) {

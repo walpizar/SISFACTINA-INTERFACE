@@ -80,6 +80,36 @@
     </div>
 
   </div>
+  <div class="container">
+      <div class="card ">
+        <div class="card-header bg-info text-white " style="text-align:center">
+          <h5>Detalles del Documento</h5>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-striped ">
+            <tr>
+              <th>NumLinea</th>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>MontoTotal</th>
+              <th>Descuento</th>
+              <th>TotalLinea</th>
+            </tr>
+            <tr *ngFor="let TbDetalleDocumento of Documento.TbDetalleDocumento">
+              <td>{{TbDetalleDocumento.NumLinea}}</td>
+              <td>{{TbDetalleDocumento.IdProductoNavigation.Nombre}}</td>
+              <td>{{TbDetalleDocumento.Cantidad}}</td>
+              <td>{{TbDetalleDocumento.Precio}}</td>
+              <td>{{TbDetalleDocumento.MontoTotal}}</td>
+              <td>{{TbDetalleDocumento.Descuento}}</td>
+              <td>{{TbDetalleDocumento.TotalLinea}}</td>
+            </tr>
+          </table>
+    
+        </div>
+      </div>
+    </div>
   <br>
   <form class="form-inline">
     <div class="input-group mb-3">
