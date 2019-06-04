@@ -69,8 +69,7 @@ import {MomentModule} from 'ngx-moment';
     ToastrModule.forRoot() ,
     BrowserModule,
     MDBBootstrapModule.forRoot(),
-    
-    
+    MomentModule    
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [],
