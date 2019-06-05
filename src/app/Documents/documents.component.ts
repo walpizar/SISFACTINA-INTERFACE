@@ -23,7 +23,8 @@ export class DocumentsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.service.get();
+    // this.documentGeneral();
+    this.documetsAct();
   }
 
   // obtengo doc con fecha actual
@@ -35,7 +36,7 @@ export class DocumentsComponent implements OnInit {
   // obtengo todos los doc
   documentGeneral(){
     this.service.get().subscribe(data=> {
-      this.ListaDocGeneral = data;
+     this.ListaDocActules = data;
     })
   }
 
@@ -46,54 +47,49 @@ export class DocumentsComponent implements OnInit {
 
   FiltrarLista(doc: Busqueda): void {
     // creo una varible para almacenar el resultado de la busqueda
+    // this.ListaDocActules = new Array();
+   this.documentGeneral();
     let resultado: any;
     if (doc.Id != 0) {
-      resultado = this.service.list.filter(x => x.Id == doc.Id);
-      this.service.list = resultado;
-      return;
+      this.ListaDocActules = this.ListaDocActules.filter(x => x.Id == doc.Id);
     }
     if ( doc.Clave != null) {
-      resultado = this.service.list.filter(x => x.Clave == doc.Clave);
-      this.service.list = resultado;
-      return;
+      this.ListaDocActules = this.ListaDocActules.filter(x => x.Clave == doc.Clave);
     }
     if ( doc.Consecutivo != null) {
-      resultado = this.service.list.filter(x => x.Consecutivo == doc.Consecutivo);
-      this.service.list = resultado;
-      return;
+      this.ListaDocActules = this.ListaDocActules.filter(x => x.Consecutivo == doc.Consecutivo);
     }
     if (doc.IdCliente != null) {
       this.listaBusq = new Array;
-      for (let doc2 of this.service.list) {
+      for (let doc2 of this.ListaDocActules) {
         // verifico si es el mismo dato
         if (doc2.IdCliente != null) {
           if (doc2.IdCliente.trim() == doc.IdCliente) {
             this.listaBusq.push(doc2);
           }
         }
-        
+
       }
-      this.service.list = this.listaBusq;
-      return;
+      this.ListaDocActules = this.listaBusq;
     }
     if (doc.TipoDocumento != 0) {
       // aqui puede devolver mas de uno
-      for (let doc2 of this.service.list) {
+      for (let doc2 of this.ListaDocActules) {
         // agrego a la lista
 
         if (doc2.TipoDocumento == doc.TipoDocumento) {
           this.listaBusq.push(doc2);
         }
       }
-      this.service.list = this.listaBusq;
-      return;
+      this.ListaDocActules = this.listaBusq;
     }
+    //retorno 
   }
 
   reCargar() 
   {
     // reinicia la lista volviedo a llamar todos los datos
-    this.service.getDocumentsActules();
+    this.documetsAct();
     // referesca el objeto
     this.docBusca = new Busqueda();
     // refresca la lista
