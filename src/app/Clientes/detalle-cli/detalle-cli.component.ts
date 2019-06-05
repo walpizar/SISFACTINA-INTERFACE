@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TbClientes } from 'src/Models/Cliente';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { TbProvincia } from 'src/Models/Provincia';
+import { TbCanton } from 'src/Models/Canton';
+import { TbDistrito } from 'src/Models/Distrito';
+import { TbBarrios } from 'src/Models/Barrios';
 
 @Component({
   selector: 'app-detalle-cli',
@@ -20,7 +23,10 @@ export class DetalleCliComponent implements OnInit {
 
   public CliActual: TbClientes;
   sexo: string;
-  Provincia:any;
+  Provincia: any;
+  Canton: string;
+  Distrito: string;
+  Barrio: string;
 
   constructor(private service: DataClienteService) { }
 
@@ -31,11 +37,7 @@ export class DetalleCliComponent implements OnInit {
     this.getListCantones();
     this.getListBarrios();
     this.getListTipoId();
-    this.cambios();
-  }
-
-  cambios(){
-    this.changeCli();
+    this.changeSex();
   }
 
   obtenerClienteDetalle() {
@@ -45,24 +47,31 @@ export class DetalleCliComponent implements OnInit {
   getListProvincias() {
     this.service.getProvincias().subscribe(data => {
       this.listaProvincia = data;
+      // obtener nombre de prov
+      this.changeProv();
     });
   }
   // obtener lista de Distritos
   getListDistritos() {
     this.service.getDistritos().subscribe(data => {
       this.listaDistritos = data;
+      // obtener distritos
+      this.changeDist();
     });
   }
   // obtener lista de cantones
   getListCantones() {
     this.service.getCantones().subscribe(data => {
       this.listaCantones = data;
+      // obtener cantones
+      this.changeCant();
     });
   }
   // obtener lista barrios
   getListBarrios() {
     this.service.getBarrios().subscribe(data => {
       this.listaBarrios = data;
+      this.changeBarr();
     });
   }
   // obtener lista de tipos Id
@@ -74,39 +83,67 @@ export class DetalleCliComponent implements OnInit {
   // exoneraciones
   getExo() {
     this.service.getIdExoneracion().subscribe(data => {
-      this.listaExo = data
+      this.listaExo = data;
     });
   }
 
-  changeCli(){
+  // obtener nombre del sexo
+  changeSex(){
 
     if (this.CliActual.TbPersona.Sexo != null) {
 
       if (this.CliActual.TbPersona.Sexo == 1) {
         this.sexo = 'Masculino';
-      }
-      else {
+      } else {
         this.sexo = 'Femenino';
       }
+    }
+  }
 
-      // resultado = this.service.list.filter(x => x.Id == doc.Id);
-      let resultado: TbProvincia;
-      let cod = this.CliActual.TbPersona.Provincia;
-      if(this.CliActual.TbPersona.Provincia != null){
-
-        for (const iterator of this.listaProvincia) {
-          resultado = iterator;
-          if (resultado.Cod == this.CliActual.TbPersona.Provincia) {
-            this.Provincia = resultado.Nombre;
-          }
+  changeProv() {
+    if (this.CliActual.TbPersona.Provincia != null) {
+      for (const iterator of this.listaProvincia) {
+        const resultado: TbProvincia = iterator;
+        if (resultado.Cod == this.CliActual.TbPersona.Provincia) {
+          this.Provincia = resultado.Nombre;
         }
       }
-      // la lista esta vacia
-
-
-
     }
+  }
 
+  changeCant() {
+    if (this.CliActual.TbPersona.Canton != null) {
+      for (const iterator of this.listaCantones) {
+        const resultado: TbCanton = iterator;
+        if (resultado.Canton == this.CliActual.TbPersona.Canton && resultado.Provincia == this.CliActual.TbPersona.Provincia) {
+          this.Canton = resultado.Nombre;
+        }
+      }
+    }
+  }
+
+  changeDist(){
+    if (this.CliActual.TbPersona.Distrito != null) {
+      for (const iterator of this.listaDistritos) {
+        const resultado: TbDistrito = iterator;
+        if (resultado.Distrito == this.CliActual.TbPersona.Distrito && resultado.Canton == this.CliActual.TbPersona.Canton
+          && resultado.Provincia == this.CliActual.TbPersona.Provincia) {
+          this.Distrito = resultado.Nombre;
+        }
+      }
+    }
+  }
+
+  changeBarr(){
+    if (this.CliActual.TbPersona.Barrio != null) {
+      for (const iterator of this.listaBarrios) {
+        const resultado: TbBarrios = iterator;
+        if (resultado.Barrio == this.CliActual.TbPersona.Barrio && resultado.Distrito == this.CliActual.TbPersona.Distrito
+        && resultado.Canton == this.CliActual.TbPersona.Canton && resultado.Provincia == this.CliActual.TbPersona.Provincia) {
+          this.Barrio = resultado.Nombre;
+        }
+      }
+    }
   }
 
 

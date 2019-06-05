@@ -45,6 +45,7 @@ export class ModificarCliComponent implements OnInit {
   getClienteModif() {
     this.Cliente = this.service.detalleCli;
     this.Persona = this.service.detalleCli.TbPersona;
+    this.camposVacios();
   }
 
   // metodos
@@ -126,6 +127,10 @@ export class ModificarCliComponent implements OnInit {
         this.comboBarrios.push(i);
       }
     }
+  }
+
+  camposVacios(){
+
   }
 
   ModificarCli(Cliente: TbClientes, Persona: TbPersona) {
