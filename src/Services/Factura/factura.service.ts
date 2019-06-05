@@ -25,8 +25,9 @@ export class FacturaService {
   }
 
   // obtiene los documentos con fecha actual
-  getDocuments(){ 
-    this.http.get(this.serviceGeneric.getURL()+"/documento/actuales").toPromise().then(res=>this.list=res as TbDocumento[]);
+  getDocumentsActules(){
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/actuales");
+    // this.http.get(this.serviceGeneric.getURL()+"/documento/actuales").toPromise().then(res=>this.list=res as TbDocumento[]);
   }
 
   post(body : TbDocumento){

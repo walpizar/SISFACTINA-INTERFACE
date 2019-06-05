@@ -13,18 +13,35 @@ export class DocumentsComponent implements OnInit {
 
   docBusca = new Busqueda();
   listaBusq = new Array;
+  // lista con documentos de fecha actual
+  ListaDocActules = new Array();
+  // lista con doc todos
+  ListaDocGeneral = new Array();
 
   constructor(private service:FacturaService) {
     this.docBusca=new Busqueda();
    }
 
   ngOnInit() {
-    this.service.getDocuments();
+    this.service.get();
+  }
+
+  // obtengo doc con fecha actual
+  documetsAct(){
+    this.service.getDocumentsActules().subscribe(data =>{
+      this.ListaDocActules = data;
+    })
+  }
+  // obtengo todos los doc
+  documentGeneral(){
+    this.service.get().subscribe(data=> {
+      this.ListaDocGeneral = data;
+    })
   }
 
   public DocActual(doc: TbDocumento) {
     this.service.Doc = doc;
-    this.service.getDocuments();
+    this.service.get();
   }
 
   FiltrarLista(doc: Busqueda): void {
@@ -76,7 +93,7 @@ export class DocumentsComponent implements OnInit {
   reCargar() 
   {
     // reinicia la lista volviedo a llamar todos los datos
-    this.service.getDocuments();
+    this.service.getDocumentsActules();
     // referesca el objeto
     this.docBusca = new Busqueda();
     // refresca la lista
