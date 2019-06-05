@@ -24,8 +24,10 @@ export class FacturaService {
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento");
   }
 
-  getDocuments(){ 
-    this.http.get(this.serviceGeneric.getURL()+"/documento").toPromise().then(res=>this.list=res as TbDocumento[]);
+  // obtiene los documentos con fecha actual
+  getDocumentsActules(){
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/actuales");
+    // this.http.get(this.serviceGeneric.getURL()+"/documento/actuales").toPromise().then(res=>this.list=res as TbDocumento[]);
   }
 
   post(body : TbDocumento){

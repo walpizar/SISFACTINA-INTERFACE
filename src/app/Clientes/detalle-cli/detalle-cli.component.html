@@ -55,15 +55,7 @@
 
         <div class="form-group col-md-4">
           <label>Sexo</label>
-          <!-- <input type="text" class="form-control" name="TbPersona.Sexo" [(ngModel)]="CliActual.TbPersona.Sexo" readonly> -->
-          <select class="form-control" name="Persona.Sexo" [(ngModel)]="Persona.Sexo" disabled>
-            <option value="1">
-              Masculino
-            </option>
-            <option value="2">
-              Femenino
-            </option>
-          </select>
+          <input type="text" class="form-control" name="sexo" [(ngModel)]="sexo" readonly>
         </div>
 
         <div class="form-group col-md-4">
@@ -117,25 +109,25 @@
 
         <div class="form-group col-md-3">
           <label>Provincia</label>
-          <input type="text" class="form-control" name="TbPersona.Provincia" [(ngModel)]="CliActual.TbPersona.Provincia"
+          <input type="text" class="form-control" name="TProvincia" [(ngModel)]="Provincia"
             readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Canton</label>
-          <input type="text" class="form-control" name="TbPersona.Canton" [(ngModel)]="CliActual.TbPersona.Canton"
+          <input type="text" class="form-control" name="Canton" [(ngModel)]="Canton"
             readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Distrito</label>
-          <input type="text" class="form-control" name="TbPersona.Distrito" [(ngModel)]="CliActual.TbPersona.Distrito"
+          <input type="text" class="form-control" name="Distrito" [(ngModel)]="Distrito"
             readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Barrio</label>
-          <input type="text" class="form-control" name="TbPersona.Barrio" [(ngModel)]="CliActual.TbPersona.Barrio"
+          <input type="text" class="form-control" name="Barrio" [(ngModel)]="Barrio"
             readonly>
         </div>
 

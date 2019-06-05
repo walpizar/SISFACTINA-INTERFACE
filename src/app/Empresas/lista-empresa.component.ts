@@ -4,6 +4,12 @@ import { EmpresaService } from '../../Services/Empresas/empresa.service';
 import { TbPersona } from '../../Models/Personas';
 import { TbParametrosEmpresa } from '../../Models/ParametrosEmpresa';
 import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.service';
+import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
+import { TbTipoId } from 'src/Models/TipoId';
+import { PersonaTribunalService } from 'src/Services/PersonaTribunal/persona-tribunal.service';
+import { TbPersonasTribunalS } from 'src/Models/PersonaTribunal';
+import { empty } from 'rxjs';
+
 
 @Component({
   selector: 'app-lista-empresa',
@@ -11,21 +17,25 @@ import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.ser
   styleUrls: ['./lista-empresa.component.css']
 })
 export class ListaEmpresaComponent implements OnInit {
+
   modifica:boolean = false;
   bandera: boolean = false;
-  show: boolean = false;
-  inventario: boolean = false;
-  factura: boolean = false;
-  Empresa: TbEmpresa = new TbEmpresa();
-  Persona: TbPersona  = new TbPersona();
-  ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
+  tipoId: number = 1;
+  PrecioBase: number = 1;
+
   ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
   ListEmpre: Array<TbEmpresa> = new Array();
+  listaTipoId:Array<TbTipoId>;
+
+  ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
+  Empresa: TbEmpresa = new TbEmpresa();
+  Persona: TbPersona  = new TbPersona();
+  PersonaTri = new TbPersonasTribunalS();
 
 
-  constructor(private empresaService: EmpresaService) { 
-
+  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService,private parametrosEmpreService: ParametrosService, private servicePer:PersonaTribunalService) { 
     this.consultarTodos();
+    this.obtenerListaTipoId();
 
   }
 
@@ -33,125 +43,119 @@ export class ListaEmpresaComponent implements OnInit {
   }
 
 
+  obtenerListaTipoId() {
+    this.tipoIdService.getTipoId().subscribe(data=>{
+      this.listaTipoId=data;
+    });
+  }
+
 
 
   formulario(){
 
-    this.show = true;
-    this.bandera = true ;
+    this.bandera = true;
 
   }
 
   cancelar(){
-    this.show = false;
-    this.Empresa.Id = null;
-    this.Empresa.NombreComercial = null;
-    this.Empresa.CorreoElectronicoEmpresa = null
-    this.inventario = false;
-    this.factura =false;
-    this.bandera = false;
 
+    if(this.modifica){
+      this.ListEmpre.push(this.Empresa);
+    }
+    this.bandera = false;
+    this.modifica = false;
+    this.Empresa = new TbEmpresa();
+    this.ParametrosEmpresa = new TbParametrosEmpresa();
+    this.Persona = new TbPersona();
   }
 
-  agregar(){
-    if(this.modifica){
-      for(let i=0; this.ListEmpre.length>i; i++){
-        if(this.ListEmpre[i].Id==this.Empresa.Id){
-          this.ListEmpre.splice(i,1)
-         }
-        }
-    }
-    else{
-
-    }
-    this.Empresa.TipoId = 1
-    this.Persona.Identificacion = this.Empresa.Id;
-    this.Persona.TipoId = 1;
-    this.Persona.Nombre = this.Empresa.NombreComercial;
-    this.Persona.Telefono = 0;
-    this.Persona.CodigoPaisTel = "506";
-    this.ParametrosEmpresa.IdEmpresa = this.Empresa.Id;
-    this.ParametrosEmpresa.IdTipoEmpresa = this.Empresa.TipoId;
-    this.ParametrosEmpresa.ManejaInventario = this.inventario;
-    this.ParametrosEmpresa.FacturacionElectronica = this.factura;
-    this.ListaParametrosEmpre.push(this.ParametrosEmpresa);
-    this.Empresa.TbPersona = this.Persona;
-    this.Empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
-    this.ListaParametrosEmpre = new Array();
-    this.ListEmpre.push(this.Empresa);
-    
-
-    if(this.modifica){
-      this.empresaService.put(this.Empresa).subscribe(data =>{
-        if(data){
+  confirmar(empresa){
+    this.Persona.Nombre = empresa.nombreComercial;
+    this.Persona.Identificacion = empresa.Id;
+    this.Persona.TipoId = this.tipoId;
+    empresa.TipoId = 1;
+    empresa.TbPersona = this.Persona;
+    this.ListaParametrosEmpre[0] = this.ParametrosEmpresa;
+    empresa.TbParametrosEmpresa = this.ListaParametrosEmpre;
+    if (this.modifica) {
+      this.empresaService.put(empresa).subscribe(data =>{
+        if (data) {
           alert("Se modificó con exito");
-          this.show = false;
-          this.bandera = false;
+          this.ListEmpre.push(empresa);
         }
         else{
           alert("No se pudo modificar");
         }
-      })
+      });
       this.modifica = false;
     }
     else{
-
-      this.empresaService.post(this.Empresa).subscribe(data=>{
-        if(data){
-          alert("Se agregó la empresa");
-          this.show = false;
-          this.bandera = false;
+      this.Persona.Telefono = 0;
+      this.Persona.CodigoPaisTel = "506";
+      this.empresaService.post(empresa).subscribe(data =>{
+        if (data) {
+          alert("Se agregó correctamente");
+          this.ListEmpre.push(empresa);
         }
         else{
-          alert("No se pudo agregar la empresa");
+          alert("No se pudo agregar");
         }
-  
-      })
-
+      });
     }
+    this.bandera = false;
     this.Empresa = new TbEmpresa();
+    this.ParametrosEmpresa = new TbParametrosEmpresa();
+    this.Persona = new TbPersona();
   }
 
   modificar(Id){
-    this.bandera = true;
-    this.show = true;
-    this.modifica = true;
-    this.empresaService.getById(Id).subscribe(data =>{
-      for (let i = 0; i < this.ListEmpre.length; i++) {
-        if(this.ListEmpre[i].Id == Id){
-          this.Empresa.Id = this.ListEmpre[i].Id;
-          this.Empresa.NombreComercial = this.ListEmpre[i].NombreComercial;
-          this.Empresa.CorreoElectronicoEmpresa = this.ListEmpre[i].CorreoElectronicoEmpresa;
+      this.parametrosEmpreService.getById(Id).subscribe(data =>{
+        this.ParametrosEmpresa = data;
+        for (let i = 0; i < this.ListEmpre.length; i++) {
+          if (this.ListEmpre[i].Id == Id) {
+            this.Empresa = this.ListEmpre[i];
+            this.Persona=this.Empresa.TbPersona;
+            this.Empresa.TbParametrosEmpresa[0] = this.ParametrosEmpresa;
+            this.modifica = true;
+            this.bandera = true;
+            console.log(this.Empresa);
+            this.ListEmpre.splice(i,1);
+          }
         }
-      }
-    })
-    
+      });
   }
 
   consultarTodos(){
-    this.ListEmpre = null;
     this.empresaService.get().subscribe(data=>{
-      this.ListEmpre=data;
+    this.ListEmpre=data;
     })
   }
 
   eliminar(Id){
-
     for (let i = 0; i < this.ListEmpre.length; i++) {
-      if(this.ListEmpre[i].Id == Id){
-        this.empresaService.delete(this.ListEmpre[i]).subscribe(data=>{
-          if(data){
+      if (this.ListEmpre[i].Id == Id) {
+        this.empresaService.delete(this.ListEmpre[i]).subscribe(data =>{
+          if (data) {
             alert("Se eliminó con exito");
+            this.ListEmpre.splice(i,1);
           }
           else{
-            alert("No se pudo eliminar");
+            alert("No se ha podido eliminar");
           }
-          
-        })
-        this.ListEmpre.splice(i,1);
+        });
       }
     }
   }
 
+  Buscar(Id: string) {
+    this.servicePer.ConsultarById(Id).subscribe(data => {
+      this.PersonaTri = data;
+
+      this.Empresa.NombreComercial = this.PersonaTri.Nombre;
+      this.Persona.Apellido1 = this.PersonaTri.Apellido1;
+      this.Persona.Apellido2 = this.PersonaTri.Apellido2;
+      
+    });
+  }
 
 }

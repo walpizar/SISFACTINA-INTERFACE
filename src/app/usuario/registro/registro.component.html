@@ -1,0 +1,51 @@
+<h4 class="text-center" >Registro</h4>
+
+  <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()" >
+    
+    <div class="form-group ">
+      <label>Rol de usuario</label>
+      <select class="form-control" formControlName="IdRol" required>
+        <option *ngFor="let rol of service.list" [value]="rol.IdRol"  required>{{rol.Nombre}}</option>
+      </select>
+      <label class="text-danger" *ngIf="service.formModel.get('IdRol').touched && service.formModel.get('IdRol').errors?.required">Campo Obligatorio</label>
+    </div>
+
+      <div class="form-group ">
+        <label>Nombre de Usuario</label>
+        <input type="text" class="form-control" formControlName="NombreUsuario" required> 
+        <label class="text-danger" *ngIf="service.formModel.get('NombreUsuario').touched && service.formModel.get('NombreUsuario').errors?.required">Campo Obligatorio</label>
+      </div>
+     
+      <div class="form-group">
+        <label>Id</label>
+        <input type="text" class="form-control" formControlName="Id"> 
+        <label class="text-danger" *ngIf="service.formModel.get('Id').touched && service.formModel.get('Id').errors?.email">Email invalido</label>
+      </div>
+
+        <div class="form-group">
+          <label>Tipo ID</label>
+          <select class="form-control" formControlName="TipoId" required>
+            <option *ngFor="let tipo of service.listaTipoId" [value]="tipo.Id"  required>{{tipo.Nombre}}</option>
+          </select>
+          <label class="text-danger" *ngIf="service.formModel.get('IdRol').touched && service.formModel.get('IdRol').errors?.required">Campo Obligatorio</label>
+              </div>
+
+          <div formGroupName="Contraseñas">
+              <div class="form-group ">
+                <label>Contraseña</label>
+                <input type="password" class="form-control " formControlName="Contraseña" required> 
+                <label class="text-danger" *ngIf="service.formModel.get('Contraseñas.Contraseña').touched && service.formModel.get('Contraseñas.Contraseña').errors?.required">Campo Obligatorio</label>
+                <label class="text-danger" *ngIf="service.formModel.get('Contraseñas.Contraseña').touched && service.formModel.get('Contraseñas.Contraseña').errors?.minlength">Mínimo 4 caracteres</label>
+              </div>
+
+              <div class="form-group ">
+                <label>Confirmar Contraseña</label>
+                <input type="password" class="form-control " formControlName="ConfirmPassword" required> 
+                <label class="text-danger" *ngIf="service.formModel.get('Contraseñas.ConfirmPassword').touched && service.formModel.get('Contraseñas.ConfirmPassword').errors?.required">Campo Obligatorio</label>
+                <label class="text-danger" *ngIf="service.formModel.get('Contraseñas.ConfirmPassword').touched && service.formModel.get('Contraseñas.ConfirmPassword').errors?.passwordMismatch">confirmar que la contraseña sea igual</label>
+              </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="!service.formModel.valid">Registrarme</button>
+          </div>
+  </form>

@@ -4,72 +4,303 @@
             <h3 class="text-center">Empresas</h3>
         </div>
     </div>
-  </div>
-  <br>
-  <button *ngIf="!bandera" (click)="formulario()" class="btn btn-primary">Nuevo</button>
-  <br>
-  <br>
-  <div *ngIf="show" class="container text-center">
-          <div class="table-responsive-md col-md-12  border p-3 mb-3" > 
-                  <table class="table" >
-                      <h1>Nueva Empresa</h1>
-                      <tr>
-                          <td>
-                              ID
-                              <div class="form-group">
-                                  <input type="text" class="form-control" [(ngModel)]="Empresa.Id" placeholder="Enter ID" >
-                              </div>
-                          </td>
-                          
-                          <td>
-                              Nombre
-                              <div class="form-group">
-                                  <input type="text" class="form-control" [(ngModel)]="Empresa.NombreComercial" placeholder="Enter Name" >
-                              </div>
-                          </td>
-                          <td>
-                              Correo
-                              <div class="form-group">
-                                  <input type="text" class="form-control" [(ngModel)]="Empresa.CorreoElectronicoEmpresa" placeholder="Enter Mail" >
-                              </div>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>
-                                  <form>
-                                      <div class="checkbox">
-                                          <label><input type="checkbox" name = "1" [(ngModel)]="inventario">Maneja inventario</label>
-                                      </div>
-                                  </form>
-                          </td>
-                          <td>
-                                  <form>
-                                      <div class="checkbox">
-                                          <label><input type="checkbox" name = "1" [(ngModel)]="factura">Facturacion Electrónica</label>
-                                      </div>
-                                   </form>
-                          </td>
-                          <td>
-                          </td>
-                      </tr>   
-                  </table>
-                <button *ngIf="bandera" (click)="agregar()" class="btn btn-primary">Confirmar</button>
-                <button *ngIf="show"  (click)="cancelar()" class="btn btn-warning">Cancelar</button>
-          </div>
-  </div>
-  <h1 class="text-center">Lista De Empresas</h1>
-  <div class="container text-center">
-    <table class="table" class="table table-bordered">
-        <tr> 
-            <td>ID</td>
-            <td>Nombre Comercial</td>
-        </tr>
-        <tr *ngFor = 'let TbEmpresa of ListEmpre'>
-            <td>{{TbEmpresa.Id}}</td>
-            <td>{{TbEmpresa.NombreComercial}}</td>
-            <button *ngIf ="!bandera" class="btn btn-danger btn-xs" (click)="eliminar(TbEmpresa.Id) " style="margin: 10px;">Eliminar</button>
-            <button *ngIf ="!bandera"  class="btn btn-primary btn-xs" (click)="modificar(TbEmpresa.Id) " style="margin: 10px;">Modificar</button>
-        </tr>
-      </table>
-  </div>
- 
+</div>
+<br>
+<button *ngIf="!bandera" (click)="formulario()" class="btn btn-primary">Nuevo</button>
+<br>
+<br>
+<div *ngIf="bandera" class="container" style="text-align: center">
+    <div class="table-responsive-md col-md-12  border p-3">
+        <table class="table">
+            <h1 style="text-align: center">Nueva Empresa</h1>
+            <tr>
+                <td>
+                    ID
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="Empresa.Id" placeholder="Enter ID">
+                            <div class="input-group-append">
+                                <button mdbBtn type="button" mdbWavesEffect color="light-blue" outline="" size="sm" (click)="Buscar(Empresa.Id)"
+                                    class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        Tipo ID
+                        <select class="form-control" name="select" required [(ngModel)]='tipoId' #gender="ngModel">
+                            <option *ngFor="let tipoCedula of listaTipoId" [value]="tipoCedula.Id">{{tipoCedula.Nombre}}
+                            </option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    Nombre
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.NombreComercial"
+                            placeholder="Enter Name">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td *ngIf="tipoId == 1">
+                    Primer Apellido
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Persona.Apellido1" placeholder="Last name 1">
+                    </div>
+                </td>
+                <td *ngIf="tipoId == 1">
+                    Segundo Apellido
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Persona.Apellido2" placeholder="Last name 2">
+                    </div>
+                </td>
+                <td>
+                    Correo Electrónico
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.CorreoElectronicoEmpresa"
+                            placeholder="Enter Mail">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Razón Social
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.RazonSocial" placeholder=" Enter a Social Reason">
+                    </div>
+                </td>
+                <td>
+                    Certificado de Instalado
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.CertificadoInstalado"
+                            placeholder="
+                            Enter Certificate">
+                    </div>
+                </td>
+                <td>
+                    Ruta del Certificado
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.RutaCertificado" placeholder="Rute Of Certificate">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Pin
+                    <div class="form-group">
+                        <input type="password" class="form-control" [(ngModel)]="Empresa.Pin" placeholder="Enter Pin">
+                    </div>
+                </td>
+                <td>
+                    Usuario del Api de Hacienda
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.UsuarioApiHacienda" placeholder="Enter Api Hacienda User">
+                    </div>
+                </td>
+                <td>
+                    Clave del Api de Hacienda
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.ClaveApiHacienda" placeholder="Enter Api Hacienda key ">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    Fecha de Resolución
+                    <div class="form-group">
+                        <input type="date" class="form-control" [(ngModel)]="Empresa.FechaResolucio" placeholder="Enter the 
+                        Date of resolution">
+                    </div>
+                </td>
+                <td>
+                    
+                    <div class="form-group">
+                        Correo Electrónico de la Empresa
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.CorreoElectronicoEmpresa"
+                            placeholder="Enter Company E-Mail">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                    <td>
+                            <div class="form-group">
+                                Constraseña del Correo Electronico de la Empresa
+                                <input type="password" class="form-control" [(ngModel)]="Empresa.ContrasenaCorreo"
+                                    placeholder=" Enter Company E-mail Password">
+                            </div>
+                        </td>
+                        <td>
+                            Cuerpo del Correo
+                            <div class="form-group">
+                                <textarea name="" id="" cols="30" rows="10" type="tex" class="form-control"
+                                    [(ngModel)]="Empresa.CuerpoCorreo" placeholder="Enter the Mail body"></textarea>
+                            </div>
+                        </td>
+            </tr>
+            <tr>
+                <td>
+                    Asunto
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.SubjectCorreo" placeholder="Enter the Subject">
+                    </div>
+                </td>
+                <td>
+                    Ruta para el XML
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.RutaXmlcompras" placeholder="XML route">
+                    </div>
+                </td>
+                <td>
+                    Fecha de Caducidad
+                    <div class="form-group">
+                        <input type="date" class="form-control" [(ngModel)]="Empresa.FechaCaducidad" placeholder="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Numero de Resolución
+                    <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="Empresa.NumeroResolucion" placeholder="Enter the Number Of resolution">
+                    </div>
+                </td>
+                <td>
+                    <form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="1" [(ngModel)]="Empresa.AmbientePruebas">Ambiente de Pruebas</label>
+                        </div>
+                    </form>
+                </td>
+                <td>
+                    <form>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="1" [(ngModel)]="Empresa.ImprimeDoc">Imprime el
+                                Documento</label>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+
+        </table>
+        <div class="table-responsive-md col-md-12  border p-3">
+            <table class="table">
+                <h1 style="text-align: center">Parámetros de Empresa</h1>
+                <tr>
+
+                    <td>
+                        Plazo Máximo del Crédito
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="ParametrosEmpresa.PlazoMaximoCredito"
+                                placeholder="
+                                Maximum Term of Credit">
+                        </div>
+                    </td>
+                    <td>
+                        Plazo Máximo de Proforma
+                        <div class="form-group">
+                            <input type="text" class="form-control" [(ngModel)]="ParametrosEmpresa.PlazoMaximoProforma"
+                                placeholder="Maximum Term of Proforma">
+                        </div>
+                    </td>
+                    <td>
+                            Utilidad Base
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="ParametrosEmpresa.UtilidadBase"
+                                    placeholder="Base Utility">
+                            </div>
+                        </td>
+                </tr>
+                <tr>
+                        
+                            <td>
+                                Cambio de Dolar
+                                <div class="form-group">
+                                    <input type="text" class="form-control" [(ngModel)]="ParametrosEmpresa.CambioDolar"
+                                        placeholder="Dollar exchange">
+                                </div>
+                            <td>
+                                Descuento Base
+                                <div class="form-group">
+                                    <input type="text" class="form-control" [(ngModel)]="ParametrosEmpresa.DescuentoBase"
+                                        placeholder="Base Discount">
+                                </div>
+                            </td>
+                            <td>
+                                Precio Base
+                                <div class="class="form-control>
+                                    <select class="form-control" name="select" required [(ngModel)]='ParametrosEmpresa.PrecioBase' #gender="ngModel">
+                                            <option  [value]="1">1</option>
+                                            <option [value]="2">2</option>
+                                    </select>
+                                </div>
+                            </td>
+                </tr>
+                <tr>
+                   
+                    <td>
+                        <form>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="1"
+                                        [(ngModel)]="ParametrosEmpresa.ManejaInventario">Maneja inventario</label>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="1"
+                                        [(ngModel)]="ParametrosEmpresa.FacturacionElectronica">Facturación Electrónica</label>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="checkbox">
+                                <label><input type="checkbox" name="1"
+                                        [(ngModel)]="ParametrosEmpresa.AprobacionDescuento">Aprobación de Descuento</label>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                        <form>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="1"
+                                            [(ngModel)]="ParametrosEmpresa.ClienteObligatorioFact">cliente Obligatorio de
+                                        Facturación</label>
+                                </div>
+                            </form>
+                </tr>
+            </table>
+            <button *ngIf="bandera" (click)="confirmar(this.Empresa)" class="btn btn-primary">Confirmar</button>
+            <button *ngIf="bandera" (click)="cancelar()" class="btn btn-warning">Cancelar</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="!bandera">
+    <h1 style="text-align: center">Lista De Empresas</h1>
+    <div class="container" style="text-align: center">
+        <table class="table" class="table table-bordered">
+            <tr>
+                <td>ID</td>
+                <td>Nombre Comercial</td>
+                <td>Nombre</td>
+                <td>Apellido 1</td>
+                <td>Apellido 2</td>
+            </tr>
+            <tr *ngFor='let TbEmpresa of ListEmpre'>
+                <td>{{TbEmpresa.Id}}</td>
+                <td>{{TbEmpresa.NombreComercial}}</td>
+                <td>{{TbEmpresa.TbPersona.Nombre}}</td>
+                <td>{{TbEmpresa.TbPersona.Apellido1}}</td>
+                <td>{{TbEmpresa.TbPersona.Apellido2}}</td>
+                <button *ngIf="!bandera" class="btn btn-danger btn-xs" (click)="eliminar(TbEmpresa.Id) "
+                    style="margin: 10px;">Eliminar</button>
+                <button *ngIf="!bandera" class="btn btn-primary btn-xs" (click)="modificar(TbEmpresa.Id) "
+                    style="margin: 10px;">Modificar</button>
+            </tr>
+        </table>
+    </div>

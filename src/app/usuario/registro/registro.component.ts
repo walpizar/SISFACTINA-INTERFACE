@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
-import { TbClientes } from 'src/Models/Cliente';
-import { TbPersona } from 'src/Models/Personas';
+import { UsuarioService } from 'src/Services/Usuario/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 
-@Component({
-  selector: 'app-modificar-cli',
-  templateUrl: './modificar-cli.component.html',
-  styleUrls: ['./modificar-cli.component.css']
-})
-export class ModificarCliComponent implements OnInit {
 
-  // variables
+@Component({
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styles: []
+})
+export class RegistroComponent implements OnInit {
+
+  listaRol = new Array();
   listaProvincia = new Array();
   listaDistritos = new Array();
   listaCantones = new Array();
   listaBarrios = new Array();
   listaTipoId = new Array();
-  listaExo = new Array();
 
   comboProvincias = new Array();
   comboDistritos = new Array();
@@ -28,66 +26,46 @@ export class ModificarCliComponent implements OnInit {
   Distrito: string;
   Canton: string;
 
-  Cliente = new TbClientes();
-  Persona = new TbPersona();
-
-  constructor(private service: DataClienteService, private Alert : ToastrService) { }
-
+  constructor(public service: UsuarioService, private toastr: ToastrService) { }
+ 
   ngOnInit() {
-    this.getListProvincias();
-    this.getListDistritos();
-    this.getListCantones();
-    this.getListBarrios();
-    this.getListTipoId();
-    this.getClienteModif();
+    this.service.cargarRoles();
+    this.service.getBarrios();
+    this.service.getCantones();
+    this.service.getProvincias();
+    this.service.getTiposId();
+    
   }
 
-  getClienteModif() {
-    this.Cliente = this.service.detalleCli;
-    this.Persona = this.service.detalleCli.TbPersona;
-    this.camposVacios();
-  }
-
-  // metodos
-  // obterner la lista de provincias en el servico
   getListProvincias() {
     this.service.getProvincias().subscribe(data => {
       this.listaProvincia = data;
     });
   }
-  // obtener lista de Distritos
   getListDistritos() {
     this.service.getDistritos().subscribe(data => {
       this.listaDistritos = data;
     });
   }
-  // obtener lista de cantones
   getListCantones() {
     this.service.getCantones().subscribe(data => {
       this.listaCantones = data;
     });
   }
-  // obtener lista barrios
   getListBarrios() {
     this.service.getBarrios().subscribe(data => {
       this.listaBarrios = data;
     });
   }
-  // obtener lista de tipos Id
   getListTipoId() {
     this.service.getTiposId().subscribe(data => {
       this.listaTipoId = data;
     });
   }
-  // exoneraciones
-  getExo() {
-    this.service.getIdExoneracion().subscribe(data => {
-      this.listaExo = data
-    });
-  }
 
-  // cambiar combos
-  onChangeProvincia(ID) {
+
+   // cambiar combos
+   onChangeProvincia(ID) {
     this.Provincia = ID;
     this.ChangeCanton(ID);
   }
@@ -128,17 +106,31 @@ export class ModificarCliComponent implements OnInit {
       }
     }
   }
+    //onSubmit() Este metodo nos permite mostrar notificaciones de error o exito al ingresar un usuario 
+  //en base a los mensajes mostrados en consola como errors [] o succeeded .
+  onSubmit() {
+    this.service.registro().subscribe(
+      (res: any) => {
+        if (res.succeeded) {
+          this.service.formModel.reset();
+          this.toastr.success('New user created!', 'Registration successful.');
+        } else {
+          res.errors.forEach(element => {
+            switch (element.code) {
+              case 'DuplicateUserName':
+                this.toastr.error('Username is already taken','Registration failed.');
+                break;
 
-  camposVacios(){
-
-  }
-
-  ModificarCli(Cliente: TbClientes, Persona: TbPersona) {
-    Cliente.TbPersona = Persona;
-    this.service.putCliente(Cliente).subscribe(
-      res => { this.Alert.success('Modificacion Realizada', 'Cliente') },
-      err => { this.Alert.error('Error de registro', 'Cliente') }
+              default:
+              this.toastr.error(element.description,'Registration failed.');
+                break;
+            }
+          });
+        }
+      },
+      err => {
+        console.log(err);
+      }
     );
   }
-
 }
