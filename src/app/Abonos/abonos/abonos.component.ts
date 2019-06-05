@@ -57,6 +57,11 @@ export class AbonosComponent implements OnInit {
       }
       this.totalpendientefac = (this.totalpendientefac - this.abonototal);
       console.log(this.totalpendientefac);
+    },err=>{
+      for (const iterator of this.Documento.TbDetalleDocumento) {
+        this.totalFactura=(this.totalFactura+iterator.TotalLinea)
+        this.totalpendientefac=(this.totalpendientefac+iterator.TotalLinea)
+      }
     })
 
   }
@@ -71,6 +76,9 @@ export class AbonosComponent implements OnInit {
   recibedatos() {
     this.Documento = this.abonosService.Documen
 
+  }
+  reFresh() {
+    location.reload()
   }
   //this.mont_abonoss es la variable que llega por parametro del input
   abonar(mont_abono) {
@@ -155,6 +163,6 @@ export class AbonosComponent implements OnInit {
       }
 
     }
-
+   
   }
 }

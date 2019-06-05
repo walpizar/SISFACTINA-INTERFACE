@@ -6,6 +6,12 @@
   </div>
 </div>
 <button class="btn btn-outline-success" [routerLink]="['/proveedor']"> Nuevo Proveedor</button>
+<br>
+<div class="md-form form-group mb-3">
+  <input mdbInput type="text" id="form1" oninput="this.value = this.value.toUpperCase()"
+    style="text-transform: uppercase; width:10cm" class="form-control" [(ngModel)]="buscar">
+  <label for="form1" class="">Buscar</label>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 mx-auto">
@@ -15,10 +21,8 @@
             <tr class="text-center" mdbTableCol>
               <th scope="col">Id</th>
               <th scope="col">Tipo Id</th>
-              <th scope="col">ContactoProveedor</th>
-              <th scope="col">NombreTributario</th>
-              <th scope="col"> EncargadoConta</th>
-              <th scope="col">CorreoElectConta</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Nombre Tributario</th>
               <th></th>
               <th>Opciones</th>
               <th></th>
@@ -27,17 +31,29 @@
           </thead>
           <tbody class="text-center">
             <tr *ngFor="let Proveedor of listaProveedor" mdbTableCol>
-              <td>{{Proveedor.Id}}</td>
-              <td>{{Proveedor.TbPersona.Tipo.Nombre}}</td>
-              <td>{{Proveedor.ContactoProveedor}}</td>
-              <td>{{Proveedor.NombreTributario}}</td>
-              <td>{{Proveedor.EncargadoConta}}</td>
-              <td>{{Proveedor.CorreoElectConta}}</td>
-              <td><button class="btn btn-outline-primary" (click)="ConsultarDetalles(Proveedor)"
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                {{Proveedor.Id}}</td>
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                {{Proveedor.TbPersona.Tipo.Nombre}}</td>
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                {{Proveedor.TbPersona.Nombre}}</td>
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                {{Proveedor.NombreTributario}}</td>
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                <button class="btn btn-outline-primary" (click)="ConsultarDetalles(Proveedor)"
                   [routerLink]="['/detalleproveedor']">Detalle</button></td>
-              <td><button class="btn btn-outline-warning text-white" (click)="Modificar(Proveedor)"
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                <button class="btn btn-outline-warning text-white" (click)="Modificar(Proveedor)"
                   [routerLink]="['/proveedor']">Modificar</button></td>
-              <td><button class="btn btn-outline-danger" (click)="EnviaDatoEliminar(Proveedor)"
+              <td
+                *ngIf=" Proveedor.TbPersona.Nombre.includes(buscar) || Proveedor.NombreTributario.includes(buscar) || Proveedor.Id==buscar || buscar==null || buscar==' '">
+                <button class="btn btn-outline-danger" (click)="EnviaDatoEliminar(Proveedor)"
                   (click)="frame.show()">Eliminar</button></td>
 
             </tr>

@@ -16,44 +16,19 @@ import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
 export class DetallesAbonosComponent implements OnInit {
 
   constructor(private dataDetallesAbono: DataAbonosService, private Datadocumento: DataDetalleDocService,
-    private dataproducto:ProducserviceService,private personaservice:DataPersonaService) { }
+    private dataproducto:ProducserviceService) { }
 
-  DocumentoDetalles=new TbDocumento();
-  listaProductos= new Array();
+  DocumentoDetalles=new TbDocumento(); 
   listaAbono = new Array();
-  idclien:number;
-  tipoid:number=1;
   totalpendiente:number=0;
   totalfactura:number=0;
   montototalabono:number=0;
-  Persona=new TbPersona();
+  
   ngOnInit() {
     this.crearDetalleDoc();
-    this.consultarAbonos();
-    this.consultarProductos();   
+    this.consultarAbonos();     
     
   }
- 
-  AgregarProducto() {
-    for (const detalle of this.DocumentoDetalles.TbDetalleDocumento) {
-      console.log(this.listaProductos);
-      for (const producto of this.listaProductos) {
-        if (detalle.IdProducto==producto.IdProducto) {
-          detalle.IdProductoNavigation=producto;
-          console.log(producto);
-        }
-      }
-    };
-    console.log("ENTIDAD CON PRODUCTO");
-    console.log(this.DocumentoDetalles);
-  }
- 
-  consultarProductos() {
-    this.dataproducto.get().subscribe(data=>{this.listaProductos=data
-      this.AgregarProducto();
-    })
-  }
- 
   
   crearDetalleDoc(){
     this.DocumentoDetalles=this.Datadocumento.Detalles
@@ -74,6 +49,11 @@ export class DetallesAbonosComponent implements OnInit {
     };
     //Almacena en totalpendiente la resta del totaldefactura menos el montototal de los abonos realizados
     this.totalpendiente=(this.totalfactura-this.montototalabono);
+    },err=>{
+      for (const iterator of this.DocumentoDetalles.TbDetalleDocumento) {
+        this.totalfactura=(this.totalfactura+iterator.TotalLinea)
+        this.totalpendiente=(this.totalpendiente+iterator.TotalLinea)
+      }
     })
   }
   
