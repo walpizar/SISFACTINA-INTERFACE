@@ -17,7 +17,13 @@
                 <td>
                     ID
                     <div class="form-group">
-                        <input type="text" class="form-control" [(ngModel)]="Empresa.Id" placeholder="Enter ID">
+                        <div class="input-group">
+                            <input type="text" class="form-control" [(ngModel)]="Empresa.Id" placeholder="Enter ID">
+                            <div class="input-group-append">
+                                <button mdbBtn type="button" mdbWavesEffect color="light-blue" outline="" size="sm" (click)="Buscar(Empresa.Id)"
+                                    class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </td>
                 <td>
