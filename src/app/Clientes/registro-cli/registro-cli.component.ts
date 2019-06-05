@@ -149,17 +149,17 @@ export class RegistroCliComponent implements OnInit {
   Buscar(Id:string){
     this.servicePer.ConsultarById(Id).subscribe(data=>{
       this.PersonaTri=data;
+      
+      this.Persona.Nombre=this.PersonaTri.Nombre;
+      this.Persona.Apellido1=this.PersonaTri.Apellido1;
+      this.Persona.Apellido2=this.PersonaTri.Apellido2;
+      if(this.PersonaTri.Sexo=="Femenino"){
+        this.Persona.Sexo=1;
+      }else{
+        this.Persona.Sexo=2;
+      }  
+      
     });
-
-    this.Persona.Nombre=this.PersonaTri.Nombre;
-    this.Persona.Apellido1=this.PersonaTri.Apellido1;
-    this.Persona.Apellido2=this.PersonaTri.Apellido2;
-    if(this.PersonaTri.Sexo=="Femenino"){
-      this.Persona.Sexo=1;
-    }else{
-      this.Persona.Sexo=2;
-    }  
-
   }
 
 }
