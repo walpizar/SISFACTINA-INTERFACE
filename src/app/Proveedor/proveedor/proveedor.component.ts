@@ -10,6 +10,8 @@ import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 import { DataBarriosService } from 'src/Services/Barrios/barrios.service';
 import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
 import { ToastrService } from 'ngx-toastr';
+import { PersonaTribunalService } from 'src/Services/PersonaTribunal/persona-tribunal.service';
+import { TbPersonasTribunalS } from 'src/Models/PersonaTribunal';
 
 @Component({
   selector: 'app-proveedor',
@@ -21,7 +23,7 @@ export class ProveedorComponent implements OnInit {
   constructor(private provinciaService:DataProvinciaService,private cantonService:DataCantonService,
    private distritoService:DataDistritoService,private barrioService:DataBarriosService,
    private tipoidService:DataTipoIdService,private proveedorService:DataProveedorService,
-   private msj:ToastrService ) { }
+   private msj:ToastrService,private servicePer:PersonaTribunalService) { }
 
    //Listas
   listaTipoId= new Array();
@@ -44,7 +46,7 @@ export class ProveedorComponent implements OnInit {
   EsconderDatosPersonales:boolean=true;
   readonly:boolean=false;
   TextoPrincipal:boolean=true;
-
+  PersonaTri = new TbPersonasTribunalS();
 
   ngOnInit() {
     
@@ -207,6 +209,20 @@ export class ProveedorComponent implements OnInit {
     
   }
  
-  
+  Buscar(Id: string) {
+    this.servicePer.ConsultarById(Id).subscribe(data => {
+      this.PersonaTri = data;
+
+      this.Proveedor.TbPersona.Nombre = this.PersonaTri.Nombre;
+      this.Proveedor.TbPersona.Apellido1 = this.PersonaTri.Apellido1;
+      this.Proveedor.TbPersona.Apellido2 = this.PersonaTri.Apellido2;
+      if (this.PersonaTri.Sexo == 'Femenino') {
+        this.Proveedor.TbPersona.Sexo = 2;
+      } else {
+        this.Proveedor.TbPersona.Sexo = 1;
+      }
+
+    });
+  }
 
 }

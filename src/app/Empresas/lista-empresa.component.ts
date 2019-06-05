@@ -6,6 +6,9 @@ import { TbParametrosEmpresa } from '../../Models/ParametrosEmpresa';
 import { ParametrosService } from 'src/Services/ParametrosEmpresa/parametros.service';
 import { DataTipoIdService } from 'src/Services/TipoId/tipo-id.service';
 import { TbTipoId } from 'src/Models/TipoId';
+import { PersonaTribunalService } from 'src/Services/PersonaTribunal/persona-tribunal.service';
+import { TbPersonasTribunalS } from 'src/Models/PersonaTribunal';
+import { empty } from 'rxjs';
 
 
 @Component({
@@ -14,21 +17,23 @@ import { TbTipoId } from 'src/Models/TipoId';
   styleUrls: ['./lista-empresa.component.css']
 })
 export class ListaEmpresaComponent implements OnInit {
+
   modifica:boolean = false;
   bandera: boolean = false;
-  Empresa: TbEmpresa = new TbEmpresa();
-  Persona: TbPersona  = new TbPersona();
-  ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
-  ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
-  ListEmpre: Array<TbEmpresa> = new Array();
-  listaTipoId:Array<TbTipoId>;
   tipoId: number = 1;
   PrecioBase: number = 1;
 
+  ListaParametrosEmpre : Array<TbParametrosEmpresa> = new Array(); 
+  ListEmpre: Array<TbEmpresa> = new Array();
+  listaTipoId:Array<TbTipoId>;
+
+  ParametrosEmpresa: TbParametrosEmpresa = new TbParametrosEmpresa();
+  Empresa: TbEmpresa = new TbEmpresa();
+  Persona: TbPersona  = new TbPersona();
+  PersonaTri = new TbPersonasTribunalS();
 
 
-
-  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService,private parametrosEmpreService: ParametrosService) { 
+  constructor(private empresaService: EmpresaService,private tipoIdService:DataTipoIdService,private parametrosEmpreService: ParametrosService, private servicePer:PersonaTribunalService) { 
     this.consultarTodos();
     this.obtenerListaTipoId();
 
@@ -141,4 +146,16 @@ export class ListaEmpresaComponent implements OnInit {
       }
     }
   }
+
+  Buscar(Id: string) {
+    this.servicePer.ConsultarById(Id).subscribe(data => {
+      this.PersonaTri = data;
+
+      this.Empresa.NombreComercial = this.PersonaTri.Nombre;
+      this.Persona.Apellido1 = this.PersonaTri.Apellido1;
+      this.Persona.Apellido2 = this.PersonaTri.Apellido2;
+      
+    });
+  }
+
 }
