@@ -5,18 +5,26 @@
     </div>
   </div>
 </div>
+<br>
 <div class="container-fluid">
   <br>
   <form class="form-inline">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">Abono General:</span>
+        <span class="input-group-text bg-success text-white">Abono General:</span>
       </div>
       <input type="number" placeholder="Digite el monto" class="form-control" name="Monto_Abono"
         [(ngModel)]="Monto_Abono">
     </div>
   </form>
   <button class="btn btn-outline-success" (click)="AbonoGeneral(Monto_Abono)">Abonar</button>
+  <br>
+  <div class="md-form form-group mb-3">
+    <input mdbInput type="text" id="form1" oninput="this.value = this.value.toUpperCase()"
+      style="text-transform: uppercase; width:10cm" class="form-control" [(ngModel)]="buscar">
+    <label for="form1" class="">Buscar</label>
+  </div>
+
   <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="table-responsive">
@@ -36,20 +44,38 @@
           </thead>
           <tbody class="text-center">
             <tr *ngFor="let Documento of listaDoc" mdbTableCol>
-              <td>{{Documento.Id}}</td>
-              <td>{{Documento.Fecha| date:'medium'}}</td>
-              <td>{{Documento.IdCliente}}</td>
-              <td>{{Documento.TbClientes.TbPersona.Nombre}}{{Documento.TbClientes.TbPersona.Apellido1}}{{Documento.TbClientes.TbPersona.Apellido2}}</td>
-              <td>{{Documento.Plazo}}</td>
-              <!--IMPORTANTE, NO MODIFICAR-->
-              <td>
-                  <font *ngIf="Documento.mensaje=='Vencida'" font-weight="bold" size="4px" color="red" > {{Documento.mensaje}} </font>
-                  <font *ngIf="Documento.mensaje=='Al Día'" size="4px" color="green"> {{Documento.mensaje}} </font>
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) ||  Documento.Id==buscar || buscar==null || buscar==' '">
+                {{Documento.Id}}</td>
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                {{Documento.Fecha| date:'medium'}}</td>
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                {{Documento.IdCliente}}</td>
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                {{Documento.TbClientes.TbPersona.Nombre}}{{Documento.TbClientes.TbPersona.Apellido1}}{{Documento.TbClientes.TbPersona.Apellido2}}
               </td>
-              <!--IMPORTANTE, NO MODIFICAR-->              
-              <td><button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)"
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                {{Documento.Plazo}}</td>
+              <!--IMPORTANTE, NO MODIFICAR-->
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                <font *ngIf="Documento.mensaje=='Vencida'" font-weight="bold" size="4px" color="red">
+                  {{Documento.mensaje}} </font>
+                <font *ngIf="Documento.mensaje=='Al Día'" font-weight="bold" size="4px" color="green">
+                  {{Documento.mensaje}} </font>
+              </td>
+              <!--IMPORTANTE, NO MODIFICAR-->
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                <button class="btn btn-outline-primary" (click)="consultarDetalles(Documento)"
                   [routerLink]="['/detalle']">Detalle</button></td>
-              <td><button class="btn btn-outline-warning text-white" (click)="abono(Documento)"
+              <td
+                *ngIf="Documento.Fecha.includes(buscar) || Documento.TbClientes.TbPersona.Apellido2.includes(buscar) || Documento.TbClientes.TbPersona.Apellido1.includes(buscar) || Documento.TbClientes.TbPersona.Nombre.includes(buscar) || Documento.Id==buscar || buscar==null || buscar==' '">
+                <button class="btn btn-outline-warning text-white" (click)="abono(Documento)"
                   [routerLink]="['/abo']">Abonar</button></td>
             </tr>
           </tbody>

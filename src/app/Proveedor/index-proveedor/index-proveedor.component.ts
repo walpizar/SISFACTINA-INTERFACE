@@ -19,6 +19,7 @@ export class IndexProveedorComponent implements OnInit {
   listaTipoId = new Array();
   Entidadeliminar:TbProveedores;
   texto:string="?";
+  buscar:string;
   ngOnInit() {
 
     this.ConsultarProveedores();

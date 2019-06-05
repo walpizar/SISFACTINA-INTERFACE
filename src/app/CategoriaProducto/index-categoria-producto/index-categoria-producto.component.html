@@ -17,9 +17,7 @@
             <tr class="text-center" mdbTableCol>
               <th scope="col">Id</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Descripcion</th>
-              <th scope="col">Fecha Creacion</th>
-              <th scope="col"> Fecha Ultima Modificacion</th>
+              <th scope="col">Descripcion</th>             
               <th></th>
               <th>Opciones</th>
               <th></th>
@@ -30,9 +28,7 @@
             <tr *ngFor="let CategoriaProducto of listaCatProduct" mdbTableCol>
               <td>{{CategoriaProducto.Id}}</td>
               <td>{{CategoriaProducto.Nombre}}</td>
-              <td>{{CategoriaProducto.Descripcion}}</td>
-              <td>{{CategoriaProducto.FechaCrea| date:'medium'}}</td>
-              <td>{{CategoriaProducto.FechaUltMod| date:'medium'}}</td>
+              <td>{{CategoriaProducto.Descripcion}}</td>              
               <td><button class="btn btn-outline-primary" (click)="consultarDetalles(CategoriaProducto)"
                   [routerLink]="['/detailscateproduct']">Detalle</button></td>
               <td><button class="btn btn-outline-warning text-white" (click)="Modificar(CategoriaProducto)"

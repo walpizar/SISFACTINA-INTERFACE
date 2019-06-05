@@ -53,22 +53,30 @@ export class IndexAbonoComponent implements OnInit {
   listaDoc2 = new Array();
   AbonoData = new TbAbonos();
   listaDocumentosFechas = new Array(); //lista para almacenar los documentos de la base de datos ordenados por fecha de la mas antigua a la mas reciente.
-  idclient: string;
+  idEmpresa: string;
   listaAbonos = new Array();
   listaProductos = new Array();
   MontoTotalAbono: number = 0;
   MontoTotalLinea: number = 0;
   Monto_Abono: number = 0;
   resul: number = 0;
+  buscar:string;
   consultarTodos() {
-    this.idclient = "603480811"
-    this.docService.ConsultarTodosAbono(this.idclient).subscribe(data => {
+    this.idEmpresa = "603920529"
+    this.docService.ConsultarTodosAbono(this.idEmpresa).subscribe(data => {
       this.listaDoc = data;
       for (const iterator of this.listaDoc) {
               
         iterator.TbClientes=new TbClientes();
         iterator.TbClientes.TbPersona=new TbPersona();
-        this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{iterator.TbClientes.TbPersona=data})
+        console.log(iterator.IdCliente);
+        this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{          
+            iterator.TbClientes.TbPersona=data
+        },err=>{
+          iterator.TbClientes.TbPersona.Nombre="Sin Nombre";
+          iterator.TbClientes.TbPersona.Apellido1="Sin Nombre";
+          iterator.TbClientes.TbPersona.Apellido2="Sin Nombre";
+        })
         iterator.mensaje=this.ValidarVencimientoCredito(iterator.Fecha,iterator.Plazo);
       }
       this.AgregarProducto();      
@@ -81,20 +89,22 @@ export class IndexAbonoComponent implements OnInit {
     })
   }
 
-  AgregarProducto() {
-    console.log(this.listaDoc);
-    console.log(this.listaProductos);
-    for (const iterator of this.listaDoc) {      
-      for (const itera of this.listaProductos) {
-        if (iterator.TbDetalleDocumento.IdProducto==itera.IdProducto) {          
-          iterator.TbDetalleDocumento.IdProductoNavigation=itera;          
+  AgregarProducto() { 
+     
+    for (const iterator of this.listaDoc) {
+      for (const detalle of iterator.TbDetalleDocumento) {
+        for (const itera of this.listaProductos) {          
+          if (detalle.IdProducto==itera.IdProducto) {          
+            detalle.IdProductoNavigation=itera;
+                     
+          }
         }
-      }
-    }
-   
-    console.log(this.listaDoc);
-    
+      }      
+     
+    }  
+        
   }
+
   consultarDetalles(DocumentoDetails: TbDocumento) {
 
     this.DetalleService.recibirDetalles(DocumentoDetails);
@@ -115,7 +125,6 @@ export class IndexAbonoComponent implements OnInit {
     var date=dateformat(ahora,"isoDateTime");               
     var fechaActual = moment(date);
     var result=fechaActual.diff(fechaFactura, 'days');
-    console.log(result);
     if (result>plazo) {
       return "Vencida";
     } else {
@@ -127,7 +136,7 @@ export class IndexAbonoComponent implements OnInit {
 
   AbonoGeneral(mont_abono: number) {
     this.msj.show("Realizando los abonos,espera unos minutos");
-    this.docService.ConsultarPorFechas(this.idclient).subscribe(data => {
+    this.docService.ConsultarPorFechas(this.idEmpresa).subscribe(data => {
       this.listaDocumentosFechas = data
 
       //recorre los documentos
