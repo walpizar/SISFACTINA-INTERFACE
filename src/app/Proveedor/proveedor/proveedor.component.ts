@@ -45,6 +45,7 @@ export class ProveedorComponent implements OnInit {
   BotonModificar:boolean=false;
   EsconderDatosPersonales:boolean=true;
   readonly:boolean=false;
+  disabled:boolean=false;
   TextoPrincipal:boolean=true;
   PersonaTri = new TbPersonasTribunalS();
 
@@ -59,6 +60,7 @@ export class ProveedorComponent implements OnInit {
     this.ConsultarTipoId();
     if (this.Modificar) {
       this.readonly=true;
+      this.disabled=true;
       this.TextoPrincipal=false;
       this.Proveedor=this.proveedorService.Proveedor;
       this.BotonCrear=false;
@@ -175,12 +177,14 @@ export class ProveedorComponent implements OnInit {
   }
   ModificarProveedor(pro:TbProveedores){
     try {
+        
       this.msj.warning("Realizando la modificacion,espera un momento");
       this.proveedorService.Modificar(pro).subscribe(
         data=>{this.msj.success("Proveedor modificado correctamente")
         this.BotonCrear=true;
         this.BotonModificar=false;
         this.readonly=false;
+        this.disabled=false;
         this.Proveedor=new TbProveedores();
         this.Proveedor.TbPersona= new TbPersona();
         this.proveedorService.Modify=false;        
@@ -199,6 +203,7 @@ export class ProveedorComponent implements OnInit {
       this.BotonCrear=true;
       this.BotonModificar=false;
       this.readonly=false;
+      this.disabled=false;
       this.Proveedor=new TbProveedores();
       this.Proveedor.TbPersona= new TbPersona();
       this.proveedorService.Modify=false;

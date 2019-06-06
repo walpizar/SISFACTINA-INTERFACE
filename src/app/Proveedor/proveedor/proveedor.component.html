@@ -29,9 +29,9 @@
         </div>
         <div class="input-group mb-3 col-md-4 ">
           <div class="input-group-prepend">
-            <span class="input-group-text">TipoId:</span>
+            <span class="input-group-text">Tipo Id:</span>
           </div>
-          <select class="form-control" name="TbPersona.TipoId" [(ngModel)]="Proveedor.TbPersona.TipoId">
+          <select class="form-control" name="TbPersona.TipoId" [(ngModel)]="Proveedor.TbPersona.TipoId" [disabled]="disabled">
             <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">
               {{TipoId.Nombre}}
             </option>
@@ -39,7 +39,7 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CorreoElectronico:</span>
+            <span class="input-group-text">Correo Electronico:</span>
           </div>
 
           <input type="text" class="form-control" name="TbPersona.CorreoElectronico"
@@ -71,13 +71,13 @@
             <span class="input-group-text">Telefono:</span>
           </div>
 
-          <input type="number" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" required>
+          <input type="text" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" required>
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CodigoPaisTel:</span>
+            <span class="input-group-text">Codigo Pais Tel:</span>
           </div>
-          <input type="number" class="form-control" name="TbPersona.CodigoPaisTel"
+          <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel">
         </div>
       </div>
@@ -97,16 +97,16 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CodigoPaisFax:</span>
+            <span class="input-group-text">Codigo Pais Fax:</span>
           </div>
-          <input type="number" class="form-control" name="TbPersona.CodigoPaisFax"
+          <input type="text" class="form-control" name="TbPersona.CodigoPaisFax"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax">
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Fax:</span>
           </div>
-          <input type="number" class="form-control" name="TbPersona.Fax" [(ngModel)]="Proveedor.TbPersona.Fax">
+          <input type="text" class="form-control" name="TbPersona.Fax" [(ngModel)]="Proveedor.TbPersona.Fax">
         </div>
       </div>
       <div class="row">
@@ -167,7 +167,7 @@
       <div class="row">
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">ContactoProveedor:</span>
+            <span class="input-group-text">Contacto Proveedor:</span>
           </div>
           <input type="text" class="form-control" name="ContactoProveedor" [(ngModel)]="Proveedor.ContactoProveedor">
         </div>
@@ -182,20 +182,20 @@
             <span class="input-group-text">Fax:</span>
           </div>
 
-          <input type="number" class="form-control" name="Fax" [(ngModel)]="Proveedor.Fax">
+          <input type="text" class="form-control" name="Fax" [(ngModel)]="Proveedor.Fax">
         </div>
       </div>
       <div class="row">
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">EncargadoContabilidad:</span>
+            <span class="input-group-text">Encargado Contabilidad:</span>
           </div>
           <input type="text" class="form-control" name="EncargadoConta" [(ngModel)]="Proveedor.EncargadoConta">
         </div>
 
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">NombreTributario:</span>
+            <span class="input-group-text">Nombre Tributario:</span>
           </div>
           <input type="text" class="form-control" name="NombreTributario" [(ngModel)]="Proveedor.NombreTributario">
         </div>
@@ -203,16 +203,16 @@
       <div class="row">
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">CorreoElectContabilidad:</span>
+            <span class="input-group-text">Correo ElectContabilidad:</span>
           </div>
 
           <input type="text" class="form-control" name="CorreoElectConta" [(ngModel)]="Proveedor.CorreoElectConta">
         </div>
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">CuentaBancaria:</span>
+            <span class="input-group-text">Cuenta Bancaria:</span>
           </div>
-          <input type="number" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria">
+          <input type="text" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria">
         </div>
       </div>
     </div>

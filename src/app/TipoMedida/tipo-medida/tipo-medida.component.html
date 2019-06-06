@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12 pt-3 pb-3 fondo-color">
+          <h3 *ngIf="botonCrear" class="text-center">Crear Tipo Medida</h3>
+          <h3 *ngIf="botonModificar" class="text-center">Modificar Tipo Medida</h3>
+      </div>
+  </div>
+</div>
+<br>
+<div class="container" style="text-align: center">
+  <div class="row">
+      <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Nombre:</span>
+          </div>
+          <input type="text" class="form-control" name="TipoMedida.Nombre"
+              [(ngModel)]="TipoMedida.Nombre">
+      </div>
+      <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+              <span class="input-group-text">Descripcion:</span>
+          </div>
+          <input type="text" class="form-control" name="TipoMedida.Descripcion"
+              [(ngModel)]="TipoMedida.Descripcion">
+      </div>
+      <div class="input-group mb-3 col-md-4">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Nomenclatura:</span>
+        </div>
+        <input type="text" class="form-control" name="TipoMedida.Nomenclatura"
+            [(ngModel)]="TipoMedida.Nomenclatura">
+    </div>
+  </div>
+  <button *ngIf="botonCrear" class="btn btn-outline-success" (click)="agregar(TipoMedida)">Crear</button>
+  <button *ngIf="botonModificar" class="btn btn-outline-success"
+      (click)="Modificar(TipoMedida)">Modificar</button>
+  <button class="btn btn-outline-danger" (click)="Cancelar()" routerLink="/IndexTipoMedida">Cancelar</button>
+</div>

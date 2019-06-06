@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center text-white">Tipo Medidas</h3>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+
+  <button class="btn btn-outline-success" routerLink="/tipomedida">Nuevo Tipo Medida</button>
+
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="table-responsive">
+        <table class="table table-hover" mdbTable>
+          <thead class="titulo-tabla" class="unique-color-dark white-text">
+            <tr class="text-center" mdbTableCol>
+              <th scope="col">Id</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Nomenclatura</th>                         
+              <th></th>
+              <th>Opciones</th>
+              <th></th>
+            </tr>
+
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let TipoMedida of listaTipoMedida" mdbTableCol>
+              <td>{{TipoMedida.IdTipoMedida}}</td>
+              <td>{{TipoMedida.Nombre}}</td>
+              <td>{{TipoMedida.Nomenclatura}}</td>                           
+              <td><button class="btn btn-outline-primary" (click)="consultarDetalles(TipoMedida)"
+                  [routerLink]="['/DetalleTipoMedida']">Detalle</button></td>
+              <td><button class="btn btn-outline-warning text-white" (click)="Modificar(TipoMedida)"
+                  [routerLink]="['/tipomedida']">Modificar</button></td>
+              <td><button class="btn btn-outline-danger text-white" (click)="EnviaDatoEliminar(TipoMedida)"
+                  (click)="frame.show()">Eliminar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-danger" role="document">
+          <!--Content-->
+          <div class="modal-content text-center">
+            <!--Header-->
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">Eliminar Tipo Medida</p>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+              <p>Desea eliminar el Tipo de Medida "{{texto}}" ?</p>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+              <a (click)="EliminarCategoria()" (click)="frame.hide()" mdbBtn color="danger" class="waves-light"
+                mdbWavesEffect>Si</a>
+              <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect
+                data-dismiss="modal" (click)="frame.hide()">No</a>
+            </div>
+          </div>
+          <!--/.Content-->
+        </div>
+      </div>

@@ -8,31 +8,24 @@
 </div>
 <br>
 <div class="container" style="text-align: center">
-    <div class="table-responsive-md col-md-12  border p-3">
-        <table class="table">
-
-            <tr>
-                <td>
-                    Nombre
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="CategoriaProducto.Nombre"
-                            [(ngModel)]="CategoriaProducto.Nombre" placeholder="Enter Nombre" required>
-                    </div>
-                </td>
-                <td>
-                    Descripcion
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="CategoriaProducto.Descripcion"
-                            [(ngModel)]="CategoriaProducto.Descripcion" placeholder="Enter Descipcion">
-                    </div>
-                </td>
-            </tr>
-
-        </table>
-        <button *ngIf="botonCrear" class="btn btn-outline-success" (click)="agregar(CategoriaProducto)">Crear</button>
-        <button *ngIf="botonModificar" class="btn btn-outline-success"
-            (click)="Modificar(CategoriaProducto)">Modificar</button>
-        <button class="btn btn-outline-danger" (click)="Cancelar()"
-            routerLink="/Indexcategoriaproduct">Cancelar</button>
+    <div class="row">
+        <div class="input-group mb-3 col-md-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Nombre:</span>
+            </div>
+            <input type="text" class="form-control" name="CategoriaProducto.Nombre"
+                [(ngModel)]="CategoriaProducto.Nombre">
+        </div>
+        <div class="input-group mb-3 col-md-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Descripcion:</span>
+            </div>
+            <input type="text" class="form-control" name="CategoriaProducto.Descripcion"
+                [(ngModel)]="CategoriaProducto.Descripcion">
+        </div>
     </div>
+    <button *ngIf="botonCrear" class="btn btn-outline-success" (click)="agregar(CategoriaProducto)">Crear</button>
+    <button *ngIf="botonModificar" class="btn btn-outline-success"
+        (click)="Modificar(CategoriaProducto)">Modificar</button>
+    <button class="btn btn-outline-danger" (click)="Cancelar()" routerLink="/Indexcategoriaproduct">Cancelar</button>
 </div>

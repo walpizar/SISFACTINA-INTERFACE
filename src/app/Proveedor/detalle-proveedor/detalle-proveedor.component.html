@@ -25,14 +25,14 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">TipoId:</span>
+            <span class="input-group-text">Tipo Id:</span>
           </div>
           <input type="text" class="form-control" name="TbPersona.Tipo.Nombre"
             [(ngModel)]="Proveedor.TbPersona.Tipo.Nombre" readonly>
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CorreoElectronico:</span>
+            <span class="input-group-text">Correo Electronico:</span>
           </div>
 
           <input type="text" class="form-control" name="TbPersona.CorreoElectronico"
@@ -58,7 +58,7 @@
       <div class="row">
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">FechaNac:</span>
+            <span class="input-group-text">Fecha Nacimiento:</span>
           </div>
 
           <input type="datetime" class="form-control" name="TbPersona.FechaNac"
@@ -68,7 +68,7 @@
           <div class="input-group-prepend">
             <span class="input-group-text">Sexo:</span>
           </div>
-          <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo" readonly>
+          <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo" disabled>
             <option value="1">
               Hombre
             </option>
@@ -79,7 +79,7 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CodigoPaisTel:</span>
+            <span class="input-group-text">Codigo Pais Tel:</span>
           </div>
           <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel" readonly>
@@ -97,7 +97,7 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">CodigoPaisFax:</span>
+            <span class="input-group-text">Codigo Pais Fax:</span>
           </div>
           <input type="text" class="form-control" name="TbPersona.CodigoPaisFax"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax" readonly>
@@ -149,7 +149,7 @@
       <div class="row">
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">ContactoProveedor:</span>
+            <span class="input-group-text">Contacto Proveedor:</span>
           </div>
           <input type="text" class="form-control" name="ContactoProveedor" [(ngModel)]="Proveedor.ContactoProveedor"
             readonly>
@@ -179,7 +179,7 @@
 
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">NombreTributario:</span>
+            <span class="input-group-text">Nombre Tributario:</span>
           </div>
           <input type="text" class="form-control" name="NombreTributario" [(ngModel)]="Proveedor.NombreTributario"
             readonly>
@@ -190,7 +190,7 @@
       <div class="row">
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">CorreoElectronico Contabilidad:</span>
+            <span class="input-group-text">Correo Electronico Contabilidad:</span>
           </div>
 
           <input type="text" class="form-control" name="CorreoElectConta" [(ngModel)]="Proveedor.CorreoElectConta"
@@ -198,7 +198,7 @@
         </div>
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">CuentaBancaria:</span>
+            <span class="input-group-text">Cuenta Bancaria:</span>
           </div>
           <input type="text" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria" readonly>
         </div>

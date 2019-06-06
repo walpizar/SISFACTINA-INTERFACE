@@ -37,6 +37,9 @@ import { UsuarioComponent } from './usuario/usuario.component';
 
 import { ModificarCliComponent } from './Clientes/modificar-cli/modificar-cli.component';
 import {MomentModule} from 'ngx-moment';
+import { IndexTipoMedidaComponent } from './TipoMedida/index-tipo-medida/index-tipo-medida.component';
+import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/detalle-tipo-medida.component';
+import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
 
 
 @NgModule({
@@ -66,7 +69,10 @@ import {MomentModule} from 'ngx-moment';
     ImpuestosComponent, 
     LoginComponent,
     RegistroComponent,
-    UsuarioComponent 
+    UsuarioComponent,
+    IndexTipoMedidaComponent,
+    DetalleTipoMedidaComponent,
+    TipoMedidaComponent 
   ],
   imports: [
     BrowserModule,

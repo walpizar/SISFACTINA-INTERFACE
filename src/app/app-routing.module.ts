@@ -23,6 +23,9 @@ import { RegistroComponent } from './usuario/registro/registro.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { AuthGuard } from './usuario/auth/auth.guard';
 import { AppComponent } from './app.component';
+import { IndexTipoMedidaComponent } from './TipoMedida/index-tipo-medida/index-tipo-medida.component';
+import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/detalle-tipo-medida.component';
+import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -50,7 +53,10 @@ const routes: Routes = [
       {path : 'registro', component : RegistroComponent},
       {path : 'login', component : LoginComponent}
     ]  },
-  {path:'inicio', component:AppComponent,canActivate:[AuthGuard]}
+  {path:'inicio', component:AppComponent,canActivate:[AuthGuard]},
+  {path:'IndexTipoMedida',component:IndexTipoMedidaComponent},
+  {path:'DetalleTipoMedida',component:DetalleTipoMedidaComponent},
+  {path:'tipomedida',component:TipoMedidaComponent}
 
 ];
 
