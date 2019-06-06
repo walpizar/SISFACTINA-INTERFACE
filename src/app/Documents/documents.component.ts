@@ -12,7 +12,6 @@ export class DocumentsComponent implements OnInit {
   
 
   docBusca = new Busqueda();
-  listaBusq = new Array;
   // lista con documentos de fecha actual
   ListaDocActules = new Array();
   // lista con doc todos
@@ -47,39 +46,16 @@ export class DocumentsComponent implements OnInit {
   }
 
   FiltrarLista(doc: Busqueda): void {
-    // creo una varible para almacenar el resultado de la busqueda
-    // this.ListaDocActules = new Array();
+
+    // asigno datos de todos los documentos
     this.ListaDocActules = this.ListaDocGeneral;
 
     if (doc.IdCliente != null) {
-
      this.ListaDocActules= this.ListaDocActules.filter(x => x.IdCliente !=null && x.IdCliente.trim() == doc.IdCliente.trim());
-      /*this.listaBusq = new Array;
-      for (let doc2 of this.ListaDocActules) {
-        // verifico si es el mismo dato
-        if (doc2.IdCliente != null) {
-          if (doc2.IdCliente.trim() == doc.IdCliente) {
-            this.listaBusq.push(doc2);
-          }
-
-          this.ListaDocActules= this.ListaDocActules.filter(x => x.IdCliente == doc.IdCliente.trim());
-        }
-      }
-      this.ListaDocActules = this.listaBusq;*/
     }
-
     if (doc.TipoDocumento != null) {
-      // aqui puede devolver mas de uno
-     /* for (let doc2 of this.ListaDocActules) {
-        // agrego a la lista
-        if (doc2.TipoDocumento == doc.TipoDocumento) {
-          this.listaBusq.push(doc2);
-        }
-      }
-      this.ListaDocActules = this.listaBusq;*/
       this.ListaDocActules= this.ListaDocActules.filter(x => x.TipoDocumento !=null && x.TipoDocumento==doc.TipoDocumento);
     }
-
     if (doc.Id != null) {
       this.ListaDocActules = this.ListaDocActules.filter(x => x.Id != null && x.Id == doc.Id);
     }
@@ -89,8 +65,6 @@ export class DocumentsComponent implements OnInit {
     if (doc.Consecutivo != null) {
       this.ListaDocActules = this.ListaDocActules.filter(x => x.Consecutivo != null && x.Consecutivo == doc.Consecutivo);
     }
-    
-    //retorno 
   }
 
   reCargar() 
@@ -99,7 +73,5 @@ export class DocumentsComponent implements OnInit {
     this.documetsAct();
     // referesca el objeto
     this.docBusca = new Busqueda();
-    // refresca la lista
-    this.listaBusq = new Array();
   }
 }
