@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataPersonaService } from './data-persona.service';
+import { DataPersonaService } from './persona.service';
 
 describe('DataPersonaService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

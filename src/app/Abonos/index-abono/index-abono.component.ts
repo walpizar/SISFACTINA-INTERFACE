@@ -6,12 +6,13 @@ import { FacturaService } from 'src/Services/Factura/factura.service';
 import { TbDocumento } from 'src/Models/Documento';
 import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
 import { ToastrService } from 'ngx-toastr';
-import { DataPersonaService } from 'src/Services/Persona/data-persona.service';
+import { DataPersonaService } from 'src/Services/Persona/persona.service';
 import { TbClientes } from 'src/Models/Cliente';
 import { TbPersona } from 'src/Models/Personas';
 import * as moment from 'moment';
 import * as dateformat from 'dateformat';
 import { ProducserviceService } from 'src/Services/Producto/producservice.service';
+import { TipoPagoService } from 'src/Services/TipoPago/tipo-pago.service';
 
 
 
@@ -26,31 +27,13 @@ import { ProducserviceService } from 'src/Services/Producto/producservice.servic
 export class IndexAbonoComponent implements OnInit {
 
   constructor(private docService: FacturaService,
-    private DetalleService: DataDetalleDocService, private abonoservice: DataAbonosService, private msj: ToastrService,private personaService:DataPersonaService,
+    private DetalleService: DataDetalleDocService, private abonoservice: DataAbonosService, private msj: ToastrService,private tipoPagoService:TipoPagoService,
     private dataproducto:ProducserviceService) { }
 
-  ngOnInit() {
-    this.consultarProductos();
-    this.consultarTodos();
-    this.ConsultarAbonos();
-    
-    
-  }
- 
-  AgregarPersona() {
-    for (const iterator of this.listaDoc) {
-      this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{iterator.TbClientes.TbPersona=data})
-    }
-  }
-  ConsultarAbonos() {
-    this.abonoservice.consultaTodos().subscribe(data => {
-      this.listaAbonos = data;
-    })
-  }
-
-  detalle: boolean = false;
+    detalle: boolean = false;
   listaDoc = new Array();
   listaDoc2 = new Array();
+  listaTipoPago = new Array();
   AbonoData = new TbAbonos();
   listaDocumentosFechas = new Array(); //lista para almacenar los documentos de la base de datos ordenados por fecha de la mas antigua a la mas reciente.
   idEmpresa: string;
@@ -61,22 +44,36 @@ export class IndexAbonoComponent implements OnInit {
   Monto_Abono: number = 0;
   resul: number = 0;
   buscar:string;
+
+  ngOnInit() {
+    this.ConsultarTipoPago();
+    this.consultarProductos();
+    this.consultarTodos();
+    this.ConsultarAbonos();    
+    
+  }
+ 
+  ConsultarTipoPago() {
+    this.tipoPagoService.getListTipoPago().subscribe(data=>{this.listaTipoPago=data})
+  }
+  ConsultarAbonos() {
+    this.abonoservice.consultaTodos().subscribe(data => {
+      this.listaAbonos = data;
+    })
+  }
+  
   consultarTodos() {
     this.idEmpresa = "603920529"
     this.docService.ConsultarTodosAbono(this.idEmpresa).subscribe(data => {
       this.listaDoc = data;
-      for (const iterator of this.listaDoc) {
-              
-        iterator.TbClientes=new TbClientes();
-        iterator.TbClientes.TbPersona=new TbPersona();
-        console.log(iterator.IdCliente);
-        this.personaService.getDataID(iterator.IdCliente,iterator.TipoIdCliente).subscribe(data=>{          
-            iterator.TbClientes.TbPersona=data
-        },err=>{
-          iterator.TbClientes.TbPersona.Nombre="Sin Nombre";
-          iterator.TbClientes.TbPersona.Apellido1="Sin Nombre";
-          iterator.TbClientes.TbPersona.Apellido2="Sin Nombre";
-        })
+      console.log(this.listaTipoPago);
+      for (const iterator of this.listaDoc) {        
+            for (const pago of this.listaTipoPago) {
+              if (iterator.TipoPago==pago.Id) {
+                iterator.TipoPagoNavigation=pago
+              }
+            }  
+        
         iterator.mensaje=this.ValidarVencimientoCredito(iterator.Fecha,iterator.Plazo);
       }
       this.AgregarProducto();      

@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 pt-3 pb-3 fondo-color">
+      <h3 class="text-center text-white">Validación Facturas Hacienda</h3>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container-fluid border p-2 mt-4 pb-4 rounded">
+  <div class="row">
+    <div class="col-md-12"> 
+      <h2 class="titulo">Busqueda</h2>
+      <hr>
+    </div> 
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+    <!-- buscadores -->
+      <div class="md-form form-group mb-3">
+        <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Id">
+        <label for="form1" class="">ID</label>
+      </div>
+
+      <div class="md-form form-group mb-3">
+          <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Clave">
+          <label for="form1" class="">Clave</label>
+      </div>
+      
+      <div class="md-form form-group mb-3">
+          <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Consecutivo">
+          <label for="form1" class="">Consecutivo</label>
+      </div>
+    </div>
+
+    <!-- hacer un salto de linea -->
+    <div class="col-md-6">
+        <div class="md-form form-group mb-3">
+            <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.IdCliente">
+            <label for="form1" class="">ID Cliente</label>
+        </div>
+        <div class="md-form form-group mb-3">
+            <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.TipoDocumento">
+            <label for="form1" class="">Tipo Doc</label>
+        </div>
+      <span>
+        <button type="submit" class="btn btn-outline-success mr-2" (click)="FiltrarLista(docBusca)">Buscar</button>
+      </span>
+      <span>
+        <button type="submit" class="btn btn-outline-warning" (click)="refrescarListas()">Refrescar</button>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="container-fluid"> 
+
+  <div class="row">
+    <div class="col-md-12 mx-auto">
+      <div class="table-responsive">
+        <table class="table table-hover" mdbTable>
+          <thead class="titulo-tabla" class="unique-color-dark white-text">
+            <tr class="text-center" mdbTableCol>
+              <th scope="col">Id</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">IdCliente</th> 
+              <th scope="col">Nombre</th>  
+              <th scope="col">Consecutivo</th>  
+              <th scope="col">Clave</th>              
+              <th></th>
+              <th>Opciones</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="text-center">
+            <tr *ngFor="let Documento of listaValidacion" mdbTableCol>
+              <td>{{Documento.Id}}</td>
+              <td>{{Documento.Fecha| date:'medium'}}</td>
+              <td>{{Documento.IdCliente}}</td>
+              <td>{{Documento.TbClientes.TbPersona.Nombre}}</td>
+              <td>{{Documento.Consecutivo}}</td> 
+              <td>{{Documento.Clave}}</td>             
+              <td><button class="btn btn-outline-primary">Validar</button></td>
+              <td><button class="btn btn-outline-warning text-white">Enviar Correo</button></td>
+              <td></td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
