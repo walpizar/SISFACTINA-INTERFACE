@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DataPersonaService } from 'src/Services/Persona/data-persona.service';
+import { DataPersonaService } from 'src/Services/Persona/persona.service';
 import { TbDocumento } from 'src/Models/Documento';
 import { TbAbonos } from 'src/Models/Abonos';
 import { TbPersona } from 'src/Models/Personas';

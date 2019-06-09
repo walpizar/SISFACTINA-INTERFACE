@@ -50,6 +50,10 @@ export class FacturaService {
     
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/consultar/ordenfecha/"+id);
   } 
+
+  ConsultarValidadosHacienda(){
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/hacienda");
+  }
    
 }
 

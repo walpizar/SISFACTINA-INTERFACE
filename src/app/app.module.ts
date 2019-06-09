@@ -40,6 +40,7 @@ import {MomentModule} from 'ngx-moment';
 import { IndexTipoMedidaComponent } from './TipoMedida/index-tipo-medida/index-tipo-medida.component';
 import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/detalle-tipo-medida.component';
 import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
+import { ValidacionHaciendaComponent } from './Hacienda/validacion-hacienda/validacion-hacienda.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.compon
     UsuarioComponent,
     IndexTipoMedidaComponent,
     DetalleTipoMedidaComponent,
-    TipoMedidaComponent 
+    TipoMedidaComponent,
+    ValidacionHaciendaComponent 
   ],
   imports: [
     BrowserModule,
