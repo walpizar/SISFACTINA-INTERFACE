@@ -5,6 +5,7 @@ import { TbProvincia } from 'src/Models/Provincia';
 import { TbCanton } from 'src/Models/Canton';
 import { TbDistrito } from 'src/Models/Distrito';
 import { TbBarrios } from 'src/Models/Barrios';
+import { TbTipoClientes } from 'src/Models/TipoCliente';
 
 @Component({
   selector: 'app-detalle-cli',
@@ -18,15 +19,16 @@ export class DetalleCliComponent implements OnInit {
   listaDistritos = new Array();
   listaCantones = new Array();
   listaBarrios = new Array();
+  listaTipoCli = new Array();
   listaTipoId = new Array();
   listaExo = new Array();
 
   public CliActual: TbClientes;
-  sexo: string;
+  Distrito: string;
   Provincia: any;
   Canton: string;
-  Distrito: string;
   Barrio: string;
+  sexo: string;
 
   constructor(private service: DataClienteService) { }
 
@@ -35,9 +37,12 @@ export class DetalleCliComponent implements OnInit {
     this.getListProvincias();
     this.getListDistritos();
     this.getListCantones();
+    this.gettipoClientes();
     this.getListBarrios();
     this.getListTipoId();
     this.changeSex();
+    this.getExo();
+    this.changeTipoCli();
   }
 
   obtenerClienteDetalle() {
@@ -87,8 +92,21 @@ export class DetalleCliComponent implements OnInit {
     });
   }
 
+  // obtener tipos clientes
+  gettipoClientes() {
+    this.service.gettipoClientes().subscribe(data => {
+      this.listaTipoCli = data;
+    });
+  }
+
+  // obtener nombre del tipo cliente
+  changeTipoCli() {
+    let TipoCli: TbTipoClientes[];
+    TipoCli = this.listaTipoCli.filter(x => x.Cod != null && x.Cod == this.CliActual.TipoCliente);
+  }
+
   // obtener nombre del sexo
-  changeSex(){
+  changeSex() {
 
     if (this.CliActual.TbPersona.Sexo != null) {
 

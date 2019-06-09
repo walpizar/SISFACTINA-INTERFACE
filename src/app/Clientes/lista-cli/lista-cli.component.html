@@ -19,10 +19,10 @@
     </div>
     <div class="row">
       <div class="col-md-12 mx-auto">
-        <table mdbTable  class="z-depth-1 table-responsive-md " hover="true">
+        <table mdbTable class="z-depth-1 table-responsive-md" hover="true">
           <thead>
             <tr>
-              <th *ngFor="let head of headElements" scope="col">{{head}}
+              <th *ngFor="let head of headElements" scope="col">{{head}} 
               </th>
             </tr>
           </thead>
@@ -31,7 +31,7 @@
             <tr *ngFor="let per of listaClientes">
               <td>{{per.TbPersona.Nombre}}</td>
               <th scope="row">{{per.Id}}</th>
-              <td>{{per.TipoCliente}}</td>
+              <td>{{per.TipoClienteNavigation.Nombre}}</td>
 
               <td>
                 <button type="button" mdbBtn color="info" size="sm" (click)="CliActual(per)"

@@ -42,6 +42,7 @@ export class RegistroCliComponent implements OnInit {
     this.getListCantones();
     this.getListBarrios();
     this.getListTipoId();
+    this. getExo();
   }
 
   // metodos
@@ -78,7 +79,7 @@ export class RegistroCliComponent implements OnInit {
   // exoneraciones
   getExo() {
     this.service.getIdExoneracion().subscribe(data => {
-      this.listaExo = data
+      this.listaExo = data;
     });
   }
 

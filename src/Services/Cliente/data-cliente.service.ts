@@ -47,7 +47,11 @@ export class DataClienteService {
   }
 
   getIdExoneracion(){
-    return this.http.get<TbTipoId[]>('http://localhost:63630/api/exo');
+    return this.http.get<TbTipoId[]>('http://localhost:63630/api/exoneraciones');
+  }
+
+  gettipoClientes(){
+    return this.http.get<TbClientes[]>('http://localhost:63630/api/cliente/tipoCli');
   }
 
   postCliente(Cliente: TbClientes) {

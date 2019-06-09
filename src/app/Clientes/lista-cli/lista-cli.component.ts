@@ -3,6 +3,7 @@ import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { ToastrService } from 'ngx-toastr';
 import { TbClientes } from 'src/Models/Cliente';
 import { stringify } from '@angular/core/src/util';
+import { TbTipoClientes } from 'src/Models/TipoCliente';
 
 @Component({
   selector: 'app-lista-cli',
@@ -12,6 +13,7 @@ import { stringify } from '@angular/core/src/util';
 export class ListaCliComponent implements OnInit {
 
   listaClientes = new Array();
+  listaTipoCli = new Array();
   searchText: string = '';
   previous: string;
   CliSelect: TbClientes;
@@ -22,8 +24,15 @@ export class ListaCliComponent implements OnInit {
 
   ngOnInit() {
     this.getListaCli();
+    this.gettipoClientes();
   }
 
+  // obtener tipos clientes
+  gettipoClientes(){
+    this.service.gettipoClientes().subscribe(data => {
+      this.listaTipoCli = data;
+    });
+  }
 
   // obtener clientes
   getListaCli() {

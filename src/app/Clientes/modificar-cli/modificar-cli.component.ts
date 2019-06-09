@@ -40,6 +40,7 @@ export class ModificarCliComponent implements OnInit {
     this.getListBarrios();
     this.getListTipoId();
     this.getClienteModif();
+    this.getExo();
   }
 
   getClienteModif() {
