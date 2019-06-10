@@ -25,14 +25,18 @@ export class RegistroCliComponent implements OnInit {
   comboDistritos = new Array();
   comboCantones = new Array();
   comboBarrios = new Array();
-  
+
   Provincia: string;
   Distrito: string;
   Canton: string;
-  
+
   Cliente = new TbClientes();
   Persona = new TbPersona();
   PersonaTri = new TbPersonasTribunalS();
+
+  // btns de acceso
+  MostrarVolver: boolean;
+  MostrarCrear: boolean;
 
   constructor(private service: DataClienteService, private msjAlert: ToastrService,private servicePer:PersonaTribunalService) { }
 
@@ -43,6 +47,8 @@ export class RegistroCliComponent implements OnInit {
     this.getListBarrios();
     this.getListTipoId();
     this. getExo();
+    this.MostrarCrear = true;
+    this.MostrarVolver = false;
   }
 
   // metodos
@@ -137,7 +143,11 @@ export class RegistroCliComponent implements OnInit {
       Cli.Estado = true;
       Cli.TipoId = Pers.TipoId;
       this.service.postCliente(Cli).subscribe(
-        res => { this.msjAlert.success('Registro Realizado', 'Cliente') },
+        res => {
+          this.msjAlert.success('Registro Realizado', 'Cliente');
+          this.MostrarCrear = false;
+          this.MostrarVolver = true;
+        },
         err => { this.msjAlert.error('Error de registro', 'Cliente') }
       );
 

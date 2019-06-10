@@ -218,13 +218,19 @@
     </div>
 
     <!-- Send button -->
-    <div class="mx-5 my-5">
+    <div class="mx-5 my-5" *ngIf="MostrarCrear">
       <button class="" mdbBtn type="submit" color="success" outline="true" mdbWavesEffect
         (click)="Registrar(Cliente,Persona)">
         Enviar
       </button>
     </div>
 
+    <div class="mx-5 my-5" *ngIf="MostrarVolver">
+      <button mdbBtn type="button" color="success" outline="true" mdbWavesEffect
+        [routerLink]="['/ListaClientes']">
+        Volver
+      </button>
+    </div>
 
 
   </form>
