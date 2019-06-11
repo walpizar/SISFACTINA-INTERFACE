@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {  TbProducto } from '../../../Models/Producto';
 import { TbImpuestos  } from '../../../Models/Impuesto';
 import { TbInventario  } from '../../../Models/Inventario';
-import { ProductosService } from '../../../Services/Productos/productos.service'
-import { TbCategoriaProducto } from 'src/Models/TbCategoriaProducto';
+import { ProducserviceService } from '../../../Services/Producto/producservice.service'
+import { TbCategoriaProducto } from 'src/Models/CategoriaProducto';
 import { TbTipoMedidas } from 'src/Models/TipoMedidas';
 
 
@@ -15,7 +15,7 @@ import { TbTipoMedidas } from 'src/Models/TipoMedidas';
 })
 export class DetallesProductoComponent implements OnInit {
 
-  constructor(private service: ProductosService) { }
+  constructor(private service: ProducserviceService) { }
 
  @Input() public _pro:TbProducto;
  @Input() public _impuesto:TbImpuestos;    

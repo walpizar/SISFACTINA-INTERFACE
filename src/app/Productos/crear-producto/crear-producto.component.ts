@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../../../Services/Productos/productos.service'
+import { ProducserviceService } from '../../../Services/Producto/producservice.service'
 import { Router } from '@angular/router';
 import { TbProducto } from '../../../Models/Producto';
 import { TbImpuestos } from '../../../Models/Impuesto';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CrearProductoComponent implements OnInit {
 
-  constructor( private service: ProductosService, private router: Router, private toastr: ToastrService ) { }
+  constructor( private service: ProducserviceService, private router: Router, private toastr: ToastrService ) { }
 
   producto= new TbProducto();
   _inventario = new TbInventario();
