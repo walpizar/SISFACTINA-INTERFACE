@@ -43,7 +43,7 @@ export class IndexAbonoComponent implements OnInit {
   MontoTotalLinea: number = 0;
   Monto_Abono: number = 0;
   resul: number = 0;
-  buscar:string;
+  buscar:string=null;
 
   ngOnInit() {
     this.ConsultarTipoPago();
@@ -76,7 +76,8 @@ export class IndexAbonoComponent implements OnInit {
         
         iterator.mensaje=this.ValidarVencimientoCredito(iterator.Fecha,iterator.Plazo);
       }
-      this.AgregarProducto();      
+      this.AgregarProducto();
+      console.log(this.listaDoc)      
       
     }, error => { this.msj.error("No se encontraron registros") })
 
