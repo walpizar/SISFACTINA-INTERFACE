@@ -1,6 +1,6 @@
 <div class="container">
   <br>
-  <h1>Facturador...</h1>
+
 
   <br>
   <div class="table-responsive-md col-md-12  border p-3">
@@ -13,7 +13,8 @@
         <td>Ingrese el Id del cliente</td>
         <td>
           <div class="form-group">
-            <input type="text" class="form-control" (keyup.enter)="obtenerCliente(clienteId,tipoId)" [(ngModel)]="clienteId" placeholder="Enter ID">
+            <input type="text" class="form-control" (keyup.enter)="obtenerCliente(clienteId,tipoId)"
+              [(ngModel)]="clienteId" placeholder="Enter ID">
           </div>
         <td>Ingrese el tipo de Id</td>
 
@@ -28,7 +29,7 @@
 
         <td>
           <button type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal"
-            data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Buscar</button>
+            data-target="#myModal" (click)="frame.show()" mdbWavesEffect>Buscar</button>
 
           <div mdbModal #frame="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
             aria-labelledby="myModalLabel" aria-hidden="true">
@@ -44,43 +45,50 @@
                 </div>
                 <!--Body-->
                 <div class="modal-body" *ngIf="listaClientes.length!=0">
-                  
-                  <table class="table table-hover" >
+
+                  <table class="table table-hover">
                     <tr>
                       <td>Nombre del cliente</td>
-                      <td colspan="2"><input oninput="this.value = this.value.toUpperCase()" type="text" style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar" placeholder="Ingrese el nombre del cliente que desea buscar" ></td>
+                      <td colspan="2"><input oninput="this.value = this.value.toUpperCase()" type="text"
+                          style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar"
+                          placeholder="Ingrese el nombre del cliente que desea buscar"></td>
                     </tr>
-                    
-                      <tr>
-                        <td>Id</td>
 
-                        <td>Nombre</td>
-                        <td></td>
-                      </tr>
-                    
-                      <tr *ngFor="let clienteF of listaClientes" >
-                        <td style="text-transform: uppercase" *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">{{clienteF.Id}}</td>
-                          <td  style="text-transform: uppercase" *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
-                              {{clienteF.TbPersona.Nombre}} {{clienteF.TbPersona.Apellido1}} {{clienteF.TbPersona.Apellido2}}
-                          </td>
-                          <td *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
-                            <button type="button" size="sm" mdbBtn color="primary"  outline="true" class="waves-light btn-sm" mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)" (click)="frame.hide()">Seleccionar</button>
-                          </td>
-                      </tr>
-                      
+                    <tr>
+                      <td>Id</td>
+
+                      <td>Nombre</td>
+                      <td></td>
+                    </tr>
+
+                    <tr *ngFor="let clienteF of listaClientes">
+                      <td style="text-transform: uppercase"
+                        *ngIf=" clienteF.TbPersona.Nombre.toUpperCase().includes(buscar) || buscar==null">
+                        {{clienteF.Id}}</td>
+                      <td style="text-transform: uppercase"
+                        *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
+                        {{clienteF.TbPersona.Nombre}} {{clienteF.TbPersona.Apellido1}} {{clienteF.TbPersona.Apellido2}}
+                      </td>
+                      <td *ngIf="  clienteF.TbPersona.Nombre.toUpperCase().includes(buscar)  || buscar==null">
+                        <button type="button" size="sm" mdbBtn color="primary" outline="true" class="waves-light btn-sm"
+                          mdbWavesEffect data-dismiss="modal" (click)="seleccionarCliente(clienteF)"
+                          (click)="frame.hide()">Seleccionar</button>
+                      </td>
+                    </tr>
+
                   </table>
 
                 </div>
                 <div class="modal-body" *ngIf="listaClientes.length==0">
-                  
-                    <h3>Error</h3>
-                    <p>Posibles problemas</p>
-                    <ul>
-                      <li>No se encontraron clientes</li>
-                      <li>Posible error del servidor</li>
-                    </ul>
-  
-                  </div>
+
+                  <h3>Error</h3>
+                  <p>Posibles problemas</p>
+                  <ul>
+                    <li>No se encontraron clientes</li>
+                    <li>Posible error del servidor</li>
+                  </ul>
+
+                </div>
                 <!--Footer-->
                 <div class="modal-footer">
                   <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light"
@@ -150,7 +158,8 @@
       <tr>
         <td>Ingrese el tipo de pago</td>
         <td>
-          <div class="col-sm-10">
+            
+          <div class="col-sm-10" >
             <select class="form-control" name="select" required [(ngModel)]='tipoPago' #gender="ngModel">
               <option *ngFor="let tipoPago of listaTipoPago" [value]="tipoPago.Id">{{tipoPago.Nombre}}
               </option>
@@ -159,7 +168,11 @@
         </td>
         <td>Ingrese el tipo de Venta</td>
         <td>
-          <div class="col-sm-10" *ngIf="mostraTipoVenta != false">
+            <div class="input-group mb-3 col-md-12" *ngIf="cliente==null">
+                <input type="text" class="form-control" placeholder="CONTADO"
+                  readonly>
+              </div>
+          <div class="col-sm-10" *ngIf="mostraTipoVenta != false && cliente!=null">
             <select class="form-control" name="select" required [(ngModel)]='tipoVenta' #gender="ngModel">
               <option *ngFor="let tipoVenta of listaTipoVenta" [value]="tipoVenta.Id">{{tipoVenta.Nombre}}
               </option>
@@ -168,7 +181,8 @@
         </td>
         <td>
           <div class="input-group mb-3 col-md-12" *ngIf="tipoVenta == 2">
-            <input type="text" class="form-control" [(ngModel)]="plazo" placeholder="Ingrese plazo de pago"
+            
+            <input type="text" (keyup)="plazoCredito()" class="form-control" [(ngModel)]="plazo" placeholder="Ingrese plazo de pago"
               aria-label="Plazo venta" aria-describedby="basic-addon2">
           </div>
         </td>
@@ -184,7 +198,13 @@
       <div class="table-responsive-md col-md-12  shadow-sm">
         <table class="table">
           <tr>
-            <h4>Agregar productos</h4>
+            <td colspan="3">
+                <h4>Agregar productos</h4>
+            </td>
+            <td colspan="2">
+                <button type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal" data-target="#myModal"
+                (click)="productosModal.show()" mdbWavesEffect>Buscar Producto</button>
+            </td>
           </tr>
           <tr>
             <td>
@@ -192,14 +212,15 @@
             </td>
             <td>
               <div class="input-group mb-3 col-md-12 ">
-                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)" (keyup.enter)="MontosFactura()" [(ngModel)]="productoId" placeholder="Id del Producto"
+                <input type="text" class="form-control" (keyup.enter)="obtenerProductos(productoId)"
+                  (keyup.enter)="calcularMontoPorLinea()" [(ngModel)]="productoId" placeholder="Id del Producto"
                   aria-label="Id del Producto" aria-describedby="basic-addon2">
                 <input type="text" class="form-control" [(ngModel)]="Cantidad"
                   placeholder="Ingrese la cantidad de productos" aria-label="Id del Producto"
                   aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                  <button (click)="obtenerProductos(productoId)" (click)="MontosFactura()" class="btn btn-outline-success btn-sm"
-                    type="button" size="sm">Agregar</button>
+                  <button (click)="obtenerProductos(productoId)" (click)="MontosFactura()"
+                    class="btn btn-outline-success btn-sm" type="button" size="sm">Agregar</button>
                 </div>
               </div>
             </td>
@@ -214,7 +235,7 @@
             <td>
               <div class="form-group">
 
-                <input type="text" class="form-control" [(ngModel)]="productoDescuento"
+                <input type="number" (keyup)="calcularMontoPorLinea()" class="form-control" [(ngModel)]="productoDescuento"
                   placeholder="digite la cantidad de descuento a aplicar">
               </div>
             </td>
@@ -231,10 +252,11 @@
               <td scope="col">Id Producto</td>
               <td scope="col">Num. Linea</td>
               <td scope="col">Cantidad</td>
+              <td scope="col">Descuento</td>
               <td scope="col">Precio</td>
               <td scope="col">Monto Total</td>
-
               <td scope="col">Total Linea</td>
+              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -257,14 +279,20 @@
                       (click)="restaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
                       type="button">-</button>
                   </div>
-                  <input type="text" class="form-control " [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly size="sm">
+                  <input type="text" class="form-control " [(ngModel)]="lDetalles.Cantidad" placeholder="" readonly
+                    size="sm">
                   <div class="input-group-append">
                     <button class="btn btn-outline-success btn-sm"
-                      (click)="sumaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);"
-                      type="button" size="sm">+</button>
+                      (click)="sumaCantidad(lDetalles.Cantidad,lDetalles.NumLinea,lDetalles.IdProducto);" type="button"
+                      size="sm">+</button>
                   </div>
                 </div>
 
+              </td>
+              <td>
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="lDetalles.Descuento" placeholder="" readonly>
+                </div>
               </td>
               <td>
                 <div class="form-group">
@@ -283,7 +311,8 @@
               </td>
               <td>
                 <div class="form-group">
-                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto) " (click)="frame.show()" class="btn btn-danger btn-sm">Eliminar</button>
+                  <button (click)="EnviaDatoEliminar(lDetalles.IdProducto,lDetalles.IdProductoNavigation.Nombre) " (click)="ventana.show()"
+                    class="btn btn-danger btn-sm">Eliminar</button>
                 </div>
               </td>
             </tr>
@@ -308,7 +337,7 @@
         <br>
         <br>
         <div class="col-md-10">
-          <button (click)='CrearFactura(IdFactura)' class="btn btn-outline-success">Facturar</button>
+          <button (click)="limpiar()" (click)='cobrar.show()' class="btn btn-outline-success">Cobrar</button>
         </div>
       </div>
       <div class="form-group col-md-3 shadow-sm">
@@ -326,8 +355,8 @@
               <p>Descuento:</p>
             </td>
             <td>
-                <input type="text" class="form-control" [(ngModel)]="descuento" placeholder="" readonly>
-              
+              <input type="text" class="form-control" [(ngModel)]="descuento" placeholder="" readonly>
+
             </td>
           </tr>
           <tr>
@@ -335,8 +364,8 @@
               <p>IVA:</p>
             </td>
             <td>
-                <input type="text" class="form-control" [(ngModel)]="iva" placeholder="" readonly>
-             
+              <input type="text" class="form-control" [(ngModel)]="iva" placeholder="" readonly>
+
             </td>
           </tr>
           <tr>
@@ -344,8 +373,8 @@
               <p>Exonerado:</p>
             </td>
             <td>
-                <input type="text" class="form-control" [(ngModel)]="exonerado" placeholder="" readonly>
-              
+              <input type="text" class="form-control" [(ngModel)]="exonerado" placeholder="" readonly>
+
             </td>
           </tr>
           <tr>
@@ -353,8 +382,8 @@
               <p>TotalFactura:</p>
             </td>
             <td>
-                <input type="text" class="form-control" [(ngModel)]="TotalFactura" placeholder="" readonly>
-             
+              <input type="text" class="form-control" [(ngModel)]="TotalFactura" placeholder="" readonly>
+
             </td>
           </tr>
         </table>
@@ -396,30 +425,491 @@
       </div>
     </div>
   </div>
-  <!---
-  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-danger" role="document">
+  <!--
     
-    <div class="modal-content text-center">
-      
-      <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Eliminar Categoria</p>
+  -->
+  <div mdbModal #ventana="mdbModal" class="modal fade" id="ejem" tabindex="-1" role="dialog" aria-labelledby="myModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+
+      <div class="modal-content text-center">
+
+        <div class="modal-header d-flex justify-content-center">
+          <p class="heading">Eliminar producto</p>
+        </div>
+
+
+        <div class="modal-body">
+          <p>Desea eliminar: {{eliminaNombreProducto}}?</p>
+        </div>
+
+
+        <div class="modal-footer justify-content-center">
+          <a (click)="Eliminar(eliminaIdProducto)" (click)="ventana.hide()" mdbBtn color="danger" class="waves-light"
+            mdbWavesEffect>Si</a>
+          <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+            (click)="ventana.hide()">No</a>
+        </div>
       </div>
 
-      
-      <div class="modal-body">
-        <p>Desea eliminar la categoria {{texto}}?</p>
+    </div>
+  </div>
+
+  <div mdbModal #cobrar="mdbModal" class="modal fade" id="ejem" tabindex="-1" role="dialog" aria-labelledby="myModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify  modal-success" role="document">
+
+      <div class="modal-content ">
+
+        <div class="modal-header d-flex justify-content-center">
+          <h2 style="color: aliceblue">Cobrar</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cobrar.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+          <div *ngIf="tipoVenta==2">
+              <h3 *ngIf="TotalFactura>cliente.CreditoMax || plazo>cliente.PlazoCreditoMax">Error:</h3>
+              <div *ngIf="TotalFactura>cliente.CreditoMax">
+                <ul>
+                  <li>
+                    <p>El credito que se esta intentando abrir es de: {{TotalFactura}}</p>
+                  </li>
+                  <li>
+                      <p>A este cliente no se le puede dar un credito mayor a: {{cliente.CreditoMax}}</p>
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="plazo>cliente.PlazoCreditoMax">
+                <ul>
+                  <li>
+                    <p>El credito se que esta intentando abrir es un plazo de: {{plazo}}</p>
+                  </li>
+                  <li>
+                    <p>A este cliente no se le puede dar un credito de un plazo mayor a: {{cliente.PlazoCreditoMax}}</p>
+                  </li>
+                </ul>  
+                </div>
+            </div>
+          <div *ngIf="listaDetalles.length>0 && tipoVenta!=2 || tipoVenta==2 && cliente.CreditoMax>=TotalFactura && cliente.PlazoCreditoMax>= plazo">
+            <div *ngFor="let tipoPay of listaTipoPago">
+              <div class="">
+                <div class="row" *ngIf="tipoPay.Id==tipoPago">
+                  <div class="form-group  col-md-6">
+                    <p>Tipo de pago: {{tipoPay.Nombre}}</p>
+                  </div>
+
+                  <div *ngIf="tipoPago==2" class="form-group  col-md-6">
+
+                    <input type="text" class="form-control" [(ngModel)]="refPago"
+                      placeholder="Ingrese el codigo de referencia">
+
+                  </div>
+                  <div *ngIf="tipoPago==1 && tipoVenta!=2" class="form-group  col-md-6">
+
+                    <input type="number" class="form-control" (keyup.enter)="CrearFactura('Imprecion')" (keyup.enter)="cobrar.hide()" (keyup.enter)="Imprecion.show()" [(ngModel)]="cuantoPaga"
+                      placeholder="Ingrese con cuanto paga">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="">
+
+              <div class="row">
+                <div class="form-group  col-md-6" style="display: inline-block">
+                  Monto Total:
+                </div>
+                <div class="form-group col-md-6" style="display: inline-block">
+                  <input type="tel" class="form-control" [(ngModel)]="TotalFactura" placeholder="" readonly>
+                </div>
+              </div>
+              <div class="row" *ngIf="tipoPago==1">
+                <div class="form-group  col-md-6" style="display: inline-block">
+                  Vuelto:
+                </div>
+                <div class="form-group col-md-6" style="display: inline-block">
+                  <input type="number" class="form-control" [(ngModel)]="cuantoPaga-TotalFactura" placeholder=""
+                    readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="listaDetalles.length==0">
+            <div>
+              <h3>Error</h3>
+              <p>Aun no se puede cobrar, no hay productos en la factura</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer justify-content-center">
+          <a *ngIf="cuantoPaga-TotalFactura>=0 && TotalFactura>0 || refPago!=null && refPago!=prueba || tipoVenta==2 && cliente.CreditoMax>=TotalFactura && cliente.PlazoCreditoMax>= plazo"
+            (click)="CrearFactura('Imprecion')" (click)="cobrar.hide()" (click)="Imprecion.show()" mdbBtn
+            color="success" class="waves-light" mdbWavesEffect>Facturar</a>
+          <a type="button" mdbBtn color="success" outline="true" class="waves-light " mdbWavesEffect
+            data-dismiss="modal" (click)="cobrar.hide()">Atras</a>
+        </div>
       </div>
 
-      
-      <div class="modal-footer justify-content-center">
-        <a (click)="Eliminar(eliminaIdProducto)" (click)="frame.hide()"  mdbBtn color="danger" class="waves-light" mdbWavesEffect>Si</a>
-        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+    </div>
+  </div>
+
+  <div mdbModal #Imprecion="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable modal-md modal-notify modal-info" role="document">
+      <div class="modal-content ">
+
+        <!--Header-->
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel" style="color: aliceblue">Factura</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body">
+          <div class="table" id="printableArea">
+            <div class="row">
+
+              <div class="col-md-1">
+
+              </div>
+              <div class="col-md-3 col-sm-10 text-center">
+                <p></p>
+                Versión Documento: 1.0<br>
+                <h3>NOMBRE EMPRESA</h3>
+                NOMBRE DEL LOCAL<br>
+                DIRECCION DEL LOCAL<br>
+                CORREO DEL LOCAL <br>
+                TELEFONO DEL LOCAL<br>
+
+              </div>
+              <div class="col-md-8 col-sm-1">
+
+              </div>
+
+            </div>
+            <div class="row text-left">
+
+              <div class="col-md-2 text-left">
+                Clave: <br>
+              </div>
+              <div class="col-md-4 text-left">
+
+              </div>
+              <div class="col-md-7 text-left">
+
+              </div>
+            </div>
+            <div class="row text-left">
+
+              <div class="col-md-2 text-left">
+                {{clave}}
+              </div>
+              <div class="col-md-4 text-left">
+
+              </div>
+              <div class="col-md-7 text-left">
+
+              </div>
+            </div>
+            <div class="row text-left">
+
+              <div class="col-md-6 text-left">
+
+                <div class="text-left" *ngFor="let tipoPay of listaTipoPago">
+                  <div class="text-left" *ngIf="tipoPay.Id==tipoPago">
+                    Tipo de pago: {{tipoPay.Nombre}}<br>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 text-left">
+
+              </div>
+            </div>
+            <div class="row text-left">
+
+              <div class="col-md-6 text-left">
+
+                <div class="text-left" *ngIf="tipoPago==2" class="form-group ">
+                  Referencia de pago: {{refPago}}<br>
+                </div>
+              </div>
+              <div class="col-md-6 text-left">
+
+              </div>
+            </div>
+            <div class="row text-left">
+
+              <div class="col-md-6 text-left">
+
+                <div *ngFor="let tipoVent of listaTipoVenta">
+                  <div *ngIf="tipoVent.Id==tipoVenta">
+                    Tipo de Venta: {{tipoVent.Nombre}} <br>
+                    <div *ngIf="tipoVenta==2" class="form-group  ">
+                      Plazo: {{plazo}}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-6 text-left">
+
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-12 text-left">
+                <hr>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-1">
+                Cant
+              </div>
+              <div class="col-md-3">
+                Articulo
+              </div>
+              <div class="col-md-8">
+                Precio
+              </div>
+            </div>
+
+            <div class="row" *ngFor="let lDetalles of listaDetalles">
+              <div class="col-md-1">
+                {{lDetalles.Cantidad}}
+              </div>
+              <div class="col-md-3">
+                {{lDetalles.IdProductoNavigation.Nombre}}
+              </div>
+              <div class="col-md-8">
+                {{lDetalles.TotalLinea}}
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-4">
+                Cant. Articulos:
+              </div>
+              <div class="col-md-1">
+
+              </div>
+              <div class="col-md-7">
+
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-1">
+
+              </div>
+              <div class="col-md-3">
+                Subtotal:
+              </div>
+              <div class="col-md-8">
+                {{subTotal}}
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-1">
+
+              </div>
+              <div class="col-md-3">
+                Total:
+              </div>
+              <div class="col-md-8">
+                {{TotalFactura}}
+              </div>
+
+            </div>
+
+            <div class="row" *ngIf=" tipoVenta==1">
+              <div class="col-md-1">
+                <div class="text-left" class="form-group  ">
+
+                </div>
+              </div>
+              <div class="col-md-3">
+                Cuanto Paga:
+              </div>
+              <div class="col-md-8" *ngIf="tipoPago==1 && tipoVenta==1">
+                {{cuantoPaga}}
+              </div>
+              <div class="col-md-8" *ngIf="tipoPago==2  && tipoVenta==1">
+                {{TotalLinea}}
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <div class="text-left" class="form-group  ">
+
+                </div>
+              </div>
+              <div class="col-md-3">
+                Vuelto
+              </div>
+              <div class="col-md-8">
+                {{cuantoPaga-TotalFactura}}
+              </div>
+
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-4">
+                *: Paga Impuesto
+              </div>
+              <div class="col-md-1">
+
+              </div>
+              <div class="col-md-7">
+
+              </div>
+
+            </div>
+            <div class="row" *ngIf=" tipoVenta==1">
+              <div class="col-md-1">
+                <div class="text-left" class="form-group  ">
+
+                </div>
+              </div>
+              <div class="col-md-3">
+                Cuanto Paga:
+              </div>
+              <div class="col-md-8" *ngIf="tipoPago==1 && tipoVenta==1">
+                {{cuantoPaga}}
+              </div>
+              <div class="col-md-8" *ngIf="tipoPago==2  && tipoVenta==1">
+                {{TotalLinea}}
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-12">
+                Impuesto de venta incluido
+              </div>
+
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-6">
+                Fecha:
+              </div>
+              <div class="col-md-6">
+
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="col-md-6">
+
+                {{fecha}}
+              </div>
+              <div class="col-md-6">
+
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer">
+          <button *ngIf="clave!=prueba && clave!=null" type="button" size="sm" mdbBtn color="success" outline="true"
+            class="waves-light" mdbWavesEffect data-dismiss="modal"
+            (click)="printDiv('printableArea')">Imprimir</button>
+        </div>
       </div>
     </div>
-    
   </div>
-</div>
--->
+
+  <div mdbModal #productosModal="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-scrollable modal-lg modal-notify modal-info" role="document">
+      <div class="modal-content ">
+
+        <!--Header-->
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel" style="color: aliceblue">Nombre Productos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="productosModal.hide()">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <!--Body-->
+        <div class="modal-body" *ngIf="listaProductos.length!=0">
+
+          <table class="table table-hover">
+            <tr>
+              <td>Nombre del producto</td>
+              <td colspan="3"><input oninput="this.value = this.value.toUpperCase()" type="text"
+                  style="text-transform: uppercase" class="form-control" [(ngModel)]="buscar"
+                  placeholder="Ingrese el nombre o Id del producto que desea buscar"></td>
+            </tr>
+
+            <tr>
+              <td>Id</td>
+
+              <td>Nombre</td>
+              <td>Precio</td>
+              <td></td>
+            </tr>
+
+            <tr *ngFor="let productoF of listaProductos">
+              <td style="text-transform: uppercase"
+                *ngIf=" productoF.Nombre.toUpperCase().includes(buscar) || productoF.IdProducto.includes(buscar) || buscar==null">
+                {{productoF.IdProducto}}</td>
+              <td style="text-transform: uppercase"
+                *ngIf="  productoF.Nombre.toUpperCase().includes(buscar) || productoF.IdProducto.includes(buscar) || buscar==null">
+                {{productoF.Nombre}}
+              </td>
+              <td style="text-transform: uppercase"
+                *ngIf="  productoF.Nombre.toUpperCase().includes(buscar) || productoF.IdProducto.includes(buscar) || buscar==null">
+                {{productoF.PrecioVenta1}}
+              </td>
+              <td
+                *ngIf=" productoF.Nombre.toUpperCase().includes(buscar) || productoF.IdProducto.includes(buscar) || buscar==null">
+                <button type="button" size="sm" mdbBtn color="primary" outline="true" class="waves-light btn-sm"
+                  mdbWavesEffect data-dismiss="modal" (click)="seleccionarProducto(productoF)"
+                  (click)="productosModal.hide()">Seleccionar</button>
+              </td>
+            </tr>
+
+          </table>
+
+        </div>
+        <div class="modal-body" *ngIf="listaProductos.length==0">
+
+          <h3>Error</h3>
+          <p>Posibles problemas</p>
+          <ul>
+            <li>No se encontraron productos</li>
+            <li>Verifique el inventario</li>
+            <li>Posible error del servidor</li>
+          </ul>
+
+        </div>
+        <!--Footer-->
+        <div class="modal-footer">
+          <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect
+            data-dismiss="modal" (click)="productosModal.hide()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

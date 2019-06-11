@@ -58,7 +58,7 @@ export class CrearCategoriaProductoComponent implements OnInit {
         this.CategoriaProducto = new TbCategoriaProducto();
         this.botonModificar = false;
         this.botonCrear = true;
-        this.Modify = false;
+        this.CateProductService.Modify= false;
       }
     } catch (error) {
       this.msjAlert.error('Error operacion')
@@ -70,6 +70,6 @@ export class CrearCategoriaProductoComponent implements OnInit {
     this.CategoriaProducto = new TbCategoriaProducto();
     this.botonModificar = false;
     this.botonCrear = true;
-    this.Modify = false;
+    this.CateProductService.Modify = false;
   }
 }
