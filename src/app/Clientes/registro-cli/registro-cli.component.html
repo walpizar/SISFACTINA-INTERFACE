@@ -1,240 +1,265 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="col-md-12 pt-4 pb-4 fondo-color">
-          <h2 class="text-center">Registro Cliente</h2>
-      </div>
+    <div class="col-md-12 pt-4 pb-4 fondo-color">
+      <h2 class="text-center">Registro Cliente</h2>
+    </div>
   </div>
 </div>
 <div class="ContenidoForm">
   <!-- Default form contact -->
   <form class="text-center border border-light p-5">
-    <!-- primer grupo -->
-    <div class="input-group">
-      <!-- tipo id -->
-      <div class="input-group col-md-4 p-0">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Tipo ID</span>
+
+    <!-- primera card -->
+    <mdb-card cascade="true" narrower="true" class="mb-5">
+      <!-- titulo -->
+      <div class="view view-cascade titulo gradient-card-header green darken-3">
+        <h2 class="card-header-title pt-3 pb-2">Datos Personales</h2>
+      </div>
+      <mdb-card-body>
+        <!-- primer grupo -->
+        <div class="input-group">
+          <!-- tipo id -->
+          <div class="input-group col-md-4 p-0">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Tipo ID</span>
+            </div>
+            <select name="Persona.TipoId" class="form-control" [(ngModel)]="Persona.TipoId">
+              <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">{{TipoId.Nombre}}</option>
+            </select>
+          </div>
+          <!-- Identificacion -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Identificacion"
+            name="Persona.Identificacion" [(ngModel)]="Persona.Identificacion">
+          <div class="input-group-append mb-3">
+            <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
+              (click)="Buscar(Persona.Identificacion)" class="m-0 px-3 py-2 rounded-right"><i
+                class="fa fa-search fa-lg"></i></button>
+          </div>
         </div>
-        <select name="Persona.TipoId" class="form-control" [(ngModel)]="Persona.TipoId">
-          <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">{{TipoId.Nombre}}</option>
-        </select>
-      </div>
-      <!-- Identificacion -->
-      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Identificacion" name="Persona.Identificacion"
-        [(ngModel)]="Persona.Identificacion">
-      <div class="input-group-append mb-3">
-        <button mdbBtn type="button" mdbWavesEffect color="light-blue" outline="" size="sm"
-          (click)="Buscar(Persona.Identificacion)" class="m-0 px-3 py-2 rounded-right"><i
-            class="fa fa-search fa-lg"></i></button>
-      </div>
-    </div>
 
-    <div class="input-group">
-      <!-- Nombre -->
-      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Nombre" name="Persona.Nombre"
-        [(ngModel)]="Persona.Nombre">
-    
-      <!-- Apellido1 -->
-      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="1° Apellido" name="Persona.Apellido1"
-        [(ngModel)]="Persona.Apellido1">
-    
-      <!-- Apellido2 -->
-      <input type="text" id="" mdbInput class="form-control mb-3" placeholder="2° Apellido" name="Persona.Apellido2"
-        [(ngModel)]="Persona.Apellido2">
-    </div>
+        <div class="input-group">
+          <!-- Nombre -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Nombre" name="Persona.Nombre"
+            [(ngModel)]="Persona.Nombre">
 
-    <!-- segundo grupo -->
-    <div class="input-group">
+          <!-- Apellido1 -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="1° Apellido" name="Persona.Apellido1"
+            [(ngModel)]="Persona.Apellido1">
 
-      <!-- Email -->
-      <input type="email" id="" mdbInput class="form-control mb-4" name="Persona.CorreoElectronico"
-        [(ngModel)]="Persona.CorreoElectronico" placeholder="E-mail">
-
-      <!-- sexo -->
-      <div class="input-group mb-3 col-md-3 p-0">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Sexo</span>
+          <!-- Apellido2 -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="2° Apellido" name="Persona.Apellido2"
+            [(ngModel)]="Persona.Apellido2">
         </div>
-        <select class="form-control" name="Persona.Sexo" [(ngModel)]="Persona.Sexo">
-          <option value="1">
-            Masculino
-          </option>
-          <option value="2">
-            Femenino
-          </option>
-        </select>
-      </div>
 
-      <!-- fecha nacimiento -->
-      <div class="input-group mb-3 col-md-5" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Fecha de Nacimiento</span>
+        <!-- segundo grupo -->
+        <div class="input-group">
+
+          <!-- Email -->
+          <input type="email" id="" mdbInput class="form-control mb-4" name="Persona.CorreoElectronico"
+            [(ngModel)]="Persona.CorreoElectronico" placeholder="E-mail">
+
+          <!-- sexo -->
+          <div class="input-group mb-3 col-md-3 p-0">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Sexo</span>
+            </div>
+            <select class="form-control" name="Persona.Sexo" [(ngModel)]="Persona.Sexo">
+              <option value="1">
+                Masculino
+              </option>
+              <option value="2">
+                Femenino
+              </option>
+            </select>
+          </div>
+
+          <!-- fecha nacimiento -->
+          <div class="input-group mb-3 col-md-5" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Fecha de Nacimiento</span>
+            </div>
+            <input type="date" id="input" name="Persona.FechaNac" class="form-control" [(ngModel)]="Persona.FechaNac"
+              mdbInput>
+          </div>
+
+          <!-- Descripcion -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Descripcion</span>
+            </div>
+            <textarea class="form-control" name="Cliente.Descripcion" [(ngModel)]="Cliente.Descripcion"></textarea>
+          </div>
+
         </div>
-        <input type="date" id="input" name="Persona.FechaNac" class="form-control" [(ngModel)]="Persona.FechaNac"
-          mdbInput>
-      </div>
 
-    </div>
 
-    <!-- tercer grupo -->
-    <div class="input-group">
+        <!-- tercer grupo -->
+        <div class="input-group">
 
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisTel"
-        [(ngModel)]="Persona.CodigoPaisTel" placeholder="Codigo de Area Telefono">
-      <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Telefono" [(ngModel)]="Persona.Telefono"
-        placeholder="Telefono">
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisTel"
+            [(ngModel)]="Persona.CodigoPaisTel" placeholder="Codigo de Area Telefono">
+          <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Telefono"
+            [(ngModel)]="Persona.Telefono" placeholder="Telefono">
 
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisFax"
-        [(ngModel)]="Persona.CodigoPaisFax" placeholder="Codigo Area Fax">
-      <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Fax" [(ngModel)]="Persona.Fax"
-        placeholder="Fax">
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisFax"
+            [(ngModel)]="Persona.CodigoPaisFax" placeholder="Codigo Area Fax">
+          <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Fax" [(ngModel)]="Persona.Fax"
+            placeholder="Fax">
 
-    </div>
-
-    <!--Cuarto grupo, combos de ubicacion -->
-    <div class="input-group">
-
-      <!-- provincia -->
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Provincia</span>
         </div>
-        <select class="form-control" name="Persona.Provincia" [(ngModel)]="Persona.Provincia"
-          (change)="onChangeProvincia($event.target.value)">
-          <option disabled>Provincia</option>
-          <option *ngFor="let Provincia of listaProvincia" value="{{Provincia.Cod}}">
-            {{Provincia.Nombre}}
-          </option>
-        </select>
+      </mdb-card-body>
+    </mdb-card>
+
+    <!-- segunda card, ubicaciones -->
+    <mdb-card cascade="true" narrower="true"  class="mb-5">
+      <div class="view view-cascade titulo  gradient-card-header green darken-3">
+        <h2 class="card-header-title pt-3 pb-2">Ubicación</h2>
       </div>
+      <mdb-card-body>
+        <!--Cuarto grupo, combos de ubicacion -->
+        <div class="input-group">
+
+          <!-- provincia -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Provincia</span>
+            </div>
+            <select class="form-control" name="Persona.Provincia" [(ngModel)]="Persona.Provincia"
+              (change)="onChangeProvincia($event.target.value)">
+              <option disabled>Provincia</option>
+              <option *ngFor="let Provincia of listaProvincia" value="{{Provincia.Cod}}">
+                {{Provincia.Nombre}}
+              </option>
+            </select>
+          </div>
 
 
-      <!-- Canton -->
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Canton</span>
+          <!-- Canton -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Canton</span>
+            </div>
+            <select class="form-control" name="Persona.Canton" [(ngModel)]="Persona.Canton"
+              (change)="onChangeCanton($event.target.value)">
+              <option disabled>Canton</option>
+              <option *ngFor="let Canton of comboCantones" value="{{Canton.Canton}}">
+                {{Canton.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <!-- distrito -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Distrito</span>
+            </div>
+            <select class="form-control" name="Persona.Distrito" [(ngModel)]="Persona.Distrito"
+              (change)="onChangeDistrito($event.target.value)">
+              <option disabled>Distrito</option>
+              <option *ngFor="let Distrito of comboDistritos" value="{{Distrito.Distrito}}">
+                {{Distrito.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <!-- barrio -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Barrio</span>
+            </div>
+            <select class="form-control" [(ngModel)]="Persona.Barrio" name="Persona.Barrio">
+              <option disabled>Barrio</option>
+              <option *ngFor="let Barrio of comboBarrios" value="{{Barrio.Barrio}}">
+                {{Barrio.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <br>
+          <!-- direcciion exacta, otras señas -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Direccion</span>
+            </div>
+            <textarea class="form-control" [(ngModel)]="Persona.OtrasSenas" name="Persona.OtrasSenas"></textarea>
+          </div>
+
         </div>
-        <select class="form-control" name="Persona.Canton" [(ngModel)]="Persona.Canton"
-          (change)="onChangeCanton($event.target.value)">
-          <option disabled>Canton</option>
-          <option *ngFor="let Canton of comboCantones" value="{{Canton.Canton}}">
-            {{Canton.Nombre}}
-          </option>
-        </select>
-      </div>
+        <!-- Fin combos de ubicacion -->
+      </mdb-card-body>
+    </mdb-card>
 
-      <!-- distrito -->
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Distrito</span>
+    <!-- tercer card, datos extras -->
+    <mdb-card cascade="true" narrower="true"  class="mb-2">
+      <div class="view view-cascade titulo green darken-3">
+        <h2 class="card-header-title pt-3 pb-2">Datos Extra</h2>
+      </div>
+      <mdb-card-body>
+        <!-- sexto grupo, datos de cliente -->
+        <div class="input-group">
+
+          <div class="input-group mb-3 col-md-3 p-0">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Exoneracion</span>
+            </div>
+            <select class="form-control" [(ngModel)]="Cliente.IdExoneracion" name="Cliente.IdExoneracion">
+              <option disabled>Exoneracion</option>
+              <option *ngFor="let exo of listaExo" value="{{exo.Id}}">
+                {{exo.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.PrecioAplicar"
+            [(ngModel)]="Cliente.PrecioAplicar" placeholder="PrecioAplicar">
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.DescuentoMax"
+            [(ngModel)]="Cliente.DescuentoMax" placeholder="Descuento Maximo">
+
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.CreditoMax"
+            [(ngModel)]="Cliente.CreditoMax" placeholder="Credito Maximo">
+
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.PlazoCreditoMax"
+            [(ngModel)]="Cliente.PlazoCreditoMax" placeholder="Plazo Credito Maximo">
+
+
         </div>
-        <select class="form-control" name="Persona.Distrito" [(ngModel)]="Persona.Distrito"
-          (change)="onChangeDistrito($event.target.value)">
-          <option disabled>Distrito</option>
-          <option *ngFor="let Distrito of comboDistritos" value="{{Distrito.Distrito}}">
-            {{Distrito.Nombre}}
-          </option>
-        </select>
-      </div>
 
-      <!-- barrio -->
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Barrio</span>
+        <!-- septimo grupo -->
+        <div class="input-group">
+
+          <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.NombreTributario"
+            [(ngModel)]="Cliente.NombreTributario" placeholder="Nombre Tributario">
+          <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.Contacto"
+            [(ngModel)]="Cliente.Contacto" placeholder="Contacto">
+
+          <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.EncargadoConta"
+            [(ngModel)]="Cliente.EncargadoConta" placeholder="Encargado Contabilidad">
+
+          <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.CorreoElectConta"
+            [(ngModel)]="Cliente.CorreoElectConta" placeholder="E-mail Contador">
+
         </div>
-        <select class="form-control" [(ngModel)]="Persona.Barrio" name="Persona.Barrio">
-          <option disabled>Barrio</option>
-          <option *ngFor="let Barrio of comboBarrios" value="{{Barrio.Barrio}}">
-            {{Barrio.Nombre}}
-          </option>
-        </select>
-      </div>
-
-      <br>
-      <!-- direcciion exacta, otras señas -->
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Direccion Exacta</span>
-        </div>
-        <textarea class="form-control" [(ngModel)]="Persona.OtrasSenas" name="Persona.OtrasSenas"></textarea>
-      </div>
-
-    </div>
-    <!-- Fin combos de ubicacion -->
-
-    <!-- quinto grupo -->
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Descripcion</span>
-      </div>
-      <textarea class="form-control" name="Cliente.Descripcion" [(ngModel)]="Cliente.Descripcion"></textarea>
-    </div>
-
-
-
-    <!-- sexto grupo, datos de cliente -->
-    <div class="input-group">
-
-      <div class="input-group mb-3 col-md-3" style="padding: 0%">
-        <div class="input-group-prepend mb-3">
-          <span class="input-group-text">Exoneracion</span>
-        </div>
-        <select class="form-control" [(ngModel)]="Cliente.IdExoneracion" name="Cliente.IdExoneracion">
-          <option disabled>Exoneracion</option>
-          <option *ngFor="let exo of listaExo" value="{{exo.Id}}">
-            {{exo.Nombre}}
-          </option>
-        </select>
-      </div>
-
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.PrecioAplicar"
-        [(ngModel)]="Cliente.PrecioAplicar" placeholder="PrecioAplicar">
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.DescuentoMax"
-        [(ngModel)]="Cliente.DescuentoMax" placeholder="Descuento Maximo">
-
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.CreditoMax"
-        [(ngModel)]="Cliente.CreditoMax" placeholder="Credito Maximo">
-
-      <input type="number" id="" mdbInput class="form-control mb-4" name="Cliente.PlazoCreditoMax"
-        [(ngModel)]="Cliente.PlazoCreditoMax" placeholder="Plazo Credito Maximo">
-
-
-    </div>
-
-    <!-- septimo grupo -->
-    <div class="input-group">
-
-      <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.NombreTributario"
-        [(ngModel)]="Cliente.NombreTributario" placeholder="Nombre Tributario">
-      <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.Contacto" [(ngModel)]="Cliente.Contacto"
-        placeholder="Contacto">
-
-      <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.EncargadoConta"
-        [(ngModel)]="Cliente.EncargadoConta" placeholder="Encargado Contabilidad">
-
-      <input type="text" id="" mdbInput class="form-control mb-4" name="Cliente.CorreoElectConta"
-        [(ngModel)]="Cliente.CorreoElectConta" placeholder="E-mail Contador">
-
-    </div>
+      </mdb-card-body>
+    </mdb-card>
 
     <!-- Send button -->
     <div class="mx-5 my-5" *ngIf="MostrarCrear">
-      <button class="" mdbBtn type="submit" color="success" outline="true" mdbWavesEffect
+      <button class="" mdbBtn type="submit" color="success" size="lg" outline="true" mdbWavesEffect
         (click)="Registrar(Cliente,Persona)">
         Enviar
       </button>
     </div>
 
     <div class="mx-5 my-5" *ngIf="MostrarVolver">
-      <button mdbBtn type="button" color="success" outline="true" mdbWavesEffect
-        [routerLink]="['/ListaClientes']">
+      <button mdbBtn type="button" color="success" size="lg" outline="true" mdbWavesEffect [routerLink]="['/ListaClientes']">
         Volver
       </button>
     </div>
 
-
   </form>
   <!-- fin form-->
+
+
 
 
 </div>
