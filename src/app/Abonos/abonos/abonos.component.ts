@@ -22,10 +22,7 @@ export class AbonosComponent implements OnInit {
   AbonoData = new TbAbonos();
   lista = new Array();
   abono: boolean = false;
-  MontoTotalLinea: number = 0;
-  Persona = new TbPersona();
-  idcli: number;
-  tipoid: number;
+  MontoTotalLinea: number = 0;  
   MontoAbono: number = 0;
   Monto_Abono: number = 0;
   resul: number = 0;
@@ -34,11 +31,10 @@ export class AbonosComponent implements OnInit {
   mont_abonoss: number = 0;
   abonototal: number = 0;
   constructor(private abonosService: DataAbonosService, private docService: FacturaService,
-    private personaService: DataPersonaService, private msj: ToastrService) { }
+     private msj: ToastrService) { }
 
   ngOnInit() {
-    this.recibedatos();
-    this.consultarDocu();
+    this.recibedatos();    
     this.consultarAbonos();
   }
 
@@ -66,13 +62,7 @@ export class AbonosComponent implements OnInit {
 
   }
 
-  consultarDocu() {
-    this.idcli = 603480811;
-    this.tipoid = 1;
-    this.personaService.getDataID(this.idcli, this.tipoid).subscribe(data => {
-      this.Persona = data;
-    })
-  }
+  
   recibedatos() {
     this.Documento = this.abonosService.Documen
 

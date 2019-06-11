@@ -16,7 +16,7 @@ export class DataClienteService {
   constructor(private http:HttpClient,private servicioGeneric: ServiceGeneric ) { }
 
   consultarCliente(idCli:string,idTipo:number) {
-    return this.http.get<TbClientes>(this.servicioGeneric.getURL()+'/facturador/cliente/'+idCli+'/'+idTipo);
+    return this.http.get<TbClientes>(this.servicioGeneric.getURL()+'/cliente/'+idCli+'/'+idTipo);
   }
 
   public detalleCli: TbClientes;

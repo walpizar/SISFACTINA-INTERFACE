@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FacturaService } from 'src/Services/Factura/factura.service';
 import { DataPersonaService } from 'src/Services/Persona/persona.service';
-import { TbClientes } from 'src/Models/Cliente';
-import { TbPersona } from 'src/Models/Personas';
 import { ToastrService } from 'ngx-toastr';
 import { Busqueda } from 'src/Models/Busqueda';
 
@@ -38,9 +36,7 @@ this.msj.error("No hay registros");
 })
   }
 
-  FiltrarLista(doc: Busqueda): void {
-
-    // asigno datos de todos los documentos    
+  FiltrarLista(doc: Busqueda): void {       
 
     if (doc.IdCliente != null) {
      this.listaValidacion= this.ListaDocGeneral.filter(x => x.IdCliente !=null && x.IdCliente.trim() == doc.IdCliente.trim());
@@ -60,6 +56,7 @@ this.msj.error("No hay registros");
   }
 
   refrescarListas(){
+    this.msj.info("Refrescando la lista,aguarda un momento");
     this.ConsultarDocValidacion();
     this.ConsultarTodos();
     this.docBusca= new Busqueda();

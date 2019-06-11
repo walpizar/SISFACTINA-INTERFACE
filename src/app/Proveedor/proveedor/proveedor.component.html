@@ -42,7 +42,7 @@
             <span class="input-group-text">Correo Electronico:</span>
           </div>
 
-          <input type="text" class="form-control" name="TbPersona.CorreoElectronico"
+          <input type="text" class="form-control" required  name="TbPersona.CorreoElectronico"
             [(ngModel)]="Proveedor.TbPersona.CorreoElectronico">
         </div>
       </div>
@@ -68,17 +68,17 @@
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
-            <span class="input-group-text">Telefono:</span>
-          </div>
-
-          <input type="text" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" required>
-        </div>
-        <div class="input-group mb-3 col-md-4">
-          <div class="input-group-prepend">
             <span class="input-group-text">Codigo Pais Tel:</span>
           </div>
           <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
             [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel">
+        </div>
+        <div class="input-group mb-3 col-md-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Telefono:</span>
+          </div>
+
+          <input type="text" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono" required>
         </div>
       </div>
       <div class="row">
@@ -203,7 +203,7 @@
       <div class="row">
         <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
-            <span class="input-group-text">Correo ElectContabilidad:</span>
+            <span class="input-group-text">Correo Electronico Contabilidad:</span>
           </div>
 
           <input type="text" class="form-control" name="CorreoElectConta" [(ngModel)]="Proveedor.CorreoElectConta">
