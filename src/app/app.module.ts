@@ -42,6 +42,13 @@ import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/det
 import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
 import { ValidacionHaciendaComponent } from './Hacienda/validacion-hacienda/validacion-hacienda.component';
 
+//Producto
+import { ProductosComponent } from './Productos/productos.component';
+import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
+import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component';
+import { DetallesProductoComponent } from './Productos/detalles-producto/detalles-producto.component';
+import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+
 
 @NgModule({
   declarations: [
@@ -74,7 +81,13 @@ import { ValidacionHaciendaComponent } from './Hacienda/validacion-hacienda/vali
     IndexTipoMedidaComponent,
     DetalleTipoMedidaComponent,
     TipoMedidaComponent,
-    ValidacionHaciendaComponent 
+    ValidacionHaciendaComponent ,
+
+    ProductosComponent,
+    CrearProductoComponent,
+    ModificarProductoComponent,
+    DetallesProductoComponent,
+    EliminarProductoComponent
   ],
   imports: [
     BrowserModule,

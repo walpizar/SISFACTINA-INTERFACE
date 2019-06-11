@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+@import url('https://fonts.googleapis.com/css?family=Oxygen&display=swap');
+
 .navbar{
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 .fondo-color{
-    background-color: #455a64;
+    background-color: #2e3951 ;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
 }
@@ -15,4 +17,24 @@
 }
 .btnSubir{
     margin-top: -3%;
+}
+
+
+mdb-card{
+    border-radius: 10px 10px 10px 10px;
+    margin: 20px 20px 20px 20px;
+}
+
+.titulo{
+    margin: 0px 18px 0px 18px;
+    padding: 4px;
+    border-radius: 3px;
+    position: relative;
+    top: -15px;
+    color: #fff;
+}
+
+.titulo h2{
+    font-size: 24px; 
+    font-family: 'Oxygen', sans-serif;
 }

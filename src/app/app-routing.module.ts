@@ -27,6 +27,12 @@ import { IndexTipoMedidaComponent } from './TipoMedida/index-tipo-medida/index-t
 import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/detalle-tipo-medida.component';
 import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
 import { ValidacionHaciendaComponent } from './Hacienda/validacion-hacienda/validacion-hacienda.component';
+
+//Productos
+import { ProductosComponent } from './Productos/productos.component';
+import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
+import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
+import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -58,8 +64,12 @@ const routes: Routes = [
   {path:'IndexTipoMedida',component:IndexTipoMedidaComponent},
   {path:'DetalleTipoMedida',component:DetalleTipoMedidaComponent},
   {path:'tipomedida',component:TipoMedidaComponent},
-  {path:'validaHacienda',component:ValidacionHaciendaComponent}
-
+  {path:'validaHacienda',component:ValidacionHaciendaComponent},
+    //Productos
+    {path : 'Productos', component : ProductosComponent },
+    {path : 'Crear_Producto', component : CrearProductoComponent},
+    {path : 'Modificar_Producto', component : ModificarProductoComponent},
+    {path : 'Eliminar_Producto', component : EliminarProductoComponent}
 ];
 
 

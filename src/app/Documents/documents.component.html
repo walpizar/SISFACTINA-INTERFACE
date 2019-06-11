@@ -5,52 +5,56 @@
       <h2 class="text-center">Facturas</h2>
     </div>
   </div>
-    <div class="container-fluid border p-2 mt-4 pb-4 rounded">
-      <div class="row">
-        <div class="col-md-12"> 
-          <h2 class="titulo">Busqueda</h2>
-          <hr>
-        </div> 
-      </div>
+  <br>
+  <!--******************************************************************************************-->
+  <mdb-card cascade="true" narrower="true"  class="mb-5">
+    <div class="view view-cascade titulo">
+      <h2 class="card-header-title pt-3 pb-2 ml-3">Buscador</h2>
+    </div>
+    <mdb-card-body>
+      <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
         <!-- buscadores -->
-          <div class="md-form form-group mb-3">
-            <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Id">
-            <label for="form1" class="">ID</label>
-          </div>
-
-          <div class="md-form form-group mb-3">
-              <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Clave">
-              <label for="form1" class="">Clave</label>
-          </div>
           
-          <div class="md-form form-group mb-3">
-              <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Consecutivo">
-              <label for="form1" class="">Consecutivo</label>
+            <div class="md-form form-group mb-3">
+              <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Id">
+              <label for="form1" class="">ID</label>
+            </div>
+  
+            <div class="md-form form-group mb-3">
+                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Clave">
+                <label for="form1" class="">Clave</label>
+            </div>
+            
+            <div class="md-form form-group mb-3">
+                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.Consecutivo">
+                <label for="form1" class="">Consecutivo</label>
+            </div>
           </div>
-        </div>
-
-        <!-- hacer un salto de linea -->
-        <div class="col-md-6">
-            <div class="md-form form-group mb-3">
-                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.IdCliente">
-                <label for="form1" class="">ID Cliente</label>
-            </div>
-            <div class="md-form form-group mb-3">
-                <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.TipoDocumento">
-                <label for="form1" class="">Tipo Doc</label>
-            </div>
-          <span>
-            <button type="submit" class="btn btn-outline-success mr-2" (click)="FiltrarLista(docBusca)">Buscar</button>
-          </span>
-          <span>
-            <button type="submit" class="btn btn-outline-warning" (click)="reCargar()">Refrescar</button>
-          </span>
+  
+          <!-- hacer un salto de linea -->
+          <div class="col-md-6">
+              <div class="md-form form-group mb-3">
+                  <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.IdCliente">
+                  <label for="form1" class="">ID Cliente</label>
+              </div>
+              <div class="md-form form-group mb-3">
+                  <input mdbInput type="text" id="form1" class="form-control" [(ngModel)]="docBusca.TipoDocumento">
+                  <label for="form1" class="">Tipo Doc</label>
+              </div>
+            <span>
+              <button type="submit" class="btn btn-outline-success mr-2" (click)="FiltrarLista(docBusca)">Buscar</button>
+            </span>
+            <span>
+              <button type="submit" class="btn btn-outline-warning" (click)="reCargar()">Refrescar</button>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-</div>
+    </mdb-card-body>
+  </mdb-card>
+  <!--*********************************************************************-->
 <br>
 <div class="container-fluid">
   <div class="row">

@@ -111,26 +111,22 @@
 
         <div class="form-group col-md-3">
           <label>Provincia</label>
-          <input type="text" class="form-control" name="TProvincia" [(ngModel)]="Provincia"
-            readonly>
+          <input type="text" class="form-control" name="TProvincia" [(ngModel)]="Provincia" readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Canton</label>
-          <input type="text" class="form-control" name="Canton" [(ngModel)]="Canton"
-            readonly>
+          <input type="text" class="form-control" name="Canton" [(ngModel)]="Canton" readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Distrito</label>
-          <input type="text" class="form-control" name="Distrito" [(ngModel)]="Distrito"
-            readonly>
+          <input type="text" class="form-control" name="Distrito" [(ngModel)]="Distrito" readonly>
         </div>
 
         <div class="form-group col-md-3">
           <label>Barrio</label>
-          <input type="text" class="form-control" name="Barrio" [(ngModel)]="Barrio"
-            readonly>
+          <input type="text" class="form-control" name="Barrio" [(ngModel)]="Barrio" readonly>
         </div>
 
         <div class="form-group col-md-12">
@@ -176,12 +172,10 @@
         <div class="form-group col-md-2">
           <label>Id de Exonercion</label>
           <select class="form-control" [(ngModel)]="CliActual.IdExoneracion" name="CliActual.IdExoneracion">
-            <option *ngFor="let exo of listaExo" disabled value="{{exo.Id}}">
-              {{exo.Nombre}}
-            </option>
+            <option *ngFor="let exo of listaExo" disabled value="{{exo.Id}}">{{exo.Nombre}}</option>
           </select>
         </div>
-
+        
       </div>
     </div>
     <!-- fin de la linea -->
