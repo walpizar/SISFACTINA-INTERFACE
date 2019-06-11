@@ -5,7 +5,7 @@
     <div class="form-group ">
       <label>Rol de usuario</label>
       <select class="form-control" formControlName="IdRol" required>
-        <option *ngFor="let rol of service.list" [value]="rol.IdRol"  required>{{rol.Nombre}}</option>
+        <option *ngFor="let rol of service.listaRol" [value]="rol.IdRol"  required>{{rol.Nombre}}</option>
       </select>
       <label class="text-danger" *ngIf="service.formModel.get('IdRol').touched && service.formModel.get('IdRol').errors?.required">Campo Obligatorio</label>
     </div>
@@ -15,20 +15,91 @@
         <input type="text" class="form-control" formControlName="NombreUsuario" required> 
         <label class="text-danger" *ngIf="service.formModel.get('NombreUsuario').touched && service.formModel.get('NombreUsuario').errors?.required">Campo Obligatorio</label>
       </div>
-     
+
+      <div class="form-group ">
+        <label>TipoID</label>
+        <select class="form-control" formControlName="TipoId" required>
+          <option *ngFor="let tipoId of listaTipoId" [value]="tipoId.Id"  required>{{tipoId.Nombre}}</option>
+        </select>
+        <label class="text-danger" *ngIf="service.formModel.get('Id').touched && service.formModel.get('Id').errors?.required">Campo Obligatorio</label>
+      </div>
+  
+
+
       <div class="form-group">
         <label>Id</label>
         <input type="text" class="form-control" formControlName="Id"> 
-        <label class="text-danger" *ngIf="service.formModel.get('Id').touched && service.formModel.get('Id').errors?.email">Email invalido</label>
+        <label class="text-danger" *ngIf="service.formModel.get('Id').touched && service.formModel.get('Id').errors?.required">Campo Obligatorio</label>
       </div>
 
+      <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="Nombre"> 
+          <label class="text-danger" *ngIf="service.formModel.get('Nombre').touched && service.formModel.get('Nombre').errors?.required">Campo Obligatorio</label>
+        </div>
+  
+
         <div class="form-group">
-          <label>Tipo ID</label>
-          <select class="form-control" formControlName="TipoId" required>
-            <option *ngFor="let tipo of service.listaTipoId" [value]="tipo.Id"  required>{{tipo.Nombre}}</option>
+            <label>Apellido 1</label>
+            <input type="text" class="form-control" formControlName="Apellido1"> 
+          </div>
+  
+          
+      <div class="form-group">
+          <label>Apellido 2</label>
+          <input type="text" class="form-control" formControlName="Apellido2"> 
+        </div>
+
+        <div class="form-group">
+            <label>Correo Electronico</label>
+            <input type="text" class="form-control" formControlName="CorreoElectronico"> 
+            <label class="text-danger" *ngIf="service.formModel.get('CorreoElectronico').touched && service.formModel.get('CorreoElectronico').errors?.email">Correo Electronico invalido</label>
+          </div>
+    
+          <div class="form-group ">
+            <label>Empresa</label>
+            <select class="form-control" formControlName="idEmpresa" required>
+              <option *ngFor="let idEmpresa of listaEmpresa" [value]="idEmpresa.Id" required>{{idEmpresa.NombreComercial}}</option>
+            </select>
+            <label class="text-danger" *ngIf="service.formModel.get('idEmpresa').touched && service.formModel.get('idEmpresa').errors?.required">Campo Obligatorio</label>
+          </div>
+  
+
+      <div class="form-group ">
+          <label>Provincias</label>
+          <select class="form-control" formControlName="Provincia" required>
+            <option *ngFor="let Provincia of listaProvincia" [value]="Provincia.Cod"  (change)="onChangeProvincia(Provincia.value)" required>{{Provincia.Nombre}}</option>
           </select>
-          <label class="text-danger" *ngIf="service.formModel.get('IdRol').touched && service.formModel.get('IdRol').errors?.required">Campo Obligatorio</label>
+          <label class="text-danger" *ngIf="service.formModel.get('Provincia').touched && service.formModel.get('Provincia').errors?.required">Campo Obligatorio</label>
+        </div>
+  
+        <div class="form-group ">
+            <label>Cantón</label>
+            <select class="form-control" formControlName="Canton" required>
+                <option disabled>Canton</option>
+              <option *ngFor="let Canton of comboCantones" [value]="Canton.Canton"  (change)="onChangeCanton($event.target.value)" required>{{Canton.Nombre}}</option>
+            </select>
+            <label class="text-danger" *ngIf="service.formModel.get('Canton').touched && service.formModel.get('Canton').errors?.required">Campo Obligatorio</label>
+          </div>
+  
+          <div class="form-group ">
+              <label>Distrito</label>
+              <select class="form-control" formControlName="Distrito" required>
+                  <option disabled>Distrito</option>
+                <option *ngFor="let Distrito of comboDistritos" [value]="Distrito.Distrito"  (change)="onChangeDistrito($event.target.value)" required>{{Distrito.Nombre}}</option>
+              </select>
+              <label class="text-danger" *ngIf="service.formModel.get('Distrito').touched && service.formModel.get('Distrito').errors?.required">Campo Obligatorio</label>
+            </div>
+
+            <div class="form-group ">
+                <label>Barrio</label>
+                <select class="form-control" formControlName="Barrio" required>
+                    <option disabled>Barrio</option>
+                  <option *ngFor="let Barrio of comboBarrios" [value]="Barrio.Barrio"  (change)="onChangeBarrio($event.target.value)" required>{{Barrio.Nombre}}</option>
+                </select>
+                <label class="text-danger" *ngIf="service.formModel.get('Barrio').touched && service.formModel.get('Barrio').errors?.required">Campo Obligatorio</label>
               </div>
+  
 
           <div formGroupName="Contraseñas">
               <div class="form-group ">
