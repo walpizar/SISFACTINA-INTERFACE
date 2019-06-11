@@ -47,7 +47,7 @@ export class IndexProveedorComponent implements OnInit {
     this.ProveedorService.RecibeDatos(Proveedor);
   }
   EnviaDatoEliminar(Proved: TbProveedores) {
-    this.Entidadeliminar=Proved;
+    this.Entidadeliminar=Proved;    
     this.texto=Proved.Id;
   }
 

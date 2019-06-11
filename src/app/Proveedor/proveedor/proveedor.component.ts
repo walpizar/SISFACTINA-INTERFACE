@@ -48,6 +48,7 @@ export class ProveedorComponent implements OnInit {
   disabled:boolean=false;
   TextoPrincipal:boolean=true;
   PersonaTri = new TbPersonasTribunalS();
+  validaDatos:boolean=true;
 
   ngOnInit() {
     
@@ -158,22 +159,93 @@ export class ProveedorComponent implements OnInit {
       
   }
   CrearProveedor(prove:TbProveedores){
-    console.log(prove);
+    
     try {
-      this.msj.info("Estamos agregando los datos,aguarda unos instantes");
-      this.proveedorService.Agregar(prove).subscribe(
-        data=>{this.msj.success("Proveedor agregado correctamente")
-        this.Proveedor=new TbProveedores();
-        this.Proveedor.TbPersona=new TbPersona();
-      },
-        error=>{this.msj.error("ERROR:NO SE LOGRO REGISTAR EL PROVEEDOR")}        
-        );
-        
-    
+      this.validaDatos=this.ValidacionDeDatos(prove);
+      console.log(this.validaDatos)
+      if (this.validaDatos) {
+
+        this.msj.info("Estamos agregando los datos,aguarda unos instantes");
+        this.proveedorService.Agregar(prove).subscribe(
+          data=>{this.msj.success("Proveedor agregado correctamente")
+          this.Proveedor=new TbProveedores();
+          this.Proveedor.TbPersona=new TbPersona();
+        },
+          error=>{this.msj.error("ERROR:NO SE LOGRO REGISTAR EL PROVEEDOR")}        
+          );
+          
+      
+      
+      } else {
+        this.msj.warning("Verifique los datos")
+      }
     } catch (error) {
-      alert("Ocurrio un error en el Servicio");
+      this.msj.error("Ocurrio un error en el Servicio");
     }
+      
     
+  }
+  ValidacionDeDatos(prove: TbProveedores): boolean {
+    
+    let regexpEmail = 
+  new RegExp('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$');
+
+    
+    if ( prove.TbPersona.Identificacion == null)
+    {
+      this.msj.error("Debe indicar un id");
+      
+        return false;
+    }else if(prove.TbPersona.TipoId==0)
+    {
+      this.msj.error("Debe indicar un tipo id");
+        return false;
+    }
+    else if (prove.TbPersona.CodigoPaisTel == null )
+    {
+      this.msj.error("Debe indicar un Codigo pais tel");
+        return false;
+        
+    }
+    else if (prove.TbPersona.Telefono == 0)
+    {
+      this.msj.error("Debe indicar un numero de telefono");
+        return false;
+    }else if (prove.TbPersona.CorreoElectronico!=null)
+    {
+        if (regexpEmail.test(prove.TbPersona.CorreoElectronico.trim()))
+        {
+            if ( regexpEmail.test(prove.CorreoElectConta.trim()))
+            {
+                return true;
+            }
+            else
+            {
+              this.msj.error("Formato de correo no valido en Detalles de proveedor");
+
+                return false;
+            }
+        }
+        else
+        {
+          
+          this.msj.error("Formato de correo no valido en Datos de proveedor");
+            return false;
+        }
+    }else if(prove.TbPersona.CorreoElectronico==null || prove.CorreoElectConta==null){
+      this.msj.error("Debe indicar el email en Dato de proveedor y el de contabilidad")
+      return false;
+    }    
+    else if (prove.ContactoProveedor== null)
+    {
+      this.msj.error("Debe indicar un Contacto Proveedor");
+        return false;
+    }    
+    else 
+    {
+      
+        return true;
+    }
   }
   ModificarProveedor(pro:TbProveedores){
     try {

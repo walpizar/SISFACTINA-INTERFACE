@@ -10,7 +10,7 @@
 
   <br>
   <div class="card ">
-    <div class="card-heading bg-warning text-white " style="text-align:center">
+    <div class="card-header bg-success text-white " style="text-align:center">
       <h5>Encabezado de Factura</h5>
     </div>
     <div class="card-body">
@@ -43,9 +43,9 @@
             <span class="input-group-text">Cliente</span>
           </div>
           <input type="text" class="form-control" name="Documento.IdCliente" [(ngModel)]="Documento.IdCliente" readonly>
-          <input type="text" class="form-control" name="Persona.Nombre" [(ngModel)]="Persona.Nombre" readonly>
-          <input type="text" class="form-control" name="Persona.Apellido1" [(ngModel)]="Persona.Apellido1" readonly>
-          <input type="text" class="form-control" name="Persona.Apellido2" [(ngModel)]="Persona.Apellido2" readonly>
+          <input type="text" class="form-control" name="Documento.TbClientes.TbPersona.Nombre" [(ngModel)]="Documento.TbClientes.TbPersona.Nombre" readonly>
+          <input type="text" class="form-control" name="Documento.TbClientes.TbPersona.Apellido1" [(ngModel)]="Documento.TbClientes.TbPersona.Apellido1" readonly>
+          <input type="text" class="form-control" name="Documento.TbClientes.TbPersona.Apellido2" [(ngModel)]="Documento.TbClientes.TbPersona.Apellido2" readonly>
         </div>
 
       </div>
@@ -57,7 +57,6 @@
           </div>
           <input type="text" class="form-control"
             [ngModelOptions]="{standalone: true}" [(ngModel)]="Documento.TipoPagoNavigation.Nombre" readonly>
-
         </div>
       </div>
       <br>
