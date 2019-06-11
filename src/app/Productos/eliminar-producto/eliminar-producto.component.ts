@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductosService } from 'src/Services/Productos/productos.service';
+import { ProducserviceService } from 'src/Services/Producto/producservice.service';
 import { Router } from '@angular/router';
 import {  TbProducto } from '../../../Models/Producto';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EliminarProductoComponent implements OnInit {
 
-  constructor(private service : ProductosService, private router:Router, private toastr: ToastrService) { }
+  constructor(private service : ProducserviceService, private router:Router, private toastr: ToastrService) { }
   
  
 
