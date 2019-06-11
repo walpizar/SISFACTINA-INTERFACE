@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {  TbProducto } from '../../../Models/Producto';
 import { TbImpuestos  } from '../../../Models/Impuesto';
 import { TbInventario  } from '../../../Models/Inventario';
-import { ProducserviceService } from 'src/Services/Producto/producservice.service';
+import { ProducserviceService } from '../../../Services/Producto/producservice.service'
 import { TbCategoriaProducto } from 'src/Models/CategoriaProducto';
 import { TbTipoMedidas } from 'src/Models/TipoMedidas';
 
