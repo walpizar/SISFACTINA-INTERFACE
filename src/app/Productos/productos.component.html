@@ -1,0 +1,61 @@
+
+
+<div class="container">
+    <h2>Registro de Productos</h2> 
+    
+    
+    <button type="button" class="btn btn-primary float-right mb-2" [routerLink]="['/Crear_Producto']" routerLinkActive='active' >Crear Producto</button>
+    <!--<button type="button" class="btn btn-primary float-right mb-2" data-toggle="modal" data-target="#Crear" >Crear Producto</button>-->
+    
+   
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio Real</th>
+          <th>Impuesto</th>
+          <th>Detalles</th>
+          <th>Modificar</th>
+          <th>Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of service.productos">
+          <td>{{producto.IdProducto}}</td>
+          <td>{{producto.Nombre}}</td>
+          <td>{{producto.PrecioReal}}</td>
+          <td>{{producto.IdTipoImpuestoNavigation.Valor}} %</td>
+          <td><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Detalles" (click)="productoDetalle(producto)"  >Detalles</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="productoSelect(producto)"  [routerLink]="['/Modificar_Producto']" >Modificar</button></td>
+          <td><button type="button" class="btn btn-primary"  (click)="productoSelect(producto)" [routerLink]="['/Eliminar_Producto']">Eliminar</button></td>
+
+           <!-- Modal Detalles Producto-->
+            <div class="modal" id="Detalles">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                 
+                  <div class="modal-header">
+                    <h4 class="modal-title">Detalles Producto </h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  
+                 
+                  <div class="modal-body">
+                    <app-detalles-producto [_pro] = "_pro" [_impuesto]= "_impuesto" [_inventario] = "_inventario" [_categoria]="_categoria" [_medida]="_medida"></app-detalles-producto>
+                  </div>
+                  
+                 
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>

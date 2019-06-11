@@ -1,0 +1,154 @@
+
+<div class="container">
+
+  <div class="col-md-11 mx-auto">
+
+    <h4 class="mt-3">Crear Producto</h4>
+
+    <form  autocomplete="off" >
+      
+      <div class="form-group">
+      <label >ID:</label>
+      <input type="text" class="form-control" name="producto.IdProducto"  [(ngModel)]="producto.IdProducto"  >
+      </div>
+
+      <div class="form-group">
+      <label>Nombre:</label>
+      <input type="text" class="form-control" name="producto.Nombre"  [(ngModel)]="producto.Nombre" >
+      </div> 
+
+      <div class="form-group">
+      <label> Categoría:</label>
+      <select class="form-control" name="producto.IdCategoria" [(ngModel)]="producto.IdCategoria" required>
+        <option>---</option>
+        <option *ngFor="let categoria of service.categorias"   [value]="categoria.Id" required>{{categoria.Nombre}}</option>
+      </select>
+      </div> 
+      
+
+      <div class="form-group">
+      <label>Proveedor ID:</label>
+      <select class="form-control" name="producto.IdProveedor" [(ngModel)]="producto.IdProveedor" required>
+          <option>---</option>
+        <option *ngFor="let proveedor of service.proveedores" [value]="proveedor.Id" required>{{proveedor.TbPersona.Nombre}}</option>
+      </select>
+      </div>
+
+      <div class="form-group">
+        <label>Proveedor Tipo ID:</label>
+        <select class="form-control" name="producto.IdTipoIdProveedor" [(ngModel)]="producto.IdTipoIdProveedor" required>
+            <option>---</option>
+          <option *ngFor="let tipoId of service.tipoId" [value]="tipoId.Id" required>{{tipoId.Nombre}}</option>
+        </select>
+        </div>
+
+      <div class="form-group">
+      <label>Tipo Medida:</label>
+      <select class="form-control" name="producto.IdMedida" [(ngModel)]="producto.IdMedida" required>
+          <option>---</option>
+        <option *ngFor="let medida of service.medidas" [value]="medida.IdTipoMedida"  required>{{medida.Nombre}}</option>
+      </select>
+      </div>
+
+      <div class="form-group">
+        <label>Precio Real:</label>
+        <input type="number" class="form-control" min="0"  [(ngModel)]="producto.PrecioReal" name="producto.PrecioReal"  >
+        </div>
+
+      <div class="form-group">  
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="switch"  [(ngModel)]="producto.PrecioVariable" name="producto.PrecioVariable" [value]="producto.PrecioVariable"  >
+          <label class="custom-control-label" for="switch">Precio Variable </label>
+        </div>     
+      </div>
+
+      <div class="form-group">
+      <label>Precio Utilidad 1:</label> 
+      <input type="number" class="col-md-3 ml-1"   min="0"  [(ngModel)]="producto.Utilidad1Porc" name="producto.Utilidad1Porc" > %  
+      <input type="number" class="col-md-4 ml-1"  [(ngModel)]="producto.PrecioUtilidad1" name="producto.PrecioUtilidad1" [value]="producto.PrecioReal+(producto.Utilidad1Porc/100*producto.PrecioReal)"  readonly  >
+      </div>
+
+      <div class="form-group">
+      <label>Precio Utilidad 2:</label>
+      <input type="number" class="col-md-3 ml-1"  min="0"   [(ngModel)]="producto.Utilidad2Porc" name="producto.Utilidad2Porc" > %  
+      <input type="number" class="col-md-4 ml-1"   [(ngModel)]="producto.PrecioUtilidad2" name="producto.PrecioUtilidad2" [value]="producto.PrecioReal+(producto.Utilidad2Porc/100*producto.PrecioReal)" readonly >
+      </div>
+
+      <div class="form-group">
+      <label> Precio Utilidad 3:</label>
+      <input type="number" class="col-md-3 ml-1"  min="0"  [(ngModel)]="producto.Utilidad3Porc" name="producto.Utilidad3Porc"  > %  
+      <input type="number" class="col-md-4 ml-1"  [(ngModel)]="producto.PrecioUtilidad3" name="producto.PrecioUtilidad3" [value]="producto.PrecioReal+(producto.Utilidad3Porc/100*producto.PrecioReal)" readonly >
+      </div>
+
+      <div class="form-group">  
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="switch1"  (click)="impuesto()" (click)="exento()"   [(ngModel)]="producto.EsExento" name="producto.EsExento" [value]="producto.EsExento" >
+          <label class="custom-control-label" for="switch1">Exento</label>
+        </div>     
+      </div>
+
+      
+      <div class="form-group" id="exento">
+        <label>Impuesto:</label>
+        <select class="ml-1" [(ngModel)]="producto.IdTipoImpuesto" name="producto.IdTipoImpuesto"   required>
+          <option *ngFor="let impuesto of service.impuestos"  [value]="impuesto.Valor" >{{impuesto.Valor}}%</option>
+        </select> 
+      </div>
+
+      <div class="form-group">
+      <label>Precio Venta 1:</label>
+      <input type="number" class="form-control"  [(ngModel)]="producto.PrecioVenta1" name="producto.PrecioVenta1"  
+      [value]="(producto.PrecioReal+(producto.Utilidad1Porc/100*producto.PrecioReal))+((producto.PrecioReal+(producto.Utilidad1Porc/100*producto.PrecioReal))*(producto.IdTipoImpuesto/100))"
+      readonly>
+      </div>
+
+      <div class="form-group">
+      <label> Precio Venta 2:</label>
+      <input type="number" class="form-control" [(ngModel)]="producto.PrecioVenta2" name="producto.PrecioVenta2" 
+      [value]="(producto.PrecioReal+(producto.Utilidad2Porc/100*producto.PrecioReal))+((producto.PrecioReal+(producto.Utilidad2Porc/100*producto.PrecioReal))*(producto.IdTipoImpuesto/100))"
+      readonly>
+      </div>
+
+      <div class="form-group">
+      <label>Precio Venta 3:</label>
+      <input type="number" class="form-control" [(ngModel)]="producto.PrecioVenta3" name="producto.PrecioVenta3" 
+      [value]="(producto.PrecioReal+(producto.Utilidad3Porc/100*producto.PrecioReal))+((producto.PrecioReal+(producto.Utilidad3Porc/100*producto.PrecioReal))*(producto.IdTipoImpuesto/100))"
+      readonly>
+      </div>
+
+    
+      <div class="form-group">
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input" id="switch2" [(ngModel)]="producto.AplicaDescuento" name="producto.AplicaDescuento"  [value]="producto.AplicaDescuento">
+          <label class="custom-control-label" for="switch2">Aplica Descuento</label>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Descuento Máximo:</label>
+        <input type="number" class="form-control" min="0"  [(ngModel)]="producto.DescuentoMax" name="producto.DescuentoMax"   [value]="producto.DescuentoMax" >
+      </div>
+
+      <h5>Inventario</h5>
+
+      <div class="form-group">
+        <label>Cantidad:</label>
+        <input type="number" class="form-control"  min="0" [(ngModel)]="_inventario.Cantidad" name="_inventario.Cantidad"  [value]="_inventario.Cantidad" >
+      </div>
+
+      <div class="form-group">
+        <label>Cantida Mínima:</label>
+        <input type="number" class="form-control"   min="0" [(ngModel)]="_inventario.CantMin" name="_inventario.CantMin"  [value]="_inventario.CantMin" >
+      </div>
+
+      <div class="form-group">
+        <label>Cantida Máxima:</label>
+        <input type="number" class="form-control"   min="0" [(ngModel)]="_inventario.CantMax" name="_inventario.CantMax" [value]="_inventario.CantMax" >
+      </div>
+      <button type="button"  class="btn btn-block btn-danger mb-2" [routerLink]="['/Productos']">Cancelar</button>
+      <button type="submit"  class="btn btn-block btn-primary mb-2" (click)="onsubmit(producto)" >Crear producto</button>
+    </form>
+  </div>
+</div>
+    
