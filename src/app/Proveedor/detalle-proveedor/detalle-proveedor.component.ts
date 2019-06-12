@@ -13,6 +13,7 @@ import { TbDistrito } from 'src/Models/Distrito';
 import { TbBarrios } from 'src/Models/Barrios';
 import { DataBarriosService } from 'src/Services/Barrios/barrios.service';
 import { DataProveedorService } from 'src/Services/Proveedor/proveedor.service';
+import * as dateformat from 'dateformat';
 @Component({
   selector: 'app-detalle-proveedor',
   templateUrl: './detalle-proveedor.component.html',
@@ -23,6 +24,8 @@ export class DetalleProveedorComponent implements OnInit {
   constructor(private provinciaService:DataProvinciaService,private cantonService:DataCantonService,
     private distritoService:DataDistritoService,private barrioService:DataBarriosService,
     private tipoidService:DataTipoIdService,private proveedorService:DataProveedorService) { }
+
+    //Declaracion de variables
   Proveedor= new TbProveedores();
   listaTipoId= new Array();
   listaProvincia=new Array();
@@ -33,9 +36,15 @@ export class DetalleProveedorComponent implements OnInit {
   Canton= new TbCanton();
   Distrito= new TbDistrito();
   Barrio=new TbBarrios();
+  fechacrea:any; //IMPORTANTE
+  fechaModifico:any; //IMPORTANTE
+  fechanacimiento:any;//IMPORTANTE
   ngOnInit() {
     this.Proveedor.TbPersona=new TbPersona()
-    this.Proveedor=this.proveedorService.DetalleProveedor
+    this.Proveedor=this.proveedorService.DetalleProveedor //Extrae la entidad que se envio del index al servicio
+    this.fechacrea=dateformat(this.Proveedor.FechaCrea,"dd/mmmm/yyyy/h:MM TT"); //Da formato a las siguiente fecha. ejemplo de formato(12/November/2019/5:45 pm)
+    this.fechaModifico=dateformat(this.Proveedor.FechaUltMod,"dd/mmmm/yyyy/h:MM TT");
+    this.fechanacimiento=dateformat(this.Proveedor.TbPersona.FechaNac,"dd/mmmm/yyyy");  //Da formato a las siguiente fecha. ejemplo de formato(12/November/2019)
     this.ConsultarProvincia();
     this.ConsultarCanton();
     this.ConsultarDistrito();
@@ -91,6 +100,7 @@ export class DetalleProveedorComponent implements OnInit {
       }
     })
   }
+  //Asigna la entidad de cada localidad
   AsignarLugares() {
     for (const pro of this.listaProvincia) {
       if (pro.Cod.trim()==this.Proveedor.TbPersona.Provincia) {

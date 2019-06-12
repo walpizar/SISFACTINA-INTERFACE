@@ -45,23 +45,26 @@ export class CrearCategoriaProductoComponent implements OnInit {
     }
 
   }
+  //Modifica la categoria  
   Modificar(CategoriaProductModify: TbCategoriaProducto) {
     try {
+
       if (CategoriaProductModify.Nombre == null) {
         alert("No se puede modificar,debe ingresar un nombre")
       } else {
         this.msjAlert.info("Realizando la modificacion,aguarda un momento");
+        //Envia los datos al api
         this.CateProductService.Put(CategoriaProductModify).subscribe(
           respuesta => { this.msjAlert.success('Modificado Correctamente') },
           error => { this.msjAlert.error('Error: No se logro modificar la categoria') });
 
         this.CategoriaProducto = new TbCategoriaProducto();
-        this.botonModificar = false;
-        this.botonCrear = true;
-        this.CateProductService.Modify= false;
+        this.botonModificar = false; //Oculta el boton de modificar
+        this.botonCrear = true; // Muestra el boton de crear 
+        this.CateProductService.Modify= false; //Indica a la variable del servicio,que ya se realizo la modificacion
       }
     } catch (error) {
-      this.msjAlert.error('Error operacion')
+      this.msjAlert.error('Error de operacion')
     }
 
   }

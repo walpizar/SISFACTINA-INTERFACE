@@ -61,46 +61,54 @@
             <span class="input-group-text">Fecha Nacimiento:</span>
           </div>
 
-          <input type="datetime" class="form-control" name="TbPersona.FechaNac"
-            [(ngModel)]="Proveedor.TbPersona.FechaNac" readonly>
-        </div>
-        <div class="input-group mb-3 col-md-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Sexo:</span>
-          </div>
-          <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo" disabled>
-            <option value="1">
-              Hombre
-            </option>
-            <option value="2">
-              Mujer
-            </option>
-          </select>
-        </div>
+          <input type="datetime" class="form-control" name="fechanacimiento"
+            [(ngModel)]="fechanacimiento" readonly>
+        </div>     
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Codigo Pais Tel:</span>
           </div>
-          <input type="text" class="form-control" name="TbPersona.CodigoPaisTel"
-            [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel" readonly>
+          <select class="form-control" name="TbPersona.CodigoPaisTel" [(ngModel)]="Proveedor.TbPersona.CodigoPaisTel" disabled>
+              <option value="506       " > <!--IMPORTANTE,MANTENER EL ESPACIO EN BLANCO ---NO BORRAR POR FAVOR--- ,VALIDACION DE BASE DE DATOS-->
+                Costa Rica (+506)
+              </option>
+  
+            </select>
         </div>
+        <div class="input-group mb-3 col-md-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Telefono:</span>
+            </div>
+  
+            <input type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono"
+              readonly>
+          </div>
       </div>
       <br>
       <div class="row">
-        <div class="input-group mb-3 col-md-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Telefono:</span>
-          </div>
-
-          <input type="tel" class="form-control" name="TbPersona.Telefono" [(ngModel)]="Proveedor.TbPersona.Telefono"
-            readonly>
-        </div>
+          <div class="input-group mb-3 col-md-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Sexo:</span>
+              </div>
+              <select class="form-control" name="TbPersona.Sexo" [(ngModel)]="Proveedor.TbPersona.Sexo" disabled>
+                <option value="1">
+                  Hombre
+                </option>
+                <option value="2">
+                  Mujer
+                </option>
+              </select>
+            </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
             <span class="input-group-text">Codigo Pais Fax:</span>
           </div>
-          <input type="text" class="form-control" name="TbPersona.CodigoPaisFax"
-            [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax" readonly>
+          <select class="form-control" name="TbPersona.CodigoPaisFax" [(ngModel)]="Proveedor.TbPersona.CodigoPaisFax" disabled>
+              <option value="506">
+                Costa Rica (+506)
+              </option>
+  
+            </select>
         </div>
         <div class="input-group mb-3 col-md-4">
           <div class="input-group-prepend">
@@ -137,7 +145,7 @@
           <input type="text" class="form-control" name="Barrio.Nombre" [(ngModel)]="Barrio.Nombre" readonly>
         </div>
       </div>
-
+     
     </div>
   </div>
   <br>
@@ -147,20 +155,15 @@
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="input-group mb-3 col-md-4">
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">Contacto Proveedor:</span>
           </div>
           <input type="text" class="form-control" name="ContactoProveedor" [(ngModel)]="Proveedor.ContactoProveedor"
             readonly>
         </div>
-        <div class="input-group mb-3 col-md-4">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Descripcion:</span>
-          </div>
-          <input type="text" class="form-control" name="Descripcion" [(ngModel)]="Proveedor.Descripcion" readonly>
-        </div>
-        <div class="input-group mb-3 col-md-4">
+       
+        <div class="input-group mb-3 col-md-6">
           <div class="input-group-prepend">
             <span class="input-group-text">Fax:</span>
           </div>
@@ -202,6 +205,45 @@
           </div>
           <input type="text" class="form-control" name="CuentaBancaria" [(ngModel)]="Proveedor.CuentaBancaria" readonly>
         </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="input-group mb-3 col-md-6">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Fecha Creacion:</span>
+              </div>
+              <input type="text" class="form-control" name="fechacrea" [(ngModel)]="fechacrea" readonly>
+        </div>
+        <div class="input-group mb-3 col-md-6">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Usuario Creacion:</span>
+              </div>
+              <input type="text" class="form-control" name="Proveedor.UsuarioCrea" [(ngModel)]="Proveedor.UsuarioCrea" readonly>
+        </div>       
+      </div>
+      <br>
+      <div class="row">
+          <div class="input-group mb-3 col-md-6">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">Fecha Ult Modificacion:</span>
+                </div>
+                <input type="text" class="form-control" name="fechaModifico" [(ngModel)]="fechaModifico" readonly>
+          </div>
+          <div class="input-group mb-3 col-md-6">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">Usuario Ult Modificacion:</span>
+                </div>
+                <input type="text" class="form-control" name="Proveedor.UsuarioUltMod" [(ngModel)]="Proveedor.UsuarioUltMod" readonly>
+          </div>
+      </div>
+      <br>
+      <div>
+          <div class="input-group mb-3 col-md-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Descripcion:</span>
+              </div>
+              <textarea type="text" class="form-control" name="Descripcion" [(ngModel)]="Proveedor.Descripcion" readonly></textarea>
+            </div>
       </div>
     </div>
   </div>

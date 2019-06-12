@@ -11,8 +11,10 @@ export class DetalleCategoriaProductoComponent implements OnInit {
 
   constructor(private catproductservice:CategoriaProductoService) { }
   CategoriaProducto= new TbCategoriaProducto();
+ 
   ngOnInit() {
-    this.CategoriaProducto=this.catproductservice.CategoriaDetalle;
+    this.CategoriaProducto=this.catproductservice.CategoriaDetalle; // Extrae del servicio la entidad que se envio del index
+
   }
 
 }
