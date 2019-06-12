@@ -48,7 +48,7 @@ export class ProducserviceService {
  public elimino : boolean;
 
  cargarProductos(){
-   this.http.get('http://localhost:63630/api/productos').toPromise()
+   this.http.get('http://localhost:63630/api/producto').toPromise()
    .then(res => this.productos = res as  TbProducto[]);
  }
 

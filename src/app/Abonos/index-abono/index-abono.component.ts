@@ -133,7 +133,10 @@ export class IndexAbonoComponent implements OnInit {
   }
 
   AbonoGeneral(mont_abono: number) {
-    this.msj.show("Realizando los abonos,espera unos minutos");
+    if (mont_abono==0) {
+      this.msj.info("El monto abonar no puede ser igual a 0")
+    } else {
+      this.msj.show("Realizando los abonos,espera unos minutos");
     this.docService.ConsultarPorFechas(this.idEmpresa).subscribe(data => {
       this.listaDocumentosFechas = data
 
@@ -165,7 +168,7 @@ export class IndexAbonoComponent implements OnInit {
           //Modifica el estado del documento si el saldo pendiente fue 0, y lo envia a la base de datos.
           iterator.EstadoFactura = 1;
           this.docService.putData(iterator).subscribe(data => { this.msj.success("La factura a sido cancelada correctamente") },
-            erro => { this.msj.error("ERROR AL CANCELAR LA FACTURA") });
+            erro => { this.msj.error("ERROR: No se logro cancelar la factura de id: "+iterator.Id) });
 
           this.consultarTodos();
         }
@@ -187,7 +190,7 @@ export class IndexAbonoComponent implements OnInit {
             //Envia los datos del abono a guardar.
 
             this.abonoservice.postData(this.AbonoData).subscribe(data => { this.msj.success("Abono realizado correctamente") },
-              erro => { this.msj.error("ERROR AL ABONAR LA FACTURA") });
+              erro => { this.msj.error("ERROR AL ABONAR LA FACTURA DEL ID: "+iterator.Id) });
 
           }
           else {
@@ -205,8 +208,7 @@ export class IndexAbonoComponent implements OnInit {
 
             //Envia los datos del abono a guardar.
             this.abonoservice.postData(this.AbonoData).subscribe(data => { this.msj.success("Abono realizado correctamente") },
-              erro => { this.msj.error("ERROR AL ABONAR LA FACTURA") });
-
+              erro => { this.msj.error("ERROR AL ABONAR LA FACTURA DEL ID: "+iterator.Id) });
 
           }
         }
@@ -215,7 +217,7 @@ export class IndexAbonoComponent implements OnInit {
           iterator.EstadoFactura = 1;
           this.docService.putData(iterator).subscribe(data => { this.msj.success("La factura a sido cancelada correctamente") },
             erro => {
-              this.msj.error("ERROR AL CANCELAR LA FACTURA");
+              this.msj.error("ERROR: No se logro cancelar la factura de id: "+iterator.Id);
               this.consultarTodos();
             })
 
@@ -230,6 +232,8 @@ export class IndexAbonoComponent implements OnInit {
     })
     this.consultarTodos();
     this.ConsultarAbonos();
+    }
+    
   }
 
 
