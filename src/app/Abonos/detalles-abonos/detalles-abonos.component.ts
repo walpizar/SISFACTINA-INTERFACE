@@ -33,8 +33,8 @@ export class DetallesAbonosComponent implements OnInit {
   
   crearDetalleDoc(){
     this.DocumentoDetalles=this.Datadocumento.Detalles
-    this.fechaDoc=dateformat(this.DocumentoDetalles.Fecha,"dd/mmmm/yyyy/h:MM TT"); 
-    this.fechaModifico=dateformat(this.DocumentoDetalles.FechaUltMod,"dd/mmmm/yyyy/h:MM TT"); 
+    this.fechaDoc=dateformat(this.DocumentoDetalles.Fecha,"dd/mmmm/yyyy/h:MM TT"); //Da formato a la fecha del documento
+    this.fechaModifico=dateformat(this.DocumentoDetalles.FechaUltMod,"dd/mmmm/yyyy/h:MM TT"); // Da formato a la fecha de modificacion
   }
 
   consultarAbonos(){

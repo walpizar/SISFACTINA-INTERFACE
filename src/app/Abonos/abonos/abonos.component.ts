@@ -16,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./abonos.component.css']
 })
 export class AbonosComponent implements OnInit {
+
+  //Declaracion de variables
   Documento = new TbDocumento();
   AbonoData = new TbAbonos();
   listaAbonos = new Array();
@@ -76,8 +78,10 @@ export class AbonosComponent implements OnInit {
   abonar(mont_abono) {
 
     this.mont_abonoss = mont_abono; // almacena en la variable el monto del abono que llego en el parametro.
+
+    //Si el abono fue de 0 o mayor al saldo pendiente NO se podra realizar el abono
     if (mont_abono == 0 || mont_abono > this.totalpendientefac) {      
-      this.msj.info("En caso de cancelar la factura,indique el monto igual al Total Pendiente")
+      this.msj.info("En caso de cancelar la factura,indique el monto igual al Saldo Pendiente")
       this.msj.info("El monto abonar no puede ser 0 o Mayor al Saldo pendiente")
      
     } else {
@@ -112,6 +116,7 @@ export class AbonosComponent implements OnInit {
             error => { this.msj.error("ERROR:No se logro realizar el abono") });        
        
       }
+      //Se verifica nuevamente despues de realizar el abono si el saldo pendiente fue 0,de ser asi, se cancela el documento
       if (this.totalpendientefac == 0) {
         //Modifica el estado del documento, y lo envia a la base de datos.
         this.Documento.EstadoFactura = 1;
@@ -122,6 +127,6 @@ export class AbonosComponent implements OnInit {
       }
 
     }
-   
+   this.MontoAbono=0;
   }
 }
