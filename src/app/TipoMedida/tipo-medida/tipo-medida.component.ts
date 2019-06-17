@@ -32,6 +32,7 @@ export class TipoMedidaComponent implements OnInit {
         this.msj.error("Debe ingresar una nomenclatura")
       } else {
         this.msj.warning("Agregando el Tipo Medida,espera un instante")
+        //Envia los datos a guardar a la BD
         this.tipoMedidaService.Post(tipomedida).subscribe(data=>{
           this.msj.success("Se agrego correctamente");
           this.TipoMedida= new TbTipoMedidas();
@@ -53,6 +54,7 @@ export class TipoMedidaComponent implements OnInit {
         this.msj.error("Debe ingresar una nomenclatura")
       } else {
         this.msj.warning("Modificando el Tipo Medida,espera un instante")
+        //Envia los datos modificados a la BD
         this.tipoMedidaService.Put(tipomedidamodify).subscribe(data=>{
           this.msj.success("Se modifico correctamente");
           this.TipoMedida= new TbTipoMedidas();

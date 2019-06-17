@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/Services/Usuario/usuario.service';
 import { ToastrService } from 'ngx-toastr';
+import { TbUsuarios } from 'src/Models/Usuarios';
+import { TbPersona } from 'src/Models/Personas';
+import { TbRoles } from 'src/Models/Roles';
+import { TbEmpresa } from 'src/Models/Empresa';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegistroComponent implements OnInit {
 
+  listaEmpresa = new Array();
   listaRol = new Array();
   listaProvincia = new Array();
   listaDistritos = new Array();
@@ -22,18 +28,24 @@ export class RegistroComponent implements OnInit {
   comboCantones = new Array();
   comboBarrios = new Array();
 
+  Empresa = new TbEmpresa()
+  Rol = new TbRoles()
+  Persona = new TbPersona()
   Provincia: string;
   Distrito: string;
   Canton: string;
 
-  constructor(public service: UsuarioService, private toastr: ToastrService) { }
+  constructor(public service: UsuarioService, private toastr: ToastrService, private router: Router) { }
  
   ngOnInit() {
-    this.service.cargarRoles();
-    this.service.getBarrios();
-    this.service.getCantones();
-    this.service.getProvincias();
-    this.service.getTiposId();
+    
+    this.getListRoles();
+    this.getListProvincias();
+    this.getListCantones();
+    this.getListDistritos();
+    this.getListBarrios();
+    this.getListTipoId();
+    this.getListaEmpresa();
     
   }
 
@@ -60,6 +72,16 @@ export class RegistroComponent implements OnInit {
   getListTipoId() {
     this.service.getTiposId().subscribe(data => {
       this.listaTipoId = data;
+    });
+  }
+  getListaEmpresa() {
+    this.service.getEmpresas().subscribe(data => {
+      this.listaEmpresa = data;
+    });
+  }
+  getListRoles() {
+    this.service.getRoles().subscribe(data => {
+      this.listaRol = data;
     });
   }
 
@@ -108,29 +130,13 @@ export class RegistroComponent implements OnInit {
   }
     //onSubmit() Este metodo nos permite mostrar notificaciones de error o exito al ingresar un usuario 
   //en base a los mensajes mostrados en consola como errors [] o succeeded .
-  onSubmit() {
-    this.service.registro().subscribe(
-      (res: any) => {
-        if (res.succeeded) {
-          this.service.formModel.reset();
-          this.toastr.success('New user created!', 'Registration successful.');
-        } else {
-          res.errors.forEach(element => {
-            switch (element.code) {
-              case 'DuplicateUserName':
-                this.toastr.error('Username is already taken','Registration failed.');
-                break;
-
-              default:
-              this.toastr.error(element.description,'Registration failed.');
-                break;
-            }
-          });
-        }
-      },
-      err => {
-        console.log(err);
-      }
+  onsubmit(usuario:TbUsuarios){
+    usuario.TbPersona = this.Persona;
+    usuario.IdNavigation = this.Empresa;
+    usuario.IdRolNavigation = this.Rol
+    this.service.registro(usuario).subscribe(
+        res => { this.toastr.success("Creado"), this.router.onSameUrlNavigation = 'reload'},
+        err => { this.toastr.error("Error al crear producto")}
     );
   }
 }

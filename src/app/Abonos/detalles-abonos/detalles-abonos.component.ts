@@ -6,7 +6,7 @@ import { ProducserviceService } from 'src/Services/Producto/producservice.servic
 import { TbDocumento } from 'src/Models/Documento';
 import { DataDetalleDocService } from 'src/Services/DetallesDocumento/data-detalle-doc.service';
 import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
-
+import * as dateformat from 'dateformat';
 
 @Component({
   selector: 'app-detalles-abonos',
@@ -23,7 +23,8 @@ export class DetallesAbonosComponent implements OnInit {
   totalpendiente:number=0;
   totalfactura:number=0;
   montototalabono:number=0;
-  
+  fechaDoc:any;
+  fechaModifico:any
   ngOnInit() {
     this.crearDetalleDoc();
     this.consultarAbonos();     
@@ -32,7 +33,8 @@ export class DetallesAbonosComponent implements OnInit {
   
   crearDetalleDoc(){
     this.DocumentoDetalles=this.Datadocumento.Detalles
-    
+    this.fechaDoc=dateformat(this.DocumentoDetalles.Fecha,"dd/mmmm/yyyy/h:MM TT"); //Da formato a la fecha del documento
+    this.fechaModifico=dateformat(this.DocumentoDetalles.FechaUltMod,"dd/mmmm/yyyy/h:MM TT"); // Da formato a la fecha de modificacion
   }
 
   consultarAbonos(){

@@ -25,11 +25,19 @@
         </div>
         <div class="input-group mb-3 col-md-4">
             <div class="input-group-prepend">
-                <span class="input-group-text">Descripcion:</span>
+                <span class="input-group-text">Nomenclatura:</span>
             </div>
-            <input type="text" class="form-control" name="TipoMedida.Descripcion"
-                [(ngModel)]="TipoMedida.Descripcion" readonly>
+            <input type="text" class="form-control" name="TipoMedida.Nomenclatura"
+                [(ngModel)]="TipoMedida.Nomenclatura" readonly>
         </div>
     </div>
+    <div class="row">
+            <div class="input-group mb-3 col-md-12">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Descripcion:</span>
+                </div>
+                <textarea type="text" class="form-control" name="TipoMedida.Descripcion" maxlength="499"
+                    [(ngModel)]="TipoMedida.Descripcion" readonly></textarea>
+            </div>
     <button class="btn btn-outline-success" routerLink="/IndexTipoMedida">Atras</button>
 </div>

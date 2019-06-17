@@ -41,6 +41,7 @@ export class IndexProveedorComponent implements OnInit {
       error => { this.msj.error("No se encontraron datos") });
   }
   ConsultarDetalles(Proveedor: TbProveedores) {
+    Proveedor.TbPersona.CodigoPaisTel.trim();
     this.ProveedorService.RecibeDatoDetalle(Proveedor);
   }
   Modificar(Proveedor: TbProveedores) {

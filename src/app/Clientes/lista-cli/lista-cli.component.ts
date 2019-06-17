@@ -38,6 +38,7 @@ export class ListaCliComponent implements OnInit {
   getListaCli() {
     this.service.getClientes().subscribe(data => {
       this.listaClientes = data;
+      console.log(this.listaClientes);
     });
     // btn renovar tambien llama a esta funcion por lo tanto reinicia el string de searchText
     this.searchText = '';
