@@ -20,6 +20,7 @@ export class ImpuestosComponent implements OnInit {
   impuestos:TbImpuestos = new TbImpuestos();
   bandera: boolean = false;
   modifica: boolean = false;
+  detalles: boolean = false;
 
   formulario(){
     this.bandera = true;
@@ -28,6 +29,7 @@ export class ImpuestosComponent implements OnInit {
     if(this.modifica){
       this.ListImpuestos.push(this.impuestos);
     }
+    this.detalles = false;
     this.bandera = false;
     this.modifica = false;
     this.impuestos = new TbImpuestos();
@@ -92,6 +94,15 @@ export class ImpuestosComponent implements OnInit {
     this.ImpuestoService.get().subscribe(data =>{
       this.ListImpuestos = data;
     });
+  }
+
+  Detalles(id){
+    for (let i = 0; i < this.ListImpuestos.length; i++) {
+      if (this.ListImpuestos[i].Id == id) {
+        this.impuestos = this.ListImpuestos[i];   
+        this.detalles = true;
+      }
+    }
   }
 
 

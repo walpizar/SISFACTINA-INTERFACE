@@ -17,7 +17,7 @@ import { empty } from 'rxjs';
   styleUrls: ['./lista-empresa.component.css']
 })
 export class ListaEmpresaComponent implements OnInit {
-
+  detalles:boolean = false;
   modifica:boolean = false;
   bandera: boolean = false;
   tipoId: number = 1;
@@ -42,6 +42,31 @@ export class ListaEmpresaComponent implements OnInit {
   ngOnInit() {
   }
 
+  Detalles(Id){
+    this.detalles = true
+    for (let i = 0; i < this.ListEmpre.length; i++) {
+      if (this.ListEmpre[i].Id == Id  ) {
+        if (this.ListEmpre[i].TbParametrosEmpresa.length == 0) {
+          this.Empresa = this.ListEmpre[i];
+          this.Persona=this.Empresa.TbPersona;
+        }
+        else{
+          this.parametrosEmpreService.getById(Id).subscribe(data =>{
+            this.ParametrosEmpresa = data;
+            for (let i = 0; i < this.ListEmpre.length; i++) {
+              if (this.ListEmpre[i].Id == Id) {
+                this.Empresa = this.ListEmpre[i];
+                this.Persona=this.Empresa.TbPersona;
+                this.Empresa.TbParametrosEmpresa[0] = this.ParametrosEmpresa;
+                //console.log(this.Empresa);
+              }
+            }
+          });
+        
+        }
+      }
+    }
+  }
 
   obtenerListaTipoId() {
     this.tipoIdService.getTipoId().subscribe(data=>{
@@ -62,6 +87,7 @@ export class ListaEmpresaComponent implements OnInit {
     if(this.modifica){
       this.ListEmpre.push(this.Empresa);
     }
+    this.detalles = false;
     this.bandera = false;
     this.modifica = false;
     this.Empresa = new TbEmpresa();
@@ -109,20 +135,33 @@ export class ListaEmpresaComponent implements OnInit {
   }
 
   modificar(Id){
-      this.parametrosEmpreService.getById(Id).subscribe(data =>{
-        this.ParametrosEmpresa = data;
-        for (let i = 0; i < this.ListEmpre.length; i++) {
-          if (this.ListEmpre[i].Id == Id) {
+      for (let i = 0; i < this.ListEmpre.length; i++) {
+        if (this.ListEmpre[i].Id == Id  ) {
+          if (this.ListEmpre[i].TbParametrosEmpresa.length == 0) {
             this.Empresa = this.ListEmpre[i];
             this.Persona=this.Empresa.TbPersona;
-            this.Empresa.TbParametrosEmpresa[0] = this.ParametrosEmpresa;
-            this.modifica = true;
-            this.bandera = true;
-            console.log(this.Empresa);
             this.ListEmpre.splice(i,1);
           }
+          else{
+            this.parametrosEmpreService.getById(Id).subscribe(data =>{
+              this.ParametrosEmpresa = data;
+              for (let i = 0; i < this.ListEmpre.length; i++) {
+                if (this.ListEmpre[i].Id == Id) {
+                  this.Empresa = this.ListEmpre[i];
+                  this.Persona=this.Empresa.TbPersona;
+                  this.Empresa.TbParametrosEmpresa[0] = this.ParametrosEmpresa;
+                  //console.log(this.Empresa);
+                  this.ListEmpre.splice(i,1);
+                }
+              }
+            });
+          
+          }
         }
-      });
+        this.modifica = true;
+        this.bandera = true;
+      }
+      
   }
 
   consultarTodos(){
@@ -146,6 +185,7 @@ export class ListaEmpresaComponent implements OnInit {
       }
     }
   }
+
 
   Buscar(Id: string) {
     this.servicePer.ConsultarById(Id).subscribe(data => {
