@@ -33,6 +33,8 @@ import { ProductosComponent } from './Productos/productos.component';
 import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
+import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -51,6 +53,8 @@ const routes: Routes = [
   {path: 'RegistroCliente', component: RegistroCliComponent },
   {path: 'DetallesCliente/:id', component: DetalleCliComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {path: 'ListaCompras', component: ComprasListComponent },
+  {path: 'RegistroCompras', component: ComprasRegistroComponent },
   {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },

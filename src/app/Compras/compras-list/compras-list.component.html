@@ -1,0 +1,58 @@
+<body class="">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 pt-4 pb-4 fondo-color">
+        <h2 class="text-center">Compras</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenidoPrin mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="md-form">
+
+            <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
+            <label for="search">Buscar</label>
+            <button style="margin-left: 0%" type="button" mdbBtn color="light-blue" outline="true" size="md"
+              (click)="searchItems()">Buscar</button>
+            <button type="button" mdbBtn color="light-blue" outline="true" size="md"
+              (click)="Refresh()">Renovar</button>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <table mdbTable class="z-depth-1 table-responsive-md" hover="true">
+            <thead>
+              <tr>
+                <th id="cabecera" *ngFor="let head of headElements" scope="col">{{head}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr *ngFor="let purchase of shoppingList">
+                <td>{{purchase.Id}}</td>
+                <td>{{purchase.TipoDocumento}}</td>
+                <th>{{purchase.Fecha}}</th>
+
+                <td>
+                  <button type="button" mdbBtn color="info" size="sm" (click)="currentPurchase(purchase)"> 
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>

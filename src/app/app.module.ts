@@ -48,6 +48,8 @@ import { CrearProductoComponent } from './Productos/crear-producto/crear-product
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component';
 import { DetallesProductoComponent } from './Productos/detalles-producto/detalles-producto.component';
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
+import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 
 
 @NgModule({
@@ -87,7 +89,9 @@ import { EliminarProductoComponent } from './Productos/eliminar-producto/elimina
     CrearProductoComponent,
     ModificarProductoComponent,
     DetallesProductoComponent,
-    EliminarProductoComponent
+    EliminarProductoComponent,
+    ComprasListComponent,
+    ComprasRegistroComponent
   ],
   imports: [
     BrowserModule,
