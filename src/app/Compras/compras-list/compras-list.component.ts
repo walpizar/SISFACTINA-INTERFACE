@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ComprasService } from 'src/Services/Compras/compras.service';
 import { ToastrService } from 'ngx-toastr';
+import { TbDocumento } from 'src/Models/Documento';
 
 @Component({
   selector: 'app-compras-list',
@@ -10,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ComprasListComponent implements OnInit {
 
   // variables
-  shoppingList = new Array();
+  shoppingList: TbDocumento[];
   searchText = '';
 
   constructor(private service: ComprasService, private Alert: ToastrService) { }

@@ -50,6 +50,7 @@ import { DetallesProductoComponent } from './Productos/detalles-producto/detalle
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ComprasDetallesComponent } from './Compras/compras-detalles/compras-detalles.component';
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { ComprasRegistroComponent } from './Compras/compras-registro/compras-reg
     DetallesProductoComponent,
     EliminarProductoComponent,
     ComprasListComponent,
-    ComprasRegistroComponent
+    ComprasRegistroComponent,
+    ComprasDetallesComponent
   ],
   imports: [
     BrowserModule,

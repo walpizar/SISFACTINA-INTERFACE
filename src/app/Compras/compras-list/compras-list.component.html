@@ -14,7 +14,7 @@
         <div class="col-md-12 mx-auto">
           <div class="md-form">
 
-            <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
+            <input type="text" [(ngModel)]="_searchText" class="form-control" id="search" mdbInput>
             <label for="search">Buscar</label>
             <button style="margin-left: 0%" type="button" mdbBtn color="light-blue" outline="true" size="md"
               (click)="searchItems()">Buscar</button>
@@ -37,6 +37,7 @@
 
               <tr *ngFor="let purchase of shoppingList">
                 <td>{{purchase.Id}}</td>
+                <th>{{purchase.Clave}}</th>
                 <td>{{purchase.TipoDocumento}}</td>
                 <th>{{purchase.Fecha}}</th>
 

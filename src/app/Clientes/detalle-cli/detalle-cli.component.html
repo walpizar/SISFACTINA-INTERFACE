@@ -62,7 +62,7 @@
 
         <div class="form-group col-md-4">
           <label>Fecha de Nacimiento</label>
-          <input type="text" class="form-control" name="TbPersona.FechaNac" [(ngModel)]="CliActual.TbPersona.FechaNac"
+          <input type="text" class="form-control" name="TbPersona.FechaNac" [ngModel]="CliActual.TbPersona.FechaNac | date "
             readonly>
         </div>
 
@@ -147,7 +147,7 @@
 
         <div class="form-group col-md-3">
           <label>Precio a Aplicar</label>
-          <input type="number" class="form-control" name="CliActual.PrecioAplicar" [(ngModel)]="CliActual.PrecioAplicar"
+          <input type="number" class="form-control" name="CliActual.PrecioAplicar" [ngModel]="CliActual.PrecioAplicar"
             readonly>
         </div>
 
