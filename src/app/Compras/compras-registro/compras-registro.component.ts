@@ -115,9 +115,19 @@ export class ComprasRegistroComponent implements OnInit {
 
         // implementar logica si el producto ya exite lo modifico, sino lo agrego
 
-        // agrego  a la lista que deseo recorrer
+        for (var i = 0; i < this.detallesCompras.length; i++) {
+          if (this.detallesCompras[i].IdProducto == this.detalle.IdProducto) {
+            // si el producto existe en la lista se modifica
+            this.detallesCompras[i].Cantidad += this.detalle.Cantidad;
+            this.detallesCompras[i].MontoTotal += this.detalle.MontoTotal;
+            this.Alert.success('El producto se modificó correctamente');
+            return;
+          }
+        }
+        // agrego  a la lista el nuevo detalle
         this.detallesCompras.push(this.detalle);
         this.Alert.success('Se agregó le nuevo producto');
+
       } else {
         this.Alert.error('El producto y la cantidad son campos obligatorios');
       }
