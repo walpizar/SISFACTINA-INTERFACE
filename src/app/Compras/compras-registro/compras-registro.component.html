@@ -54,19 +54,19 @@
               <!-- ID Proveedor-->
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputAddress">ID Proveedor</label>
+                  <label for="">ID Proveedor</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="ID">
+                    <input mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
-                        class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                        class="m-0 px-3 py-2 rounded-right" (click)='ProviderById(idProveedor)' ><i class="fa fa-search fa-lg"></i></button>
                     </div>
                   </div>
                 </div>
                 <!-- Provedor nombre registrado -->
                 <div class="form-group col-md-6">
                   <label for="inputAddress2">Provedor</label>
-                  <input mdbInput type="text" class="form-control" id="inputAddress2" placeholder="Nombre">
+                  <input mdbInput type="text" class="form-control" name="ProveedorActual.NombreTributario" [(ngModel)]="ProveedorActual.NombreTributario" placeholder="Nombre">
                 </div>
               </div>
 
@@ -76,10 +76,10 @@
                 <div class="form-group col-md-6">
                   <label for="inputCity">ID Producto</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="ID">
+                    <input mdbInput type="text" class="form-control" name="idProducto" [(ngModel)]="idProducto" placeholder="ID">
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
-                        class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                        class="m-0 px-3 py-2 rounded-right" (click)='ProductById(idProducto)'><i class="fa fa-search fa-lg"></i></button>
                     </div>
                   </div>
                 </div>
@@ -87,18 +87,18 @@
                 <!-- Precio Cantidad-->
                 <div class="form-group col-md-2">
                   <label for="inputZip">Cantidad</label>
-                  <input mdbInput type="number" class="form-control" id="inputZip" placeholder="¢0.00">
+                  <input mdbInput type="number" class="form-control" placeholder="0" name="cantidadProducto" [(ngModel)]="cantidadProducto">
                 </div>
 
                 <!-- Precio Unitario-->
                 <div class="form-group col-md-2">
                   <label for="inputZip">Precio Unitario</label>
-                  <input mdbInput type="text" class="form-control" id="inputZip" placeholder="¢0.00">
+                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
                 </div>
 
                 <!--btn agregar a la lista-->
                 <div class="form-group col-md-1 my-4">
-                  <button mdbBtn type="button" color="success" class="mx-0" size="md" mdbWavesEffect>
+                  <button mdbBtn type="button" color="success" class="mx-0" size="md" mdbWavesEffect (click)='AgregarCompra(ProductoActual,cantidadProducto)'>
                       <i class="fa fa-cart-plus fa-lg"></i>
                   </button>
                 </div>
@@ -120,11 +120,10 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr mdbTableCol *ngFor="">
-                              <th scope="row">Cantidad</th>
-                              <td>Nombre</td>
-                              <td>total</td>
-                              <td>btn</td>
+                            <tr mdbTableCol *ngFor="let detailt of detallesCompras">
+                              <th scope="row">{{detailt.Cantidad}}</th>
+                              <td>{{detailt.IdProducto}}</td>
+                              <td>{{detailt.MontoTotal}}</td>
                             </tr>
                           </tbody>
                         </table>
@@ -140,7 +139,7 @@
                         <div class="form-group col-md-4">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                              <span class="input-group-text" id="basic-addon1">Toatl Grabado</span>
+                              <span class="input-group-text" id="basic-addon1">Total Grabado</span>
                             </div>
                             <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
                               aria-describedby="basic-addon1">
@@ -168,7 +167,13 @@
                       </div>
                       <!-- Grid row -->
                       
-
+                      <!-- btn gauardar toda la compra  -->
+                      <div class="row mt-2">
+                        <div class="col-md-12">
+                          <button id="btnGuardar" mdbBtn type="button" color="success" block="true"
+                            mdbWavesEffect>Guardar</button>
+                        </div>
+                      </div>
 
                     </mdb-card-footer>
 
@@ -176,13 +181,7 @@
                     </div>
               </div>
 
-              <!-- <div class="row my-4">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                  <button mdbBtn type="button" color="success" block="true" mdbWavesEffect>Guardar</button>
-                </div>
-                <div class="col-md-3"></div>
-              </div> -->
+              
             </form>
             <!-- fin del formulario factura-->
 
