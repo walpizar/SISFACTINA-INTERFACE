@@ -33,7 +33,13 @@ import { ProductosComponent } from './Productos/productos.component';
 import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+<<<<<<< HEAD
 import { CajasComponent } from './cajas/cajas.component';
+=======
+import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
+import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+>>>>>>> 419150c73c696fbf7103a38442bfa79eea9feb0c
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -53,9 +59,12 @@ const routes: Routes = [
   {path: 'RegistroCliente', component: RegistroCliComponent },
   {path: 'DetallesCliente/:id', component: DetalleCliComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {path: 'ListaCompras', component: ComprasListComponent },
+  {path: 'RegistroCompras', component: ComprasRegistroComponent },
   {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {path: 'tipoExoneraciones', component: ListaExoComponent },
   {
     path : 'usuario', component : UsuarioComponent, 
     children:[

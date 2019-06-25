@@ -1,0 +1,205 @@
+<body>
+  <!-- titulo -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 pt-4 pb-4 fondo-color text-center">
+        <h2 class="text-center">Registro Compras</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- inicio del contenido -->
+  <div class="container mt-5">
+
+    <!-- primera fila  -->
+    <div class="row">
+      <div class="col-md-12 mx-auto">
+        <!-- mdb card -->
+        <mdb-card cascade="true" narrower="true" class="mb-5">
+
+          <!-- titulo -->
+          <div class="view view-cascade titulo gradient-card-header green darken-3">
+              <h2 class="card-header-title pt-3 pb-2 text-center">Datos de la Compra</h2>
+            </div>
+          <mdb-card-body>
+
+            <!-- formaulario de factura-->
+            <form>
+              <!-- Grid row -->
+              <div class="form-row">
+                <!--#factura-->
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Nº Factura</label>
+                  <div class="input-group">
+                    <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="#factura">
+                    <div class="input-group-append">
+                      <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
+                        class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <!--Fecha de Compra-->
+                <div class="form-group col-md-3">
+                  <label for="inputPassword4">Fecha de Compra</label>
+                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                </div>
+                <!--Fecha de reporte-->
+                <div class="form-group col-md-3">
+                  <label for="inputPassword4">Fecha de reporte</label>
+                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                </div>
+              </div>
+              <!-- Grid row -->
+
+              <!-- ID Proveedor-->
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="">ID Proveedor</label>
+                  <div class="input-group">
+                    <input mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
+                    <div class="input-group-append">
+                      <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
+                        class="m-0 px-3 py-2 rounded-right" (click)='ProviderById(idProveedor)' ><i class="fa fa-search fa-lg"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Provedor nombre registrado -->
+                <div class="form-group col-md-6">
+                  <label for="inputAddress2">Provedor</label>
+                  <input mdbInput type="text" class="form-control" name="ProveedorActual.NombreTributario" [(ngModel)]="ProveedorActual.NombreTributario" placeholder="Nombre">
+                </div>
+              </div>
+
+              <!-- Datos del Producto -->
+              <div class="form-row">
+                <!--Producto ID -->
+                <div class="form-group col-md-6">
+                  <label for="inputCity">ID Producto</label>
+                  <div class="input-group">
+                    <input mdbInput type="text" class="form-control" name="idProducto" [(ngModel)]="idProducto" placeholder="ID">
+                    <div class="input-group-append">
+                      <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
+                        class="m-0 px-3 py-2 rounded-right" (click)='ProductById(idProducto)'><i class="fa fa-search fa-lg"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Precio Cantidad-->
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Cantidad</label>
+                  <input mdbInput type="number" class="form-control" placeholder="0" name="cantidadProducto" [(ngModel)]="cantidadProducto">
+                </div>
+
+                <!-- Precio Unitario-->
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Precio Unitario</label>
+                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
+                </div>
+
+                <!--btn agregar a la lista-->
+                <div class="form-group col-md-1 my-4">
+                  <button mdbBtn type="button" color="success" class="mx-0" size="md" mdbWavesEffect (click)='AgregarCompra(ProductoActual,cantidadProducto)'>
+                      <i class="fa fa-cart-plus fa-lg"></i>
+                  </button>
+                </div>
+
+              </div>
+              <!-- Grid row -->
+
+              <!--Carta con tabla de productos de compras registradas -->
+              <div class="form-row">
+                <div class="col-md-12">
+                  <mdb-card class="mx-0" style="box-shadow: none">
+                    <mdb-card-header class="text-center">COMPRAS FACTURADAS</mdb-card-header>
+                    <mdb-card-body>
+                      
+                        <table mdbTable hover="true">
+                          <thead>
+                            <tr>
+                              <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr mdbTableCol *ngFor="let detailt of detallesCompras">
+                              <th scope="row">{{detailt.Cantidad}}</th>
+                              <td>{{detailt.IdProducto}}</td>
+                              <td>{{detailt.MontoTotal}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+    
+                    </mdb-card-body>
+
+                    <mdb-card-footer class="text-center">
+                      <p class="text-muted">PRECIOS INCLUYEN IMPUESTOS</p>
+
+                      <!-- Grid row -->
+                      <div class="form-row">
+                        <!-- Default input -->
+                        <div class="form-group col-md-4">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">Total Grabado</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
+                              aria-describedby="basic-addon1">
+                          </div>
+                        </div>
+                        <!-- Default input -->
+                        <div class="form-group col-md-4">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">Total Exonerado</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
+                              aria-describedby="basic-addon1">
+                          </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon1">Total facturado</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
+                              aria-describedby="basic-addon1">
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Grid row -->
+                      
+                      <!-- btn gauardar toda la compra  -->
+                      <div class="row mt-2">
+                        <div class="col-md-12">
+                          <button id="btnGuardar" mdbBtn type="button" color="success" block="true"
+                            mdbWavesEffect>Guardar</button>
+                        </div>
+                      </div>
+
+                    </mdb-card-footer>
+
+                    </mdb-card>
+                    </div>
+              </div>
+
+              
+            </form>
+            <!-- fin del formulario factura-->
+
+
+          </mdb-card-body>
+        </mdb-card>
+        <!--fin mdb card -->
+
+
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+
+
+  <!-- fin del cuerpo -->
+</body>

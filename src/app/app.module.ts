@@ -48,7 +48,16 @@ import { CrearProductoComponent } from './Productos/crear-producto/crear-product
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component';
 import { DetallesProductoComponent } from './Productos/detalles-producto/detalles-producto.component';
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+<<<<<<< HEAD
 import { CajasComponent } from './cajas/cajas.component';
+=======
+import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
+import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
+import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
+import { SucursalComponent } from './sucursal/sucursal.component';
+>>>>>>> 419150c73c696fbf7103a38442bfa79eea9feb0c
 
 
 @NgModule({
@@ -66,7 +75,7 @@ import { CajasComponent } from './cajas/cajas.component';
     DocumentsComponent,
     DocumentsDetailsComponent,
     ListaEmpresaComponent,
-
+    SucursalComponent,
     IndexCategoriaProductoComponent,
     DetalleCategoriaProductoComponent,
     CrearCategoriaProductoComponent,
@@ -89,7 +98,15 @@ import { CajasComponent } from './cajas/cajas.component';
     ModificarProductoComponent,
     DetallesProductoComponent,
     EliminarProductoComponent,
+<<<<<<< HEAD
     CajasComponent
+=======
+    ComprasListComponent,
+    ComprasRegistroComponent,
+    ListaExoComponent,
+    TipoExoneracionComponent,
+    AgregarExoComponent
+>>>>>>> 419150c73c696fbf7103a38442bfa79eea9feb0c
   ],
   imports: [
     BrowserModule,
