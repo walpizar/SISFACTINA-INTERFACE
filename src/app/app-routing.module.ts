@@ -33,12 +33,14 @@ import { ProductosComponent } from './Productos/productos.component';
 import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+import { CajasComponent } from './cajas/cajas.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
   {path:'detalle', component:DetallesAbonosComponent },
   {path:'abo',component: AbonosComponent},
   {path:'proveedor',component:ProveedorComponent},
+  {path:'cajas',component:CajasComponent},
   {path:'Indexproveedor',component:IndexProveedorComponent},
   {path:'detalleproveedor',component:DetalleProveedorComponent},
   {path:"factura", component : DocumentsComponent},

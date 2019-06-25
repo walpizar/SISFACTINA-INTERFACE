@@ -66,26 +66,35 @@
   <div *ngIf="!bandera">
     <div class="container-fluid">
         <div class="row">
-          <div class="col-md-12 pt-3 pb-3 fondo-color">
+          <div class="col-md-12 pt-3 pb-3 fondo-color" style="border-style: solid; border-width: 5px; border-color: white">
             <h3 class="text-center" >Lista De Impuestos</h3>
           </div>
         </div>
       </div>
-        <table class="table" class="table table-bordered">
-            <tr> 
-                <td>ID</td>
-                <td>Valor</td>
-                <td>Descripción</td>
-            </tr>
-            <tr *ngFor = 'let Tbimpuestos of ListImpuestos'>
+      <div class="table-responsive">
+        <table class="table" style="text-align: center">
+            <thead>
+              <tr class="text-center fondo-color" style="border-style: solid; border-width: 5px; border-color: white"> 
+                <th scope="col">ID</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = 'let Tbimpuestos of ListImpuestos'>
                 <td>{{Tbimpuestos.Id}}</td>
                 <td>{{Tbimpuestos.Valor}}</td>
                 <td>{{Tbimpuestos.Descripcion}}</td>
-                <button *ngIf ="!bandera" class="btn btn-outline-danger " (click)="eliminar(Tbimpuestos.Id) " style="margin: 10px;">Eliminar</button>
-                <button *ngIf ="!bandera"  class="btn btn-outline-primary " (click)="modificar(Tbimpuestos.Id) " style="margin: 10px;">Modificar</button>
-                <button *ngIf ="!bandera"  class="btn btn-outline-warning " (click)="Detalles(Tbimpuestos.Id) " style="margin: 10px;">Detalles</button>
-            </tr>
+                <td>
+                  <button *ngIf ="!bandera" class="btn btn-outline-danger " (click)="eliminar(Tbimpuestos.Id) " style="margin: 10px;">Eliminar</button>
+                  <button *ngIf ="!bandera"  class="btn btn-outline-primary " (click)="modificar(Tbimpuestos.Id) " style="margin: 10px;">Modificar</button>
+                  <button *ngIf ="!bandera"  class="btn btn-outline-warning " (click)="Detalles(Tbimpuestos.Id) " style="margin: 10px;">Detalles</button>
+                </td>
+              </tr>
+            </tbody>
           </table>
+      </div>
   </div>
 </div>
 

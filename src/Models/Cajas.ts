@@ -1,4 +1,6 @@
-import { TbCajaUsuario } from './CajaUsuario';
+import { TbSucursales } from './Sucursales';
+
+
 
 export class TbCajas{
 
@@ -10,8 +12,12 @@ export class TbCajas{
     FechaUltMod : Date; 
     UsuarioCrea : string; 
     UsuarioUltMod : string; 
+    IdEmpresa: string;
+    IdTipoEmpresa: number;
+    IdSucursal: number;
 
-    TbCajaUsuario : TbCajaUsuario[]
+
+    IdNavigation: TbSucursales;
 
     constructor(){
 
