@@ -1,126 +1,176 @@
-<h4 class="text-center" >Registro</h4>
-
-    <div class="form-group ">
-      <label>Rol de usuario</label>
-      <select name="Rol.IdRol" class="form-control" [(ngModel)]="Rol.IdRol">
-          <option *ngFor="let TipoId of ListaRol" value="{{Rol.IdRol}}">{{Rol.Nombre}}</option>
-      </select>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 pt-4 pb-4 fondo-color">
+      <h2 class="text-center">Registro Usuario</h2>
     </div>
+  </div>
+</div>
+<div class="ContenidoForm">
+  <!-- Default form contact -->
+  <form class="text-center border border-light p-5">
 
-      <div >
-        <label>Nombre de Usuario</label>
-        <input type="text" mdbInput class="form-control mb-3" name="Usuario.Nombre"[(ngModel)]="Usuario.Nombre">
+    <!-- primera card -->
+    <div class="container">
+    <mdb-card cascade="true" narrower="true" class="mb-5">
+      <!-- titulo -->
+      <div class="view view-cascade titulo gradient-card-header blue darken-3">
+        <h2 class="card-header-title pt-3 pb-2">Datos Personales</h2>
       </div>
-
-      <div class="input-group col-md-4 p-0">
-          <div class="input-group-prepend mb-3">
-            <span class="input-group-text">Tipo ID</span>
-          </div>
-          <select name="Persona.TipoId" class="form-control" [(ngModel)]="Persona.TipoId">
-            <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">{{TipoId.Nombre}}</option>
-          </select>
-        </div>
-
-        <input type="text" mdbInput class="form-control mb-3" placeholder="Identificacion"
-        name="Persona.Identificacion" [(ngModel)]="Persona.Identificacion">
-      <div class="input-group-append mb-3">
-
-      <div>
-        <label>Nombre de Usuario</label>
-        <input type="text" mdbInput class="form-control mb-3" name="Persona.Nombre"[(ngModel)]="Persona.Nombre">
-      </div>
-
-        <div>
-            <label>Apellido 1</label>
-            <input type="text" mdbInput class="form-control mb-3" name="Persona.Apellido1"[(ngModel)]="Persona.Apellido1">
-          </div>
-  
-          
-      <div>
-          <label>Apellido 2</label>
-          <input type="text" mdbInput class="form-control mb-3" name="Persona.Apellido2"[(ngModel)]="Persona.Apellido2">
-        </div>
-
-        <div>
-            <label>Correo Electronico</label>
-            <input type="text" class="form-control" name="CorreoElectronico"> 
-          </div>
-    
-          <div>
-            <label>Empresa</label>
-            <select class="form-control" name="idEmpresa" required>
-              <option *ngFor="let idEmpresa of listaEmpresa" [value]="idEmpresa.Id" required>{{idEmpresa.NombreComercial}}</option>
+      <mdb-card-body>
+        <!-- primer grupo -->
+        <div class="input-group">
+          <!-- tipo id -->
+          <div class="input-group col-md-4 p-0">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Tipo ID</span>
+            </div>
+            <select name="TipoId" class="form-control" [(ngModel)]="Persona.TipoId">
+              <option *ngFor="let TipoId of listaTipoId" value="{{TipoId.Id}}">{{TipoId.Nombre}}</option>
             </select>
           </div>
-  
+          <!-- Identificacion -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Identificacion"
+            name="Persona.Identificacion" [(ngModel)]="Persona.Identificacion">
+          
+        </div>
 
+        <div class="input-group">
+          <!-- Nombre -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Nombre" name="Persona.Nombre"
+            [(ngModel)]="Persona.Nombre">
+
+          <!-- Apellido1 -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="1° Apellido" name="Persona.Apellido1"
+            [(ngModel)]="Persona.Apellido1">
+
+          <!-- Apellido2 -->
+          <input type="text" id="" mdbInput class="form-control mb-3" placeholder="2° Apellido" name="Persona.Apellido2"
+            [(ngModel)]="Persona.Apellido2">
+        </div>
+
+        <!-- segundo grupo -->
+        <div class="input-group">
+
+          <!-- Email -->
+          <input type="email" id="" mdbInput class="form-control mb-4" name="Persona.CorreoElectronico"
+            [(ngModel)]="Persona.CorreoElectronico" placeholder="E-mail">
+
+          <!-- sexo -->
+          <div class="input-group mb-3 col-md-3 p-0">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Sexo</span>
+            </div>
+            <select class="form-control" name="Persona.Sexo" [(ngModel)]="Persona.Sexo">
+              <option value="1">
+                Masculino
+              </option>
+              <option value="2">
+                Femenino
+              </option>
+            </select>
+          </div>
+
+          <!-- fecha nacimiento -->
+          <div class="input-group mb-3 col-md-5" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Fecha de Nacimiento</span>
+            </div>
+            <input type="date" id="input" name="Persona.FechaNac" class="form-control" [(ngModel)]="Persona.FechaNac"
+              mdbInput>
+          </div>
+
+        </div>
+
+
+        <!-- tercer grupo -->
+        <div class="input-group">
+
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisTel"
+            [(ngModel)]="Persona.CodigoPaisTel" placeholder="Codigo de Area Telefono">
+          <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Telefono"
+            [(ngModel)]="Persona.Telefono" placeholder="Telefono">
+
+          <input type="number" id="" mdbInput class="form-control mb-4" name="Persona.CodigoPaisFax"
+            [(ngModel)]="Persona.CodigoPaisFax" placeholder="Codigo Area Fax">
+          <input type="tel" id="" mdbInput class="form-control mb-4" name="Persona.Fax" [(ngModel)]="Persona.Fax"
+            placeholder="Fax">
+
+     <div class="input-group">
+
+          <!-- provincia -->
           <div class="input-group mb-3 col-md-3" style="padding: 0%">
-              <div class="input-group-prepend mb-3">
-                <span class="input-group-text">Provincia</span>
-              </div>
-              <select class="form-control" name="Persona.Provincia" [(ngModel)]="Persona.Provincia"
-                (change)="onChangeProvincia($event.target.value)">
-                <option disabled>Provincia</option>
-                <option *ngFor="let Provincia of listaProvincia" value="{{Provincia.Cod}}">
-                  {{Provincia.Nombre}}
-                </option>
-              </select>
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Provincia</span>
             </div>
-  
-  
-            <!-- Canton -->
-            <div class="input-group mb-3 col-md-3" style="padding: 0%">
-              <div class="input-group-prepend mb-3">
-                <span class="input-group-text">Canton</span>
-              </div>
-              <select class="form-control" name="Persona.Canton" [(ngModel)]="Persona.Canton"
-                (change)="onChangeCanton($event.target.value)">
-                <option disabled>Canton</option>
-                <option *ngFor="let Canton of comboCantones" value="{{Canton.Canton}}">
-                  {{Canton.Nombre}}
-                </option>
-              </select>
-            </div>
-  
-            <!-- distrito -->
-            <div class="input-group mb-3 col-md-3" style="padding: 0%">
-              <div class="input-group-prepend mb-3">
-                <span class="input-group-text">Distrito</span>
-              </div>
-              <select class="form-control" name="Persona.Distrito" [(ngModel)]="Persona.Distrito"
-                (change)="onChangeDistrito($event.target.value)">
-                <option disabled>Distrito</option>
-                <option *ngFor="let Distrito of comboDistritos" value="{{Distrito.Distrito}}">
-                  {{Distrito.Nombre}}
-                </option>
-              </select>
-            </div>
-  
-            <!-- barrio -->
-            <div class="input-group mb-3 col-md-3" style="padding: 0%">
-              <div class="input-group-prepend mb-3">
-                <span class="input-group-text">Barrio</span>
-              </div>
-              <select class="form-control" [(ngModel)]="Persona.Barrio" name="Persona.Barrio">
-                <option disabled>Barrio</option>
-                <option *ngFor="let Barrio of comboBarrios" value="{{Barrio.Barrio}}">
-                  {{Barrio.Nombre}}
-                </option>
-              </select>
-            </div>
-
-          <div >
-              <div >
-                <label>Contraseña</label>
-                <input type="password" class="form-control "required> 
-              </div>
-
-              <div >
-                <label>Confirmar Contraseña</label>
-                <input type="password" class="form-control " required> 
-              </div>
+            <select class="form-control" name="Persona.Provincia" [(ngModel)]="Persona.Provincia"
+              (change)="onChangeProvincia($event.target.value)">
+              <option disabled>Provincia</option>
+              <option *ngFor="let Provincia of listaProvincia" value="{{Provincia.Cod}}">
+                {{Provincia.Nombre}}
+              </option>
+            </select>
           </div>
-          <div>
-            <button type="submit" class="btn btn-lg btn-primary">Registrarme</button>
-          </div>
+
   
+  
+        <!--Cuarto grupo, combos de ubicacion -->
+        
+
+
+          <!-- Canton -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Canton</span>
+            </div>
+            <select class="form-control" name="Persona.Canton" [(ngModel)]="Persona.Canton"
+              (change)="onChangeCanton($event.target.value)">
+              <option disabled>Canton</option>
+              <option *ngFor="let Canton of comboCantones" value="{{Canton.Canton}}">
+                {{Canton.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <!-- distrito -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Distrito</span>
+            </div>
+            <select class="form-control" name="Persona.Distrito" [(ngModel)]="Persona.Distrito"
+              (change)="onChangeDistrito($event.target.value)">
+              <option disabled>Distrito</option>
+              <option *ngFor="let Distrito of comboDistritos" value="{{Distrito.Distrito}}">
+                {{Distrito.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <!-- barrio -->
+          <div class="input-group mb-3 col-md-3" style="padding: 0%">
+            <div class="input-group-prepend mb-3">
+              <span class="input-group-text">Barrio</span>
+            </div>
+            <select class="form-control" [(ngModel)]="Persona.Barrio" name="Persona.Barrio">
+              <option disabled>Barrio</option>
+              <option *ngFor="let Barrio of comboBarrios" value="{{Barrio.Barrio}}">
+                {{Barrio.Nombre}}
+              </option>
+            </select>
+          </div>
+
+          <br>
+          <!-- direcciion exacta, otras señas -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Direccion</span>
+            </div>
+            <textarea class="form-control" [(ngModel)]="Persona.OtrasSenas" name="Persona.OtrasSenas"></textarea>
+          </div>
+          
+  
+  <!-- fin form-->
+
+
+
+
+</div>
