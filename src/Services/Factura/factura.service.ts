@@ -40,7 +40,9 @@ export class FacturaService {
     const headers=new HttpHeaders().set('Content-type','application/Json');
     return this.http.put(this.serviceGeneric.getURL()+'/documento',body,{headers})
   }
-  
+  EnviarCorreo(){
+    return this.http.get<boolean>(this.serviceGeneric.getURL()+"/documento/correoelectronico")
+  }
   ConsultarTodosAbono(id){
     
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL()+"/documento/consultar/"+id);
