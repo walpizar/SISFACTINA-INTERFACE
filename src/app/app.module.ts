@@ -51,6 +51,7 @@ import { EliminarProductoComponent } from './Productos/eliminar-producto/elimina
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 import { ComprasDetallesComponent } from './Compras/compras-detalles/compras-detalles.component';
+import { SucursalComponent } from './sucursal/sucursal.component';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { ComprasDetallesComponent } from './Compras/compras-detalles/compras-det
     DocumentsComponent,
     DocumentsDetailsComponent,
     ListaEmpresaComponent,
-
+    SucursalComponent,
     IndexCategoriaProductoComponent,
     DetalleCategoriaProductoComponent,
     CrearCategoriaProductoComponent,
