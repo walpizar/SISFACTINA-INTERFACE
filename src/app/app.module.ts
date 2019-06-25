@@ -50,6 +50,9 @@ import { DetallesProductoComponent } from './Productos/detalles-producto/detalle
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
+import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { ComprasRegistroComponent } from './Compras/compras-registro/compras-reg
     DetallesProductoComponent,
     EliminarProductoComponent,
     ComprasListComponent,
-    ComprasRegistroComponent
+    ComprasRegistroComponent,
+    ListaExoComponent,
+    TipoExoneracionComponent,
+    AgregarExoComponent
   ],
   imports: [
     BrowserModule,

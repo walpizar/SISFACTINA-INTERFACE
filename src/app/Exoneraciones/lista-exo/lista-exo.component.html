@@ -1,0 +1,96 @@
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 pt-4 pb-4 fondo-color">
+            <h2 class="text-center ml-5">Tipo de Exoneraciones</h2>
+        </div>
+        <div class="col-md-2 fondo-color">
+          <a class="">
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+              Agregar Exoneración
+          </a>
+        </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <div class="md-form">
+              <input type="text" [(ngModel)]="searchText" class="form-control" id="search" mdbInput>
+              <label for="search">Buscar</label>
+              <button class="ml-0" type="button" mdbBtn color="info" outline="true" size="md" >Buscar</button>
+              <button type="button" mdbBtn color="light-blue" outline="true" size="md" >Refrescar</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <table mdbTable class="z-depth-1 table-responsive-md" hover="true">
+              <thead class="titulo-tabla" class="blue-grey darken-2 white-text">
+                <tr class="text-center" mdbTableCol>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Valor</th>
+                  <th scope="col" colspan="3">Acción</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let exo of listaExo">
+                  <td>{{exo.Id}}</td>
+                  <td>{{exo.Nombre}}</td>
+                  <td>{{exo.Valor}}</td>
+                  <td>
+                    <button type="button" mdbBtn color="info" size="sm" (click)="">
+                      Detalles
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" mdbBtn color="success" size="sm" (click)="">
+                      Modificar
+                    </button>
+                  </td>
+                  <td>
+                    <button type="button" mdbBtn color="danger" size="sm" class="waves-light" data-toggle="modal"
+                      data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Eliminar</button>
+                  </td>
+    
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+  
+ 
+  <div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+      <!--Content-->
+      <div class="modal-content text-center">
+        <!--Header-->
+        <div class="modal-header d-flex justify-content-center">
+          <p class="heading">Eliminar Tipo Exoneración</p>
+        </div>
+  
+        <!--Body-->
+        <div class="modal-body">
+          <p>Desea eliminar este tipo de exoneración?</p>
+        </div>
+  
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+          <a (click)="EliminarCli()" (click)="frame.hide()"  mdbBtn color="danger" class="waves-light" mdbWavesEffect>Si</a>
+          <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+        </div>
+      </div>
+      <!--/.Content-->
+    </div>
+  </div>
+
+</body>
