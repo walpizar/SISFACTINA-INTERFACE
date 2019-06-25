@@ -37,6 +37,7 @@ import { CajasComponent } from './cajas/cajas.component';
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+import { FacturadorComponent } from './Facturador/facturador.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path:'Indexproveedor',component:IndexProveedorComponent},
   {path:'detalleproveedor',component:DetalleProveedorComponent},
   {path:"factura", component : DocumentsComponent},
+  {path:"facturador",component:FacturadorComponent},
   {path:'detalleFactura/:id', component : DocumentsDetailsComponent},
   {path:'empresa',component:ListaEmpresaComponent},
   {path:'Indexcategoriaproduct',component:IndexCategoriaProductoComponent},
