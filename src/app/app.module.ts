@@ -53,6 +53,7 @@ import { ComprasRegistroComponent } from './Compras/compras-registro/compras-reg
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
 import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
 import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
+import { SucursalComponent } from './sucursal/sucursal.component';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.com
     DocumentsComponent,
     DocumentsDetailsComponent,
     ListaEmpresaComponent,
-
+    SucursalComponent,
     IndexCategoriaProductoComponent,
     DetalleCategoriaProductoComponent,
     CrearCategoriaProductoComponent,

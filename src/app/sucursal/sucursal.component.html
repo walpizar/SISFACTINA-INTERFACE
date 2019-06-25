@@ -1,0 +1,191 @@
+<div class="container">
+  <div class="row">
+    <div class="form-group col-md-3">
+      <select class="form-control" [(ngModel)]="Empresa" (change)="get($event.target.value) ">
+        <option disabled>Empresa</option>
+        <option *ngFor="let lEmp of listaEmpresa" value="{{lEmp.Id}}{{lEmp.TipoId}}">
+          {{lEmp.TbPersona.Nombre}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group col-md-3">
+      
+    </div>
+    <div class="form-group col-md-3">
+
+    </div>
+  </div>
+
+
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Fecha creación</th>
+        <th>Fecha Utima Modificación</th>
+        <th>Usuario Creación</th>
+        <th>Usuario Utima Modificación</th>
+        <th><button *ngIf="empresaTipoId!=null && empresaId!=null" type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal"
+            data-target="#myModal" (click)="sucursal.show()" mdbWavesEffect>+</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let suc of listaSucursales">
+        <td *ngIf="suc.FechaCrea!=null">{{suc.Id}}</td>
+        <td *ngIf="suc.FechaCrea==null">Por definir</td>
+        <td>{{suc.Nombre}}</td>
+        <td>{{suc.Direccion}}</td>
+        <td *ngIf="suc.FechaCrea!=null">{{suc.FechaCrea}}</td>
+        <td *ngIf="suc.FechaCrea==null">Pendiente</td>
+        <td *ngIf="suc.FechaUltMod!=null">{{suc.FechaUltMod}}</td>
+        <td *ngIf="suc.FechaUltMod==null">Pendiente</td>
+        <td>{{suc.UsuarioCrea}}</td>
+        <td>{{suc.UsuarioUltMod}}</td>
+        <td><button type="button" mdbBtn color="danger" size="sm" class="waves-light" data-toggle="modal"
+            data-target="#myModal" (click)="EnviaDatoEliminar(suc)" (click)="ventana.show()" mdbWavesEffect>-</button>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td *ngIf="agregar==true"><button (click)="post()" class="btn btn-outline-success btn-sm" type="button"
+            size="sm">Agregar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div mdbModal #sucursal="mdbModal" class="modal fade " id="frameModal1" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-scrollable modal-md modal-notify modal-info" role="document">
+    <div class="modal-content ">
+
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel" style="color: aliceblue">Agregar Sucursal</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="sucursal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <div class="table">
+          <div class="row">
+            <div class="form-group col-md-3">
+              Nombre:
+            </div>
+            <div class="form-group col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="Nombre" placeholder="Numero de sucursal">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              Telefono:
+            </div>
+            <div class="form-group col-md-9">
+              <input type="text" class="form-control" [(ngModel)]="sucursal.Telefono" placeholder="Numero de sucursal">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              Provincia:
+            </div>
+            <div class="form-group col-md-9">
+              <select class="form-control" [(ngModel)]="Provincia" (change)="onChangeProvincia($event.target.value)">
+                <option disabled>Provincia</option>
+                <option *ngFor="let Provincia of listaProvincia" value="{{Provincia.Cod}}">
+                  {{Provincia.Nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              Canton:
+            </div>
+            <div class="form-group col-md-9">
+              <select class="form-control" name="Persona.Canton" [(ngModel)]="Canton"
+                (change)="onChangeCanton($event.target.value)">
+                <option disabled>Canton</option>
+                <option *ngFor="let Canton of comboCantones" value="{{Canton.Canton}}">
+                  {{Canton.Nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-3">
+              Distrito:
+            </div>
+            <div class="form-group col-md-9">
+              <select class="form-control" name="Persona.Distrito" [(ngModel)]="Distrito"
+                (change)="onChangeDistrito($event.target.value)">
+                <option disabled>Distrito</option>
+                <option *ngFor="let Distrito of comboDistritos" value="{{Distrito.Distrito}}">
+                  {{Distrito.Nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-3">
+              Dirreción:
+            </div>
+            <div class="form-group col-md-9">
+              <textarea class="form-control input-lg" type="text" [(ngModel)]="Direccion"
+                placeholder="Dirección"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <div> </div>
+        <button *ngIf="Provincia != null && Canton!= null && Distrito!= null && Nombre!= null" type="button" size="sm"
+          mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="agregarSucursal()" (click)="sucursal.hide()">Agregar</button>
+        <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect
+          data-dismiss="modal" (click)="sucursal.hide()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #ventana="mdbModal" class="modal fade" id="ejem" tabindex="-1" role="dialog" aria-labelledby="myModal"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-danger" role="document">
+
+    <div class="modal-content text-center">
+
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Eliminar sucursal</p>
+      </div>
+
+
+      <div class="modal-body">
+        <p>Desea eliminar: {{eliminaIdSucursal}}?</p>
+      </div>
+
+
+      <div class="modal-footer justify-content-center">
+        <a (click)="delete(eliminaIdProducto)" (click)="ventana.hide()" mdbBtn color="danger" class="waves-light"
+          mdbWavesEffect>Si</a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="ventana.hide()">No</a>
+      </div>
+    </div>
+
+  </div>
+</div>
