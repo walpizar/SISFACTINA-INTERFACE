@@ -25,6 +25,7 @@ export class ComprasRegistroComponent implements OnInit {
 
   idProveedor: string;
   idProducto: string;
+  TotalGrabado: number;
   cantidadProducto: number;
   ProveedorActual = new TbProveedores();
   ProductoActual = new TbProducto();
@@ -97,6 +98,8 @@ export class ComprasRegistroComponent implements OnInit {
         Product = this.listaProductos.filter(x => x.IdProducto == Id.trim());
         if (Product != null) {
           this.ProductoActual = Product[0];
+        } else {
+          this.Alert.error('El producto no está registrado, ingrese el dato de nuevo');
         }
       }
     } catch (error) {
@@ -112,10 +115,13 @@ export class ComprasRegistroComponent implements OnInit {
         this.detalle.IdTipoDoc = 6;
         this.detalle.Cantidad = cantidad;
         this.detalle.MontoTotal = (product.PrecioReal * cantidad);
+        this.detalle.IdProductoNavigation = product;
+        console.log(this.detalle.IdProductoNavigation.Nombre);
 
-        // implementar logica si el producto ya exite lo modifico, sino lo agrego
+        this.TotalGrabado = this.calculoImpuExon(product, cantidad);
 
-        for (var i = 0; i < this.detallesCompras.length; i++) {
+        // si el producto ya exite lo modifico, sino lo agrego
+        for (let i = 0; i < this.detallesCompras.length; i++) {
           if (this.detallesCompras[i].IdProducto == this.detalle.IdProducto) {
             // si el producto existe en la lista se modifica
             this.detallesCompras[i].Cantidad += this.detalle.Cantidad;
@@ -136,6 +142,14 @@ export class ComprasRegistroComponent implements OnInit {
       this.Alert.error('Error al agregar un nuevo producto a la lista');
     }
 
+  }
+
+  calculoImpuExon(product: TbProducto, cantidad: number): number {
+
+    if (product != null) {
+      const impuesto = parseInt( product.IdTipoImpuestoNavigation.Valor );
+      return (product.PrecioReal * cantidad) * impuesto;
+    }
   }
 
 

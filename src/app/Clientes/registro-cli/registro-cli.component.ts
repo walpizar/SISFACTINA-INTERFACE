@@ -159,6 +159,7 @@ export class RegistroCliComponent implements OnInit {
 
   Buscar(Id: string) {
     this.servicePer.ConsultarById(Id).subscribe(data => {
+      // asigno la persona a una nueva variable
       this.PersonaTri = data;
 
       this.Persona.Nombre = this.PersonaTri.Nombre;
