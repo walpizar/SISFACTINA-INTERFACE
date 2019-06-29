@@ -3,6 +3,7 @@ import { TbDocumento } from './Documento';
 import { TbUsuarios } from './Usuarios';
 import { TbParametrosEmpresa } from './ParametrosEmpresa';
 import { TbReporteHacienda } from './ReporteHacienda';
+import { TbSucursales } from './Sucursales';
 export class TbEmpresa{
 
   Id: string ;
@@ -29,6 +30,7 @@ export class TbEmpresa{
   TbDocumento: TbDocumento[];
   TbParametrosEmpresa: TbParametrosEmpresa[];
   TbReporteHacienda: TbReporteHacienda[];
+  TbSucursales: TbSucursales[];
   TbUsuarios: TbUsuarios[];
 
 

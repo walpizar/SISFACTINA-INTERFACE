@@ -33,17 +33,22 @@ import { ProductosComponent } from './Productos/productos.component';
 import { CrearProductoComponent } from './Productos/crear-producto/crear-producto.component';
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
+import { CajasComponent } from './cajas/cajas.component';
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+import { FacturadorComponent } from './Facturador/facturador.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
   {path:'detalle', component:DetallesAbonosComponent },
   {path:'abo',component: AbonosComponent},
   {path:'proveedor',component:ProveedorComponent},
+  {path:'cajas',component:CajasComponent},
   {path:'Indexproveedor',component:IndexProveedorComponent},
   {path:'detalleproveedor',component:DetalleProveedorComponent},
   {path:"factura", component : DocumentsComponent},
+  {path:"facturador",component:FacturadorComponent},
   {path:'detalleFactura/:id', component : DocumentsDetailsComponent},
   {path:'empresa',component:ListaEmpresaComponent},
   {path:'Indexcategoriaproduct',component:IndexCategoriaProductoComponent},
@@ -58,6 +63,7 @@ const routes: Routes = [
   {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
+  {path: 'tipoExoneraciones', component: ListaExoComponent },
   {
     path : 'usuario', component : UsuarioComponent, 
     children:[

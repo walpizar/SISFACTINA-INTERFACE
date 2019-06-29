@@ -1,0 +1,119 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 pt-3 pb-3 fondo-color">
+        <h3 class="text-center">Cajas</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="Sucursal !=null" class="container-fluid">
+  <button class="btn btn-outline-success" (click)="frame.show()">Agregar</button>
+</div>
+<div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Selecione la Empresa</h3>
+      <select class="form-control" name="select" required [(ngModel)]='Empresa' #gender="ngModel">
+        <option *ngFor="let empresa of listaEmpresa" [value]="Empresa.Id">{{Empresa.Id}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="Empresa != null" class="row">
+    <div class="col-md-12">
+      <h3>Selecione la Sucursal</h3>
+      <select class="form-control" name="select" required [(ngModel)]='Sucursal' #gender="ngModel">
+        <option *ngFor="let sucursal of listaSucursales" [value]="Sucursal.Id">{{Sucursal.Id}}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+<!--Modal-->
+<div mdbModal #frame="mdbModal" class="modal fade" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Agregar Caja</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <br>
+        <div class="card ">
+          <div class="card-heading bg-info text-white " style="text-align:center">
+            <h5>Ingrese los datos de la Caja</h5>
+          </div>
+          <div class="card-body">
+            <form class="form-inline">
+              <div class="input-group mb-3 " style="margin-left:1cm">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">ID:</span>
+                </div>
+                <input type="text" class="form-control" name="1" [(ngModel)]="Caja.Id">
+              </div>
+              <div style="margin-left:1cm" class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Nombre:</span>
+                </div>
+                <input type="text" class="form-control" name="2" [(ngModel)]="Caja.Nombre">
+              </div>
+              <div style="margin-left:1cm" class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Descripción:</span>
+                </div>
+                <input type="text" class="form-control" name="3" [(ngModel)]="Caja.Descripcion">
+              </div>
+            </form>
+            <br />
+          </div>
+        </div>
+        <br />
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="confirmar()" (click)="frame.hide()">Confirmar</a>
+        <a type="button" mdbBtn color="warning" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+          (click)="frame.hide()">Cancelar</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--finModal-->
+
+<!--Lista-->
+<div *ngIf="Sucursal != null" class="container-fluid">
+  <div>
+    <div class="table-responsive">
+      <table class="table" style="text-align: center">
+        <thead>
+          <tr class="text-center fondo-color">
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button class="btn btn-outline-danger " (click)="eliminar() " style="margin: 10px;">Eliminar</button>
+              <button class="btn btn-outline-primary " (click)="modificar() " style="margin: 10px;">Modificar</button>
+              <button class="btn btn-outline-warning " (click)="detalles() " style="margin: 10px;">Detalles</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
