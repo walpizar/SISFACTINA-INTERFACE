@@ -26,6 +26,11 @@ export class ComprasRegistroComponent implements OnInit {
   idProveedor: string;
   idProducto: string;
   TotalGrabado: number;
+  TotalExonerado:number = 0;
+  ComprasTotalGrabado: number = 0;
+  ComprasTotalExonerado: number = 0;
+  TotalComprasFacturadas: number = 0;
+  banderaAgregar:boolean = true;
   cantidadProducto: number;
   ProveedorActual = new TbProveedores();
   ProductoActual = new TbProducto();
@@ -118,8 +123,6 @@ export class ComprasRegistroComponent implements OnInit {
         this.detalle.IdProductoNavigation = product;
         console.log(this.detalle.IdProductoNavigation.Nombre);
 
-        this.TotalGrabado = this.calculoImpuExon(product, cantidad);
-
         // si el producto ya exite lo modifico, sino lo agrego
         for (let i = 0; i < this.detallesCompras.length; i++) {
           if (this.detallesCompras[i].IdProducto == this.detalle.IdProducto) {
@@ -127,12 +130,24 @@ export class ComprasRegistroComponent implements OnInit {
             this.detallesCompras[i].Cantidad += this.detalle.Cantidad;
             this.detallesCompras[i].MontoTotal += this.detalle.MontoTotal;
             this.Alert.success('El producto se modificó correctamente');
-            return;
+            this.banderaAgregar = false;
           }
         }
-        // agrego  a la lista el nuevo detalle
-        this.detallesCompras.push(this.detalle);
-        this.Alert.success('Se agregó le nuevo producto');
+        if (this.banderaAgregar) {
+          // agrego  a la lista el nuevo detalle
+          this.detallesCompras.push(this.detalle);
+          this.Alert.success('Se agregó le nuevo producto');
+        }
+        // f(x) calculo de exoneracion
+        this.TotalExonerado = this.calculoExoneracion();
+        this.ComprasTotalExonerado = this.TotalExonerado;
+        // f(x) calculo de Impuesto Grabado
+        this.TotalGrabado = this.calculoImpuGrabado(product, cantidad);
+        this.ComprasTotalGrabado += this.TotalGrabado;
+        // total de la factura
+        this.TotalComprasFacturadas = this.ComprasTotalGrabado + this.ComprasTotalExonerado;
+        // modifco la bandera antes de salir
+        this.banderaAgregar = true;
 
       } else {
         this.Alert.error('El producto y la cantidad son campos obligatorios');
@@ -143,12 +158,20 @@ export class ComprasRegistroComponent implements OnInit {
     }
 
   }
+  calculoExoneracion(): number {
+    let sum = 0;
+    for (let n of this.detallesCompras) {
+      sum += n.MontoTotal;
+    }
+    return sum;
+  }
 
-  calculoImpuExon(product: TbProducto, cantidad: number): number {
+  calculoImpuGrabado(product: TbProducto, cantidad: number): number {
 
     if (product != null) {
-      const impuesto = parseInt( product.IdTipoImpuestoNavigation.Valor );
-      return (product.PrecioReal * cantidad) * impuesto;
+      const impuesto = parseInt( product.IdTipoImpuestoNavigation.Valor )/100;
+      const impuest =  (product.PrecioReal * cantidad) * impuesto;
+      return impuest;
     }
   }
 
