@@ -31,10 +31,10 @@
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Nº Factura</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="#factura">
+                    <input mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="#factura">
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
-                        class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                        class="m-0 px-3 py-2 rounded-right" (click)='InvoiceById(idFactura)'><i class="fa fa-search fa-lg"></i></button>
                     </div>
                   </div>
                 </div>

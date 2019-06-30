@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TbDocumento } from 'src/Models/Documento';
 import { ComprasService } from 'src/Services/Compras/compras.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,6 @@ import { TbDetalleDocumento } from 'src/Models/DetalleDocumento';
   styleUrls: ['./compras-registro.component.css']
 })
 export class ComprasRegistroComponent implements OnInit {
-
   constructor(private service: ComprasService, private Alert: ToastrService) {}
 
   // variables y arreglos
@@ -25,8 +24,9 @@ export class ComprasRegistroComponent implements OnInit {
 
   idProveedor: string;
   idProducto: string;
+  idFactura: string;
   TotalGrabado: number;
-  TotalExonerado:number = 0;
+  TotalExonerado: number = 0;
   ComprasTotalGrabado: number = 0;
   ComprasTotalExonerado: number = 0;
   TotalComprasFacturadas: number = 0;
@@ -70,7 +70,16 @@ export class ComprasRegistroComponent implements OnInit {
   // filtrar factura por id
   InvoiceById(Id) {
     try {
-     
+      if (Id != null) {
+        let fact = new Array();
+        fact = this.listaFacturas.filter(x => x.Id.trim() == Id.trim());
+        if (fact.length != 0) {
+          this.Alert.success('Factura Encontrada');
+          this.FacturaCompras = fact[0];
+        } else {
+          this.Alert.error('La Factura no está registrada, ingrese el dato de nuevo');
+        }
+      }
     } catch (error) {
       return 'Error de operación' + error;
     }
@@ -83,17 +92,17 @@ export class ComprasRegistroComponent implements OnInit {
       if (Id != null) {
         let provee = new Array();
         provee = this.listaProveedores.filter(x => x.Id.trim() == Id.trim());
-        if (provee != null) {
+        if (provee.length != 0) {
           this.ProveedorActual = provee[0];
+        } else {
+          this.Alert.error('El provedor no está registrado, ingrese el dato de nuevo');
         }
-        console.log(this.ProveedorActual.ContactoProveedor);
       }
     } catch (error) {
       return 'Error de operación' + error;
     }
   }
 
-  // pendiente! buscar producto?
   // cuando encuentro el id lo visualizo en pantalla y en pantalla agregro el resultado  a la lista
   ProductById(Id) {
     try {
@@ -101,7 +110,7 @@ export class ComprasRegistroComponent implements OnInit {
       if (Id != null) {
         let Product = new Array();
         Product = this.listaProductos.filter(x => x.IdProducto == Id.trim());
-        if (Product != null) {
+        if (Product.length != 0) {
           this.ProductoActual = Product[0];
         } else {
           this.Alert.error('El producto no está registrado, ingrese el dato de nuevo');
@@ -158,7 +167,9 @@ export class ComprasRegistroComponent implements OnInit {
     }
 
   }
+  // metodo para calcular los montos de los productos exonerados
   calculoExoneracion(): number {
+    // calculo la columna Monto total del arreglo detallesCompras y hago una suma de cada uno de los elementos
     let sum = 0;
     for (let n of this.detallesCompras) {
       sum += n.MontoTotal;
@@ -166,13 +177,24 @@ export class ComprasRegistroComponent implements OnInit {
     return sum;
   }
 
+  // metodo para calcular el impuesto grabado en los productos
   calculoImpuGrabado(product: TbProducto, cantidad: number): number {
-
+    // obtengo la cantidad y el producto
+    // el impuesto lo casteo a entero y lo divido entre 100
     if (product != null) {
-      const impuesto = parseInt( product.IdTipoImpuestoNavigation.Valor )/100;
+      // tslint:disable-next-line: radix
+      const impuesto = parseInt(product.IdTipoImpuestoNavigation.Valor) /100;
       const impuest =  (product.PrecioReal * cantidad) * impuesto;
       return impuest;
     }
+  }
+
+  // metodo Guardar la compra registrada
+  guardarCompraFacturada() {
+    // logica a implementar
+    // los campos de ID factura y ID proveedor deben estra llenos ambos != null
+    // para guardar un comprobante de compra debe tener un detalle minimo
+    return ('Metodo no implementado');
   }
 
 
