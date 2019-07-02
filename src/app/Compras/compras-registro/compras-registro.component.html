@@ -31,7 +31,7 @@
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Nº Factura</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="#factura">
+                    <input #myInvoice mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="#factura" required>
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
                         class="m-0 px-3 py-2 rounded-right" (click)='InvoiceById(idFactura)'><i class="fa fa-search fa-lg"></i></button>
@@ -56,7 +56,7 @@
                 <div class="form-group col-md-6">
                   <label for="">ID Proveedor</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
+                    <input #myProvider mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
                         class="m-0 px-3 py-2 rounded-right" (click)='ProviderById(idProveedor)' ><i class="fa fa-search fa-lg"></i></button>
@@ -142,7 +142,7 @@
                               <span class="input-group-text" id="basic-addon1">Total Grabado</span>
                             </div>
                             <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalGrabado" [(ngModel)]="ComprasTotalGrabado" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                         <!-- Default input -->
@@ -152,7 +152,7 @@
                               <span class="input-group-text" id="basic-addon1">Total Exonerado</span>
                             </div>
                             <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalExonerado" [(ngModel)]="ComprasTotalExonerado" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                         <div class="form-group col-md-4">
@@ -161,7 +161,7 @@
                               <span class="input-group-text" id="basic-addon1">Total facturado</span>
                             </div>
                             <input type="text" class="form-control" placeholder="¢0.00" name="TotalComprasFacturadas" [(ngModel)]="TotalComprasFacturadas" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                       </div>
@@ -171,7 +171,7 @@
                       <div class="row mt-2">
                         <div class="col-md-12">
                           <button id="btnGuardar" mdbBtn type="button" color="success" block="true"
-                            mdbWavesEffect>Guardar</button>
+                            mdbWavesEffect (click)='guardarCompraFacturada()' >Guardar</button>
                         </div>
                       </div>
 

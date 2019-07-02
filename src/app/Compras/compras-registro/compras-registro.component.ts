@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { TbDocumento } from 'src/Models/Documento';
 import { ComprasService } from 'src/Services/Compras/compras.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,8 @@ import { TbDetalleDocumento } from 'src/Models/DetalleDocumento';
   styleUrls: ['./compras-registro.component.css']
 })
 export class ComprasRegistroComponent implements OnInit {
+  @ViewChild('myInvoice') myInvoice: ElementRef;
+  @ViewChild('myProvider') myProvider: ElementRef;
   constructor(private service: ComprasService, private Alert: ToastrService) {}
 
   // variables y arreglos
@@ -38,6 +40,7 @@ export class ComprasRegistroComponent implements OnInit {
   headElements = ['Cantidad', 'Producto', 'total'];
 
   ngOnInit() {
+    this.getInvoices();
     this.getProviders();
     this.getProducts();
   }
@@ -72,13 +75,17 @@ export class ComprasRegistroComponent implements OnInit {
     try {
       if (Id != null) {
         let fact = new Array();
-        fact = this.listaFacturas.filter(x => x.Id.trim() == Id.trim());
+        fact = this.listaFacturas.filter(x => x.Id == Id.trim());
         if (fact.length != 0) {
           this.Alert.success('Factura Encontrada');
           this.FacturaCompras = fact[0];
         } else {
           this.Alert.error('La Factura no está registrada, ingrese el dato de nuevo');
+          this.myInvoice.nativeElement.focus(); // focus en el elemento html input IdFactura
         }
+      } else {
+        this.Alert.error('Debe ingresar un ID para la factura');
+        this.myInvoice.nativeElement.focus();
       }
     } catch (error) {
       return 'Error de operación' + error;
@@ -96,7 +103,11 @@ export class ComprasRegistroComponent implements OnInit {
           this.ProveedorActual = provee[0];
         } else {
           this.Alert.error('El provedor no está registrado, ingrese el dato de nuevo');
+          this.myProvider.nativeElement.focus();
         }
+      } else {
+        this.Alert.error('Debe ingresar un ID para el Provedor');
+        this.myProvider.nativeElement.focus();
       }
     } catch (error) {
       return 'Error de operación' + error;
@@ -106,7 +117,6 @@ export class ComprasRegistroComponent implements OnInit {
   // cuando encuentro el id lo visualizo en pantalla y en pantalla agregro el resultado  a la lista
   ProductById(Id) {
     try {
-
       if (Id != null) {
         let Product = new Array();
         Product = this.listaProductos.filter(x => x.IdProducto == Id.trim());
@@ -130,8 +140,8 @@ export class ComprasRegistroComponent implements OnInit {
         this.detalle.Cantidad = cantidad;
         this.detalle.MontoTotal = (product.PrecioReal * cantidad);
         this.detalle.IdProductoNavigation = product;
-        console.log(this.detalle.IdProductoNavigation.Nombre);
-
+        this.detalle.Precio = product.PrecioReal;
+        this.detalle.Descuento = product.DescuentoMax;
         // si el producto ya exite lo modifico, sino lo agrego
         for (let i = 0; i < this.detallesCompras.length; i++) {
           if (this.detallesCompras[i].IdProducto == this.detalle.IdProducto) {
@@ -167,6 +177,15 @@ export class ComprasRegistroComponent implements OnInit {
     }
 
   }
+  // metodo para calcular el numero de linea a los prodcutos
+  calcularNumeroLinea() {
+    let cont = 0;
+    for (let n of this.detallesCompras) {
+      cont += 1;
+      n.NumLinea = cont;
+    }
+  }
+
   // metodo para calcular los montos de los productos exonerados
   calculoExoneracion(): number {
     // calculo la columna Monto total del arreglo detallesCompras y hago una suma de cada uno de los elementos
@@ -191,10 +210,31 @@ export class ComprasRegistroComponent implements OnInit {
 
   // metodo Guardar la compra registrada
   guardarCompraFacturada() {
-    // logica a implementar
-    // los campos de ID factura y ID proveedor deben estra llenos ambos != null
-    // para guardar un comprobante de compra debe tener un detalle minimo
-    return ('Metodo no implementado');
+    if(this.FacturaCompras != null){
+
+      // agregar un nùmero de linea a los productos
+      this.calcularNumeroLinea();
+      // logica a implementar
+      // los campos de ID factura y ID proveedor deben estra llenos ambos != null
+      // para guardar un comprobante de compra debe tener un detalle minimo
+      this.FacturaCompras.ReporteElectronic = false;
+      this.FacturaCompras.Estado = true;
+      this.FacturaCompras.ReporteAceptaHacienda = true;
+      this.FacturaCompras.EstadoFactura = 1;
+      this.FacturaCompras.NotificarCorreo = false;
+      // campos de auditoria se llenan n el api
+      this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
+
+
+
+
+      console.log(this.FacturaCompras);
+      // this.FacturaCompras.FechaCrea;
+      return ('Metodo no implementado');
+    } else {
+      this.Alert.error('Debe Verificar el ID de La Compra Facturada');
+      this.myInvoice.nativeElement.focus();
+    }
   }
 
 
