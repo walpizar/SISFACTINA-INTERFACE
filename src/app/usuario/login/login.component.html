@@ -1,7 +1,10 @@
-
-<form #form='ngForm' autocomplete="off" (submit)="onSubmit(form)" >
+<div class="col-md-12 pt-4 pb-4 fondo-color">
+  <h2 class="text-center">Login</h2>
+</div>
+<br>
+<div class="col-md-5 mx-auto">
+  <form #form='ngForm' autocomplete="off" (submit)="onSubmit(form)" >
     
-  <h4 class="text-center" >Login</h4>
 
   <div class="form-group ">
     <label>Usuario</label>
@@ -17,5 +20,6 @@
   <div class="form-group">
       <button type="submit" class="btn btn-lg btn-block btn-primary" [disabled]="form.invalid">Entrar</button>
   </div>
- 
-</form>
+
+ </form>
+</div>
