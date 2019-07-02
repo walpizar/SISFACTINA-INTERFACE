@@ -142,6 +142,7 @@ export class ComprasRegistroComponent implements OnInit {
         this.detalle.IdProductoNavigation = product;
         this.detalle.Precio = product.PrecioReal;
         this.detalle.Descuento = product.DescuentoMax;
+        this.detalle.Descuento = 0;
         // si el producto ya exite lo modifico, sino lo agrego
         for (let i = 0; i < this.detallesCompras.length; i++) {
           if (this.detallesCompras[i].IdProducto == this.detalle.IdProducto) {
@@ -217,16 +218,24 @@ export class ComprasRegistroComponent implements OnInit {
       // logica a implementar
       // los campos de ID factura y ID proveedor deben estra llenos ambos != null
       // para guardar un comprobante de compra debe tener un detalle minimo
+      // datos de la factura
+      this.FacturaCompras.TipoDocumento = 6;
       this.FacturaCompras.ReporteElectronic = false;
       this.FacturaCompras.Estado = true;
       this.FacturaCompras.ReporteAceptaHacienda = true;
       this.FacturaCompras.EstadoFactura = 1;
       this.FacturaCompras.NotificarCorreo = false;
-      // campos de auditoria se llenan n el api
+      // datos de empresa
+      this.FacturaCompras.IdEmpresa = this.ProveedorActual.Id;
+      this.FacturaCompras.TipoIdEmpresa = this.ProveedorActual.TipoId;
+      // campos de detalle totales a calcular
+      for (let x of this.detallesCompras) {
+        x.MontoTotalImp = this.calculoImpuGrabado(x.IdProductoNavigation, x.Cantidad);
+        x.MontoTotalExo = x.MontoTotal;
+      }
+      // agregar detalles de la factura
       this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
-
-
-
+      // campos de auditoria se llenan n el api
 
       console.log(this.FacturaCompras);
       // this.FacturaCompras.FechaCrea;
