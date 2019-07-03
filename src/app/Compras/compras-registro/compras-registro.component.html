@@ -18,7 +18,7 @@
         <mdb-card cascade="true" narrower="true" class="mb-5">
 
           <!-- titulo -->
-          <div class="view view-cascade titulo gradient-card-header green darken-3">
+          <div class="view view-cascade titulo gradient-card-header darken-3">
               <h2 class="card-header-title pt-3 pb-2 text-center">Datos de la Compra</h2>
             </div>
           <mdb-card-body>
@@ -110,12 +110,12 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <mdb-card class="mx-0" style="box-shadow: none">
-                    <mdb-card-header class="text-center">COMPRAS FACTURADAS</mdb-card-header>
+                    <mdb-card-header class="text-center titulo2">COMPRAS FACTURADAS</mdb-card-header>
                     <mdb-card-body>
                       
                         <table mdbTable hover="true">
                           <thead>
-                            <tr>
+                            <tr >
                               <th *ngFor="let head of headElements" scope="col">{{head}}</th>
                             </tr>
                           </thead>
@@ -131,8 +131,7 @@
                     </mdb-card-body>
 
                     <mdb-card-footer class="text-center">
-                      <p class="text-muted">PRECIOS INCLUYEN IMPUESTOS</p>
-
+                      
                       <!-- Grid row -->
                       <div class="form-row">
                         <!-- Default input -->
@@ -166,14 +165,6 @@
                         </div>
                       </div>
                       <!-- Grid row -->
-                      
-                      <!-- btn gauardar toda la compra  -->
-                      <div class="row mt-2">
-                        <div class="col-md-12">
-                          <button id="btnGuardar" mdbBtn type="button" color="success" block="true"
-                            mdbWavesEffect (click)='guardarCompraFacturada()' >Guardar</button>
-                        </div>
-                      </div>
 
                     </mdb-card-footer>
 
@@ -181,7 +172,26 @@
                     </div>
               </div>
 
-              
+              <!-- btn gauardar toda la compra  -->
+              <div class="row mt-2 btnsControl">
+                <div class="col-md-12 btnsControl">
+                  <!-- el boton guardar va la izquierda para mejor uso cunado el contenido necesite ser responsivo -->
+                  <div class="col-md-3 mt-2 float-left">
+                    <button id="btnGuardar" mdbBtn type="button" color="success" block="true" mdbWavesEffect
+                      (click)='guardarCompraFacturada()'>Guardar</button>
+                  </div>
+                  <div class="col-md-3 mt-2 float-right">
+                    <button id="btnCalcelar" mdbBtn type="button" outline="true" color="link" block="true"
+                      mdbWavesEffect>Calcelar</button>
+                  </div>
+                  <div class="col-md-3 mt-2 float-right">
+                    <button id="btnVolver" mdbBtn type="button" outline="true" color="link" block="true"
+                      mdbWavesEffect>Volver</button>
+                  </div>
+
+                </div>
+              </div>
+
             </form>
             <!-- fin del formulario factura-->
 
