@@ -31,7 +31,7 @@
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Nº Factura</label>
                   <div class="input-group">
-                    <input #myInvoice mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="#factura" required>
+                    <input #myInvoice mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="000" required>
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
                         class="m-0 px-3 py-2 rounded-right" (click)='InvoiceById(idFactura)'><i class="fa fa-search fa-lg"></i></button>
@@ -41,12 +41,12 @@
                 <!--Fecha de Compra-->
                 <div class="form-group col-md-3">
                   <label for="inputPassword4">Fecha de Compra</label>
-                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                  <input mdbInput type="date" class="form-control" id="fechaCompra" name="fechaCompra" [(ngModel)]="fechaCompra" placeholder="Password">
                 </div>
                 <!--Fecha de reporte-->
                 <div class="form-group col-md-3">
                   <label for="inputPassword4">Fecha de reporte</label>
-                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                  <input mdbInput type="date" class="form-control" id="fechaReporte" name="fechaReporte" [(ngModel)]="fechaReporte" placeholder="Password">
                 </div>
               </div>
               <!-- Grid row -->
@@ -83,17 +83,17 @@
                     </div>
                   </div>
                 </div>
+                
+                <!-- Precio Unitario-->
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Precio Unitario</label>
+                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
+                </div>
 
                 <!-- Precio Cantidad-->
                 <div class="form-group col-md-2">
                   <label for="inputZip">Cantidad</label>
                   <input mdbInput type="number" class="form-control" placeholder="0" name="cantidadProducto" [(ngModel)]="cantidadProducto">
-                </div>
-
-                <!-- Precio Unitario-->
-                <div class="form-group col-md-2">
-                  <label for="inputZip">Precio Unitario</label>
-                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
                 </div>
 
                 <!--btn agregar a la lista-->

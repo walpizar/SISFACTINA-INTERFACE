@@ -34,6 +34,11 @@ export class ComprasService {
     return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL() + '/compras');
   }
 
+  // get all Documents
+  getAllInvoices() {
+    return this.http.get<TbDocumento[]>(this.serviceGeneric.getURL() + '/documento');
+  }
+
   // get Products
   // obtener Productos
   getProducts() {
