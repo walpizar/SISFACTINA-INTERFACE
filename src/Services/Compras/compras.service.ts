@@ -19,7 +19,7 @@ export class ComprasService {
   // agrega una compra
   post(body: TbDocumento) {
     const headers = new HttpHeaders().set('Content-type', 'application/Json');
-    return this.http.post<boolean>(this.serviceGeneric.getURL() + '/proveedor/', body, { headers });
+    return this.http.post<boolean>(this.serviceGeneric.getURL() + '/compras/', body, { headers });
   }
 
   // get providers

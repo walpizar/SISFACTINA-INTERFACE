@@ -14,7 +14,7 @@ import { TbDetalleDocumento } from 'src/Models/DetalleDocumento';
 export class ComprasRegistroComponent implements OnInit {
   @ViewChild('myInvoice') myInvoice: ElementRef;
   @ViewChild('myProvider') myProvider: ElementRef;
-  constructor(private service: ComprasService, private Alert: ToastrService) {}
+  constructor(private service: ComprasService, private Alert: ToastrService) { }
 
   // Arreglos
   listaProductos: TbProducto[];
@@ -38,7 +38,7 @@ export class ComprasRegistroComponent implements OnInit {
   ComprasTotalGrabado: number = 0;
   ComprasTotalExonerado: number = 0;
   TotalComprasFacturadas: number = 0;
-  banderaAgregar:boolean = true;
+  banderaAgregar: boolean = true;
   // cabecera de tabla compras
   headElements = ['Cantidad', 'Producto', 'total'];
   // inicializar metodos para obtener datos necesarios
@@ -51,21 +51,21 @@ export class ComprasRegistroComponent implements OnInit {
   // get Providers
   // obtener provedores
   getProviders() {
-    this.service.getProviders().subscribe( data => {
+    this.service.getProviders().subscribe(data => {
       this.listaProveedores = data;
     });
   }
   // get all Invoices
   // obtener facturas
   getInvoices() {
-    this.service.getAllInvoices().subscribe( data => {
+    this.service.getAllInvoices().subscribe(data => {
       this.listaFacturas = data;
     });
   }
   // get Products
   // obtener productos
   getProducts() {
-    this.service.getProducts().subscribe( data => {
+    this.service.getProducts().subscribe(data => {
       this.listaProductos = data;
     });
   }
@@ -141,7 +141,7 @@ export class ComprasRegistroComponent implements OnInit {
         // si el producto se le aplica descuento entoces se relaizan las operaciones
         if (product.AplicaDescuento) {
           this.detalle.Descuento = product.DescuentoMax;
-          this.detalle.MontoTotalDesc = this.detalle.MontoTotal * (this.detalle.Descuento/100);
+          this.detalle.MontoTotalDesc = this.detalle.MontoTotal * (this.detalle.Descuento / 100);
         } else {
           this.detalle.Descuento = 0;
           this.detalle.MontoTotalDesc = 0;
@@ -208,8 +208,8 @@ export class ComprasRegistroComponent implements OnInit {
     // el impuesto lo casteo a entero y lo divido entre 100
     if (product != null) {
       // tslint:disable-next-line: radix
-      const impuesto = parseInt(product.IdTipoImpuestoNavigation.Valor) /100;
-      const impuest =  (product.PrecioReal * cantidad) * impuesto;
+      const impuesto = parseInt(product.IdTipoImpuestoNavigation.Valor) / 100;
+      const impuest = (product.PrecioReal * cantidad) * impuesto;
       return impuest;
     }
   }
@@ -231,6 +231,10 @@ export class ComprasRegistroComponent implements OnInit {
       this.FacturaCompras.TipoMoneda = this.FacturaReferencia.TipoMoneda;
       this.FacturaCompras.TipoCambio = this.FacturaReferencia.TipoCambio;
       this.FacturaCompras.TipoDocRef = this.FacturaReferencia.TipoDocumento;
+      this.FacturaCompras.TipoPago = this.FacturaReferencia.TipoPago;
+      // consultar al profesor la empresa que debo registrar
+      this.FacturaCompras.IdEmpresa = '603920529';
+      this.FacturaCompras.TipoIdEmpresa = 1;
       this.FacturaCompras.TipoDocumento = 6;
       this.FacturaCompras.EstadoFactura = 1;
       this.FacturaCompras.Estado = true;
@@ -247,13 +251,19 @@ export class ComprasRegistroComponent implements OnInit {
         x.MontoTotalImp = this.calculoImpuGrabado(x.IdProductoNavigation, x.Cantidad);
         x.MontoTotalExo = x.MontoTotal;
         x.TotalLinea = x.MontoTotalImp + (x.MontoTotalExo - x.MontoTotalDesc);
+        x.IdProductoNavigation = null;
       }
       // agregar detalles de la factura
       this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
-      // campos de auditoria se llenan en el api
-      console.log(this.FacturaCompras);
-      // this.FacturaCompras.FechaCrea;
-      return ('Metodo no implementado');
+      try {
+        this.service.post(this.FacturaCompras).subscribe(res => {
+          this.Alert.success('Registro Realizado', 'Compras');
+          this.Alert.error('Error al guardar compra');
+        });
+      } catch (error) {
+        this.Alert.error('Error de operacion');
+      }
+
     } else {
       this.Alert.error('Verificar el ID de La Compra Facturada');
       this.Alert.error('Verificar los Detalles de La Compra Facturada sean mayor a cero');
