@@ -181,12 +181,8 @@
                       (click)='guardarCompraFacturada()'>Guardar</button>
                   </div>
                   <div class="col-md-3 mt-2 float-right">
-                    <button id="btnCalcelar" mdbBtn type="button" outline="true" color="link" block="true"
-                      mdbWavesEffect [routerLink]="['ListaClientes']">Calcelar</button>
-                  </div>
-                  <div class="col-md-3 mt-2 float-right">
-                    <button id="btnVolver" mdbBtn type="button" outline="true" color="link" block="true"
-                      mdbWavesEffect >Refrescar</button>
+                    <button [routerLink]="['/ListaCompras']" mdbBtn type="button" outline="true" color="link" block="true"
+                      mdbWavesEffect >Calcelar</button>
                   </div>
 
                 </div>
@@ -194,7 +190,6 @@
 
             </form>
             <!-- fin del formulario factura-->
-
 
           </mdb-card-body>
         </mdb-card>

@@ -27,6 +27,9 @@ import { IndexTipoMedidaComponent } from './TipoMedida/index-tipo-medida/index-t
 import { DetalleTipoMedidaComponent } from './TipoMedida/detalle-tipo-medida/detalle-tipo-medida.component';
 import { TipoMedidaComponent } from './TipoMedida/tipo-medida/tipo-medida.component';
 import { ValidacionHaciendaComponent } from './Hacienda/validacion-hacienda/validacion-hacienda.component';
+import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
+import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ComprasDetallesComponent } from './Compras/compras-detalles/compras-detalles.component';
 
 //Productos
 import { ProductosComponent } from './Productos/productos.component';
@@ -34,8 +37,6 @@ import { CrearProductoComponent } from './Productos/crear-producto/crear-product
 import { ModificarProductoComponent } from './Productos/modificar-producto/modificar-producto.component'
 import { EliminarProductoComponent } from './Productos/eliminar-producto/eliminar-producto.component';
 import { CajasComponent } from './cajas/cajas.component';
-import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
-import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
 import { FacturadorComponent } from './Facturador/facturador.component';
 const routes: Routes = [
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
   {path: 'ListaCompras', component: ComprasListComponent },
   {path: 'RegistroCompras', component: ComprasRegistroComponent },
+  {path: 'DetalleCompras', component: ComprasDetallesComponent },
   {path:'', redirectTo:'/usuario/login', pathMatch:"full" },
   {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },

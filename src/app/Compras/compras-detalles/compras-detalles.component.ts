@@ -24,5 +24,4 @@ export class ComprasDetallesComponent implements OnInit {
   }
 
 
-
 }

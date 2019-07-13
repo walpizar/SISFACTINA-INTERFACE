@@ -51,6 +51,7 @@ import { EliminarProductoComponent } from './Productos/eliminar-producto/elimina
 import { CajasComponent } from './cajas/cajas.component';
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
+import { ComprasDetallesComponent } from './Compras/compras-detalles/compras-detalles.component';
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
 import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
 import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
@@ -98,6 +99,7 @@ import { SucursalComponent } from './sucursal/sucursal.component';
     CajasComponent,
     ComprasListComponent,
     ComprasRegistroComponent,
+    ComprasDetallesComponent,
     ListaExoComponent,
     TipoExoneracionComponent,
     AgregarExoComponent

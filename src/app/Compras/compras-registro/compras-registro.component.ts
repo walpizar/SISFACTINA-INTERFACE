@@ -216,60 +216,64 @@ export class ComprasRegistroComponent implements OnInit {
   // metodo para Guardar la compra registrada
   // to Save the registered purchase
   guardarCompraFacturada() {
-    // logica a implementar
-    // En caso real se debe comprobar que los datos de la factura sean iguales a los de la compra que se gurdan
-    // de lo contario no se permine guardar el comprobante de la compra
-    if (this.FacturaReferencia != null && this.detallesCompras != null) {
 
-      // agregar un nùmero de linea a los productos
-      this.calcularNumeroLinea();
+    try {
+
       // logica a implementar
-      // los campos de ID factura y ID proveedor deben estar llenos ambos != null
-      // para guardar un comprobante de compra debe tener un detalle minimo
-      // datos de la factura
-      this.FacturaCompras.ClaveRef = this.FacturaReferencia.Clave;
-      this.FacturaCompras.TipoMoneda = this.FacturaReferencia.TipoMoneda;
-      this.FacturaCompras.TipoCambio = this.FacturaReferencia.TipoCambio;
-      this.FacturaCompras.TipoDocRef = this.FacturaReferencia.TipoDocumento;
-      this.FacturaCompras.TipoPago = this.FacturaReferencia.TipoPago;
-      // consultar al profesor la empresa que debo registrar
-      this.FacturaCompras.IdEmpresa = '603920529';
-      this.FacturaCompras.TipoIdEmpresa = 1;
-      this.FacturaCompras.TipoDocumento = 6;
-      this.FacturaCompras.EstadoFactura = 1;
-      this.FacturaCompras.Estado = true;
-      this.FacturaCompras.ReporteAceptaHacienda = true;
-      this.FacturaCompras.NotificarCorreo = false;
-      this.FacturaCompras.ReporteElectronic = false;
-      this.FacturaCompras.Fecha = this.fechaReporte;
-      this.FacturaCompras.FechaRef = this.fechaCompra;
-      // datos de empresa
-      this.FacturaCompras.IdEmpresa = this.ProveedorActual.Id;
-      this.FacturaCompras.TipoIdEmpresa = this.ProveedorActual.TipoId;
-      // campos de detalle totales a calcular
-      for (let x of this.detallesCompras) {
-        x.MontoTotalImp = this.calculoImpuGrabado(x.IdProductoNavigation, x.Cantidad);
-        x.MontoTotalExo = x.MontoTotal;
-        x.TotalLinea = x.MontoTotalImp + (x.MontoTotalExo - x.MontoTotalDesc);
-        x.IdProductoNavigation = null;
-      }
-      // agregar detalles de la factura
-      this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
-      try {
-        this.service.post(this.FacturaCompras).subscribe(res => {
-          this.Alert.success('Registro Realizado', 'Compras');
-          this.Alert.error('Error al guardar compra');
-        });
-      } catch (error) {
-        this.Alert.error('Error de operacion');
-      }
+      // En caso real se debe comprobar que los datos de la factura sean iguales a los de la compra que se gurdan
+      // de lo contario no se permine guardar el comprobante de la compra
+      if (this.FacturaReferencia != null && this.detallesCompras != null) {
 
-    } else {
-      this.Alert.error('Verificar el ID de La Compra Facturada');
-      this.Alert.error('Verificar los Detalles de La Compra Facturada sean mayor a cero');
-      this.myInvoice.nativeElement.focus();
+        // agregar un nùmero de linea a los productos
+        this.calcularNumeroLinea();
+        // logica a implementar
+        // los campos de ID factura y ID proveedor deben estar llenos ambos != null
+        // para guardar un comprobante de compra debe tener un detalle minimo
+        // datos de la factura
+        this.FacturaCompras.ClaveRef = this.FacturaReferencia.Clave;
+        this.FacturaCompras.TipoMoneda = this.FacturaReferencia.TipoMoneda;
+        this.FacturaCompras.TipoCambio = this.FacturaReferencia.TipoCambio;
+        this.FacturaCompras.TipoDocRef = this.FacturaReferencia.TipoDocumento;
+        this.FacturaCompras.TipoPago = 1;
+        this.FacturaCompras.TipoVenta = 1;
+        this.FacturaCompras.TipoMoneda = 1;
+        // consultar al profesor la empresa que debo registrar
+        this.FacturaCompras.IdEmpresa = '603920529                     ';
+        this.FacturaCompras.TipoIdEmpresa = 1;
+        this.FacturaCompras.TipoDocumento = 6;
+        this.FacturaCompras.EstadoFactura = 1;
+        this.FacturaCompras.Estado = true;
+        this.FacturaCompras.ReporteAceptaHacienda = true;
+        this.FacturaCompras.NotificarCorreo = false;
+        this.FacturaCompras.ReporteElectronic = false;
+        this.FacturaCompras.Fecha = this.fechaReporte;
+        this.FacturaCompras.FechaRef = this.fechaCompra;
+        // campos de detalle totales a calcular
+        for (let x of this.detallesCompras) {
+          x.MontoTotalImp = this.calculoImpuGrabado(x.IdProductoNavigation, x.Cantidad);
+          x.MontoTotalExo = x.MontoTotal;
+          x.TotalLinea = x.MontoTotalImp + (x.MontoTotalExo - x.MontoTotalDesc);
+          x.IdProductoNavigation = null;
+        }
+        // agregar detalles de la factura
+        this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
+        try {
+          this.service.post(this.FacturaCompras).subscribe(res => {
+            this.Alert.success('Registro Realizado', 'Compras');
+          });
+        } catch (error) {
+          this.Alert.error('Error de operación');
+        }
+
+      } else {
+        this.Alert.error('Verificar el ID de La Compra Facturada');
+        this.Alert.error('Verificar los Detalles de La Compra Facturada sean mayor a cero');
+        this.myInvoice.nativeElement.focus();
+      }
+    } catch (error) {
+      this.Alert.error('Error de operación','Compra');
     }
-  }
+  } // fin de agregar
 
 
 }
