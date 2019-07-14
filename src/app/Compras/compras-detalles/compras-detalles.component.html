@@ -55,8 +55,7 @@
                 <div class="form-group col-md-6">
                   <label for="">ID Proveedor</label>
                   <div class="input-group">
-                    <input #myProvider mdbInput type="text" class="form-control" id="IdProveedor"
-                       placeholder="ID">
+                    <input #myProvider mdbInput type="text" class="form-control" readonly>
                   </div>
                 </div>
                 <!-- Provedor nombre registrado -->
@@ -102,8 +101,8 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total Grabado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalGrabado"
-                              [(ngModel)]="ComprasTotalGrabado" aria-label="Username" aria-describedby="basic-addon1"
+                            <input type="text" class="form-control" placeholder="¢0.00" name="_IVA"
+                              [(ngModel)]="_IVA" aria-label="Username" aria-describedby="basic-addon1"
                               readonly>
                           </div>
                         </div>
@@ -113,8 +112,8 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total Exonerado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalExonerado"
-                              [(ngModel)]="ComprasTotalExonerado" aria-label="Username" aria-describedby="basic-addon1"
+                            <input type="text" class="form-control" placeholder="¢0.00" name="this._EXO"
+                              [(ngModel)]="this._EXO" aria-label="Username" aria-describedby="basic-addon1"
                               readonly>
                           </div>
                         </div>
@@ -123,8 +122,8 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total facturado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" name="TotalComprasFacturadas"
-                              [(ngModel)]="TotalComprasFacturadas" aria-label="Username" aria-describedby="basic-addon1"
+                            <input type="text" class="form-control" placeholder="¢0.00" name="_TOTAL"
+                              [(ngModel)]="_TOTAL" aria-label="Username" aria-describedby="basic-addon1"
                               readonly>
                           </div>
                         </div>
