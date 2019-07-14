@@ -38,7 +38,7 @@
               <tr *ngFor="let purchase of shoppingList">
                 <td>{{purchase.Id}}</td>
                 <td>{{purchase.TipoDocumento}}</td>
-                <th>{{purchase.Fecha || Date}}</th>
+                <th>{{purchase.Fecha | date}}</th>
                 <td>
                   <button type="button" mdbBtn color="info" size="sm" (click)="currentPurchase(purchase)"
                     [routerLink]="['/DetalleCompras']">

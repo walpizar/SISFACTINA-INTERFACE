@@ -130,6 +130,7 @@ export class ComprasRegistroComponent implements OnInit {
   }
   AgregarCompra(product: TbProducto, cantidad: number) {
     try {
+    
       if (product != null && cantidad > 0) {
         this.detalle = new TbDetalleDocumento();
         this.detalle.IdProducto = product.IdProducto.toString();
@@ -240,6 +241,9 @@ export class ComprasRegistroComponent implements OnInit {
         // consultar al profesor la empresa que debo registrar
         this.FacturaCompras.IdEmpresa = '603920529                     ';
         this.FacturaCompras.TipoIdEmpresa = 1;
+        // El proveedor consultar con el profesor
+        // this.FacturaCompras.IdCliente = this.ProveedorActual.Id;
+        // this.FacturaCompras.TipoIdCliente = this.ProveedorActual.TipoId;
         this.FacturaCompras.TipoDocumento = 6;
         this.FacturaCompras.EstadoFactura = 1;
         this.FacturaCompras.Estado = true;

@@ -35,17 +35,17 @@
                       [(ngModel)]="DocActual.Id" readonly>
                   </div>
                 </div>
+                <!--Fecha de Reporte-->
+                <div class="form-group col-md-3">
+                  <label for="inputPassword4">Fecha de Reporte</label>
+                  <input mdbInput type="text" class="form-control" id="" name="DocActual.Fecha"
+                    [ngModel]="DocActual.Fecha | date" readonly>
+                </div>
                 <!--Fecha de Compra-->
                 <div class="form-group col-md-3">
                   <label for="inputPassword4">Fecha de Compra</label>
-                  <input mdbInput type="text" class="form-control" id="" name="DocActual.Fecha"
-                    [(ngModel)]="DocActual.Fecha" readonly>
-                </div>
-                <!--Fecha de reporte-->
-                <div class="form-group col-md-3">
-                  <label for="inputPassword4">Fecha de reporte</label>
                   <input mdbInput type="text" class="form-control" id="" name="DocActual.FechaRef"
-                    [(ngModel)]="DocActual.FechaRef" readonly>
+                    [ngModel]="DocActual.FechaRef | date" readonly>
                 </div>
               </div>
               <!-- Grid row -->
@@ -55,15 +55,14 @@
                 <div class="form-group col-md-6">
                   <label for="">ID Proveedor</label>
                   <div class="input-group">
-                    <input #myProvider mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor"
-                      [(ngModel)]="idProveedor" placeholder="ID">
+                    <input #myProvider mdbInput type="text" class="form-control" id="IdProveedor"
+                       placeholder="ID">
                   </div>
                 </div>
                 <!-- Provedor nombre registrado -->
                 <div class="form-group col-md-6">
                   <label for="inputAddress2">Provedor</label>
-                  <input mdbInput type="text" class="form-control" name="ProveedorActual.NombreTributario"
-                    [(ngModel)]="ProveedorActual.NombreTributario" readonly>
+                  <input mdbInput type="text" class="form-control" readonly>
                 </div>
               </div>
 
@@ -83,7 +82,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr mdbTableCol *ngFor="let detailt of detallesCompras">
+                          <tr mdbTableCol *ngFor="let detailt of detalle">
                             <th scope="row">{{detailt.Cantidad}}</th>
                             <td>{{detailt.IdProductoNavigation.Nombre}}</td>
                             <td>{{detailt.MontoTotal}}</td>
