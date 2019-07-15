@@ -262,9 +262,12 @@ export class ComprasRegistroComponent implements OnInit {
         // agregar detalles de la factura
         this.FacturaCompras.TbDetalleDocumento = this.detallesCompras;
         try {
-          this.service.post(this.FacturaCompras).subscribe(res => {
-            this.Alert.success('Registro Realizado', 'Compras');
-          });
+          this.service.post(this.FacturaCompras).subscribe(
+            res => {
+              this.Alert.success('Registro Realizado', 'Compras');
+            },
+            err => { this.Alert.error('Error de registro', 'Compras'); }
+          );
         } catch (error) {
           this.Alert.error('Error de operación');
         }
