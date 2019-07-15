@@ -16,7 +16,7 @@ export class ComprasListComponent implements OnInit {
 
   constructor(private service: ComprasService, private Alert: ToastrService) { }
 
-  headElements = ['ID', 'ID Empresa', 'Fecha'];
+  headElements = ['ID', 'ID Empresa', 'Documento ', 'Fecha'];
 
 
   ngOnInit() {

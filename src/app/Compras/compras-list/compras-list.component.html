@@ -38,6 +38,7 @@
               <tr *ngFor="let purchase of shoppingList">
                 <td>{{purchase.Id}}</td>
                 <td>{{purchase.IdEmpresa}}</td>
+                <th>Compras</th>
                 <th>{{purchase.Fecha | date}}</th>
                 <td>
                   <button type="button" mdbBtn color="info" size="sm" (click)="currentPurchase(purchase)"

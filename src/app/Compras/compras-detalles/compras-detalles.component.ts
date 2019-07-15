@@ -67,12 +67,10 @@ export class ComprasDetallesComponent implements OnInit {
   calculatedValues() {
 
     for (let i of this.detalle) {
-
       this._IVA += i.MontoTotalImp;
       this._EXO += i.MontoTotalExo;
-      this._TOTAL += i.MontoTotal;
-
     }
+    this._TOTAL = this._EXO + this._IVA;
 
   }
 }
