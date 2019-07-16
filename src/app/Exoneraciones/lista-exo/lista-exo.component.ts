@@ -10,6 +10,7 @@ import { ExoneracionesService } from 'src/Services/Exoneraciones/exoneraciones.s
 export class ListaExoComponent implements OnInit {
 
   listaExo=new Array();
+  
 
   constructor(private alerta:ToastrService,private service:ExoneracionesService) { }
 

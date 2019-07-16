@@ -5,9 +5,9 @@
         <div class="col-md-10 pt-4 pb-4 fondo-color">
             <h2 class="text-center ml-5">Tipo de Exoneraciones</h2>
         </div>
-        <div class="col-md-2 fondo-color">
-          <a class="">
-              <i class="fa fa-plus-square" aria-hidden="true"></i>
+        <div class="col-md-2 fondo-color pt-4 pb-4">
+          <a [routerLink]="['/registroExoneracion']">
+              <i class="fa fa-plus-square mr-2 pt-2" aria-hidden="true"></i>
               Agregar Exoneración
           </a>
         </div>
@@ -39,22 +39,22 @@
               </thead>
 
               <tbody>
-                <tr *ngFor="let exo of listaExo">
+                <tr *ngFor="let exo of listaExo" class="text-center">
                   <td>{{exo.Id}}</td>
                   <td>{{exo.Nombre}}</td>
                   <td>{{exo.Valor}}</td>
                   <td>
-                    <button type="button" mdbBtn color="info" size="sm" (click)="">
+                    <button type="button" mdbBtn color="info" size="sm" (click)="detalleExoAct(exo)">
                       Detalles
                     </button>
                   </td>
                   <td>
-                    <button type="button" mdbBtn color="success" size="sm" (click)="">
+                    <button type="button" mdbBtn color="success" size="sm" (click)="ExoActual(exo)">
                       Modificar
                     </button>
                   </td>
                   <td>
-                    <button type="button" mdbBtn color="danger" size="sm" class="waves-light" data-toggle="modal"
+                    <button type="button" mdbBtn color="danger" size="sm" (click)="eliminarExo(exo)" class="waves-light" data-toggle="modal"
                       data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Eliminar</button>
                   </td>
     

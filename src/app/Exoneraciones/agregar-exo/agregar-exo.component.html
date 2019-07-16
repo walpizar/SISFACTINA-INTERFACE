@@ -1,3 +1,67 @@
-<p>
-  agregar-exo works!
-</p>
+<!--Agregar-->
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12 pt-4 pb-4 fondo-color">
+          <h2 class="text-center ml-5">Registro Tipo de Exoneraciones</h2>
+      </div>
+  </div>
+</div>
+
+<div class="ContenidoForm">
+    <!-- Default form contact -->
+    <form class="text-center border border-light p-5">
+  
+      <!-- primera card -->
+      <mdb-card cascade="true" narrower="true" class="mb-5">
+        <!-- titulo -->
+        <div class="view view-cascade titulo gradient-card-header green darken-3">
+          <h2 class="card-header-title pt-3 pb-2">Información</h2>
+        </div>
+        <mdb-card-body>
+          <!-- primer grupo -->
+          <div class="input-group">
+            <!--id -->
+            <div class="input-group col-md-12">
+              <div class="input-group-prepend mb-3">
+                <span class="input-group-text">ID</span>
+              </div>
+              <input type="number" id="" mdbInput class="form-control mb-3" placeholder="1234"
+              name="Exonera.Id" [(ngModel)]="Exonera.Id">
+            </div>
+
+          </div>
+  
+          <div class="input-group">
+            <!-- Nombre -->
+            <div class="input-group col-md-6">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text">Nombre</span>
+                </div>
+                <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Excento" name="Exonera.Nombre"
+                [(ngModel)]="Exonera.Nombre">
+            </div>
+            <!-- Valor -->
+            <div class="input-group col-md-6">
+                <div class="input-group-prepend mb-3">
+                  <span class="input-group-text">Valor</span>
+                </div>
+                <input type="text" id="" mdbInput class="form-control mb-3" placeholder="10" name="Exonera.Valor"
+                [(ngModel)]="Exonera.Valor">
+            </div>
+          </div>
+          <div class="input-group">
+            <!-- Descripcion -->
+            <div class="input-group mb-3 col-md-12">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Descripción</span>
+              </div>
+              <textarea class="form-control" name="Exonera.Descripcion" [(ngModel)]="Exonera.Descripcion"></textarea>
+            </div>
+          </div>
+          <hr>
+          <button type="submit" mdbBtn color="success" size="lg" outline="true" mdbWavesEffect (click)="Registrar(Exonera)">Guardar</button>
+          <button type="button" mdbBtn color="danger" size="lg" outline="true" mdbWavesEffect routerLink="/tipoExoneraciones">Cancelar</button>
+        </mdb-card-body>
+      </mdb-card>
+    </form><!-- fin form-->
+  </div>

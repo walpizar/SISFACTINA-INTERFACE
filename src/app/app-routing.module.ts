@@ -36,6 +36,7 @@ import { EliminarProductoComponent } from './Productos/eliminar-producto/elimina
 import { ComprasListComponent } from './Compras/compras-list/compras-list.component';
 import { ComprasRegistroComponent } from './Compras/compras-registro/compras-registro.component';
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
+import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path:'impuestos', component:ImpuestosComponent },
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
   {path: 'tipoExoneraciones', component: ListaExoComponent },
+  {path: 'registroExoneracion', component: AgregarExoComponent },
   {
     path : 'usuario', component : UsuarioComponent, 
     children:[
