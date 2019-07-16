@@ -17,13 +17,13 @@ import { TbEmpresa } from 'src/Models/Empresa';
 })
 export class UsuarioService {
  
-  usuario = new TbUsuarios;
+  //usuario = new TbUsuarios;
 
 
   perfil;
-  constructor(private fb: FormBuilder, private http: HttpClient, private serviceGeneric: ServiceGeneric) { }
+  constructor(/*private fb: FormBuilder,*/ private http: HttpClient, private serviceGeneric: ServiceGeneric) { }
 
-  formModel = this.fb.group({
+  /*formModel = this.fb.group({
     Contraseñas: this.fb.group({
       Contraseña: ['', [Validators.required, Validators.minLength(4)]],
       ConfirmPassword: ['', Validators.required]
@@ -44,11 +44,11 @@ export class UsuarioService {
 
     }
 
-  }
+  }*/
 
   registro(usuario: TbUsuarios) {
   
-    this.usuario.Contraseña = this.formModel.value.Passwords.Contraseña
+   // this.usuario.Contraseña = this.formModel.value.Passwords.Contraseña
 
     const headers = new HttpHeaders().set('Content-type','application/Json');
     return this.http.post<TbUsuarios>(this.serviceGeneric.getURL() +'/Registro',usuario,{headers});

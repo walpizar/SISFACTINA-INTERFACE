@@ -28,13 +28,16 @@ export class RegistroComponent implements OnInit {
   comboCantones = new Array();
   comboBarrios = new Array();
 
-  Empresa = new TbEmpresa()
-  Rol = new TbRoles()
-  Persona = new TbPersona()
+  Usuario = new TbUsuarios();
+  Empresa = new TbEmpresa();
+  Rol = new TbRoles();
+  Persona = new TbPersona();
   Provincia: string;
   Distrito: string;
   Canton: string;
 
+  PasswordMismatch: boolean;
+  
   constructor(public service: UsuarioService, private toastr: ToastrService, private router: Router) { }
  
   ngOnInit() {
@@ -128,15 +131,14 @@ export class RegistroComponent implements OnInit {
       }
     }
   }
-    //onSubmit() Este metodo nos permite mostrar notificaciones de error o exito al ingresar un usuario 
-  //en base a los mensajes mostrados en consola como errors [] o succeeded .
+   
   onsubmit(usuario:TbUsuarios){
     usuario.TbPersona = this.Persona;
     usuario.IdNavigation = this.Empresa;
     usuario.IdRolNavigation = this.Rol
     this.service.registro(usuario).subscribe(
         res => { this.toastr.success("Creado"), this.router.onSameUrlNavigation = 'reload'},
-        err => { this.toastr.error("Error al crear producto")}
+        err => { this.toastr.error("Error al crear Usuario")}
     );
   }
 }

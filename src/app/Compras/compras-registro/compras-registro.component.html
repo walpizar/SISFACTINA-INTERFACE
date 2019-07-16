@@ -18,7 +18,7 @@
         <mdb-card cascade="true" narrower="true" class="mb-5">
 
           <!-- titulo -->
-          <div class="view view-cascade titulo gradient-card-header green darken-3">
+          <div class="view view-cascade titulo gradient-card-header darken-3">
               <h2 class="card-header-title pt-3 pb-2 text-center">Datos de la Compra</h2>
             </div>
           <mdb-card-body>
@@ -31,22 +31,22 @@
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Nº Factura</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="inputAddress" placeholder="#factura">
+                    <input #myInvoice mdbInput type="text" class="form-control" id="idFactura" name="idFactura" [(ngModel)]="idFactura" placeholder="000" required>
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
-                        class="m-0 px-3 py-2 rounded-right"><i class="fa fa-search fa-lg"></i></button>
+                        class="m-0 px-3 py-2 rounded-right" (click)='InvoiceById(idFactura)'><i class="fa fa-search fa-lg"></i></button>
                     </div>
                   </div>
                 </div>
                 <!--Fecha de Compra-->
                 <div class="form-group col-md-3">
                   <label for="inputPassword4">Fecha de Compra</label>
-                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                  <input mdbInput type="date" class="form-control" id="fechaCompra" name="fechaCompra" [(ngModel)]="fechaCompra" placeholder="Password">
                 </div>
                 <!--Fecha de reporte-->
                 <div class="form-group col-md-3">
                   <label for="inputPassword4">Fecha de reporte</label>
-                  <input mdbInput type="date" class="form-control" id="inputPassword4" placeholder="Password">
+                  <input mdbInput type="date" class="form-control" id="fechaReporte" name="fechaReporte" [(ngModel)]="fechaReporte" placeholder="Password">
                 </div>
               </div>
               <!-- Grid row -->
@@ -56,7 +56,7 @@
                 <div class="form-group col-md-6">
                   <label for="">ID Proveedor</label>
                   <div class="input-group">
-                    <input mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
+                    <input #myProvider mdbInput type="text" class="form-control" id="IdProveedor" name="IdProveedor" [(ngModel)]="idProveedor" placeholder="ID">
                     <div class="input-group-append">
                       <button mdbBtn type="button" mdbWavesEffect color="success" outline="" size="sm"
                         class="m-0 px-3 py-2 rounded-right" (click)='ProviderById(idProveedor)' ><i class="fa fa-search fa-lg"></i></button>
@@ -83,17 +83,17 @@
                     </div>
                   </div>
                 </div>
+                
+                <!-- Precio Unitario-->
+                <div class="form-group col-md-2">
+                  <label for="inputZip">Precio Unitario</label>
+                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
+                </div>
 
                 <!-- Precio Cantidad-->
                 <div class="form-group col-md-2">
                   <label for="inputZip">Cantidad</label>
                   <input mdbInput type="number" class="form-control" placeholder="0" name="cantidadProducto" [(ngModel)]="cantidadProducto">
-                </div>
-
-                <!-- Precio Unitario-->
-                <div class="form-group col-md-2">
-                  <label for="inputZip">Precio Unitario</label>
-                  <input mdbInput type="text" class="form-control" name="ProductoActual.PrecioReal" [(ngModel)]="ProductoActual.PrecioReal" placeholder="¢0.00">
                 </div>
 
                 <!--btn agregar a la lista-->
@@ -110,19 +110,19 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <mdb-card class="mx-0" style="box-shadow: none">
-                    <mdb-card-header class="text-center">COMPRAS FACTURADAS</mdb-card-header>
+                    <mdb-card-header class="text-center titulo2">COMPRAS FACTURADAS</mdb-card-header>
                     <mdb-card-body>
                       
                         <table mdbTable hover="true">
                           <thead>
-                            <tr>
+                            <tr >
                               <th *ngFor="let head of headElements" scope="col">{{head}}</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr mdbTableCol *ngFor="let detailt of detallesCompras">
                               <th scope="row">{{detailt.Cantidad}}</th>
-                              <td>{{detailt.IdProducto}}</td>
+                              <td>{{detailt.IdProductoNavigation.Nombre}}</td>
                               <td>{{detailt.MontoTotal}}</td>
                             </tr>
                           </tbody>
@@ -131,8 +131,7 @@
                     </mdb-card-body>
 
                     <mdb-card-footer class="text-center">
-                      <p class="text-muted">PRECIOS INCLUYEN IMPUESTOS</p>
-
+                      
                       <!-- Grid row -->
                       <div class="form-row">
                         <!-- Default input -->
@@ -141,8 +140,8 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total Grabado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalGrabado" [(ngModel)]="ComprasTotalGrabado" aria-label="Username"
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                         <!-- Default input -->
@@ -151,8 +150,8 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total Exonerado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="¢0.00" name="ComprasTotalExonerado" [(ngModel)]="ComprasTotalExonerado" aria-label="Username"
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                         <div class="form-group col-md-4">
@@ -160,20 +159,12 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" id="basic-addon1">Total facturado</span>
                             </div>
-                            <input type="text" class="form-control" placeholder="¢0.00" aria-label="Username"
-                              aria-describedby="basic-addon1">
+                            <input type="text" class="form-control" placeholder="¢0.00" name="TotalComprasFacturadas" [(ngModel)]="TotalComprasFacturadas" aria-label="Username"
+                              aria-describedby="basic-addon1" readonly>
                           </div>
                         </div>
                       </div>
                       <!-- Grid row -->
-                      
-                      <!-- btn gauardar toda la compra  -->
-                      <div class="row mt-2">
-                        <div class="col-md-12">
-                          <button id="btnGuardar" mdbBtn type="button" color="success" block="true"
-                            mdbWavesEffect>Guardar</button>
-                        </div>
-                      </div>
 
                     </mdb-card-footer>
 
@@ -181,10 +172,24 @@
                     </div>
               </div>
 
-              
+              <!-- btn gauardar toda la compra  -->
+              <div class="row mt-2 btnsControl">
+                <div class="col-md-12 btnsControl">
+                  <!-- el boton guardar va la izquierda para mejor uso cunado el contenido necesite ser responsivo -->
+                  <div class="col-md-3 mt-2 float-left">
+                    <button id="btnGuardar" mdbBtn type="button" color="success" block="true" mdbWavesEffect
+                      (click)='guardarCompraFacturada()'>Guardar</button>
+                  </div>
+                  <div class="col-md-3 mt-2 float-right">
+                    <button [routerLink]="['/ListaCompras']" mdbBtn type="button" outline="true" color="link" block="true"
+                      mdbWavesEffect >Calcelar</button>
+                  </div>
+
+                </div>
+              </div>
+
             </form>
             <!-- fin del formulario factura-->
-
 
           </mdb-card-body>
         </mdb-card>
