@@ -37,16 +37,41 @@ export class ComprasListComponent implements OnInit {
     this.service.currentPurchase = purchase;
   }
 
+
+
   // metodo de busqueda, para visualizar en la tabla
   // search Items from the table
+  //  metodo para buscar todos los elementos por string
   searchItems() {
-    console.log('sin impleentacion');
+
+    // this.searchText accedo a la palabra buscar
+    if (this.searchText == null) {
+      this.getShoppingList();
+    }
+
+    if (this.searchText != null) {
+
+      let inv = new TbDocumento;
+      for (let index = 0; index < this.shoppingList.length; index++) {
+        inv = this.shoppingList[index]
+
+        if (inv.Id.toString().trim() == this.searchText.toString()) {
+          this.shoppingList.length = 0;
+          this.shoppingList.push(inv);
+        }
+
+        if (inv.IdEmpresa.trim().toUpperCase() == this.searchText.trim().toUpperCase()) {
+          this.shoppingList.length = 0;
+          this.shoppingList.push(inv);
+        }
+
+      }
+
+    }
   }
 
-  // metodo para refrescar la informacion de la tabla
-  // refresh data
-  Refresh() {
-    console.log('sin usar');
+  refresh() {
+    this.getShoppingList();
   }
 
 
