@@ -15,21 +15,15 @@
 
     </div>
   </div>
-
-
-
   <table class="table table-hover">
     <thead>
       <tr>
         <th>ID</th>
         <th>Nombre</th>
         <th>Dirección</th>
-        <th>Fecha creación</th>
-        <th>Fecha Utima Modificación</th>
-        <th>Usuario Creación</th>
-        <th>Usuario Utima Modificación</th>
+        <th>Telefono</th>
         <th><button *ngIf="empresaTipoId!=null && empresaId!=null" type="button" mdbBtn color="primary" size="sm" class="waves-light" data-toggle="modal"
-            data-target="#myModal" (click)="sucursal.show()" mdbWavesEffect>+</button></th>
+            data-target="#myModal" (click)="sucursal.show()" (click)="limpiarCAgregar()" mdbWavesEffect>+</button></th>
       </tr>
     </thead>
     <tbody>
@@ -37,21 +31,15 @@
         <td *ngIf="suc.FechaCrea!=null">{{suc.Id}}</td>
         <td *ngIf="suc.FechaCrea==null">Por definir</td>
         <td>{{suc.Nombre}}</td>
-        <td>{{suc.Direccion}}</td>
-        <td *ngIf="suc.FechaCrea!=null">{{suc.FechaCrea}}</td>
-        <td *ngIf="suc.FechaCrea==null">Pendiente</td>
-        <td *ngIf="suc.FechaUltMod!=null">{{suc.FechaUltMod}}</td>
-        <td *ngIf="suc.FechaUltMod==null">Pendiente</td>
-        <td>{{suc.UsuarioCrea}}</td>
-        <td>{{suc.UsuarioUltMod}}</td>
-        <td><button type="button" mdbBtn color="danger" size="sm" class="waves-light" data-toggle="modal"
-            data-target="#myModal" (click)="EnviaDatoEliminar(suc)" (click)="ventana.show()" mdbWavesEffect>-</button>
+        <td *ngIf="suc.FechaCrea!=null">{{suc.Direccion}}</td>
+        <td *ngIf="suc.FechaCrea==null">{{suc.Direccion}}, {{suc.TbDistrito.Nombre}}, {{suc.TbDistrito.TbCanton.Nombre}}, {{suc.TbDistrito.TbCanton.ProvinciaNavigation.Nombre}}</td>
+        <td>{{suc.Telefono}}</td>
+        <td>
+          <button type="button" mdbBtn color="danger" size="sm" class="waves-light" data-toggle="modal"
+            data-target="#myModal" (click)="EnviaDatoEliminar(suc)"  (click)="ventana.show()" mdbWavesEffect>-</button>
         </td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -91,7 +79,7 @@
               Telefono:
             </div>
             <div class="form-group col-md-9">
-              <input type="text" class="form-control" [(ngModel)]="sucursal.Telefono" placeholder="Numero de sucursal">
+              <input type="text" class="form-control" [(ngModel)]="Telefono" placeholder="Numero de sucursal">
             </div>
           </div>
           <div class="row">
@@ -148,14 +136,13 @@
 
         </div>
 
-
+        
       </div>
       <!--Footer-->
       <div class="modal-footer">
         <div> </div>
-        <button *ngIf="Provincia != null && Canton!= null && Distrito!= null && Nombre!= null" type="button" size="sm"
-          mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
-          (click)="agregarSucursal()" (click)="sucursal.hide()">Agregar</button>
+        <button *ngIf="Provincia != null && Canton!= null && Distrito!= null && Nombre!= null &&  Provincia != '' && Canton!= '' && Distrito!= '' && Nombre!= ''" type="button" size="sm"
+          mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal" (click)="agregarSucursal()" (click)="sucursal.hide()">Agregar</button>
         <button type="button" size="sm" mdbBtn color="danger" outline="true" class="waves-light" mdbWavesEffect
           data-dismiss="modal" (click)="sucursal.hide()">Cerrar</button>
       </div>
@@ -175,7 +162,7 @@
 
 
       <div class="modal-body">
-        <p>Desea eliminar: {{eliminaIdSucursal}}?</p>
+        <p>Desea eliminar la sucursal: {{Nombre}}?</p>
       </div>
 
 

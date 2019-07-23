@@ -35,7 +35,8 @@ export class SucursalComponent implements OnInit {
   //Listas
 
   listaProvincia = new Array();
-  ListaSuc = Array<TbSucursales>();
+  ListaSuc:Array<TbSucursales> = Array<TbSucursales>();
+  subirSucurasales:Array<TbSucursales> = Array<TbSucursales>();
   listaSucursales: Array<TbSucursales>;
   listaSucursalesSubir: Array<TbSucursales>;
   listaDistritos = new Array();
@@ -43,7 +44,7 @@ export class SucursalComponent implements OnInit {
   listaBarrios = new Array();
   listaTipoId = new Array();
   listaEmpresa = Array<TbEmpresa>();
-
+  Telefono: number;
   agregar: boolean = false;
 
   comboProvincias = new Array();
@@ -60,11 +61,21 @@ export class SucursalComponent implements OnInit {
   eliminaNombreSucursal: string;
   empresaId: string;
   empresaTipoId: string;
-  eliminaIdTipoEmpresa: number
-  eliminaIdSucursal: number;
+
+  IdSuc: number = 0;
 
   sucursal: TbSucursales = new TbSucursales();
   empresa: TbEmpresa = new TbEmpresa();
+
+  limpiarCAgregar() {
+    this.Nombre = "";
+    this.Provincia = ""
+    this.Canton = ""
+    this.Distrito = "";
+    this.Direccion = "";
+    this.Telefono = null;
+    this.sucursal = new TbSucursales();
+  }
 
   get(empresa: string) {
     this.empresaTipoId = empresa.substring(30, 31);
@@ -72,27 +83,31 @@ export class SucursalComponent implements OnInit {
     this.sucursalService.get(empresa.substring(0, 30), empresa.substring(30, 31)).subscribe(data => {
       this.listaSucursales = data;
       this.listaSucursalesSubir = data;
-      
+
       this.direccionParaSucursales();
     });
-    
+
   }
+
   direccionParaSucursales() {
 
     for (let x = 0; this.listaSucursales.length > x; x++) {
-      
-      if(this.listaSucursales[x].Direccion==null || this.listaSucursales[x].Direccion==""){
-        this.listaSucursales[x].Direccion="";
+
+      if (this.listaSucursales[x].Direccion == null || this.listaSucursales[x].Direccion == "") {
+
+        this.listaSucursales[x].Direccion = "";
       }
-      this.listaSucursales[x].Direccion += ", "+this.listaSucursales[x].TbDistrito.Nombre + ", ";
+
+      this.listaSucursales[x].Direccion += ", " + this.listaSucursales[x].TbDistrito.Nombre + ", ";
       this.listaSucursales[x].Direccion += this.listaSucursales[x].TbDistrito.TbCanton.Nombre + ", ";
-      
+
       for (let i = 0; this.listaProvincia.length > i; i++) {
         if (this.listaSucursales[x].Provincia == this.listaProvincia[i].Cod) {
-          
+
           this.listaSucursales[x].Direccion += this.listaProvincia[i].Nombre;
           break;
         }
+
       }
 
     }
@@ -109,20 +124,77 @@ export class SucursalComponent implements OnInit {
     }
   }
 
-  agregarSucursal() {
+  buscarCanton() {
+    for (let i = 0; this.listaProvincia.length > i; i++) {
 
-    this.sucursal.IdTipoEmpresa = parseInt( this.empresaTipoId);
+      if (this.Provincia == this.listaProvincia[i].Cod) {
+        for (let x = 0; this.listaCantones.length > x; x++) {
+
+          if (this.Canton == this.listaCantones[x].cod) {
+            return this.listaCantones[x].Nombre;
+          }
+        }
+      }
+    }
+  }
+
+  agregarSucursal() {
+    /*IdSuc la utilizo para llevar el control de cual sucursal es cual y el Id lo manejo 
+    en negativo por que si por A o B motivo la tengo que eliminar se elimine la que quiero y no otra*/
+    this.IdSuc--;
+    this.sucursal.Id = this.IdSuc;
+    //
+    this.sucursal.IdTipoEmpresa = parseInt(this.empresaTipoId);
     this.sucursal.Nombre = this.Nombre;
     this.sucursal.IdEmpresa = this.empresaId;
     this.sucursal.Provincia = this.Provincia;
     this.sucursal.Canton = this.Canton;
     this.sucursal.Distrito = this.Distrito;
     this.sucursal.Direccion = this.Direccion;
-    this.sucursal.UsuarioCrea = "yo"
-    this.sucursal.UsuarioUltMod = "yo"
-    this.listaSucursalesSubir.push(this.sucursal);
+    this.sucursal.Telefono = this.Telefono;
+    this.sucursal.UsuarioCrea = "yo";
+    this.sucursal.UsuarioUltMod = "yo";
+
+    this.subirSucurasales.push(this.sucursal)
+
+    console.log(this.subirSucurasales)
     this.ListaSuc.push(this.sucursal)
+    
+    for (let i = 0; this.listaProvincia.length > i; i++) {
+
+      if (this.sucursal.Provincia == this.listaProvincia[i].Cod) {
+
+        for (let z = 0; this.listaCantones.length > z; z++) {
+
+          if (this.sucursal.Canton == this.listaCantones[z].Canton && this.sucursal.Provincia == this.listaCantones[z].Provincia) {
+            for (let y = 0; this.listaDistritos.length > y; y++) {
+
+              if (this.sucursal.Distrito == this.listaDistritos[y].Distrito && this.sucursal.Canton == this.listaDistritos[y].Canton && this.sucursal.Provincia == this.listaDistritos[y].Provincia) {
+
+
+                this.sucursal.TbDistrito = this.listaDistritos[y];
+                break;
+              }
+
+            }
+
+            this.sucursal.TbDistrito.TbCanton = this.listaCantones[z]
+
+            break;
+          }
+        }
+        this.sucursal.TbDistrito.TbCanton.ProvinciaNavigation = this.listaProvincia[i];
+
+        break;
+
+      }
+    }
+
+    this.listaSucursalesSubir.push(this.sucursal);
+    
+    this.sucursal = new TbSucursales();
     this.agregar = true;
+
   }
 
   getEmpresas() {
@@ -148,17 +220,17 @@ export class SucursalComponent implements OnInit {
   }
 
   delete() {
-    
-    if (this.eliminaIdSucursal != undefined) {
-      this.sucursalService.delete(this.eliminaIdSucursal, this.eliminaIdTipoEmpresa, this.eliminaIdEmpresa).subscribe(data => {
+
+    if (this.sucursal.Id != undefined && this.sucursal.Id > 0) {
+      alert("Ajá")
+      this.sucursalService.delete(this.sucursal.Id, this.sucursal.IdEmpresa.trim(), this.sucursal.IdTipoEmpresa).subscribe(data => {
         data;
       });
     }
 
-
     for (let i = 0; this.listaSucursales.length > i; i++) {
 
-      if (this.listaSucursales[i].Id == this.eliminaIdSucursal) {
+      if (this.listaSucursales[i].Id == this.sucursal.Id) {
 
         this.listaSucursales.splice(i, 1);
 
@@ -167,7 +239,7 @@ export class SucursalComponent implements OnInit {
     }
     for (let i = 0; this.listaSucursalesSubir.length > i; i++) {
 
-      if (this.listaSucursalesSubir[i].Id == this.eliminaIdSucursal) {
+      if (this.listaSucursalesSubir[i].Id == this.sucursal.Id) {
 
         this.listaSucursalesSubir.splice(i, 1);
 
@@ -175,26 +247,28 @@ export class SucursalComponent implements OnInit {
     }
     this.validarBotonAgregar();
 
-    this.eliminaIdSucursal = 0;
-    this.eliminaNombreSucursal = "";
-    this.eliminaIdEmpresa = "";
-    this.eliminaIdTipoEmpresa = 0;
+    this.sucursal = new TbSucursales();
 
 
   }
-  post() {
 
-    this.sucursalService.post(this.ListaSuc).subscribe(data => {
+  post() {
+    for (let i = 0; i < this.subirSucurasales.length; i++) {
+      this.subirSucurasales[i].TbDistrito=null;
+      
+    }
+    this.sucursalService.post(this.subirSucurasales).subscribe(data => {
       data;
     });
     location.reload();
   }
-  EnviaDatoEliminar(suc) {
 
-    this.eliminaIdSucursal = suc.Id;
-    this.eliminaNombreSucursal = "hola";
-    this.eliminaIdEmpresa = suc.IdEmpresa;
-    this.eliminaIdTipoEmpresa = 1;
+
+
+  EnviaDatoEliminar(suc) {
+    this.sucursal = new TbSucursales();
+    this.sucursal = suc;
+    this.Nombre = this.sucursal.Nombre
   }
 
   // obterner la lista de provincias en el servico

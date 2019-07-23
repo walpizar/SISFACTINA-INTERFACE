@@ -714,12 +714,6 @@ export class FacturadorComponent implements OnInit {
       //Alert
       this.msjAlert.info("Estamos agregando los datos,aguarda unos instantes");
       //Enciamos la factura
-      if (this.ckCorreo==true) {
-        alert("ENTRO");
-        this.facturaService.EnviarCorreo().subscribe(data=>{this.msjAlert.success("Correo enviado")},err=>{
-          this.msjAlert.error("Error al enviar el correo electronico")
-        })
-      }
       this.facturaService.post(factura).subscribe(
         (data => {
           //Alert
@@ -728,8 +722,6 @@ export class FacturadorComponent implements OnInit {
           this.doc = data;
           //Seteamos
           this.clave = this.doc.Clave
-          //-------------------AQUI VA CORREO-----------------------
-         
         })
       )
 
