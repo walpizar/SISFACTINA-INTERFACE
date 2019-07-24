@@ -22,6 +22,7 @@ export class ProductosComponent implements OnInit {
   _inventario:TbInventario;
   _categoria:TbCategoriaProducto;
   _medida:TbTipoMedidas;
+  buscar:string;
 
   eliminado: boolean;
 
