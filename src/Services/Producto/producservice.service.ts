@@ -53,17 +53,17 @@ export class ProducserviceService {
  }
 
  cargarCategorias(){
-   this.http.get('http://localhost:63630/api/categorias').toPromise()
+   this.http.get('http://localhost:63630/api/categoriaproducto').toPromise()
    .then(res => this.categorias = res as TbCategoriaProducto[]);
  }
 
  cargarProveedores(){
-   this.http.get('http://localhost:63630/api/proveedores').toPromise()
+   this.http.get('http://localhost:63630/api/proveedor').toPromise()
    .then(res => this.proveedores = res as TbProveedores[]);
  }
 
  cargarMedidas(){
-   this.http.get('http://localhost:63630/api/medidas').toPromise()
+   this.http.get('http://localhost:63630/api/tipomedida').toPromise()
    .then(res => this.medidas = res as TbTipoMedidas[]);
  }
 
@@ -74,21 +74,21 @@ export class ProducserviceService {
  }
 
  cargarTipoId(){
-   this.http.get('http://localhost:63630/api/tipoId').toPromise()
+   this.http.get('http://localhost:63630/api/tipoid').toPromise()
    .then(res => this.tipoId = res as TbTipoId[]);
  }
 
  guardar(producto:TbProducto) {
 
-   return this.http.post('http://localhost:63630/api/productos',producto);
+   return this.http.post('http://localhost:63630/api/producto',producto);
  }
 
  modificar(producto:TbProducto) {
-   return this.http.put('http://localhost:63630/api/productos', producto);
+   return this.http.put('http://localhost:63630/api/producto', producto);
  }
 
  eliminar(pro:TbProducto){
-   return this.http.delete('http://localhost:63630/api/productos/'+pro.IdProducto);
+   return this.http.delete('http://localhost:63630/api/producto/'+pro.IdProducto);
  }  
 
 exento(EsExento:boolean){
