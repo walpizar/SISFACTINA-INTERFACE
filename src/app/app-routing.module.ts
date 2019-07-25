@@ -40,6 +40,8 @@ import { CajasComponent } from './cajas/cajas.component';
 import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component';
 import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
 import { FacturadorComponent } from './Facturador/facturador.component';
+import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
+import { DetalleExoComponent } from './Exoneraciones/detalle-exo/detalle-exo.component';
 const routes: Routes = [
   
   {path:'Indexabono',component:IndexAbonoComponent},
@@ -68,6 +70,8 @@ const routes: Routes = [
   {path: 'ModificarCliente/:id', component: ModificarCliComponent },
   {path: 'tipoExoneraciones', component: ListaExoComponent },
   {path: 'registroExoneracion', component: AgregarExoComponent },
+  {path: 'modificarExoneracion', component: TipoExoneracionComponent },
+  {path: 'detallesExoneracion', component: DetalleExoComponent },
   {
     path : 'usuario', component : UsuarioComponent, 
     children:[

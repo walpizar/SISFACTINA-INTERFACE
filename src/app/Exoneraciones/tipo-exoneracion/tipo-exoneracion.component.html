@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 pt-4 pb-4 fondo-color">
-            <h2 class="text-center ml-5">Registro Tipo de Exoneraciones</h2>
+            <h2 class="text-center ml-5">Modificar Exoneración</h2>
         </div>
     </div>
   </div>
@@ -25,8 +25,8 @@
                 <div class="input-group-prepend mb-3">
                   <span class="input-group-text">ID</span>
                 </div>
-                <input type="number" id="" mdbInput class="form-control mb-3" placeholder=""
-                name="Exonera.Id" [(ngModel)]="Exonera.Id">
+                <input type="number" id="" mdbInput class="form-control mb-3" readonly
+                name="Exone.Id" [(ngModel)]="Exone.Id">
               </div>
   
             </div>
@@ -37,16 +37,16 @@
                   <div class="input-group-prepend mb-3">
                     <span class="input-group-text">Nombre</span>
                   </div>
-                  <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Excento" name="Exonera.Nombre"
-                  [(ngModel)]="Exonera.Nombre">
+                  <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Excento" name="Exone.Nombre"
+                  [(ngModel)]="Exone.Nombre">
               </div>
               <!-- Valor -->
               <div class="input-group col-md-6">
                   <div class="input-group-prepend mb-3">
                     <span class="input-group-text">Valor</span>
                   </div>
-                  <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Ejem: 10" name="Exonera.Valor"
-                  [(ngModel)]="Exonera.Valor">
+                  <input type="text" id="" mdbInput class="form-control mb-3" placeholder="Ejem: 10" name="Exone.Valor"
+                  [(ngModel)]="Exone.Valor">
               </div>
             </div>
             <div class="input-group">
@@ -55,11 +55,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Descripción</span>
                 </div>
-                <textarea class="form-control" name="Exonera.Descripcion" [(ngModel)]="Exonera.Descripcion"></textarea>
+                <textarea class="form-control" name="Exone.Descripcion" [(ngModel)]="Exone.Descripcion"></textarea>
               </div>
             </div>
             
-            <button type="submit" mdbBtn color="warning" size="lg" outline="true" mdbWavesEffect (click)="modificarExo">Modificar</button>
+            <button type="submit" mdbBtn color="warning" size="lg" outline="true" mdbWavesEffect (click)="modificarExo(Exone)">Modificar</button>
             <button type="button" mdbBtn color="danger" size="lg" outline="true" mdbWavesEffect routerLink="/tipoExoneraciones">Cancelar</button>
           </mdb-card-body>
         </mdb-card>

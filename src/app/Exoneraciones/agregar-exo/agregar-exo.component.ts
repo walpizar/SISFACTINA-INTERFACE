@@ -18,9 +18,11 @@ export class AgregarExoComponent implements OnInit {
   }
 
   Registrar(Exonera:TbExoneraciones){
+    this.alerta.info("Estamos agregando los datos, espere unos instantes"); 
     this.service.Agregar(Exonera).subscribe(
       res=>{
         this.alerta.success('Registro Realizado', 'Exoneración');
+        this.Exonera=new TbExoneraciones();
       },
       err=>{this.alerta.error('Error de Registro', 'Exoneración');}
     );  

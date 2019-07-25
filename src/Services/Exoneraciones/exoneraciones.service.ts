@@ -8,6 +8,8 @@ import { TbExoneraciones } from 'src/Models/Exoneraciones';
 })
 export class ExoneracionesService {
 
+  public detalleExoneracion:TbExoneraciones;
+
   constructor(private http:HttpClient,private serviceGeneric: ServiceGeneric) { }
 
   ConsultarTodos(){

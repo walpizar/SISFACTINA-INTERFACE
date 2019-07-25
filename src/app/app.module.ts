@@ -56,6 +56,7 @@ import { ListaExoComponent } from './Exoneraciones/lista-exo/lista-exo.component
 import { TipoExoneracionComponent } from './Exoneraciones/tipo-exoneracion/tipo-exoneracion.component';
 import { AgregarExoComponent } from './Exoneraciones/agregar-exo/agregar-exo.component';
 import { SucursalComponent } from './sucursal/sucursal.component';
+import { DetalleExoComponent } from './Exoneraciones/detalle-exo/detalle-exo.component';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import { SucursalComponent } from './sucursal/sucursal.component';
     ComprasDetallesComponent,
     ListaExoComponent,
     TipoExoneracionComponent,
-    AgregarExoComponent
+    AgregarExoComponent,
+    DetalleExoComponent
   ],
   imports: [
     BrowserModule,
