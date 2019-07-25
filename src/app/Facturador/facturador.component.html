@@ -526,7 +526,7 @@
                   <input type="tel" class="form-control" [(ngModel)]="TotalFactura" placeholder="" readonly>
                 </div>
               </div>
-              <div class="row" *ngIf="tipoPago==1">
+              <div class="row" *ngIf="tipoVenta==1">
                 <div class="form-group  col-md-6" style="display: inline-block">
                   Vuelto:
                 </div>
@@ -738,7 +738,7 @@
 
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3" *ngIf="tipoPago==1 && tipoVenta==1">
                 Cuanto Paga:
               </div>
               <div class="col-md-8" *ngIf="tipoPago==1 && tipoVenta==1">
@@ -755,13 +755,12 @@
 
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-3" *ngIf="tipoVenta==1">
                 Vuelto
               </div>
-              <div class="col-md-8">
+              <div class="col-md-8" *ngIf="tipoVenta==1">
                 {{cuantoPaga-TotalFactura}}
               </div>
-
 
             </div>
             <div class="row">

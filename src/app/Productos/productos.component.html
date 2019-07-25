@@ -7,6 +7,11 @@
     <button type="button" class="btn btn-primary float-right mb-2" [routerLink]="['/Crear_Producto']" routerLinkActive='active' >Crear Producto</button>
     <!--<button type="button" class="btn btn-primary float-right mb-2" data-toggle="modal" data-target="#Crear" >Crear Producto</button>-->
     
+    <div class="md-form form-group mb-3">
+      <input mdbInput type="text" id="form1" oninput="this.value = this.value.toUpperCase()"
+        style="text-transform: uppercase; width:10cm" class="form-control" [(ngModel)]="buscar">
+      <label for="form1" class="">Buscar</label>
+    </div>
    
     <table class="table table-hover">
       <thead>
@@ -22,13 +27,25 @@
       </thead>
       <tbody>
         <tr *ngFor="let producto of service.productos">
-          <td>{{producto.IdProducto}}</td>
-          <td>{{producto.Nombre}}</td>
-          <td>{{producto.PrecioReal}}</td>
-          <td>{{producto.IdTipoImpuestoNavigation.Valor}} %</td>
-          <td><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Detalles" (click)="productoDetalle(producto)"  >Detalles</button></td>
-          <td><button type="button" class="btn btn-primary" (click)="productoSelect(producto)"  [routerLink]="['/Modificar_Producto']" >Modificar</button></td>
-          <td><button type="button" class="btn btn-primary"  (click)="productoSelect(producto)" [routerLink]="['/Eliminar_Producto']">Eliminar</button></td>
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '">
+            {{producto.IdProducto}}
+          </td>
+
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '">
+            {{producto.Nombre}}
+          </td>
+
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '">
+            {{producto.PrecioReal}}
+          </td>
+
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '">
+            {{producto.IdTipoImpuestoNavigation.Valor}} %
+          </td>
+
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '"><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#Detalles" (click)="productoDetalle(producto)"  >Detalles</button></td>
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '"><button type="button" class="btn btn-primary" (click)="productoSelect(producto)"  [routerLink]="['/Modificar_Producto']" >Modificar</button></td>
+          <td *ngIf=" producto.IdProducto.includes(buscar) || producto.Nombre.includes(buscar)  || buscar==null || buscar==' '"><button type="button" class="btn btn-primary"  (click)="productoSelect(producto)" [routerLink]="['/Eliminar_Producto']">Eliminar</button></td>
 
            <!-- Modal Detalles Producto-->
             <div class="modal" id="Detalles">

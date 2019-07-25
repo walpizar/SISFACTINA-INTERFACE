@@ -9,7 +9,7 @@
 .fondo-color{
     background-color: #2e3951 ;
     color: white;
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 #toast-container>div{
@@ -37,4 +37,20 @@ mdb-card{
 .titulo h2{
     font-size: 24px; 
     font-family: 'Oxygen', sans-serif;
+}
+
+.boton{
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 75px;
+    margin-right: 20px;
+}
+
+body::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
+}
+
+.menu::-webkit-scrollbar {
+    display: none;  /* Ocultar scroll */
 }

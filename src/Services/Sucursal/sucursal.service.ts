@@ -10,20 +10,16 @@ export class SucursalService {
 
   constructor(private http:HttpClient, private serviceGeneric: ServiceGeneric) { }
 
-  public Doc: TbSucursales;
-  list: TbSucursales[];
-
   get(id,tipoId){
     return this.http.get<Array<TbSucursales>>(this.serviceGeneric.getURL()+"/sucursales/"+id+'/'+tipoId);
   }
 
-  post(body : Array<object>){
-    alert("hola")
+  post(body : Array<TbSucursales>){
     const headers = new HttpHeaders().set('Content-type','application/Json');
     return this.http.post<TbSucursales> (this.serviceGeneric.getURL()+'/sucursales',body,{headers});
   }
 
-  delete(id, tipoId, idEmpresa){
+  delete(id, idEmpresa, tipoId){
     return this.http.delete<TbSucursales>(this.serviceGeneric.getURL()+"/sucursales/"+id+'/'+tipoId+'/'+idEmpresa);
    }
 }

@@ -1,73 +1,120 @@
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark mdb-color darken-3" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark mdb-color darken-3 " [containerInside]="false">
 
   <!-- Navbar brand -->
   <mdb-navbar-brand><a class="navbar-brand" routerLink="/facturador">Facturador</a></mdb-navbar-brand>
 
-  <!-- Collapsible content -->
-  <links>
 
-    <!-- Links -->
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/factura">Facturas<span class="sr-only">(current)</span></a>
-      </li>
-      <!-- lista de opciones para clientes -->
-      <!-- Dropdown -->
-      <li class="nav-item dropdown dropdown1" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Clientes<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-content" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['ListaClientes']">Lista Clientes</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['RegistroCliente']">Registro Clientes</a>
-        </div>
-      </li>
-      <!-- lista de opciones para compras -->
-      <!-- Dropdown -->
-      <li class="nav-item dropdown dropdown1" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            Compras<span class="caret"></span></a>
-          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-content" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['ListaCompras']">Lista Compras</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['RegistroCompras']">Registro Compras</a>
-          </div>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/Indexabono">Abonos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/Indexproveedor">Proveedor</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/Productos">Productos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/empresa">Empresas</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="/impuestos">Impuestos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect routerLink="/cajas">cajas</a>
-        </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/Indexcategoriaproduct">Categoria Producto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/IndexTipoMedida">Tipo Medida</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/validaHacienda">Hacienda</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link waves-light" mdbWavesEffect routerLink="/tipoExoneraciones">Exoneraciones</a>
-      </li>
-    </ul>
-    <!-- Links -->
-  </links>
-  <!-- Collapsible content -->
+  <button mdbBtn type="button" color="indigo" class=" waves-light navbar-nav ml-auto" (click)="basicModal.show()"
+    mdbWavesEffect>
+    <mdb-icon fas icon="bars"></mdb-icon>
+  </button>
 
 </mdb-navbar>
 <!--/.Navbar-->
+
+
+<div style="overflow-y: auto" mdbModal #basicModal="mdbModal" class="modal fade right menu" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-full-height  modal-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Menu</h4>
+      </div>
+      <div class="modal-body">
+
+        <div id="accordion">
+          <button type="button" class="btn btn-block btn-indigo mb-3 text-left" data-toggle="collapse"
+            data-target="#Transaccionales">
+            <mdb-icon fas icon="receipt" class="mr-3" size="lg" aria-hidden="true"></mdb-icon> Transaccionales
+          </button>
+
+          <div id="Transaccionales" class="collapse" data-parent="#accordion">
+            <links>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item" routerLink="/facturador">
+                  <a class="nav-link waves-light" mdbWavesEffect>Facturador</a>
+                </li>
+                <li class="nav-item" routerLink="/factura">
+                  <a class="nav-link waves-light" mdbWavesEffect>Facturas</a>
+                </li>
+
+                <li class="nav-item" routerLink="/Indexabono">
+                  <a class="nav-link waves-light" mdbWavesEffect>Abonos</a>
+                </li>
+                <li class="nav-item" routerLink="/validaHacienda">
+                  <a class="nav-link waves-light" mdbWavesEffect>Hacienda</a>
+                </li>
+              </ul>
+            </links>
+          </div>
+
+          <button mdbBtn type="button" class="btn btn-block  mb-3 text-left" color="deep-orange" data-toggle="collapse"
+            data-target="#Mantenimientos" mdbWavesEffect>
+            <mdb-icon fas icon="layer-group" class="mr-3" size="lg"></mdb-icon>Mantenimientos
+          </button>
+          <div id="Mantenimientos" class="collapse" data-parent="#accordion">
+
+            <links>
+              <!-- Links -->
+              <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item" routerLink="/ListaClientes">
+                  <a class="nav-link waves-light" mdbWavesEffect>Clientes</a>
+                </li>
+
+                <li class="nav-item" routerLink="/ListaCompras">
+                  <a class="nav-link waves-light" mdbWavesEffect>Compras</a>
+                </li>
+
+                <li class="nav-item" routerLink="/Indexproveedor">
+                  <a class="nav-link waves-light" mdbWavesEffect>Proveedores</a>
+                </li>
+                <li class="nav-item" routerLink="/Productos">
+                  <a class="nav-link waves-light" mdbWavesEffect>Productos</a>
+                </li>
+                <li class="nav-item" routerLink="/empresa">
+                  <a class="nav-link waves-light" mdbWavesEffect>Empresas</a>
+                </li>
+                <li class="nav-item" routerLink="/impuestos">
+                  <a class="nav-link waves-light" mdbWavesEffect>Impuestos</a>
+                </li>
+                <li class="nav-item" routerLink="/cajas">
+                  <a class="nav-link waves-light" mdbWavesEffect>cajas</a>
+                </li>
+                <li class="nav-item" routerLink="/Indexcategoriaproduct">
+                  <a class="nav-link waves-light" mdbWavesEffect>Categorias Producto</a>
+                </li>
+                <li class="nav-item" routerLink="/IndexTipoMedida">
+                  <a class="nav-link waves-light" mdbWavesEffect>Tipo Medidas</a>
+                </li>
+                <li class="nav-item" routerLink="/tipoExoneraciones">
+                  <a class="nav-link waves-light" mdbWavesEffect>Exoneraciones</a>
+                </li>
+
+              </ul>
+            </links>
+          </div>
+
+          <button mdbBtn type="button" color="purple" class="btn btn-block  mb-3 text-left " data-toggle="collapse"
+            data-target="#Usuario" mdbWavesEffect>
+            <mdb-icon fas icon="user-cog" class="mr-3" size="lg"></mdb-icon>Usuario
+          </button>
+          <div id="Usuario" class="collapse" data-parent="#accordion">
+            <p>Configuraciones del usuario</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button mdbBtn type="button" color="danger" outline="true" routerLink="/usuario/login"
+          (click)="basicModal.hide()" mdbWavesEffect>Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

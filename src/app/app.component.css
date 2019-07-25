@@ -22,3 +22,11 @@
 .dropdown-content a:hover {background-color: rgba(0,0,0,0.4);}
 
 .dropdown1:hover .dropdown-content {display: block;}
+
+ul li{
+    padding: 5px;
+}
+
+ul li:hover{
+    background-color: rgba(196, 192, 192, 0.26);
+}
