@@ -2,14 +2,8 @@
 
   <div class="container-fluid">
     <div class="row">
-        <div class="col-md-10 pt-4 pb-4 fondo-color">
-            <h2 class="text-center ml-5">Tipo de Exoneraciones</h2>
-        </div>
-        <div class="col-md-2 fondo-color pt-4 pb-4">
-          <a [routerLink]="['/registroExoneracion']">
-              <i class="fa fa-plus-square mr-2 pt-2" aria-hidden="true"></i>
-              Agregar Exoneración
-          </a>
+        <div class="col-md-12 pt-4 pb-4 fondo-color">
+            <h2 class="text-center">Tipo de Exoneraciones</h2>
         </div>
     </div>
   </div>
@@ -17,13 +11,17 @@
   <div class="mt-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mx-auto">
+          <div class="col-md-8">
             <div class="md-form">
-              <input type="text" [(ngModel)]="buscador" class="form-control" id="search" mdbInput>
-              <label for="search">Buscar</label>
-              <button class="ml-0" type="button" mdbBtn color="info" outline="true" size="md" (click)="searchExo()">Buscar</button>
-              <button type="button" mdbBtn color="light-blue" outline="true" size="md" (click)="getListaExo()">Refrescar</button>
+              <input type="text" [(ngModel)]="buscador" class="form-control" id="search" mdbInput oninput="this.value = this.value.toUpperCase()">
+              <label for="search">Buscar</label>              
             </div>
+          </div>
+          <div class="col-md-3">
+            <a [routerLink]="['/registroExoneracion']" class="btn btn-success">
+                <i class="fa fa-plus-square mr-2 pt-2" aria-hidden="true"></i>
+                Crear Exoneración
+            </a>
           </div>
         </div>
         <div class="row">
@@ -40,20 +38,20 @@
 
               <tbody>
                 <tr *ngFor="let exo of listaExo" class="text-center">
-                  <td>{{exo.Id}}</td>
-                  <td>{{exo.Nombre}}</td>
-                  <td>{{exo.Valor}}</td>
-                  <td>
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">{{exo.Id}}</td>
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">{{exo.Nombre}}</td>
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">{{exo.Valor}}</td>
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">
                     <button type="button" mdbBtn color="info" size="sm" (click)="ExoActual(exo)" [routerLink]="['/detallesExoneracion']">
                       Detalles
                     </button>
                   </td>
-                  <td>
-                    <button type="button" mdbBtn color="success" size="sm" (click)="ExoActual(exo)" [routerLink]="['/modificarExoneracion']">
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">
+                    <button type="button" mdbBtn color="warning" size="sm" (click)="ExoActual(exo)" [routerLink]="['/modificarExoneracion']">
                       Modificar
                     </button>
                   </td>
-                  <td>
+                  <td *ngIf="exo.Nombre.toUpperCase().includes(buscador)||buscador==null||buscador==' '">
                     <button type="button" mdbBtn color="danger" size="sm" (click)="ExoActual(exo)" class="waves-light" data-toggle="modal"
                       data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Eliminar</button>
                   </td>

@@ -45,25 +45,4 @@ export class ListaExoComponent implements OnInit {
     setTimeout(this.reFresh,2400,'refresh');
   }
 
-  //metodo para buscar con string
-  searchExo(){
-
-    if(this.buscador==null){
-      this.getListaExo();
-    }
-
-    if(this.buscador!=null){
-      let exo=new TbExoneraciones();
-
-      for(let i = 0; i<this.listaExo.length;i++){
-        exo=this.listaExo[i];
-
-        if(exo.Nombre.trim().toUpperCase().includes(this.buscador.trim().toUpperCase().toString())){
-          this.listaExo=new Array();
-          this.listaExo.push(exo);
-        }
-      }
-    }
-
-  }
 }
