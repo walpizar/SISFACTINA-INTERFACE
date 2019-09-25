@@ -18,7 +18,7 @@ import { TbTipoVenta } from '../../Models/TipoVenta';
 import { TbInventario } from '../../Models/Inventario';
 import { TbDocumento } from '../../Models/Documento';
 import { TbUsuarios } from '../../Models/Usuarios';
-
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-factura',
   template: '<h3>{{errorMsg}}</h3>',
@@ -42,6 +42,7 @@ export class FacturadorComponent implements OnInit {
 
 
   }
+  @ViewChild('content') content:ElementRef;
   //Variables tipo: Date
   fecha: Date;
   //Variables tipo: string
@@ -721,7 +722,15 @@ export class FacturadorComponent implements OnInit {
           //Lo que me trae data se lo seteamos a doc.
           this.doc = data;
           //Seteamos
-          this.clave = this.doc.Clave
+          this.clave = this.doc.Clave;
+          
+          let doc = new jsPDF();
+          let specialElementHandlers ={'#editor':function(element,renderer){
+            return true;
+          }};
+          let content = this.content.nativeElement;
+          doc.fromHTML(content.innerHTML,15,15,{'width':198,'elementHandlers':specialElementHandlers});
+          doc.save('test.pdf');
         })
       )
 
