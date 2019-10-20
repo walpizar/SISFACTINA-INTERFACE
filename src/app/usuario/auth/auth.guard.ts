@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-//import { CanActivate } from '@angular/router/src/utils/preactivation';
+import { CanActivate } from '@angular/router/';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard /*implements CanActivate*/  {
+export class AuthGuard implements CanActivate  {
 
- /* path: ActivatedRouteSnapshot[];
+  path: ActivatedRouteSnapshot[];
   route: ActivatedRouteSnapshot;
 
   constructor(private router:Router){}
@@ -23,5 +23,5 @@ export class AuthGuard /*implements CanActivate*/  {
         this.router.navigate(['/usuario/login'])
         return false;
       }
-    }*/
+    }
 }
