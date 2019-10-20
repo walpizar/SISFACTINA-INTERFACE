@@ -42,7 +42,7 @@ export class FacturadorComponent implements OnInit {
 
 
   }
-  @ViewChild('content') content:ElementRef;
+  @ViewChild('content',{static: false}) content:ElementRef;
   //Variables tipo: Date
   fecha: Date;
   //Variables tipo: string

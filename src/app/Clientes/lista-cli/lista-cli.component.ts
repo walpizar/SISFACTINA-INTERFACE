@@ -2,8 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { DataClienteService } from 'src/Services/Cliente/data-cliente.service';
 import { ToastrService } from 'ngx-toastr';
 import { TbClientes } from 'src/Models/Cliente';
-import { stringify } from '@angular/core/src/util';
-import { TbTipoClientes } from 'src/Models/TipoCliente';
+//import { stringify } from '@angular/core/src/';
 
 @Component({
   selector: 'app-lista-cli',

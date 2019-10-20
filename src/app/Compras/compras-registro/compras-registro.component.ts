@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 import { TbDocumento } from 'src/Models/Documento';
 import { ComprasService } from 'src/Services/Compras/compras.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,8 +12,8 @@ import { TbDetalleDocumento } from 'src/Models/DetalleDocumento';
   styleUrls: ['./compras-registro.component.css']
 })
 export class ComprasRegistroComponent implements OnInit {
-  @ViewChild('myInvoice') myInvoice: ElementRef;
-  @ViewChild('myProvider') myProvider: ElementRef;
+  @ViewChild('myInvoice',{static: false}) myInvoice: ElementRef;
+  @ViewChild('myProvider',{static: false}) myProvider: ElementRef;
   constructor(private service: ComprasService, private Alert: ToastrService) { }
 
   // Arreglos
