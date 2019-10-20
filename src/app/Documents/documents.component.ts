@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FacturaService } from 'src/Services/Factura/factura.service';
 import { Busqueda } from 'src/Models/Busqueda';
 import { TbDocumento } from 'src/Models/Documento';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-documents',
@@ -17,7 +18,7 @@ export class DocumentsComponent implements OnInit {
   // lista con doc todos
   ListaDocGeneral = new Array();
 
-  constructor(private service:FacturaService) {
+  constructor(private service:FacturaService, private msj:ToastrService) {
     this.docBusca=new Busqueda();
    }
 
@@ -31,13 +32,23 @@ export class DocumentsComponent implements OnInit {
   documetsAct(){
     this.service.getDocumentsActules().subscribe(data =>{
       this.ListaDocActules = data;
-    })
+    },error=>{this.msj.error("No hay registros de facturas actuales")})
   }
   // obtengo todos los doc
   documentGeneral(){
+    this.msj.info("Obteniendo facturas");
     this.service.get().subscribe(data =>{
       this.ListaDocGeneral = data;
     })
+  }
+  CargarFacturas(){
+    this.ListaDocActules=this.ListaDocGeneral;
+    if(this.ListaDocActules.length!=0){
+      this.msj.success("Cargadas con exito");
+    }else{
+      this.msj.error("No hay registros de facturas");
+    }
+    
   }
 
   public DocActual(doc: TbDocumento) {
