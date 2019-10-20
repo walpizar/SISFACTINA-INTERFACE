@@ -6,18 +6,10 @@ import { FacturaService } from 'src/Services/Factura/factura.service';
 import { TbDocumento } from 'src/Models/Documento';
 import { DataAbonosService } from 'src/Services/Abonos/abonos.service';
 import { ToastrService } from 'ngx-toastr';
-import { DataPersonaService } from 'src/Services/Persona/persona.service';
-import { TbClientes } from 'src/Models/Cliente';
-import { TbPersona } from 'src/Models/Personas';
 import * as moment from 'moment';
 import * as dateformat from 'dateformat';
 import { ProducserviceService } from 'src/Services/Producto/producservice.service';
 import { TipoPagoService } from 'src/Services/TipoPago/tipo-pago.service';
-
-
-
-
-
 
 @Component({
   selector: 'app-index-abono',
