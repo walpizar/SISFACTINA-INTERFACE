@@ -17,7 +17,6 @@ import { TbTipoPago } from '../../Models/TipoPago';
 import { TbTipoVenta } from '../../Models/TipoVenta';
 import { TbInventario } from '../../Models/Inventario';
 import { TbDocumento } from '../../Models/Documento';
-import { TbUsuarios } from '../../Models/Usuarios';
 import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-factura',
@@ -539,6 +538,7 @@ export class FacturadorComponent implements OnInit {
       //si se clumple entonces...
       if (this.listaDetalles[i].TotalLinea == NaN) {
         //Seteamo el valor de la factura
+        console.log(this.listaDetalles[i].TotalLinea);
         this.listaDetalles[i].TotalLinea == 0;
       }
       //Seteamos
@@ -714,23 +714,27 @@ export class FacturadorComponent implements OnInit {
       this.fecha = new Date();
       //Alert
       this.msjAlert.info("Estamos agregando los datos,aguarda unos instantes");
-      //Enciamos la factura
-      this.facturaService.post(factura).subscribe(
-        (data => {
-          //Alert
-          this.msjAlert.success('Factura agregada correctamente, ' + "La clave es:" + this.clave)
-          //Lo que me trae data se lo seteamos a doc.
-          this.doc = data;
-          //Seteamos
-          this.clave = this.doc.Clave;
-          
-          let doc = new jsPDF();
+      let doc = new jsPDF();
           let specialElementHandlers ={'#editor':function(element,renderer){
             return true;
           }};
           let content = this.content.nativeElement;
           doc.fromHTML(content.innerHTML,15,15,{'width':198,'elementHandlers':specialElementHandlers});
-          doc.save('test.pdf');
+          console.log("ya guardo pdf");
+          doc.save('Factura '+factura.Clave+'.pdf');
+          
+      //Enciamos la factura
+      this.facturaService.post(factura).subscribe(
+        (data => {
+          //Lo que me trae data se lo seteamos a doc.  
+          this.doc = data;
+          //Seteamos
+          this.clave = this.doc.Clave;
+          //Alert
+          this.msjAlert.success('Factura agregada correctamente, ' + "La clave es:" + this.clave)
+               
+          
+          
         })
       )
 
