@@ -35,7 +35,8 @@
               "./node_modules/chart.js/dist/Chart.js",
               "./node_modules/hammerjs/hammer.min.js",
               "./node_modules/ngx-moment/bundles/ngx-moment.umd.min.js",
-              "./node_modules/dateformat/lib/dateformat.js"
+              "./node_modules/dateformat/lib/dateformat.js",
+              "../node_modules/jspdf/dist/jspdf.min.js"
             ],
             "es5BrowserSupport": true
           },
